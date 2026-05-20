@@ -1,12 +1,12 @@
-## Run, Forest, Run!
+## Беги, Лес, беги!
 
-### Objective
+### Цель
 
-Learn what restart policies do and how to use them
+Узнайте, что делают политики перезапуска и как их использовать.
 
-### Requirements
+### Требования
 
-Make sure Docker is installed on your system and the service is started
+Убедитесь, что Docker установлен в вашей системе и служба запущена.
 
 ```
 # Fedora/RHEL/CentOS
@@ -14,58 +14,56 @@ rpm -qa | grep docker
 systemctl status docker
 ```
 
-### Instructions
+### Инструкции
 
-1. Run a container with the following properties:
-  * image: alpine
-  * name: forest
-  * restart policy: always
-  * command to execute: sleep 15
+1. Запустите контейнер со следующими свойствами:
+  * изображение: альпийский
+  * название: лес
+  * политика перезапуска: всегда
+  * команда для выполнения: сон 15
 
-`docker run --restart always --name forest alpine sleep 15`
+`docker run --restart всегда --name Forest Alpine Sleep 15`
 
-2. Run `docker container ls` - Is the container running? What about after 15 seconds, is it still running? why?
-
-
-It runs even after it completes to run `sleep 15` because the restart policy is "always". This means that Docker will keep restarting the **same** container even after it exists.
+2. Запустите `dockerContainer ls` — контейнер запущен? А что насчет того, что через 15 секунд он все еще работает? почему?
 
 
-3. How then can we stop the container from running?
+Он запускается даже после завершения запуска `sleep 15`, потому что политика перезапуска — «всегда». Это означает, что Docker будет перезапускать **тот же** контейнер даже после его существования.
 
-The restart policy doesn't apply when the container is stopped with the command `docker container stop`
 
-4. Remove the container you've created
+3. Как же тогда остановить запуск контейнера?
+
+Политика перезапуска не применяется, когда контейнер останавливается с помощью команды dockerContainer stop.
+
+4. Удалите созданный вами контейнер.
 
 ```
 docker container stop forest
 docker container rm forest
 ```
 
-5. Run the same container again but this time with `sleep 600` and verify it runs
+5. Запустите тот же контейнер еще раз, но на этот раз с параметром «sleep 600» и убедитесь, что он работает.
 
 ```
 docker run --restart always --name forest alpine sleep 600
 docker container ls
 ```
 
-6. Restart the Docker service. Is the container still running? why?
+6. Перезапустите службу Docker. Контейнер все еще работает? почему?
 
 ```
 sudo systemctl restart docker
-```
-Yes, it's still running due to the restart policy `always` which means Docker will always bring up the container after it exists or stopped (not with the stop command).
+Да, он все еще работает благодаря политике перезапуска «всегда», что означает, что Docker всегда будет запускать контейнер после его существования или остановки (не с помощью команды остановки).
 
-8. Update the policy to `unless-stopped`
+8. Обновите политику до «если не остановлено».
 
 `docker update --restart unless-stopped forest`
 
-9. Stop the container
+9. Остановите контейнер
 
-`docker container stop forest`
+`docker stop forest`
 
-10. Restart the Docker service. Is the container running? why?
+10. Перезапустите службу Docker. Контейнер работает? почему?
 
 ```
 sudo systemctl restart docker
-```
-No, the container is not running. This is because we changed the policy to `unless-stopped` which will run the container unless it was in stopped status. Since before the restart we stopped the container, Docker didn't continue running it after the restart.
+Нет, контейнер не запущен. Это связано с тем, что мы изменили политику на «если не остановлен», которая будет запускать контейнер, если он не находится в остановленном состоянии. Поскольку перед перезапуском мы остановили контейнер, Docker не продолжил его работу после перезапуска.

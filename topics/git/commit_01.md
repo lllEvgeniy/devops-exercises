@@ -1,20 +1,20 @@
-## Git Commit 01
+## Git-коммит 01
 
-### Objective
+### Цель
 
-Learn how to commit changes in Git repositories
+Узнайте, как фиксировать изменения в репозиториях Git.
 
-### Instructions
+### Инструкции
 
-1. Create a new directory
-2. Make it a git repository
-3. Create a new file called `file` with the content "hello commit"
-4. Commit your new file
-5. Run a git command to verify your commit was recorded
+1. Создайте новый каталог.
+2. Создайте репозиторий git.
+3. Создайте новый файл с именем «file» и содержимым «hello commit».
+4. Зафиксируйте новый файл
+5. Запустите команду git, чтобы убедиться, что ваш коммит был записан.
 
-### After you complete the exercise
+### После выполнения упражнения
 
-Answer the following:
+Ответьте на следующее:
 
-* What are the benefits of commits?
-* Is there another way to verify a commit was created?
+* Каковы преимущества коммитов?
+* Есть ли другой способ проверить создание коммита?

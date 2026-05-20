@@ -1,79 +1,59 @@
-Your mission, should you choose to accept it, involves developing an app, containerize it and set up a CI for it.
-Please read carefully all the instructions.
+# Задание: Flask + контейнер + CI (вариант 2)
 
-If any of the following steps is not working, it is expected from you to fix them
+Нужно **доработать** приложение, **упаковать в контейнер** и настроить **CI**. Прочитайте инструкции целиком.
 
-## Installation
+Если какой‑то шаг из коробки не работает — **исправьте** (это часть задания).
 
-1. Create a virtual environment with `python3 -m venv challenge_venv`
-2. Activate it with `source challenge_venv/bin/activate`
-3. Install the requirements in this directory `pip install -r requirements.txt`
+## Установка
 
-## Run the app
+1. `python3 -m venv Challenge_venv`
+2. `source Challenge_venv/bin/activate` (на Windows — `Challenge_venv\Scripts\activate`)
+3. `pip install -r requirements.txt`
 
-1. Move to `challenges/flask_container_ci` directory, if you are not already there
-1. Run `export FLASK_APP=app/main.py`
-1. To run the app execute `flask run`. If it doesn't works, fix it
-3. Access `http://127.0.0.1:5000`. You should see the following
+## Запуск приложения
 
-```
+1. Каталог задания: `topics/flask_container_ci2` (или актуальный путь в монорепо).
+2. `export FLASK_APP=app/main.py`
+3. `flask run`
+4. http://127.0.0.1:5000 — пример ответа:
+
+```json
 {
-    "current_uri": "/",
-    "example": "/matrix/'123n456n789'",
-    "resources": {
-        "column": "/columns/<matrix>/<column_number>",
-        "matrix": "/matrix/<matrix>",
-        "row": "/rows/<matrix>/<row_number>"
-    }
+  "current_uri": "/",
+  "example": "/matrix/123n456n789",
+  "resources": {
+    "column": "/columns/<matrix>/<column_number>",
+    "matrix": "/matrix/<matrix>",
+    "row": "/rows/<matrix>/<row_number>"
+  }
 }
 ```
 
-4. You should be able to access any of the resources and get the following data:
+5. Поведение API (матрица задаётся строкой с `n` как разделителем строк):
 
-* /matrix/\<matrix\>
+- `GET /matrix/<matrix>` — матрица построчно;
+- `GET /columns/<matrix>/<column_number>` — столбец по номеру;
+- `GET /rows/<matrix>/<row_number>` — строка по номеру.
 
-    for example, for /matrix/123n456n789 the user will get:
+## Контейнер
 
-    1 2 3
-    4 5 6
-    7 8 9
-
-* /matrix/\<matrix\>/\<column_number\> 
-
-    for example, for /matrix/123n456n789/2 the user will get:
-
-    2
-    5
-    8
-
-* /matrix/\<matrix\>/\<row_number\> 
-
-    for example, for /matrix/123n456n789/1 the user will get:
-
-    1 2 3 
-
-## Containers
-
-Using Docker or Podman, containerize the flask app so users can run the following two commands:
-
-```
-docker build -t app:latest /path/to/Dockerfile
-docker run -d -p 5000:5000 app
+```bash
+docker build -t app:latest -f /path/to/Dockerfile .
+docker run -d -p 5000:5000 app:latest
 ```
 
-1. You can use any image base you would like
-2. Containerize only what you need for running the application, nothing else.
+1. Базовый образ — на выбор.
+2. В образе — минимум для запуска.
 
 ## CI
 
-Great, now that we have a working app and also can run it in a container, let's set up a CI for it so it won't break again in the future
-In current directory you have a file called tests.py which includes the tests for the app. What is required from you, is:
+Файл **`tests.py`** в корне содержит тесты.
 
-1. Write a CI pipeline that will run the app tests. You are free to choose whatever CI system or service you prefer. Use `python tests.py` for running the tests.
-2. There should be some kind of test for the Dockerfile you wrote
-3. Add additional unit test (or any other level of tests) for testing the app
+1. CI запускает тесты (`python tests.py` или согласованный вами способ).
+2. Есть проверка **Dockerfile**.
+3. Добавьте ещё один тест (модульный или интеграционный).
 
-### Guidelines 
+### Рекомендации
 
-* Except the app functionality, you can change whatever you want - structure, tooling, libraries, ... If possible, add `notes.md` file which explains reasons, logic, thoughts and anything else you would like to share
-* The CI part should include the source code for the pipeline definition
+- Можно менять структуру и стек; по желанию — **`notes.md`** с обоснованием.
+- Конфигурация CI — **в репозитории**.

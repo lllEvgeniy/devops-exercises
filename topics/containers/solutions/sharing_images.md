@@ -1,35 +1,35 @@
-# Sharing Images
+# Обмен изображениями
 
-## Requirements
+## Требования
 
-Have at least one image locally (run `podman image ls` to confirm).<br>
-If you don't have images locally, run simply `podman pull httpd`.
+Имейте хотя бы одно изображение локально (для подтверждения запустите `podman image ls`).<br>
+Если у вас нет изображений локально, просто запустите `podman pull httpd`.
 
-## Objectives
+## Цели
 
-1. Choose an image and create an archive out of it
-2. Check the archive size. Is it different than the image size? If yes, what's the difference? If not, why?
-3. Copy the generated archive to a remote host
-4. Load the image
-5. Verify it was loaded and exists on the remote host
+1. Выберите изображение и создайте из него архив.
+2. Проверьте размер архива. Отличается ли он от размера изображения? Если да, то какая разница? Если нет, то почему?
+3. Скопируйте созданный архив на удаленный хост.
+4. Загрузите изображение
+5. Убедитесь, что он загружен и существует на удаленном хосте.
 
-## Solution
+## Решение
 
 ```
-# Save image as an archive
+# Сохранить образ в архив
 podman save -o httpd.tar httpd
 
-# Check archive and image sizes
-du -sh httpd.tar # output: 143MB
-podman image ls | grep httpd # output: 149MB
-# The archive is obviously smaller than the image itself (6MB difference)
+# Сравнить размер архива и образа
+du -sh httpd.tar # пример: 143MB
+podman image ls | grep httpd # пример: 149MB
+# Архив обычно меньше образа (здесь ~6MB разницы)
 
-# Copy the archive to a remote host
+# Скопировать архив на удалённый хост
 rsync -azc httpd.tar USER@REMOTE_HOST_FQDN:/tmp/
 
-# Load the image
+# Загрузить образ
 podman load -i /tmp/httpd.tar
 
-# Verify it exists on the system after loading
+# Убедиться, что образ появился в списке
 podman image ls
 ```

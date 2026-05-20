@@ -1,45 +1,43 @@
-# Chaos Engineering
+# Хаос-инжиниринг (chaos engineering)
 
-- [Chaos Engineering](#chaos-engineering)
-  - [Chaos Engineering Questions](#chaos-engineering-questions)
-    - [Basics](#basics)
+- [Вопросы](#вопросы-по-chaos-engineering)
+  - [Основы](#основы)
 
-## Chaos Engineering Questions
+## Вопросы по chaos engineering
 
-### Basics
+### Основы
 
 <details>
-<summary>What is Chaos Engineering?</summary><br><b>
+<summary>Что такое chaos engineering?</summary><br><b>
 
-[Wikipedia](https://en.wikipedia.org/wiki/Chaos_engineering): "Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system's capability to withstand turbulent conditions in production."
+[Википедия](https://en.wikipedia.org/wiki/Chaos_engineering): «Chaos engineering — дисциплина **экспериментов** на продакшн-подобной системе, чтобы заранее выявить слабые места и повысить устойчивость к сбоям».
 
-[TechTarget](https://www.techtarget.com/searchitoperations/definition/chaos-engineering): "Chaos engineering is the process of testing a distributed computing system to ensure that it can withstand unexpected disruptions."
+[TechTarget](https://www.techtarget.com/searchitoperations/definition/chaos-engineering): «Процесс проверки распределённой системы на способность переживать **непредвиденные** отказы».
 
 </b></details>
 
 <details>
-<summary>What's a typical Chaos Engineering workflow?</summary><br><b>
+<summary>Каков типичный рабочий процесс chaos engineering?</summary><br><b>
 
-According to [Gremlin](gremlin.com) there are three steps:
+По [Gremlin](https://www.gremlin.com/community/tutorials/what-is-chaos-engineering) и общей практике обычно выделяют шаги:
 
-1. Planning an experiment where you design and choose a scenario in which your system should fail to operate properly
-2. You execute the smallest possible experiment to test your theory
-3. If nothing goes wrong, you scale your experiment and make the blast radius bigger. If your system breaks, you better understand why and start dealing with it
+1. **Гипотеза и план** — что может сломаться и как мы это измерим (SLO, метрики, алерты).
+2. **Минимальный blast radius** — эксперимент в **канареечной** зоне или на нерепрезентативной нагрузке.
+3. **Анализ** — если система деградирует, **останавливаем** эксперимент, фиксируем причину, внедряем защиту; затем можно повторить или расширить область.
 
-The process then repeats itself either with same scenario or a new one.
+Цикл повторяют для новых сценариев отказов.
 
 </b></details>
 
 <details>
-<summary>Cite a few tools used to operate Chaos exercises</summary><br><b>
+<summary>Назовите несколько инструментов для chaos / fault injection.</summary><br><b>
 
-- AWS Fault Injection Simulator: inject failures in AWS resources
-- Azure Chaos Studio: inject failures in Azure resources
-- Chaos Monkey: one of the most famous tools to orchestrate Chaos on diverse Cloud providers
-- Litmus - A Framework for Kubernetes 
-- Chaos Mesh: for Cloud Kubernetes platforms
+- **AWS FIS** — контролируемые сбои в сервисах AWS.
+- **Azure Chaos Studio** — сценарии отказов в Azure.
+- **Chaos Monkey** (Netflix / Simian Army) — классический пример отключения инстансов.
+- **LitmusChaos** — фреймворк для Kubernetes.
+- **Chaos Mesh** — chaos-платформа для Kubernetes.
 
-
-See an extensive list [here](https://github.com/dastergon/awesome-chaos-engineering)
+Больше ссылок: [awesome-chaos-engineering](https://github.com/dastergon/awesome-chaos-engineering).
 
 </b></details>

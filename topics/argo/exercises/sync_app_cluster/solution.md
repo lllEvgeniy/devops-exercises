@@ -1,48 +1,48 @@
-# Sync App - Cluster
+# Приложение синхронизации — кластер
 
-## Requirements
+## Требования
 
-1. Make sure you have a Kubernetes cluster running with ArgoCD installed
-1. Make sure you have an app deployed in the cluster and tracked by ArgoCD
+1. Убедитесь, что у вас работает кластер Kubernetes с установленным ArgoCD.
+1. Убедитесь, что ваше приложение развернуто в кластере и отслеживается ArgoCD.
 
-## Objectives
+## Цели
 
-1. Verify the app is tracked by ArgoCD and in sync
-2. . Make a change to your application by running a `kubectl` command. The change can anything:
-   1. Changing the tag of the image
-   2. Changing the number of replicas
-   3. You can go extreme and delete the resource if you would like :)
-3. Check the app state in ArgoCD
-4. Sync the app state
+1. Убедитесь, что приложение отслеживается ArgoCD и синхронизируется.
+2. . Внесите изменения в свое приложение, выполнив команду kubectl. Изменение может что угодно:
+   1. Изменение тега изображения
+   2. Изменение количества реплик
+   3. Если хотите, можете пойти на крайние меры и удалить ресурс :)
+3. Проверьте состояние приложения в ArgoCD.
+4. Синхронизируйте состояние приложения.
 
-## Solution
+## Решение
 
-### UI
+### Интерфейс
 
-1. Click on the app in the UI
-   1. Make sure it's in sync and in "healthy" state
-2. Make a check in the cluster
+1. Нажмите на приложение в пользовательском интерфейсе.
+   1. Убедитесь, что он синхронизирован и находится в «работоспособном» состоянии.
+2. Сделайте проверку в кластере
    1. `kubectl scale --replicas=0 <DEPLOYMENT_NAME>`
    2. `kubectl get rs <DEPLOYMENT_NAME>`
-3. Go back to the UI and check the state of the app
-   1. If it's still in sync, make sure to click on "Refresh"
-   2. The app should be in "out-of-sync" state
-   3. Click on "Sync" and then on "Synchronize"
+3. Вернитесь в пользовательский интерфейс и проверьте состояние приложения.
+   1. Если синхронизация все еще выполняется, обязательно нажмите «Обновить».
+   2. Приложение должно находиться в состоянии «рассинхронизации».
+   3. Нажмите «Синхронизировать», а затем «Синхронизировать».
 
-### CLI 
+### Интерфейс командной строки
 
 ```
-# Check app state and verify it's in sync
+# Проверка: приложение в sync
 argocd app get app-demo
 
-# Run the following k8s commands (or any other commands that will change the state of your app)
+# Изменить состояние в кластере (пример)
 kubectl scale --replicas=0 <DEPLOYMENT_NAME>
 kubectl get rs <DEPLOYMENT_NAME>
 
-# Check app state again
+# Снова проверить состояние в Argo CD
 argocd app get app-demo
 
-# Sync app state
+# Синхронизация
 argocd app sync app-demo
 argocd app wait app-demo
 ```

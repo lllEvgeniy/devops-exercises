@@ -1,12 +1,12 @@
-# Node Selectors
+# Селекторы узлов
 
-## Objectives
+## Цели
 
-1. Apply the label "hw=max" on one of the nodes in your cluster
-2. Create and run a Pod called `some-pod` with the image `redis` and configure it to use the selector `hw=max`
-3. Explain why node selectors might be limited
+1. Примените метку «hw=max» к одному из узлов вашего кластера.
+2. Создайте и запустите под под названием some-pod с образом redis и настройте его на использование селектора hw=max.
+3. Объясните, почему выбор узлов может быть ограничен
 
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

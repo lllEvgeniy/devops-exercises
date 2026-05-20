@@ -1,3 +1,3 @@
-## AWS Certification Paths
+## Пути сертификации AWS
 
-[AWS Certification Paths based on Cloud Roles and Responsibilities](https://d1.awsstatic.com/training-and-certification/docs/AWS_certification_paths.pdf)
+[Пути сертификации AWS по ролям и обязанностям в облаке](https://d1.awsstatic.com/training-and-certification/docs/AWS_certification_paths.pdf)

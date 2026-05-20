@@ -1,49 +1,53 @@
-## Hello Function - Solution
+## Функция приветствия — решение
 
-### Exercise
+### Упражнение
 
-Create a basic AWS Lambda function that when given a name, will return "Hello <NAME>"
+Создайте базовую функцию AWS Lambda, которая при присвоении имени будет возвращать «Hello <NAME>».
 
-### Solution
+### Решение
 
-#### Define a function
+#### Определите функцию
 
-1. Go to Lambda console panel and click on `Create function`
-  1. Give the function a name like `BasicFunction`
-  2. Select `Python3` runtime
-  3. Now to handle function's permissions, we can attach IAM role to our function either by setting a role or creating a new role. I selected "Create a new role from AWS policy templates"
-  4. In "Policy Templates" select "Simple Microservice Permissions"
+1. Перейдите на панель консоли Lambda и нажмите «Создать функцию».
+  1. Дайте функции имя, например «BasicFunction».
+  2. Выберите среду выполнения Python3.
+  3. Теперь, чтобы управлять разрешениями функции, мы можем прикрепить роль IAM к нашей функции, установив роль или создав новую роль. Я выбрал «Создать новую роль из шаблонов политик AWS».
+  4. В «Шаблонах политик» выберите «Простые разрешения для микросервисов».
 
-1. Next, you should see a text editor where you will insert a code similar to the following
+1. Далее вы должны увидеть текстовый редактор, куда вы вставите код, аналогичный следующему.
 
-#### Function's code
-```
+#### Код функции
+
+```python
 import json
 
 
 def lambda_handler(event, context):
     firstName = event['name']
     return 'Hello ' + firstName
-```
-2. Click on "Create Function"
-
-#### Define a test
-
-1. Now let's test the function. Click on "Test".
-2. Select "Create new test event"
-3. Set the "Event name" to whatever you'd like. For example "TestEvent"
-4. Provide keys to test
 
 ```
+
+2. Нажмите «Создать функцию».
+
+#### Определите тест
+
+1. Теперь проверим функцию. Нажмите «Тест».
+2. Выберите «Создать новое тестовое событие».
+3. Установите в поле «Название события» любое желаемое значение. Например, «ТестЭвент»
+4. Предоставьте ключи для тестирования:
+
+```json
 {
   "name": 'Spyro'
 }
 ```
-5. Click on "Create"
 
-#### Test the function
+5. Нажмите «Создать».
 
-1. Choose the test event you've create (`TestEvent`)
-2. Click on the `Test` button
-3. You should see something similar to `Execution result: succeeded`
-4. If you'll go to AWS CloudWatch, you should see a related log stream 
+#### Проверьте функцию
+
+1. Выберите созданное вами тестовое событие («TestEvent»).
+2. Нажмите кнопку «Тест».
+3. Вы должны увидеть что-то похожее на «Результат выполнения: удалось».
+4. Если вы перейдете в AWS CloudWatch, вы должны увидеть соответствующий поток журналов.

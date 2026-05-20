@@ -1,24 +1,24 @@
-# Containerized DB with Persistent Storage
+# Контейнерная БД с постоянным хранилищем
 
-1. Run a container with a database of any type of you prefer (MySql, PostgreSQL, Mongo, etc.)
-  1. Use a mount point on the host for the database instead of using the container storage for that
-  2. Explain why using the host storage instead of the container one might be a better choice
-2. Verify the container is running
+1. Запустите контейнер с базой данных любого типа (MySql, PostgreSQL, Mongo и т. д.).
+  1. Используйте для базы данных точку монтирования на хосте вместо использования для этого хранилища контейнеров.
+  2. Объясните, почему использование хост-хранилища вместо контейнера может быть лучшим выбором.
+2. Убедитесь, что контейнер запущен.
 
 
-## Solution
+## Решение
 
 ```
-# Create the directory for the DB on host
+# Каталог для данных БД на хосте
 mkdir -pv ~/local/mysql
 sudo semanage fcontext -a -t container_file_t '/home/USERNAME/local/mysql(/.*)?'
 sudo restorecon -R /home/USERNAME/local/mysql
 
-# Run the container
+# Запуск контейнера с volume на хосте
 podman run --name mysql -e MYSQL_USER=mario -e MYSQL_PASSWORD=tooManyMushrooms -e MYSQL_DATABASE=university -e MYSQL_ROOT_PASSWORD=MushroomsPizza -d mysql -v /home/USERNAME/local/mysql:/var/lib/mysql/db
 
-# Verify it's running
+# Проверка, что контейнер работает
 podman ps
 ```
 
-It's better to use the storage host because in case the container ever gets removed (or storage reclaimed) you have the DB data still available.
+Лучше использовать хранилище на хосте: при удалении контейнера или сбросе container storage данные БД останутся на диске хоста.

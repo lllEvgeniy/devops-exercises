@@ -1,13 +1,29 @@
-## "Killing" Containers - Solution
+## «Убийство» контейнеров — решение
 
-1. Run Pod with a web service (e.g. httpd) - `kubectl run web --image registry.redhat.io/rhscl/httpd-24-rhel7`
-2. Verify the web service is running with the `ps` command - `kubectl exec web -- ps`
-3. Check how many restarts the pod has performed - `kubectl get po web`
-4. Kill the web service process -`kubectl exec web -- kill 1`
-5. Check how many restarts the pod has performed - `kubectl get po web`
-6. Verify again the web service is running - `kubectl exec web -- ps`
+1. Запустите Pod с веб-сервером:
 
-## After you complete the exercise
+   `kubectl run web --image registry.redhat.io/rhscl/httpd-24-rhel7`
 
+2. Проверьте процессы внутри контейнера:
 
-* Why did the "RESTARTS" count raised? - `Kubernetes restarted the Pod because we killed the process and the container was not running properly.`
+   `kubectl exec web -- ps`
+
+3. Счётчик перезапусков:
+
+   `kubectl get pod web`
+
+4. Завершите процесс веб-сервера (PID 1 в контейнере httpd):
+
+   `kubectl exec web -- kill 1`
+
+5. Снова проверьте RESTARTS:
+
+   `kubectl get pod web`
+
+6. Убедитесь, что веб-сервер снова работает:
+
+   `kubectl exec web -- ps`
+
+## После завершения упражнения
+
+Почему увеличился счётчик **RESTARTS**? Kubernetes перезапустил контейнер: процесс завершился, проба или политика перезапуска инициировали новый запуск контейнера.

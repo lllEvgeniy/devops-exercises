@@ -1,12 +1,12 @@
-## Layer by Layer
+## Слой за слоем
 
-### Objective
+### Цель
 
-Learn about image layers
+Подробнее о слоях изображения
 
-### Requirements
+### Требования
 
-Make sure Docker is installed on your system and the service is started
+Убедитесь, что Docker установлен в вашей системе и служба запущена.
 
 ```
 # Fedora/RHEL/CentOS
@@ -14,10 +14,10 @@ rpm -qa | grep docker
 systemctl status docker
 ```
 
-### Instructions
+### Инструкции
 
-1. Write a Dockefile. Any Dockefile! :) (just make sure it's a valid one)
-2. Build an image using the Dockerfile you've wrote
-3. Which of the instructions you've used, created new layers and which added image metadata?
-4. What ways are there to confirm your answer to the last question?
-5. Can you reduce the size of the image you've created?
+1. Напишите Dockefile. Любой докефайл! :) (просто убедитесь, что он действительный)
+2. Создайте образ, используя написанный вами Dockerfile.
+3. Какие инструкции вы использовали, создавали новые слои и какие добавляли метаданные изображения?
+4. Какими способами можно подтвердить свой ответ на последний вопрос?
+5. Можете ли вы уменьшить размер созданного изображения?

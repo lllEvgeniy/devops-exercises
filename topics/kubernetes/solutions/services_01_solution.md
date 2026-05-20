@@ -1,4 +1,4 @@
-## Services 01 - Solution
+## Услуги 01 — Решение
 
 ```
 kubectl run nginx --image=nginx --restart=Never --port=80 --labels="app=dev-nginx"

@@ -1,28 +1,28 @@
-## AWS - Launch EC2 Web Instance
+## AWS — запуск веб-экземпляра EC2
 
-### Objectives
+### Цели
 
-Launch one EC2 instance with the following requirements:
+Запустите один экземпляр EC2 со следующими требованиями:
 
-1. Amazon Linux 2 image
-2. Instance type: pick up one that has 1 vCPUs and 1 GiB memory
-3. Instance storage should be deleted upon the termination of the instance
-4. When the instance starts, it should install:
-  1. Install the httpd package
-  2. Start the httpd service
-  3. Make sure the content of /var/www/html/index.html is `I made it! This is is awesome!`
-5. It should have the tag: "Type: web" and the name of the instance should be "web-1"
-6. HTTP traffic (port 80) should be accepted from anywhere
+1. Образ Amazon Linux 2
+2. Тип инстанса: выберите тот, у которого есть 1 виртуальный ЦП и 1 ГиБ памяти.
+3. Хранилище инстанса должно быть удалено при прекращении работы инстанса.
+4. При запуске экземпляра он должен установить:
+  1. Установите пакет httpd.
+  2. Запустите службу httpd.
+  3. Убедитесь, что содержимое /var/www/html/index.html гласит: «Я сделал это!» Это потрясающе!»
+5. Он должен иметь тег: «Тип: web», а имя экземпляра должно быть «web-1».
+6. HTTP-трафик (порт 80) должен приниматься откуда угодно.
 
-### Solution
+### Решение
 
-1. Choose a region close to you 
-2. Go to EC2 service
-3. Click on "Instances" in the menu and click on "Launch instances"
-4. Choose image: Amazon Linux 2
-5. Choose instance type: t2.micro 
-6. Make sure "Delete on Termination" is checked in the storage section
-7. Under the "User data" field the following:
+1. Выберите ближайший к вам регион 
+2. Зайдите в сервис EC2.
+3. Нажмите «Экземпляры» в меню и нажмите «Запустить экземпляры».
+4. Выберите изображение: Amazon Linux 2.
+5. Выберите тип экземпляра: t2.micro. 
+6. Убедитесь, что в разделе хранилища установлен флажок «Удалить при прекращении».
+7. В поле «Данные пользователя» указывается следующее:
 
 ```
 yum update -y
@@ -31,17 +31,17 @@ systemctl start httpd
 systemctl enable httpd
 echo "<h1>I made it! This is is awesome!</h1>" > /var/www/html/index.html
 ```
-8. Add tags with the following keys and values:
-  * key "Type" and the value "web"
-  * key "Name" and the value "web-1"
-9. In the security group section, add a rule to accept HTTP traffic (TCP) on port 80 from anywhere
-10. Click on "Review" and then click on "Launch" after reviewing.
-11. If you don't have a key pair, create one and download it.
 
-12. ### Solution using Terraform
+8. Добавьте теги со следующими ключами и значениями:
+  * ключ «Тип» и значение «web»
+  * ключ «Имя» и значение «web-1»
+9. В разделе группы безопасности добавьте правило для приема HTTP-трафика (TCP) на порту 80 из любой точки мира.
+10. Нажмите «Просмотр», а затем после проверки нажмите «Запустить».
+11. Если у вас нет пары ключей, создайте ее и загрузите.
 
-```
- 
+### Решение с использованием Terraform
+
+```terraform
 provider "aws" {
   region = "us-east-1" // Or your desired region
 }

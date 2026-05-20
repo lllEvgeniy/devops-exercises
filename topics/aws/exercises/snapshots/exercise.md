@@ -1,16 +1,16 @@
-## AWS EC2 - EBS Snapshots
+## AWS EC2 — снимки EBS
 
-### Requirements
+### Требования
 
-EBS Volume
+Объем ЭБС
 
-### Objectives
+### Цели
 
-A. Create a snapshot of an EBS volume
-B. Verify the snapshot was created
-C. Move the data to another region
-D. Create a volume out of it in a different AZ
+А. Создайте снимок тома EBS.
+Б. Убедитесь, что снимок создан.
+C. Перенесите данные в другой регион
+D. Создайте из него том в другой зоне доступности.
 
-## Solution
+## Решение
 
-Click [here to view to solution](solution.md)
+Нажмите [здесь, чтобы просмотреть решение](solution.md)

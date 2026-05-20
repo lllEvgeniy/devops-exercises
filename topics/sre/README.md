@@ -1,73 +1,64 @@
-# Site Reliability Engineering
+# Надёжность и SRE
 
-## SRE Questions
-
-<details>
-<summary>What is an SLI (Service-Level Indicator)?</summary>
-<b>
-An SLI is a measurement used to assess the actual performance or reliability of a service. It serves as the basis for defining SLOs.
-
-Examples:
-- Request latency
-- Processing throughput
-- Request failures per unit of time
-
-Read more: [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
-</b>
-</details></br>
+## Вопросы по SRE
 
 <details>
-<summary>What is an SLO (Service-Level Objective)?</summary>
-<b>
+<summary>Что такое SLI (индикатор уровня сервиса)?</summary><br><b>
 
-An SLO is a target value or range of values for a service level that is measured by an SLI
+**SLI** — измеримый показатель того, насколько хорошо сервис ведёт себя «снаружи»: задержка, доля успешных запросов, пропускная способность и т.п. На SLI опираются **SLO**.
 
-Example: 99% across 30 days for a specific collection of SLIs.
+Примеры:
 
-It's also worthy to note that the SLO also serves as a lower bound, indicating that there is no requirement to be more reliable than necessary because doing so can delay the rollout of new features.
+- задержка запроса;
+- доля ошибок за единицу времени;
+- пропускная способность.
 
-Read more: [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
-</b>
-</details><br>
+Подробнее: [Google SRE Book](https://sre.google/sre-book/table-of-contents/).
 
-<details>
-<summary>What is an SLA (Service-Level Agreement)?</summary>
-<b>
-
-AN SLA is a formal agreement between a service provider and customers, specifying the expected service quality and consequences for not meeting it.
-
-SRE doesn't typically get involved in constructing SLAs, because SLAs are closely tied to business and product decisions
-
-Read more: [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
-</b>
-</details><br>
+</b></details>
 
 <details>
-<summary>What is an Error Budget?</summary>
-<b>
+<summary>Что такое SLO (цель уровня сервиса)?</summary><br><b>
 
-An Error Budget represents the acceptable amount of downtime or errors a service can experience while still meeting its SLO.
+**SLO** — целевое значение или диапазон для **SLI** (например, доступность **99,9%** за скользящие 30 дней).
 
-An error budget is 1 minus the SLO of the service. A 99.9% SLO service has a 0.1% error budget.
+SLO задаёт и «достаточную» надёжность: чрезмерная надёжность без бизнес-нужды дорого обходится (медленнее фичи, сложнее эксплуатация).
 
-If our service receives 1,000,000 requests in four weeks, a 99.9% availability SLO gives us a budget of 1,000 errors over that period.
+Подробнее: [Google SRE Book](https://sre.google/sre-book/table-of-contents/).
 
-The error budget is a mechanism for balancing innovation and stability. If the SRE cannot enforce the error budget, the whole system breaks down.
-
-Read more: [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
-</b>
-</details></br>
+</b></details>
 
 <details>
-<summary>What is Toil?</summary>
-<b>
+<summary>Что такое SLA (соглашение об уровне сервиса)?</summary><br><b>
 
-Toil is the kind of work that tends to be manual, repetitive, automatable, tactical, devoid of enduring value, and that scales linearly as a service grows.
+**SLA** — договор между поставщиком и потребителем: какой уровень сервиса обещан и что происходит при его нарушении (компенсации, штрафы и т.д.).
 
-If you can be automate a task, you should probably automate the task.
+SRE обычно не «пишут SLA с нуля»: там сильная вовлечённость продукта и юридической стороны, а SRE помогают данными по SLI/SLO.
 
-Automation significantly reduces Toil. Investing in automation results in valuable work with lasting impact, offering scalability potential with minimal adjustments as your system expands.
+Подробнее: [Google SRE Book](https://sre.google/sre-book/table-of-contents/).
 
-Read more: [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
-</b>
-</details>
+</b></details>
+
+<details>
+<summary>Что такое error budget (бюджет ошибок)?</summary><br><b>
+
+**Error budget** — сколько «плохого» поведения допустимо, пока вы укладываетесь в **SLO**. Часто его связывают с допустимым простоем или долей ошибок.
+
+Упрощённо: при SLO **99,9%** доступности бюджет «плохих» минут/ошибок — около **0,1%** за период.
+
+Бюджет связывает **стабильность** и **скорость изменений**: если бюджет выбран, фокус смещается на снижение рисков релизов; если бюджет есть — можно ускорять эксперименты.
+
+Подробнее: [Google SRE Book](https://sre.google/sre-book/table-of-contents/).
+
+</b></details>
+
+<details>
+<summary>Что такое toil (рутинная «праздная» работа)?</summary><br><b>
+
+**Toil** в терминологии SRE — работа, которая **ручная**, **повторяющаяся**, **автоматизируемая**, **тактическая** и **масштабируется линейно** с ростом сервиса, не добавляя долговременной ценности.
+
+Если задачу можно устойчиво автоматизировать, её обычно и автоматизируют: меньше toil — больше времени на проектирование, надёжность и улучшения.
+
+Подробнее: [Google SRE Book](https://sre.google/sre-book/table-of-contents/).
+
+</b></details>

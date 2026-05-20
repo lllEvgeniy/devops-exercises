@@ -1,16 +1,16 @@
-## AWS Auto Scaling Groups - Dynamic Scaling Policy
+## Группы автоматического масштабирования AWS — политика динамического масштабирования
 
-### Requirements
+### Требования
 
-1. Existing Auto Scaling Group with maximum capacity set to at least 3
-2. One running EC2 instance with max of 4 CPUs
+1. Существующая группа автоматического масштабирования с максимальной емкостью не менее 3 человек.
+2. Один работающий экземпляр EC2 с максимум 4 процессорами.
 
-### Objectives
+### Цели
 
-1. Create a dynamic scaling policy with the following properties
-  1. Track average CPU utilization
-  2. Target value should be 70%
-2. Increase the CPU utilization to at least 70%
-  1. Do you see change in number of instances?
-1. Decrease CPU utilization to less than 70%
-  1. Do you see change in number of instances?
+1. Создайте политику динамического масштабирования со следующими свойствами.
+  1. Отслеживайте среднюю загрузку процессора
+  2. Целевое значение должно составлять 70 %.
+2. Увеличьте загрузку ЦП как минимум до 70 %.
+  1. Видите ли вы изменения в количестве экземпляров?
+1. Уменьшите загрузку ЦП до менее 70 %.
+  1. Видите ли вы изменения в количестве экземпляров?

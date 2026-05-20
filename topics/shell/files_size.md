@@ -1,7 +1,7 @@
-## Files Size
+## Размер файлов
 
-### Objectives
+### Цели
 
-1. Print the name and size of every file and directory in current path
+1. Распечатайте имя и размер каждого файла и каталога в текущем пути.
 
-Note: use at least one for loop!
+Примечание: используйте хотя бы один цикл for!

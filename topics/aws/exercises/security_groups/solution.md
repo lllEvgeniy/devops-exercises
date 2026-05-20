@@ -1,39 +1,39 @@
-## AWS EC2 - Security Groups
+## AWS EC2 — Группы безопасности
 
-### Requirements 
+### Требования 
 
-For this exercise you'll need:
+Для этого упражнения вам понадобится:
 
-1. EC2 instance with web application
-2. Security group inbound rules that allow HTTP traffic
+1. Экземпляр EC2 с веб-приложением.
+2. Входящие правила группы безопасности, разрешающие HTTP-трафик.
 
-### Objectives
+### Цели
 
-1. List the security groups you have in your account, in the region you are using
-2. Remove the HTTP inbound traffic rule
-3. Can you still access the application? What do you see/get?
-4. Add back the rule
-5. Can you access the application now?
+1. Перечислите группы безопасности, которые есть в вашей учетной записи, в регионе, который вы используете.
+2. Удалите правило входящего трафика HTTP.
+3. Сможете ли вы получить доступ к приложению? Что вы видите/получаете?
+4. Добавьте правило обратно
+5. Можете ли вы получить доступ к приложению сейчас?
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to EC2 service - > Click on "Security Groups" under "Network & Security"
-   You should see at least one security group. One of them is called "default"
-2. Click on the security group with HTTP rules and click on "Edit inbound rules".
-   Remove the HTTP related rules and click on "Save rules"
-3. No. There is a time out because we removed the rule allowing HTTP traffic.
-4. Click on the security group -> edit inbound rules and add the following rule:
-  * Type: HTTP
-  * Port range: 80
-  * Source: Anywhere -> 0.0.0.0/0
-5. yes
+1. Перейдите в службу EC2 -> Нажмите «Группы безопасности» в разделе «Сеть и безопасность».
+   Вы должны увидеть хотя бы одну группу безопасности. Один из них называется «по умолчанию».
+2. Нажмите на группу безопасности с правилами HTTP и нажмите «Изменить правила для входящего трафика».
+   Удалите правила, связанные с HTTP, и нажмите «Сохранить правила».
+3. Нет. Тайм-аут истек, поскольку мы удалили правило, разрешающее HTTP-трафик.
+4. Нажмите на группу безопасности -> изменить правила для входящего трафика и добавьте следующее правило:
+  * Тип: HTTP
+  * Диапазон портов: 80
+  * Источник: Где угодно -> 0.0.0.0/0
+5. да
 
-#### CLI
+#### интерфейс командной строки
 
-1. `aws ec2 describe-security-groups` -> by default, there is one security group called "default", in a new account
-2. Remove the rule:
+1. `aws ec2 define-security-groups` -> по умолчанию в новой учетной записи есть одна группа безопасности под названием «default».
+2. Удалите правило:
 
 ```
 aws ec2 revoke-security-group-ingress \
@@ -42,8 +42,9 @@ aws ec2 revoke-security-group-ingress \
     --port 80 \
     --cidr 0.0.0.0/0
 ```
-3. No. There is a time out because we removed the rule allowing HTTP traffic.
-4. Add the rule we remove:
+
+3. Нет. Тайм-аут истек, поскольку мы удалили правило, разрешающее HTTP-трафик.
+4. Добавляем правило, которое мы удаляем:
 
 ```
 aws ec2 authorize-security-group-ingress \
@@ -52,4 +53,5 @@ aws ec2 authorize-security-group-ingress \
     --port 80 \
     --cidr 0.0.0.0/0
 ```
-5. yes
+
+5. да

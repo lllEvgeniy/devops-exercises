@@ -1,22 +1,22 @@
-# App Creation
+# Создание приложения
 
-## Requirements
+## Требования
 
-1. Make sure you have repository with some Kubernetes manifests
-2. Make sure you have a Kubernetes cluster running with ArgoCD installed
+1. Убедитесь, что у вас есть репозиторий с некоторыми манифестами Kubernetes.
+2. Убедитесь, что у вас работает кластер Kubernetes с установленным ArgoCD.
 
-## Objectives
+## Цели
 
-1. Using the CLI or the UI, create a new application with the following properties:
-   1. app name: app-demo
-   2. project: app-project
-   3. repository URL: your repo with some k8s manifests
-   4. namespace: default
-2. Verify the app was created
-3. Sync the app
-4. Verify Kubernetes resources were created
-5. Delete the app
+1. Используя интерфейс командной строки или пользовательский интерфейс, создайте новое приложение со следующими свойствами:
+   1. имя приложения: приложение-демо
+   2. проект: приложение-проект
+   3. URL-адрес репозитория: ваш репозиторий с некоторыми манифестами k8s.
+   4. пространство имен: по умолчанию
+2. Убедитесь, что приложение создано.
+3. Синхронизируйте приложение
+4. Убедитесь, что ресурсы Kubernetes созданы.
+5. Удалить приложение
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

@@ -1,9 +1,9 @@
-## Argument Check
+## Проверка аргументов
 
-### Objectives
+### Цели
 
-Note: assume the script is executed with an argument
+Примечание: предположим, что сценарий выполняется с аргументом
 
-1. Write a script that will check if a given argument is the string "pizza"
- 1. If it's the string "pizza" print "with pineapple?"
- 2. If it's not the string "pizza" print "I want pizza!"
+1. Напишите скрипт, который будет проверять, является ли данный аргумент строкой «пицца».
+ 1. Если это строка «пицца», выведите «с ананасом?»
+ 2. Если это не строка «пицца», выведите «Хочу пиццу!»

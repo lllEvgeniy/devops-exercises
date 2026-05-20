@@ -1,9 +1,9 @@
-## Shell Scripting - Print Arguments
+## Сценарии оболочки — вывод аргументов
 
-### Objectives
+### Цели
 
-You should include everything mentioned here in one shell script
+Вы должны включить все, упомянутое здесь, в один сценарий оболочки.
 
-1. Print the first argument passed to the script
-2. Print the number of arguments passed to the script
-3. 
+1. Распечатайте первый аргумент, переданный в скрипт.
+2. Выведите количество аргументов, переданных в скрипт.
+3.

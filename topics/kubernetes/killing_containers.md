@@ -1,12 +1,12 @@
-## "Killing" Containers
+## «Убийство» контейнеров
 
-1. Run Pod with a web service (e.g. httpd)
-2. Verify the web service is running with the `ps` command
-3. Check how many restarts the pod has performed
-4. Kill the web service process
-5. Check how many restarts the pod has performed
-6. Verify again the web service is running
+1. Запустите Pod с веб-сервером (например, httpd).
+2. Убедитесь, что веб-сервер запущен (`kubectl exec` + `ps` внутри контейнера).
+3. Проверьте счётчик перезапусков пода (`kubectl get pod <name>` — колонка RESTARTS).
+4. Завершите процесс веб-сервера внутри контейнера.
+5. Снова проверьте счётчик перезапусков.
+6. Убедитесь, что веб-сервер снова работает.
 
-## After you complete the exercise
+## После завершения упражнения
 
-* Why did the "RESTARTS" count raised?
+* Почему увеличился счётчик **RESTARTS**?

@@ -1,11 +1,11 @@
-## Services 01
+## Сервисы 01
 
-#### Objective
+#### Цель
 
-Learn how to create services
+Научиться создавать Service.
 
-#### Instructions
+#### Инструкции
 
-1. Create a pod running ngnix
-2. Create a service for the pod you've just created
-3. Verify the app is reachable
+1. Создайте под с образом **nginx**.
+2. Создайте Service для этого пода.
+3. Убедитесь, что приложение доступно.

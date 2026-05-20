@@ -1,29 +1,29 @@
-# Argo Rollouts - Canary
+# Развертывание Арго — Канарейки
 
-## Requirements
+## Требования
 
-1. Running Kubernetes cluster
-2. Argo Rollouts CLI
-3. Deployed app in a specific version
+1. Запуск кластера Kubernetes
+2. Интерфейс командной строки Argo Rollouts
+3. Развернутое приложение в конкретной версии.
 
-## Objectives
+## Цели
 
-1. Install Argo Rollouts controller
-2. Write a rollout manifest that use canary rollout strategy and apply it
-   1. Set it to 6 replicas
-   2. Disable auto-promotions
-3. Check the rollout list
-4. Rollout a new version of your app in any way you prefer
-   1. Check the status of the rollout
+1. Установите контроллер Argo Rollouts.
+2. Напишите манифест развертывания, использующий канареечную стратегию развертывания, и примените его.
+   1. Установите 6 реплик.
+   2. Отключите автопродвижение
+3. Проверьте список развертывания
+4. Разверните новую версию своего приложения любым удобным для вас способом.
+   1. Проверьте статус внедрения
 
-## Solution
+## Решение
 
-Installation:
+Установка:
 
 1. `kubectl create namespace argo-rollouts`
    1. `kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml`
 
-2. Rollout resource:
+2. Ресурс развертывания:
 
 ```
 ---
@@ -65,6 +65,6 @@ spec:
           protocol: TCP
 ```
 
-3. `kubectl argo rollouts list rollouts`
-4. `kubectl argo rollouts set image SOME-APP web-app=some/registry/and/image:v2.0`
-   1. `kubectl argo rollouts get rollout some-app --watch`
+3. Список rollout: `kubectl argo rollouts list rollouts` (или `kubectl argo rollouts get rollout some-app`)
+4. Новый образ: `kubectl argo rollouts set image some-app web-app=some/registry/and/image:v2.0`
+   1. Продвижение canary: `kubectl argo rollouts promote some-app --watch`

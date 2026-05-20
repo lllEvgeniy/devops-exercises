@@ -1,537 +1,623 @@
 # DevOps
 
-## Questions
+## Вопросы
 
-### General 
+### Общие
 
 <details>
-<summary>What is DevOps?</summary><br><b>
+<summary>Что такое DevOps?</summary><br><b>
 
-The definition of DevOps from selected companies:
+Определение DevOps от избранных компаний:
 
 **Amazon**:
 
-"DevOps is the combination of cultural philosophies, practices, and tools that increases an organization’s ability to deliver applications and services at high velocity: evolving and improving products at a faster pace than organizations using traditional software development and infrastructure management processes. This speed enables organizations to better serve their customers and compete more effectively in the market."
+«DevOps — это сочетание культурной философии, практик и инструментов, которое увеличивает способность организации предоставлять приложения и услуги с высокой скоростью: разработка и улучшение продуктов происходит быстрее, чем в организациях, использующих традиционные процессы разработки программного обеспечения и управления инфраструктурой. Такая скорость позволяет организациям лучше обслуживать своих клиентов и более эффективно конкурировать на рынке».
 
-**Microsoft**:
+**Майкрософт**:
 
-"DevOps is the union of people, process, and products to enable continuous delivery of value to our end users. The contraction of “Dev” and “Ops” refers to replacing siloed Development and Operations to create multidisciplinary teams that now work together with shared and efficient practices and tools. Essential DevOps practices include agile planning, continuous integration, continuous delivery, and monitoring of applications."
+«DevOps — это союз людей, процессов и продуктов, обеспечивающий непрерывную доставку ценности нашим конечным пользователям. Сокращение слов «Dev» и «Ops» означает замену разрозненных разработок и операций для создания многопрофильных команд, которые теперь работают вместе, используя общие и эффективные методы и инструменты. Основные практики DevOps включают гибкое планирование, непрерывную интеграцию, непрерывную доставку и мониторинг приложений».
 
-**Red Hat**:
+**Красная шляпа**:
 
-"DevOps describes approaches to speeding up the processes by which an idea (like a new software feature, a request for enhancement, or a bug fix) goes from development to deployment in a production environment where it can provide value to the user. These approaches require that development teams and operations teams communicate frequently and approach their work with empathy for their teammates. Scalability and flexible provisioning are also necessary. With DevOps, those that need power the most, get it—through self service and automation. Developers, usually coding in a standard development environment, work closely with IT operations to speed software builds, tests, and releases—without sacrificing reliability."
+«DevOps описывает подходы к ускорению процессов, с помощью которых идея (например, новая функция программного обеспечения, запрос на улучшение или исправление ошибки) переходит от разработки к развертыванию в производственной среде, где она может принести пользу пользователю. Эти подходы требуют, чтобы команды разработчиков и группы эксплуатации часто общались и подходили к своей работе с сочувствием к своим товарищам по команде. Масштабируемость и гибкое обеспечение также необходимы. С DevOps те, кому больше всего нужна мощность, получают ее - через самообслуживание и автоматизацию. Разработчики обычно пишут код в стандартной среде разработки, тесно сотрудничая с ИТ-операциями для ускорения сборки, тестирования и выпуска программного обеспечения, не жертвуя при этом надежностью».
 
 **Google**:
 
-"...The organizational and cultural movement that aims to increase software delivery velocity, improve service reliability, and build shared ownership among software stakeholders"
+«...Организационное и культурное движение, целью которого является увеличение скорости доставки программного обеспечения, повышение надежности услуг и создание совместной собственности между заинтересованными сторонами в области программного обеспечения»
+
 </b></details>
 
 <details>
-<summary>What are the benefits of DevOps? What can it help us to achieve?</summary><br><b>
+<summary>Каковы преимущества DevOps? Чего это может помочь нам достичь?</summary><br><b>
 
-  * Collaboration
-  * Improved delivery
-  * Security
-  * Speed
-  * Scale
-  * Reliability
+* Сотрудничество
+  * Улучшена доставка
+  * Безопасность
+  * Скорость
+  * Масштаб
+  * Надежность
+
 </b></details>
 
 <details>
-<summary>What are the anti-patterns of DevOps?</summary><br><b>
+<summary>Каковы антипаттерны DevOps?</summary><br><b>
 
-A couple of examples:
+Несколько примеров:
 
-* One person is in charge of specific tasks. For example there is only one person who is allowed to merge the code of everyone else into the repository.
-* Treating production differently from development environment. For example, not implementing security in development environment
-* Not allowing someone to push to production on Friday ;)
+* Один человек отвечает за конкретные задачи. Например, есть только один человек, которому разрешено объединять код всех остальных в репозиторий.
+* Отношение к производству отличается от среды разработки. Например, не реализация безопасности в среде разработки.
+* Не разрешать кому-либо приступить к производству в пятницу ;)
+
 </b></details>
 
 <details>
-<summary>How would you describe a successful DevOps engineer or a team?</summary><br><b>
+<summary>Как бы вы описали успешного DevOps-инженера или команду?</summary><br><b>
 
-The answer can focus on:
+Ответ может быть сосредоточен на:
 
-* Collaboration
-* Communication
-* Set up and improve workflows and processes (related to testing, delivery, ...)
-* Dealing with issues
+* Сотрудничество
+* Общение
+* Настройка и улучшение рабочих процессов и процессов (связанных с тестированием, доставкой и т. д.)
+* Работа с проблемами
 
-Things to think about:
+О чем стоит подумать:
 
-* What DevOps teams or engineers should NOT focus on or do?
-* Do DevOps teams or engineers have to be innovative or practice innovation as part of their role?
+* На чем НЕ следует сосредоточиваться или делать командам DevOps или инженерам?
+* Должны ли команды или инженеры DevOps быть инновационными или практиковать инновации как часть своей работы?
+
 </b></details>
 
 <details>
-<summary>One of your team members suggests to set a goal of "deploying at least 20 times a day" in regards to CD. What is your take on that?</summary><br><b>
+<summary>Один из членов вашей команды предлагает поставить перед собой цель «развертывать не менее 20 раз в день» в отношении CD. Что вы думаете по этому поводу?</summary><br><b>
 
-A couple of thoughts:
+Пара мыслей:
 
-1. Why is it an important goal? Is it affecting the business somehow? One of the KPIs? In other words, does it matters?
-2. This might introduce risks such as losing quality in favor of quantity
-3. You might want to set a possibly better goal such as "be able to deploy whenever we need to deploy"
+1. Почему это важная цель? Это как-то влияет на бизнес? Один из KPI? Другими словами, имеет ли это значение?
+2. Это может привести к таким рискам, как потеря качества в пользу количества.
+3. Возможно, вы захотите поставить более осмысленную цель, например «иметь возможность развертывания всякий раз, когда нам нужно развернуть».
+
 </b></details>
 
-### Tooling
+### Инструментарий (tooling)
 
 <details>
-<summary>What do you take into consideration when choosing a tool/technology?</summary><br><b>
+<summary>Что вы принимаете во внимание при выборе инструмента/технологии?</summary><br><b>
 
-A few ideas to think about:
+Несколько идей для размышления:
 
-  * mature/stable vs. cutting edge
-  * community size
-  * architecture aspects - agent vs. agentless, master vs. masterless, etc.
-  * learning curve
+  * зрелая/стабильная по сравнению с передовой
+  * размер сообщества
+  * аспекты архитектуры — агент против безагента, мастер против безмастера и т. д.
+  * кривая обучения
+
 </b></details>
 
 <details>
-<summary>Can you describe which tool or platform you chose to use in some of the following areas and how?
+<summary>Можете ли вы описать, какой инструмент или платформу вы решили использовать в некоторых из следующих областей и как?
 
   * CI/CD
-  * Provisioning infrastructure
-  * Configuration Management
-  * Monitoring & alerting
-  * Logging
-  * Code review
-  * Code coverage
-  * Issue Tracking
-  * Containers and Containers Orchestration
-  * Tests</summary><br><b>
+  * Обеспечение инфраструктуры
+  * Управление конфигурацией
+  * Мониторинг и оповещение
+  * Ведение журнала
+  * Обзор кода
+  * Покрытие кода
+  * Отслеживание проблем
+  * Контейнеры и оркестрация контейнеров.
+  * Тесты</summary><br><b>
 
-This is a more practical version of the previous question where you might be asked additional specific questions on the technology you chose
+Это более практичная версия предыдущего вопроса, в которой вам могут задать дополнительные конкретные вопросы по выбранной вами технологии.
 
-  * CI/CD - Jenkins, Circle CI, Travis, Drone, Argo CD, Zuul
-  * Provisioning infrastructure - Terraform, CloudFormation
-  * Configuration Management - Ansible, Puppet, Chef
-  * Monitoring & alerting - Prometheus, Nagios
-  * Logging - Logstash, Graylog, Fluentd
-  * Code review - Gerrit, Review Board
-  * Code coverage - Cobertura, Clover, JaCoCo
-  * Issue tracking - Jira, Bugzilla
-  * Containers and Containers Orchestration - Docker, Podman, Kubernetes, Nomad
-  * Tests - Robot, Serenity, Gauge
+  * CI/CD — Jenkins, Circle CI, Travis CI, Drone, Argo CD, Zuul
+  * Обеспечение инфраструктуры — Terraform, CloudFormation.
+  * Управление конфигурациями — Ansible, Puppet, Chef
+  * Мониторинг и оповещение — Prometheus, Nagios
+  * Ведение журнала — Logstash, Graylog, Fluentd
+  * Проверка кода — Gerrit, Review Board
+  * Покрытие кода — Cobertura, Clover, JaCoCo.
+  * Отслеживание проблем — Jira, Bugzilla.
+  * Контейнеры и оркестрация контейнеров — Docker, Podman, Kubernetes, Nomad.
+  * Тесты — Robot Framework, Serenity, Gauge
+
 </b></details>
 
 <details>
-<summary>A team member of yours, suggests to replace the current CI/CD platform used by the organization with a new one. How would you reply?</summary><br><b>
+<summary>Член вашей команды предлагает заменить текущую платформу CI/CD, используемую организацией, на новую. Как бы вы ответили?</summary><br><b>
 
-Things to think about:
+О чем стоит подумать:
 
-* What we gain from doing so? Are there new features in the new platform? Does the new platform deals with some of the limitations presented in the current platform?
-* What this suggestion is based on? In other words, did he/she tried out the new platform? Was there extensive technical research?
-* What does the switch from one platform to another will require from the organization? For example, training users who use the platform? How much time the team has to invest in such move?
+* Что мы от этого получим? Есть ли новые функции в новой платформе? Устраняет ли новая платформа некоторые ограничения, имеющиеся в текущей платформе?
+* На чем основано это предложение? Другими словами, опробовал ли он/она новую платформу? Проводились ли обширные технические исследования?
+* Что потребует от организации переход с одной платформы на другую? Например, обучение пользователей, использующих платформу? Сколько времени команде придется потратить на такой ход?
+
 </b></details>
 
-### Version Control
+### Контроль версий
 
 <details>
-<summary>What is Version Control?</summary><br><b>
+<summary>Что такое контроль версий?</summary><br><b>
+
+* Контроль версий — это система отслеживания и управления изменениями в программном коде.
+* Это помогает командам разработчиков программного обеспечения управлять изменениями в исходном коде с течением времени.
+* Контроль версий также помогает разработчикам работать быстрее и позволяет командам разработчиков программного обеспечения сохранять эффективность и гибкость по мере расширения команды за счет большего количества разработчиков.
+
+</b></details>
+
+<details>
+<summary>Что такое коммит?</summary><br><b>
+
+* В Git коммит — это снимок вашего репозитория в определенный момент времени.
+* Команда git commit сохранит все поэтапные изменения вместе с кратким описанием от пользователя в «коммите» в локальном репозитории.
+
+</b></details>
+
+<details>
+<summary>Что такое слияние?</summary><br><b>
+
+* Слияние — это способ Git снова собрать раздвоенную историю воедино. Команда git merge позволяет взять независимые направления разработки, созданные веткой git, и объединить их в одну ветку.
+
+</b></details>
+
+<details>
+<summary>Что такое конфликт слияния?</summary><br><b>
+
+* Конфликт слияния — это событие, которое происходит, когда Git не может автоматически устранить различия в коде между двумя коммитами. Когда все изменения в коде происходят в разных строках или в разных файлах, Git успешно объединит коммиты без вашей помощи.
+
+</b></details>
+
+<details>
+<summary>Какие передовые методы управления версиями вы знаете?</summary><br><b>
+
+* Используйте описательное сообщение о коммите.
+* Сделайте каждый коммит логической единицей
+* Часто включайте изменения других
+* Часто делитесь своими изменениями
+* Координируйте свои действия с коллегами.
+* Не фиксируйте сгенерированные файлы
+* Не фиксируйте двоичные файлы
+
+</b></details>
+
+<details>
+<summary>Вы предпочитаете модель «конфигурация->развертывание» или «развертывание->конфигурация»? Почему?</summary><br><b>
+
+Оба имеют преимущества и недостатки.
+Например, при использовании модели «конфигурация->развертывание», когда вы создаете один образ для использования в нескольких развертываниях, вероятность того, что развертывания будут отличаться друг от друга, меньше, поэтому она имеет явное преимущество в виде согласованной среды.
+
+</b></details>
+
+<details>
+<summary>Объясните изменяемую и неизменяемую инфраструктуру.</summary><br><b>
+
+В парадигме **изменяемой** инфраструктуры изменения применяются поверх существующей инфраструктуры, и со временем инфраструктура накапливает историю изменений. Ansible, Puppet и Chef — примеры инструментов, которые **следуют** парадигме изменяемой инфраструктуры.
+
+В парадигме **неизменяемой** инфраструктуры каждое изменение фактически означает новую инфраструктуру: изменение на сервере приводит к созданию **нового** сервера вместо его «на месте» обновления. **Terraform** — пример технологии, которая следует парадигме неизменяемой инфраструктуры.
+
+</b></details>
+
+### Распространение программного обеспечения
+
+<details>
+<summary>Объясните «Распространение программного обеспечения».</summary><br><b>
+
+Прочитайте [эту](https://venam.nixers.net/blog/unix/2020/03/29/distro-pkgs.html) фантастическую статью на эту тему.
+
+Из статьи: «Таким образом, распространение программного обеспечения — это механизм и сообщество, которое берет на себя бремя и принимает решения по созданию сборки связного программного обеспечения, которое может быть отправлено».
+
+</b></details>
+
+<details>
+<summary>Почему существует несколько дистрибутивов программного обеспечения? Какие различия они могут иметь?</summary><br><b>
+
+Различные дистрибутивы могут фокусироваться на разных вещах, например: фокусироваться на разных средах (серверная, мобильная или настольная), поддерживать определенное оборудование, специализироваться в разных областях (безопасность, мультимедиа и т. д.) и т. д. По сути, разные аспекты программного обеспечения и того, что оно поддерживает, получают разный приоритет в каждом дистрибутиве.
+
+</b></details>
+
+<details>
+<summary>Что такое репозиторий программного обеспечения?</summary><br><b>
+
+Википедия: «Репозиторий программного обеспечения, или для краткости «репо», представляет собой место хранения пакетов программного обеспечения. Часто хранится оглавление, а также метаданные».
+
+Подробнее читайте [здесь](https://en.wikipedia.org/wiki/Software_repository)
+
+</b></details>
+
+<details>
+<summary>Какие существуют способы распространения программного обеспечения? Каковы преимущества и недостатки каждого метода?</summary><br><b>
+
+* Источник. Поддерживайте сценарий сборки в системе контроля версий, чтобы пользователь мог собрать ваше приложение после клонирования репозитория. Преимущество: пользователь может быстро проверить различные версии приложения. Недостаток: требуются инструменты сборки, установленные на компьютере пользователя.
+  * Архив — соберите все файлы вашего приложения в один архив (например, tar) и доставьте его пользователю. Преимущество: Пользователь получает все, что ему нужно, в одном файле. Недостаток: требует повторения одной и той же процедуры при обновлении, что нехорошо, если зависимостей много.
+  * Пакет — зависит от ОС, вы можете использовать формат пакета вашей ОС (например, в RHEL/Fefodra это RPM) для доставки вашего программного обеспечения с возможностью его установки, удаления и обновления с помощью стандартных команд упаковщика. Преимущества: Менеджер пакетов обеспечивает поддержку установки, удаления, обновления и управления зависимостями. Недостаток: требуется управление репозиторием пакетов.
+  * Образы — образы виртуальных машин или контейнеров, в которые включен ваш пакет со всем необходимым для успешной работы. Преимущество: все предустановлено, высокая степень изоляции среды. Недостаток: Требуются знания в области построения и оптимизации изображений.
+
+</b></details>
+
+<details>
+<summary>Знакомы ли вы с «Макетами собора и базара»? Расскажите о каждой модели.</summary><br><b>
+
+* Собор — исходный код публикуется вместе с выпуском программного обеспечения.
+* Базар — исходный код всегда доступен публично (например, ядро Linux).
+
+</b></details>
+
+<details>
+<summary>Что такое кэширование? Как это работает? Почему это важно?</summary><br><b>
+
+Кэширование — это быстрый доступ к часто используемым ресурсам, которые требуют больших вычислительных ресурсов или требуют большого количества операций ввода-вывода и не меняются часто. Может быть несколько уровней кэша, начиная от кэша ЦП и заканчивая системами распределенного кэша. Распространенными из них являются кэширование в памяти и распределенное кэширование. <br/> Кэши обычно представляют собой структуры данных, содержащие некоторые данные, например хеш-таблицу или словарь. Однако любая структура данных может обеспечивать возможности кэширования, например, набор, отсортированный набор, отсортированный словарь и т. д. Хотя кеширование используется во многих приложениях, оно может создавать небольшие ошибки, если оно не реализовано правильно или не используется правильно. Например, аннулирование, истечение срока действия или обновление кэша обычно является довольно сложной и трудной задачей.
+
+</b></details>
+
+<details>
+<summary>Объясните безгражданство и состояние с сохранением состояния</summary><br><b>
+
+Приложения без сохранения состояния не хранят никаких данных на хосте, что делает их идеальными для горизонтального масштабирования и микросервисов.
+Приложения с отслеживанием состояния зависят от хранилища для сохранения состояния и данных. Обычно базы данных являются приложениями с отслеживанием состояния.
+
+</b></details>
+
+<details>
+<summary>Что такое надежность? Насколько это соответствует DevOps?</summary><br><b>
+
+Надежность при использовании в контексте DevOps — это способность системы восстанавливаться после сбоя или сбоя инфраструктуры. Частью этого также является возможность масштабирования в зависимости от требований вашей организации или команды.
+
+</b></details>
+
+<details>
+<summary>Что означает «Доступность»? Какие существуют средства для отслеживания доступности услуги?</summary><br><b>
+
+**Availability** — доля времени, когда сервис доступен (uptime). Мониторинг: synthetic checks (Pingdom, Blackbox exporter), health endpoints, SLA/SLO, alerting (PagerDuty), status pages, RED/USE метрики.
+
+</b></details>
+
+<details>
+<summary>Почему 100% доступность не является целью? Почему большинство компаний или команд устанавливают его на уровне 99.%X?</summary><br><b>
+
+100% дорого (избыточность, сложность) и недостижимо на практике. **99.9%** ≈ 8.7 ч простоя/год — компромисс cost/risk. Чем выше «девятки», тем дороже инфраструктура и процессы.
+
+</b></details>
+
+<details>
+<summary>Опишите рабочий процесс настройки веб-сервера определенного типа (Apache, IIS, Tomcat,...)</summary><br><b>
+
+IaC/Ansible: установка пакета → конфиг (vhost, SSL) → firewall → systemd enable → deploy артефакта → health check. В контейнерах — образ + Ingress; секреты из Vault; CI/CD pipeline для promote по средам.
+
+</b></details>
+
+<details>
+<summary>Как работает веб-сервер?</summary><br><b>
+
+<a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server" title="Нажмите здесь, чтобы перенаправить на официальную страницу MDN" style="background-color:#FFFFFF;color:#000000;text-decoration:none">Согласно веб-документам MDN -</a>
 	
-* Version control is the system of tracking and managing changes to software code.
-* It helps software teams to manage changes to source code over time.
-* Version control also helps developers move faster and allows software teams to preserve efficiency and agility as the team scales to include more developers.
-</b></details>
-
-<details>
-<summary>What is a commit?</summary><br><b>
+Мы можем понять веб-серверы, используя две точки зрения, а именно:
 	
-* In Git, a commit is a snapshot of your repo at a specific point in time.
-* The git commit command will save all staged changes, along with a brief description from the user, in a “commit” to the local repository.
-</b></details>
+	(i) Аппаратное обеспечение (ii) Программное обеспечение
 
-<details>
-<summary>What is a merge?</summary><br><b>
-
-* Merging is Git's way of putting a forked history back together again. The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.
-</b></details>
-
-<details>
-<summary>What is a merge conflict?</summary><br><b>
-
-* A merge conflict is an event that occurs when Git is unable to automatically resolve differences in code between two commits. When all the changes in the code occur on different lines or in different files, Git will successfully merge commits without your help.
-</b></details>
-
-<details>
-<summary>What best practices are you familiar with regarding version control?</summary><br><b>
+(i) Веб-сервер — это не что иное, как удаленный компьютер, на котором хранятся файлы компонентов веб-сайта (файлы HTML, CSS и Javascript) и программное обеспечение веб-сервера. Веб-сервер подключается к
+      Интернет и поддерживает физический обмен данными с другими устройствами, подключенными к сети.
 	
-* Use a descriptive commit message
-* Make each commit a logical unit
-* Incorporate others' changes frequently
-* Share your changes frequently
-* Coordinate with your co-workers
-* Don't commit generated files
-* Don't commit binary files
-</b></details>
-
-<details>
-<summary>Would you prefer a "configuration->deployment" model or "deployment->configuration"? Why?</summary><br><b>
-
-Both have advantages and disadvantages.
-With "configuration->deployment" model for example, where you build one image to be used by multiple deployments, there is less chance of deployments being different from one another, so it has a clear advantage of a consistent environment.
-</b></details>
-
-<details>
-<summary>Explain mutable vs. immutable infrastructure</summary><br><b>
-
-In mutable infrastructure paradigm, changes are applied on top of the existing infrastructure and over time
-the infrastructure builds up a history of changes. Ansible, Puppet and Chef are examples of tools which
-follow mutable infrastructure paradigm.
-
-In immutable infrastructure paradigm, every change is actually a new infrastructure. So a change
-to a server will result in a new server instead of updating it. Terraform is an example of technology
-which follows the immutable infrastructure paradigm.
-</b></details>
-
-### Software Distribution
-
-<details>
-<summary>Explain "Software Distribution"</summary><br><b>
-
-Read [this](https://venam.nixers.net/blog/unix/2020/03/29/distro-pkgs.html) fantastic article on the topic.
-
-From the article: "Thus, software distribution is about the mechanism and the community that takes the burden and decisions to build an assemblage of coherent software that can be shipped."
-</b></details>
-
-<details>
-<summary>Why are there multiple software distributions? What differences they can have?</summary><br><b>
-
-Different distributions can focus on different things like: focus on different environments (server vs. mobile vs. desktop), support specific hardware, specialize in different domains (security, multimedia, ...), etc. Basically, different aspects of the software and what it supports, get different priority in each distribution.
-</b></details>
-
-<details>
-<summary>What is a Software Repository?</summary><br><b>
-
-Wikipedia: "A software repository, or “repo” for short, is a storage location for software packages. Often a table of contents is stored, as well as metadata."
-
-Read more [here](https://en.wikipedia.org/wiki/Software_repository)
-</b></details>
-
-<details>
-<summary>What ways are there to distribute software? What are the advantages and disadvantages of each method?</summary><br><b>
-
-  * Source - Maintain build script within version control system so that user can build your app after cloning repository. Advantage: User can quickly checkout different versions of application. Disadvantage: requires build tools installed on users machine.
-  * Archive - collect all your app files into one archive (e.g. tar) and deliver it to the user. Advantage: User gets everything he needs in one file. Disadvantage: Requires repeating the same procedure when updating, not good if there are a lot of dependencies.
-  * Package - depends on the OS, you can use your OS package format (e.g. in RHEL/Fefodra it's RPM) to deliver your software with a way to install, uninstall and update it using the standard packager commands. Advantages: Package manager takes care of support for installation, uninstallation, updating and dependency management. Disadvantage: Requires managing package repository.
-  * Images - Either VM or container images where your package is included with everything it needs in order to run successfully. Advantage: everything is preinstalled, it has high degree of environment isolation. Disadvantage: Requires knowledge of building and optimizing images.
-</b></details>
-
-<details>
-<summary>Are you familiar with "The Cathedral and the Bazaar models"? Explain each of the models</summary><br><b>
-
-* Cathedral - source code released when software is released
-* Bazaar - source code is always available publicly (e.g. Linux Kernel)
-</b></details>
-
-<details>
-<summary>What is caching? How does it work? Why is it important?</summary><br><b>
-
-Caching is fast access to frequently used resources which are computationally expensive or IO intensive and do not change often. There can be several layers of cache that can start from CPU caches to distributed cache systems. Common ones are in memory caching and distributed caching. <br/> Caches are typically data structures that contains some data, such as a hashtable or dictionary. However, any data structure can provide caching capabilities, like set, sorted set, sorted dictionary etc. While, caching is used in many applications, they can create subtle bugs if not implemented correctly or used correctly. For example,cache invalidation, expiration or updating is usually quite challenging and hard.
-</b></details>
-
-<details>
-<summary>Explain stateless vs. stateful</summary><br><b>
-
-Stateless applications don't store any data in the host which makes it ideal for horizontal scaling and microservices.
-Stateful applications depend on the storage to save state and data, typically databases are stateful applications.
-</b></details>
-
-<details>
-<summary>What is Reliability? How does it fit DevOps?</summary><br><b>
-
-Reliability, when used in DevOps context, is the ability of a system to recover from infrastructure failure or disruption. Part of it is also being able to scale based on your organization or team demands.
-</b></details>
-
-<details>
-<summary>What does "Availability" mean? What means are there to track Availability of a service?</summary><br><b>
-</b></details>
-
-<details>
-<summary>Why isn't 100% availability a target? Why do most companies or teams set it to be 99%.X?</summary><br><b>
-</b></details>
-
-<details>
-<summary>Describe the workflow of setting up some type of web server (Apache, IIS, Tomcat, ...)</summary><br><b>
-</b></details>
-
-<details>
-<summary>How does a web server work?</summary><br><b>
-<a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server" title="Click here to redirect to MDN official page" style="background-color:#FFFFFF;color:#000000;text-decoration:none">According to MDN Web Docs -</a>
+(ii) Что касается программного обеспечения, веб-сервер включает в себя несколько частей, которые контролируют доступ веб-пользователей к размещенным файлам. Как минимум это HTTP-сервер. HTTP-сервер — это программное обеспечение, которое понимает URL-адреса (веб-адреса) и HTTP (протокол, который ваш браузер использует для просмотра веб-страниц). Доступ к HTTP-серверу можно получить через доменные имена веб-сайтов, которые он хранит, и он доставляет содержимое этих размещенных веб-сайтов на устройство конечного пользователя.
 	
-We can understand web servers using two view points, which is:
+## Как устанавливается связь между веб-сервером и веб-браузерами:
 	
-	(i) Hardware (ii) Software
+ Всякий раз, когда браузеру требуется файл, размещенный на веб-сервере, браузер запрашивает страницу у веб-сервера, и веб-сервер отвечает этой страницей.
+Эта связь между веб-браузером и веб-сервером происходит следующими способами:
 
-(i)   A web server is nothing but a remote computer which stores website's component files(HTML,CSS and Javascript files) and web server's software.A web server connects to
-      the Internet and supports physical data interchange with other devices connected to the web.
+(1) Пользователь вводит имя домена в браузере, а затем браузер выполняет поиск IP-адреса введенного имени. Это можно сделать 2 способами- 
 	
-(ii)  On the software side, a web server includes several parts that control how web users access hosted files. At a minimum, this is an HTTP server. An HTTP server is software       that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). An HTTP server can be accessed through the domain names of the websites         it stores, and it delivers the content of these hosted websites to the end user's device.
-	
-## How communication between web server and web browsers established:
-	
- Whenever a browser needs a file that is hosted on a web server, the browser requests the page from the web server and the web server responds with that page.
-This communication between web browser and web server happens in the following ways:
+    - Путем поиска в его кеше. 
+    - Путем запроса одного или нескольких DNS-серверов (системы доменных имен).
 
-(1) User enters the domain name in the browser,and the browser then search for the IP address of the entered name. It can be done in 2 ways- 
-	
-    -By searching in its cache. 
-    -By requesting one or more DNS (Domain Name System) Servers.
+(2) После знания IP-адреса браузер запрашивает файл через HTTP, и запрос достигает правильного (аппаратного) веб-сервера.
 
-(2) After knowing the IP Address, the browser requests the file via HTTP and the request reaches the correct (hardware) web server.
+(3) (Программный) HTTP-сервер принимает запрос, находит запрошенный документ и отправляет его обратно в браузер, также через HTTP. (Если сервер не находит запрошенный документ, вместо этого он возвращает ответ 404.)
 
-(3) The (software) HTTP server accepts the request, finds the requested document, and sends it back to the browser, also through HTTP. (If the server doesn't find the requested document, it returns a 404 response instead.)
-
-(4) The Browser finally gets the webpages and displays it, or displays the error message.
+(4) Браузер наконец получает веб-страницы и отображает их или отображает сообщение об ошибке.
 
 </b></details>
 
 <details>
-<summary>Explain "Open Source"</summary><br><b>
+<summary>Объясните «открытый исходный код»</summary><br><b>
+
+**Open source** — лицензия позволяет просматривать, изменять и распространять код (MIT, Apache, GPL…). Сообщество, прозрачность, форки; для компаний — due diligence лицензий и security.
+
 </b></details>
 
 <details>
-<summary>Describe the architecture of service/app/project/... you designed and/or implemented</summary><br><b>
+<summary>Опишите архитектуру сервиса/приложения/проекта/... которую вы разработали и/или внедрили.</summary><br><b>
+
+Ответ по STAR: границы (API, БД, очередь), деплой (K8s/VM), CI/CD, observability, HA, security. Диаграмма: клиент → LB → app → DB/cache; укажите trade-offs и метрики успеха.
+
 </b></details>
 
 <details>
-<summary>What types of tests are you familiar with?</summary><br><b>
+<summary>Какие виды тестов вам известны?</summary><br><b>
 
-Styling, unit, functional, API, integration, smoke, scenario, ...
+Стилизация, модуль, функционал, API, интеграция, дым, сценарий,...
 
-You should be able to explain those that you mention.
+Вы должны быть в состоянии объяснить те, которые вы упомянули.
+
 </b></details>
 
 <details>
-<summary>You need to install periodically a package (unless it's already exists) on different operating systems (Ubuntu, RHEL, ...). How would you do it?</summary><br><b>
+<summary>Вам необходимо периодически устанавливать пакет (если он еще не существует) в разных операционных системах (Ubuntu, RHEL, ...). Как бы вы это сделали?</summary><br><b>
 
-There are multiple ways to answer this question (there is no right and wrong here):
+Есть несколько способов ответить на этот вопрос (здесь нет правильных и неправильных):
 
-* Simple cron job
-* Pipeline with configuration management technology (such Puppet, Ansible, Chef, etc.)
+* Простая работа cron
+* Конвейер с технологией управления конфигурациями (например, Puppet, Ansible, Chef и т. д.)
 ...
-</b></details>
-
-<details>
-<summary>What is Chaos Engineering?</summary><br><b>
-
-Wikipedia: "Chaos engineering is the discipline of experimenting on a software system in production in order to build confidence in the system's capability to withstand turbulent and unexpected conditions"
-
-Read about Chaos Engineering [here](https://en.wikipedia.org/wiki/Chaos_engineering)
-</b></details>
-
-<details>
-<summary>What is "infrastructure as code"? What implementation of IAC are you familiar with?</summary><br><b>
-
-IAC (infrastructure as code) is a declarative approach of defining infrastructure or architecture of a system. Some implementations are ARM templates for Azure and Terraform that can work across multiple cloud providers.
-</b></details>
-
-<details>
-<summary>What benefits does infrastructure-as-code have?</summary><br><b>
-
-- fully automated process of provisioning, modifying and deleting your infrastructure
-- version control for your infrastructure which allows you to quickly rollback to previous versions
-- validate infrastructure quality and stability with automated tests and code reviews
-- makes infrastructure tasks less repetitive
-</b></details>
-
-<details>
-<summary>How do you manage build artifacts?</summary><br><b>
-
-Build artifacts are usually stored in a repository. They can be used in release pipelines for deployment purposes. Usually there is retention period on the build artifacts.
-</b></details>
-
-<details>
-<summary>What Continuous Integration solution are you using/prefer and why?</summary><br><b>
-</b></details>
-
-<details>
-<summary>What deployment strategies are you familiar with or have used?</summary><br><b>
-
-	There are several deployment strategies:
-	* Rolling
-	* Blue green deployment
-	* Canary releases
-	* Recreate strategy
 
 </b></details>
 
 <details>
-<summary>You joined a team where everyone developing one project and the practice is to run tests locally on their workstation and push it to the repository if the tests passed. What is the problem with the process as it is now and how to improve it?</summary><br><b>
+<summary>Что такое Хаос-инжиниринг?</summary><br><b>
+
+Википедия: «Хаос-инжиниринг — это дисциплина экспериментов над программной системой в производстве с целью укрепить уверенность в способности системы противостоять турбулентным и неожиданным условиям».
+
+Прочтите о Chaos Engineering [здесь](https://en.wikipedia.org/wiki/Chaos_engineering)
+
 </b></details>
 
 <details>
-<summary>Explain test-driven development (TDD)</summary><br><b>
+<summary>Что такое «инфраструктура как код»? Какая реализация IAC вам знакома?</summary><br><b>
+
+IAC (инфраструктура как код) — это декларативный подход к определению инфраструктуры или архитектуры системы. Некоторые реализации представляют собой шаблоны ARM для Azure и Terraform, которые могут работать с несколькими поставщиками облачных услуг.
+
 </b></details>
 
 <details>
-<summary>Explain agile software development</summary><br><b>
+<summary>Какие преимущества имеет инфраструктура как код?</summary><br><b>
+
+- полностью автоматизированный процесс предоставления, изменения и удаления вашей инфраструктуры
+- контроль версий вашей инфраструктуры, который позволяет быстро откатиться к предыдущим версиям
+- проверять качество и стабильность инфраструктуры с помощью автоматических тестов и проверок кода.
+- делает инфраструктурные задачи менее повторяющимися
+
 </b></details>
 
 <details>
-<summary>What do you think about the following sentence?: "Implementing or practicing DevOps leads to more secure software"</summary><br><b>
+<summary>Как вы управляете артефактами сборки?</summary><br><b>
+
+Артефакты сборки обычно хранятся в репозитории. Их можно использовать в конвейерах выпуска для целей развертывания. Обычно артефакты сборки имеют период хранения.
+
 </b></details>
 
 <details>
-<summary>Do you know what is a "post-mortem meeting"? What is your opinion on that?</summary><br><b>
+<summary>Какое решение непрерывной интеграции вы используете/предпочитаете и почему?</summary><br><b>
+
+Зависит от контекста: **GitHub Actions** (интеграция с repo), **GitLab CI** (all-in-one), **Jenkins** (плагины, on-prem), **Tekton/Argo** в K8s. Критерии: self-hosted vs SaaS, секреты, кэш, параллельность, стоимость.
+
 </b></details>
 
 <details>
-<summary>What is a configuration drift? What problems is it causing?</summary><br><b>
+<summary>Какие стратегии развертывания вы знаете или использовали?</summary><br><b>
 
-Configuration drift happens when in an environment of servers with the exact same configuration and software, a certain server
-or servers are being applied with updates or configuration which other servers don't get and over time these servers become
-slightly different than all others.
+Существует несколько стратегий развертывания:
+	* Роллинг
+	* Сине-зеленое развертывание
+	* Канарские релизы
+	* Воссоздать стратегию
 
-This situation might lead to bugs which hard to identify and reproduce.
 </b></details>
 
 <details>
-<summary>How to deal with a configuration drift?</summary><br><b>
-	Configuration drift can be avoided with desired state configuration (DSC) implementation. Desired state configuration can be a declarative file that defined how a system should be. There are tools to enforce desired state such a terraform or azure dsc. There are incremental or complete strategies.
+<summary>Вы присоединились к команде, где каждый разрабатывает один проект, и практика заключается в том, чтобы запускать тесты локально на своей рабочей станции и отправлять их в репозиторий, если тесты пройдены. В чем проблема с нынешним процессом и как его улучшить?</summary><br><b>
+
+«Works on my machine» — нет единой среды. Решение: **CI** на каждый push/PR, одинаковые agents/containers, branch protection, обязательные checks, pre-commit hooks, воспроизводимые devcontainers.
+
 </b></details>
 
 <details>
-<summary>Explain Declarative and Procedural styles. The technologies you are familiar with (or using) are using procedural or declarative style?</summary><br><b>
+<summary>Объясните разработку через тестирование (TDD)</summary><br><b>
 
-Declarative - You write code that specifies the desired end state<br>
-Procedural - You describe the steps to get to the desired end state
+**Red-Green-Refactor**: сначала падающий тест, минимальный код для прохождения, рефакторинг. Плюсы: дизайн API, регрессии; минусы: время на начальном этапе. Хорошо для бизнес-логики и библиотек.
 
-Declarative Tools - Terraform, Puppet, CloudFormation, Ansible<br>
-Procedural Tools - Chef
-
-To better emphasize the difference, consider creating two virtual instances/servers.
-In declarative style, you would specify two servers and the tool will figure out how to reach that state.
-In procedural style, you need to specify the steps to reach the end state of two instances/servers - for example, create a loop and in each iteration of the loop create one instance (running the loop twice of course).
 </b></details>
 
 <details>
-<summary>Do you have experience with testing cross-projects changes? (aka cross-dependency)</summary><br><b>
+<summary>Объясните гибкую разработку программного обеспечения</summary><br><b>
 
-Note: cross-dependency is when you have two or more changes to separate projects and you would like to test them in mutual build instead of testing each change separately.
+**Agile** — итерации (sprints), короткая обратная связь, приоритет backlog, working software over documentation. Роли: PO, Scrum Master, команда. Практики: daily, retro, demo, continuous delivery.
+
 </b></details>
 
 <details>
-<summary>Have you contributed to an open source project? Tell me about this experience</summary><br><b>
+<summary>Что вы думаете о следующем предложении?: «Внедрение или практика DevOps приводит к более безопасному программному обеспечению».</summary><br><b>
+
+Частично верно: быстрые патчи, автоматизация, IaC, секреты в CI, SAST в pipeline. Но без **DevSecOps** (shift-left, сканирование образов, least privilege) скорость может увеличить риск. Зависит от культуры и инструментов.
+
 </b></details>
 
 <details>
-<summary>What is Distributed Tracing?</summary><br><b>
+<summary>Знаете ли вы, что такое «postmortem» (разбор инцидента)? Каково ваше мнение по этому поводу?</summary><br><b>
+
+**Blameless postmortem** после инцидента: timeline, root cause, contributing factors, action items. Цель — улучшить систему и процессы, не искать виноватых. Культура learning organization.
+
+</b></details>
+
+<details>
+<summary>Что такое дрейф конфигурации? Какие проблемы это вызывает?</summary><br><b>
+
+Смещение конфигурации происходит, когда в среде серверов с одинаковой конфигурацией и программным обеспечением определенный сервер
+или на серверы устанавливаются обновления или конфигурация, которых нет на других серверах, и со временем эти серверы становятся
+немного отличается от всех остальных.
+
+Эта ситуация может привести к ошибкам, которые трудно идентифицировать и воспроизвести.
+
+</b></details>
+
+<details>
+<summary>Как бороться с дрейфом конфигурации?</summary><br><b>
+
+Дрейфа конфигурации можно избежать с помощью реализации конфигурации желаемого состояния (DSC). Конфигурация желаемого состояния может представлять собой декларативный файл, определяющий, какой должна быть система. Существуют инструменты для обеспечения желаемого состояния, такие как terraform или azure dsc. Существуют поэтапные и полные стратегии.
+
+</b></details>
+
+<details>
+<summary>Объясните декларативный и процедурный стили. Технологии, с которыми вы знакомы (или используете), используют процедурный или декларативный стиль?</summary><br><b>
+
+Декларативный: вы пишете код, определяющий желаемое конечное состояние<br>
+Процедурный — вы описываете шаги, необходимые для достижения желаемого конечного состояния.
+
+Декларативные инструменты — Terraform, Puppet, CloudFormation, Ansible<br>
+Процедурные инструменты — шеф-повар
+
+Чтобы лучше подчеркнуть разницу, рассмотрите возможность создания двух виртуальных экземпляров/серверов.
+В декларативном стиле вы должны указать два сервера, и инструмент выяснит, как достичь этого состояния.
+В процедурном стиле вам необходимо указать шаги для достижения конечного состояния двух экземпляров/серверов - например, создать цикл и на каждой итерации цикла создавать один экземпляр (разумеется, цикл выполняется дважды).
+
+</b></details>
+
+<details>
+<summary>Есть ли у вас опыт тестирования межпроектных изменений? (так называемая перекрестная зависимость)</summary><br><b>
+
+Примечание. Перекрестная зависимость — это когда у вас есть два или более изменений в отдельных проектах, и вы хотите протестировать их во взаимной сборке, а не тестировать каждое изменение отдельно.
+
+</b></details>
+
+<details>
+<summary>Вы участвовали в проекте с открытым исходным кодом? Расскажи мне об этом опыте</summary><br><b>
+
+Ответ по опыту: проект, ваш вклад (PR, issues), collaboration (review, RFC), лицензия, community norms. Плюсы для работодателя: код на GitHub, коммуникация, самоорганизация.
+
+</b></details>
+
+<details>
+<summary>Что такое распределенная трассировка?</summary><br><b>
+
+**Distributed tracing** (Jaeger, Zipkin, OpenTelemetry): один **trace_id** через микросервисы, spans с latency. Помогает найти узкое место в цепочке HTTP/gRPC. Связывают с logs (trace_id в Loki) и metrics.
+
 </b></details>
 
 ### GitOps
 
 <details>
-<summary>What is GitOps?</summary><br><b>
+<summary>Что такое GitOps?</summary><br><b>
 
-GitLab: "GitOps is an operational framework that takes DevOps best practices used for application development such as version control, collaboration, compliance, and CI/CD tooling, and applies them to infrastructure automation".
+GitLab: «GitOps — это операционная среда, которая использует лучшие практики DevOps, используемые для разработки приложений, такие как контроль версий, совместная работа, соответствие требованиям и инструменты CI/CD, и применяет их для автоматизации инфраструктуры».
 
-Read more [here](https://about.gitlab.com/topics/gitops)
-</b></details>
-
-<details>
-<summary>What are some of the advantages of applying GitOps?</summary><br><b>
-
-* It introduces limited/granular access to infrastructure
-* It makes it easier to trace who makes changes to infrastructure
+Подробнее читайте [здесь](https://about.gitlab.com/topics/gitops)
 
 </b></details>
 
 <details>
-<summary>When a repository refereed to as "GitOps Repository" what does it means?</summary><br><b>
+<summary>Каковы преимущества применения GitOps?</summary><br><b>
 
-A repository that doesn't holds the application source code, but the configuration, infra, ... files that required to test and deploy the application.
+* Вводит ограниченный/детализированный доступ к инфраструктуре.
+* Это облегчает отслеживание того, кто вносит изменения в инфраструктуру.
+
 </b></details>
 
 <details>
-<summary>What are some practical implementations or practices of GitOp?</summary><br><b>
+<summary>Когда репозиторий называется «Репозиторий GitOps», что это означает?</summary><br><b>
 
-* Store Infra files in a version control repository (like Git)
-* Apply review/approval process for changes
+Репозиторий, в котором хранится не исходный код приложения, а конфигурация, инфраструктура и... файлы, необходимые для тестирования и развертывания приложения.
+
 </b></details>
 
 <details>
-<summary>Two engineers in your team argue on where to put the configuration and infra related files of a certain application. One of them suggests to put it in the same repo as the application repository and the other one suggests to put to put it in its own separate repository. What's your take on that?</summary><br><b>
+<summary>Каковы практические реализации или практики GitOp?</summary><br><b>
 
-One might say we need more details as to what these configuration and infra files look like exactly and how complex the application and its CI/CD pipeline(s), but in general, most of the time you will want to put configuration and infra related files in their own separate repository and not in the repository of the application for multiple reasons:
+* Храните файлы Infra в репозитории контроля версий (например, Git).
+* Применить процесс проверки/утверждения изменений.
 
-* Every change submitted to the configuration, shouldn't trigger the CI/CD of the application, it should be testing out and applying the modified configuration, not the application itself
-* When you mix application code with configuration and infra related files
+</b></details>
+
+<details>
+<summary>Два инженера в вашей команде спорят о том, куда поместить конфигурационные и инфраструктурные файлы определенного приложения. Один из них предлагает поместить его в тот же репозиторий, что и репозиторий приложения, а другой предлагает поместить его в отдельный репозиторий. Что вы думаете по этому поводу?</summary><br><b>
+
+Можно сказать, что нам нужно больше подробностей о том, как именно выглядят эти конфигурационные и инфраструктурные файлы и насколько сложны приложение и его конвейеры CI/CD, но в целом в большинстве случаев вам захочется поместить конфигурационные и инфраструктурные файлы в отдельный репозиторий, а не в репозиторий приложения по нескольким причинам:
+
+* Каждое изменение, внесенное в конфигурацию, не должно запускать CI/CD приложения, оно должно тестировать и применять измененную конфигурацию, а не само приложение.
+* При смешивании кода приложения с конфигурационными и инфраструктурными файлами.
+
 </b></details>
 
 #### SRE
 
 <details>
-<summary>What are the differences between SRE and DevOps?</summary><br><b>
+<summary>В чем разница между SRE и DevOps?</summary><br><b>
 
-Google: "One could view DevOps as a generalization of several core SRE principles to a wider range of organizations, management structures, and personnel."
+Google: «Можно рассматривать DevOps как обобщение нескольких основных принципов SRE для более широкого круга организаций, структур управления и персонала».
 
-Read more about it [here](https://sre.google/sre-book/introduction)
+Подробнее об этом читайте [здесь](https://sre.google/sre-book/introduction)
+
 </b></details>
 
 <details>
-<summary>What SRE team is responsible for?</summary><br><b>
+<summary>За что отвечает команда SRE?</summary><br><b>
 
-Google: "the SRE team is responsible for availability, latency, performance, efficiency, change management, monitoring, emergency response, and capacity planning of their services"
+Google: «команда SRE отвечает за доступность, задержку, производительность, эффективность, управление изменениями, мониторинг, реагирование на чрезвычайные ситуации и планирование мощности своих сервисов»
 
-Read more about it [here](https://sre.google/sre-book/introduction)
+Подробнее об этом читайте [здесь](https://sre.google/sre-book/introduction)
+
 </b></details>
 
 <details>
-<summary>What is an error budget?</summary><br><b>
+<summary>Что такое бюджет ошибок?</summary><br><b>
 
-Atlassian: "An error budget is the maximum amount of time that a technical system can fail without contractual consequences."
+Atlassian: «Бюджет ошибок — это максимальное количество времени, в течение которого техническая система может выйти из строя без договорных последствий».
 
-Read more about it [here](https://www.atlassian.com/incident-management/kpis/error-budget)
+Подробнее об этом читайте [здесь](https://www.atlassian.com/incident-management/kpis/error-budget)
+
 </b></details>
 
 <details>
-<summary>What do you think about the following statement: "100% is the only right availability target for a system"</summary><br><b>
+<summary>Что вы думаете о следующем утверждении: «100% — единственная правильная цель доступности системы»</summary><br><b>
 
-Wrong. No system can guarantee 100% availability as no system is safe from experiencing zero downtime.
-Many systems and services will fall somewhere between 99% and 100% uptime (or at least this is how most systems and services should be).
+Неправильный. Ни одна система не может гарантировать 100% доступность, поскольку ни одна система не застрахована от нулевых простоев.
+Время безотказной работы многих систем и сервисов будет где-то между 99% и 100% (или, по крайней мере, таким должно быть большинство систем и сервисов).
+
 </b></details>
 
 <details>
-<summary>What are MTTF (mean time to failure) and MTTR (mean time to repair)? What these metrics help us to evaluate?</summary><br><b>
+<summary>Что такое MTTF (среднее время до отказа) и MTTR (среднее время до ремонта)? Что эти метрики помогают нам оценить?</summary><br><b>
 
-	* MTTF (mean time to failure) other known as uptime, can be defined as how long the system runs before if fails.
-	* MTTR (mean time to recover) on the other hand, is the amount of time it takes to repair a broken system.
-	* MTBF (mean time between failures) is the amount of time between failures of the system.
+* MTTF (среднее время до отказа), также известное как время безотказной работы, может быть определено как время работы системы до сбоя.
+	* С другой стороны, MTTR (среднее время восстановления) — это количество времени, необходимое для восстановления неисправной системы.
+	* MTBF (среднее время наработки на отказ) — это количество времени наработки на отказ системы.
+
 </b></details>
 
 <details>
-<summary>What is the role of monitoring in SRE?</summary><br><b>
+<summary>Какова роль мониторинга в SRE?</summary><br><b>
 
-Google: "Monitoring is one of the primary means by which service owners keep track of a system’s health and availability"
+Google: «Мониторинг — один из основных способов, с помощью которого владельцы сервисов отслеживают работоспособность и доступность системы»
 
-Read more about it [here](https://sre.google/sre-book/introduction)
+Подробнее об этом читайте [здесь](https://sre.google/sre-book/introduction)
+
 </b></details>
 
 <details>
-<summary>What are the two main SRE KPIs</summary><br><b>
+<summary>Каковы два основных KPI SRE?</summary><br><b>
 
-Service Level Indicators (SLI) and Service Level Objectives (SLO).
+Индикаторы уровня обслуживания (SLI) и целевые показатели уровня обслуживания (SLO).
+
 </b></details>
 
 <details>
-<summary>What is Toil?</summary><br><b>
+<summary>Что такое Тяжелый труд?</summary><br><b>
 
-Google: Toil is the kind of work tied to running a production service that tends to be manual, repetitive, automatable, tactical, devoid of enduring value, and that scales linearly as a service grows
+Google: Тяжелый труд — это работа, связанная с управлением производственным сервисом, которая обычно выполняется вручную, повторяется, автоматизируется, тактическая, лишена непреходящей ценности и линейно масштабируется по мере роста сервиса.
 
-Read more about it [here](https://sre.google/sre-book/eliminating-toil/) 
+Подробнее об этом читайте [здесь](https://sre.google/sre-book/elimination-toil/)
+
 </b></details>
 
 
 <details>
-<summary>What is a postmortem ? </summary><br><b>
+<summary>Что такое посмертное исследование?</summary><br><b>
 
-The postmortem is a process that should take place following an incident. It’s purpose is to identify the root cause of an incident and the actions that should be taken to avoid this kind of incidents from happening again. </b></details>
+Вскрытие — это процесс, который должен происходить после инцидента. Его цель — определить основную причину инцидента и действия, которые следует предпринять, чтобы избежать повторения подобных инцидентов.
+
+</b></details>
 
 
 <details>
-<summary>What is the core value often put forward when talking about postmortem?</summary><br><b>
+<summary>Какова основная ценность, которую часто выдвигают, говоря о посмертном исследовании?</summary><br><b>
 
-Blamelessness. 
-Postmortems need to be blameless and this value should be remided at the beginning of every postmortem. This is the best way to ensure that people are playing the game to find the root cause and not trying to hide their possible faults.</b></details>
+Безукоризненность. 
+Вскрытие должно быть безупречным, и об этом следует помнить в начале каждого вскрытия. Это лучший способ гарантировать, что люди играют в игру, чтобы найти основную причину, а не пытаются скрыть свои возможные ошибки.
+
+</b></details>
 

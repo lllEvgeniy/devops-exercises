@@ -6,7 +6,8 @@ from typing import List, Optional
 
 def binary_search(arr: List[int], lb: int, ub: int, target: int) -> Optional[int]:
     """
-    A Binary Search Example which has O(log n) time complexity.
+    Бинарный поиск в отсортированном массиве: O(log n) по времени.
+    Возвращает индекс элемента или -1, если значение не найдено.
     """
     while lb <= ub:
         mid = lb + (ub - lb) // 2
@@ -29,13 +30,13 @@ def find_target_in_list(target: int, lst: List[int]) -> int:
 
 def main():
     """
-    Executes the binary search algorithm with a randomly generated list.
-    Time Complexity: O(log n)
+    Запуск бинарного поиска по случайно сгенерированному отсортированному списку.
+    Сложность по времени: O(log n).
     """
     rand_num_li = generate_random_list()
     target = random.randint(1, 50)
     index = find_target_in_list(target, rand_num_li)
-    print(f"List: {rand_num_li}\nTarget: {target}\nIndex: {index}")
+    print(f"Список: {rand_num_li}\nИскомое: {target}\nИндекс: {index}")
 
 
 if __name__ == '__main__':

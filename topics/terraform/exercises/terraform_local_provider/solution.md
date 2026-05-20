@@ -1,11 +1,11 @@
-# Local Provider
+# Локальный провайдер
 
-## Objectives
+## Цели
 
-Learn how to use and run Terraform basic commands
+Узнайте, как использовать и запускать основные команды Terraform.
 
-1. Create a directory called "my_first_run"
-2. Inside the directory create a file called "main.tf" with the following content
+1. Создайте каталог под названием «my_first_run».
+2. Внутри каталога создайте файл «main.tf» со следующим содержимым.
 
 ```terraform
 resource "local_file" "mario_local_file" {
@@ -13,17 +13,18 @@ resource "local_file" "mario_local_file" {
     filename = "/tmp/who_is_it.txt"
 }
 ```
-3. Run `terraform init`. What did it do?
-4. Run `terraform plan`. What Terraform is going to perform?
-5. Finally, run 'terraform apply' and verify the file was created
 
-## Solution
+3. Запустите `terraform init`. Что он сделал?
+4. Запустите `terraform plan`. Что будет делать Terraform?
+5. Наконец, запустите `terraform apply` и убедитесь, что файл создан.
+
+## Решение
 
 ```sh
-# Create a directory
+# Создать каталог
 mkdir my_first_run && cd my_first_run
 
-# Create the file 'main.tf'
+# Создать файл main.tf
 cat << EOT >>  main.tf
 resource "local_file" "mario_local_file" {
     content  = "It's a me, Mario!"
@@ -31,14 +32,14 @@ resource "local_file" "mario_local_file" {
 }
 EOT
 
-# Run 'terraform init'
+# terraform init
 terraform init
-# Running 'ls -la' you'll it created '.terraform' and '.terraform.lock.hcl'
-# In addition, it initialized (downloaded and installed) the relevant provider plugins. In this case, the "hashicorp/local"
+# ls -la покажет каталоги .terraform и .terraform.lock.hcl
+# Скачаны и установлены провайдеры (здесь hashicorp/local)
 
-# Run 'terraform plan'
+# terraform plan
 terraform plan
-# It shows what Terraform is going to perform once you'll run 'terraform apply'
+# Показывает, что будет сделано при terraform apply
 
 << terraform_plan_output
 Terraform will perform the following actions:
@@ -55,7 +56,7 @@ Terraform will perform the following actions:
 Plan: 1 to add, 0 to change, 0 to destroy.
 terraform_plan_output
 
-# Apply main.tf (it's better to run without -auto-approve if you are new to Terraform)
+# terraform apply (новичкам лучше без -auto-approve)
 terraform apply -auto-approve
 
 ls /tmp/who_is_it.txt

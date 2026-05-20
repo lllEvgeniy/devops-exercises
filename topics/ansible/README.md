@@ -1,89 +1,89 @@
 ## Ansible
 
-<!-- {% raw %} -->
+### Упражнения
 
-### Ansible Exercises
+| Название | Тема | Упражнение | Решение |
+|----------|------|------------|---------|
+| Моя первая задача | tasks | [Упражнение](my_first_task.md) | [Решение](solutions/my_first_task.md) |
+| APT: update и upgrade | tasks | [Упражнение](update_upgrade_task.md) | [Решение](solutions/update_upgrade_task.md) |
+| Мой первый playbook | playbooks | [Упражнение](my_first_playbook.md) | [Решение](solutions/my_first_playbook.md) |
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
-|--------|--------|------|----|----|
-| My First Task | Tasks | [Exercise](my_first_task.md) | [Solution](solutions/my_first_task.md)
-| Upgrade and Update Task | Tasks | [Exercise](update_upgrade_task.md) | [Solution](solutions/update_upgrade_task.md)
-| My First Playbook | Playbooks | [Exercise](my_first_playbook.md) | [Solution](solutions/my_first_playbook.md)
-	
-
-### Ansible Self Assessment
+### Самопроверка по Ansible
 
 <details>
-<summary>Describe each of the following components in Ansible, including the relationship between them:
+<summary>Опишите компоненты Ansible и связи между ними:
 
-  * Task
-  * Inventory	
-  * Module
-  * Play
-  * Playbook
-  * Role
-</summary><br><b>
+  * task (задача)
+  * inventory (инвентарь)
+  * module (модуль)
+  * play (плей)
+  * playbook
+  * role (роль)</summary><br><b>
 
-Task – a call to a specific Ansible module
-Module – the actual unit of code executed by Ansible on your own host or a remote host. Modules are indexed by category (database, file, network, …) and also referred to as task plugins.
-	
-Inventory – An inventory file defines hosts and/or groups of hosts on which Ansible tasks executed upon. The inventory file can be in one of many formats, depending on the inventory plugins you have. The most common formats are INI and YAML.
+**Task** — один вызов модуля с параметрами (атомарная операция в playbook).
 
-Play – One or more tasks executed on a given host(s)
+**Module** — код, который выполняется на управляемом хосте (копирование файла, пакетный менеджер, systemd и т.д.).
 
-Playbook – One or more plays. Each play can be executed on the same or different hosts
+**Inventory** — список хостов и групп (INI, YAML, динамический инвентарь из облака и т.д.), на которых запускаются plays.
 
-Role – Ansible roles allows you to group resources based on certain functionality/service such that they can be easily reused. In a role, you have directories for variables, defaults, files, templates, handlers, tasks, and metadata. You can then use the role by simply specifying it in your playbook.
+**Play** — сопоставление **набора хостов** из инвентаря с **последовательностью tasks** (и уровнем `become`, переменными и т.д.).
+
+**Playbook** — YAML-файл с одним или несколькими plays.
+
+**Role** — переиспользуемый набор tasks, handlers, шаблонов, файлов и переменных в стандартной раскладке каталогов; подключается из playbook через `roles:` или `import_role` / `include_role`.
+
 </b></details>
 
 <details>
-<summary>How Ansible is different from other automation tools? (e.g. Chef, Puppet, etc.)</summary><br><b>
+<summary>Чем Ansible отличается от других систем автоматизации? (например, Chef, Puppet)</summary><br><b>
 
-Ansible is:
+Кратко про Ansible:
 
-* Agentless
-* Minimal run requirements (Python & SSH) and simple to use
-* Default mode is "push" (it supports also pull)
-* Focus on simpleness and ease-of-use
+* по умолчанию **без агента** на хосте (нужны SSH и Python);
+* низкий порог входа, YAML-плейбуки;
+* типичная модель **push** с control node (есть и pull-варианты);
+* упор на идемпотентные модули и повторяемые прогоны.
+
 </b></details>
 
 
 <details>
-<summary>True or False? Ansible follows the mutable infrastructure paradigm</summary><br><b>
+<summary>Верно или нет? Ansible следует парадигме *immutable infrastructure* (неизменяемой инфраструктуры).</summary><br><b>
 
-True. In immutable infrastructure approach, you'll replace infrastructure instead of modifying it.<br>
-Ansible rather follows the mutable infrastructure paradigm where it allows you to change the configuration of different components, but this approach is not perfect and has its own disadvantages like "configuration drift" where different components may reach different state for different reasons.
+**Неверно** в классическом смысле: Ansible **изменяет** конфигурацию существующих хостов. Неизменяемая модель чаще подразумевает **замену** узлов (новый образ/инстанс) вместо правок на месте. При частых ручных изменениях возможен **дрейф конфигурации**, поэтому важны идемпотентность, тесты и дисциплина версионирования.
+
 </b></details>
 
 <details>
-<summary>True or False? Ansible uses declarative style to describe the expected end state</summary><br><b>
+<summary>Верно или нет? Ansible описывает желаемое конечное состояние в декларативном стиле.</summary><br><b>
 
-False. It uses a procedural style.
+**В основном да, с оговоркой:** вы декларируете **желаемое состояние** в модулях (`state: present`, `copy` с содержимым и т.д.), а порядок **plays/tasks** по-прежнему задаётся **процедурно** (сверху вниз). В отличие от чистого imperative-скрипта, модули сами приводят ресурс к описанному состоянию.
+
 </b></details>
 
 <details>
-<summary>What kind of automation you wouldn't do with Ansible and why?</summary><br><b>
+<summary>Какую автоматизацию лучше не возлагать только на Ansible и почему?</summary><br><b>
 
-While it's possible to provision resources with Ansible, some prefer to use tools that follow immutable infrastructure paradigm.
-Ansible doesn't saves state by default. So a task that creates 5 instances for example, when executed again will create additional 5 instances (unless
-additional check is implemented or explicit names are provided) while other tools might check if 5 instances exist. If only 4 exist (by checking the state file for example), one additional instance will be created to reach the end goal of 5 instances.
+Ansible по умолчанию **не ведёт полноценное состояние** облака как Terraform: повторный запуск task «создать 5 VM» без проверок может создать ещё пять. Для **провижининга** облачных ресурсов, сложных графов зависимостей и строгого state-файла часто используют Terraform/OpenTofu, Pulumi, облачные SDK — а Ansible оставляют для конфигурации ОС и приложений **поверх** уже созданных ресурсов.
+
 </b></details>
 
 <details>
-<summary>How do you list all modules and how can you see details on a specific module?</summary><br><br>
+<summary>Как получить список модулей и справку по конкретному модулю?</summary><br><b>
 
-1. Ansible online docs
-2. `ansible-doc -l` for list of modules and `ansible-doc [module_name]` for detailed information on a specific module
+1. Официальная документация Ansible.
+2. В CLI: `ansible-doc -l` — список модулей; `ansible-doc <имя_модуля>` — подробная справка.
+
 </b></details>
 
-#### Ansible - Inventory
+#### Ansible — Инвентарь
 
 <details>
-<summary>What is an inventory file and how do you define one?</summary><br><b>
+<summary>Что такое файл инвентаризации и как его определить?</summary><br><b>
 
-An inventory file defines hosts and/or groups of hosts on which Ansible tasks executed upon.
+Файл инвентаризации определяет хосты и/или группы хостов, на которых выполняются задачи Ansible.
 
-An example of inventory file:
+Пример файла инвентаризации:
 
 ```
 192.168.1.2
@@ -95,23 +95,24 @@ An example of inventory file:
 190.40.2.21
 190.40.2.22
 ```
+
 </b></details>
 
 <details>
-<summary>What is a dynamic inventory file? When you would use one?</summary><br><br>
+<summary>Что такое файл динамической инвентаризации? Когда вы его используете?</summary><br><b>
 
-A dynamic inventory file tracks hosts from one or more sources like cloud providers and CMDB systems.
+Динамический инвентарь получает список хостов из **внешнего источника** (облако, CMDB, оркестратор). Используйте его, когда состав хостов **часто меняется** (автоскейлинг, короткоживущие VM) и вручную поддерживать статический список неудобно.
 
-You should use one when using external sources and especially when the hosts in your environment are being automatically<br>
-spun up and shut down, without you tracking every change in these sources.
 </b></details>
 
-#### Ansible - Variables
+#### Ansible — Переменные
 
 <details>
-<summary>Modify the following task to use a variable instead of the value "zlib" and have "zlib" as the default in case the variable is not defined
+<summary>Измените задачу так, чтобы имя пакета бралось из переменной `package_name`, а по умолчанию использовалось значение `zlib`.
 
-```
+Исходный фрагмент:
+
+```yaml
 - name: Install a package
   package:
     name: "zlib"
@@ -119,18 +120,21 @@ spun up and shut down, without you tracking every change in these sources.
 ```
 </summary><br><b>
 
-```
+```yaml
 - name: Install a package
-  package:
-    name: "{{ package_name|default('zlib') }}"
+  ansible.builtin.package:
+    name: "{{ package_name | default('zlib') }}"
     state: present
 ```
+
 </b></details>
 
 <details>
-<summary>How to make the variable "use_var" optional?
+<summary>Как сделать переменную `use_var` необязательной (не передавать ключ в модуль, если переменная не задана)?
 
-```
+Пример:
+
+```yaml
 - name: Install a package
   package:
     name: "zlib"
@@ -139,66 +143,90 @@ spun up and shut down, without you tracking every change in these sources.
 ```
 </summary><br><b>
 
+Используйте фильтр **`default(omit)`** (в паре с конструкцией, которую поддерживает модуль):
 
-With "default(omit)"
-```
+```yaml
 - name: Install a package
-  package:
+  ansible.builtin.package:
     name: "zlib"
     state: present
-    use: "{{ use_var|default(omit) }}"
+    use: "{{ use_var | default(omit) }}"
 ```
+
+Тогда при отсутствии `use_var` ключ `use` не попадёт в аргументы модуля.
+
 </b></details>
 
 <details>
-<summary>What would be the result of the following play?</summary><br><b>
+<summary>Каким будет результат следующего play?</summary><br><b>
 
-```
+```yaml
 ---
 - name: Print information about my host
   hosts: localhost
-  gather_facts: 'no'
+  gather_facts: false
   tasks:
-      - name: Print hostname
-        debug:
-            msg: "It's me, {{ ansible_hostname }}"
+    - name: Print hostname
+      ansible.builtin.debug:
+        msg: "It's me, {{ ansible_hostname }}"
 ```
 
-When given a written code, always inspect it thoroughly. If your answer is “this will fail” then you are right. We are using a fact (ansible_hostname), which is a gathered piece of information from the host we are running on. But in this case, we disabled facts gathering (gather_facts: no) so the variable would be undefined which will result in failure.
+Ошибка / пустое значение: при `gather_facts: false` факт `ansible_hostname` **не** заполняется (если вы сами не задали его), подстановка в `msg` приведёт к проблемам на выполнении.
+
 </b></details>
 
 <details>
-<summary>When the value '2017'' will be used in this case: `{{ lookup('env', 'BEST_YEAR') | default('2017', true) }}`?</summary><br><b>
+<summary>Когда в выражении `{{ lookup('env', 'BEST_YEAR') | default('2017', true) }}` подставится `2017`?</summary><br><b>
 
-when the environment variable 'BEST_YEAR' is empty or false.
+Когда переменная окружения **`BEST_YEAR`** не задана, **пустая** или считается **ложной** (`true` во втором аргументе `default` включает так называемый *boolean* режим).
+
 </b></details>
 
 <details>
-<summary>If the value of certain variable is 1, you would like to use the value "one", otherwise, use "two". How would you do it?</summary><br><b>
+<summary>Если переменная равна `1`, нужно вывести `one`, иначе `two`. Как записать в Jinja2?</summary><br><b>
 
-`{{ (certain_variable == 1) | ternary("one", "two") }}`
+```jinja2
+{{ 'one' if my_var == 1 else 'two' }}
+```
+
+(или тернарный вид через `ternary`, если он доступен в вашей версии фильтров.)
+
 </b></details>
 
 <details>
-<summary>The value of a certain variable you use is the string "True". You would like the value to be a boolean. How would you cast it?</summary><br><b>
+<summary>Строка в переменной — `"True"`. Как привести к настоящему boolean для условий?</summary><br><b>
 
-`{{ some_string_var | bool }}`
+```jinja2
+{{ some_string_var | bool }}
+```
+
+Учтите: `bool` трактует строки в духе YAML; для произвольных строк лучше явная проверка.
+
 </b></details>
 
 <details>
-<summary>You want to run Ansible playbook only on specific minor version of your OS, how would you achieve that?</summary><br><b>
+<summary>Вы хотите запускать Ansible playbook только на определенной второстепенной версии вашей ОС. Как бы вы этого достигли?</summary><br><b>
+
+`when: ansible_distribution_major_version == "8"` (или `ansible_facts['distribution_version']`). В `hosts:` — limit по группе с нужной ОС; в dynamic inventory — фильтр по тегу/атрибуту.
+
 </b></details>
 
 <details>
-<summary>What the "become" directive used for in Ansible?</summary><br><b>
+<summary>Для чего используется директива «become»?</summary><br><b>
+
+**Privilege escalation** — выполнение задачи от root (или другого пользователя): `become: true`, `become_user: root`, `become_method: sudo`. Аналог `sudo` для модулей, которым нужны права администратора.
+
 </b></details>
 
 <details>
-<summary>What are facts? How to see all the facts of a certain host?</summary><br><b>
+<summary>Что такое факты? Как увидеть все факты об определенном хосте?</summary><br><b>
+
+**Facts** — переменные, собранные модулем `setup` (ОС, сеть, память…). Просмотр: `ansible <host> -m setup` или play с `debug: var=ansible_facts`. Кастомные: `set_fact`, `ansible_local`.
+
 </b></details>
 
 <details>
-<summary>What would be the result of running the following task? How to fix it?
+<summary>Каков будет результат выполнения следующей задачи? Как это исправить?
 
 ```
 - hosts: localhost
@@ -208,31 +236,59 @@ when the environment variable 'BEST_YEAR' is empty or false.
           name: zlib
           state: present
 ```
+
 </summary><br><b>
+
+В примере ключи на русском и опечатка `Zlib` — модуль не найдёт пакет. Нужны английские ключи YAML и имя пакета ОС (`zlib` / `zlib1g` на Debian). Исправленный фрагмент см. в summary.
+
 </b></details>
 
 <details>
-<summary>Which Ansible best practices are you familiar with?. Name at least three</summary><br><b>
+<summary>Какие лучшие практики Ansible вам известны? Назовите не менее трех</summary><br><b>
+
+Использовать **roles** и `ansible-galaxy`; idempotent **modules** вместо `shell`; **Vault** для секретов; `ansible-lint`/Molecule; теги и `check_mode`; inventory по средам; `--diff` в CI; явные `name` у tasks.
+
 </b></details>
 
 <details>
-<summary>Explain the directory layout of an Ansible role</summary><br><b>
+<summary>Объясните структуру каталогов роли Ansible.</summary><br><b>
+
+`tasks/main.yml`, `handlers/main.yml`, `defaults/main.yml`, `vars/main.yml`, `files/`, `templates/`, `meta/main.yml`, `molecule/`. В playbook: `roles: [myrole]`.
+
 </b></details>
 
 <details>
-<summary>What 'blocks' are used for in Ansible?</summary><br><b>
+<summary>Какие «блоки» используются в Ansible?</summary><br><b>
+
+`block`/`rescue`/`always` (try/catch/finally), `block` с `delegate_to`, группировка tasks. Также логические блоки: `when`, `loop`, `tags`.
+
 </b></details>
 
 <details>
-<summary>How do you handle errors in Ansible?</summary><br><b>
+<summary>Как вы обрабатываете ошибки в Ansible?</summary><br><b>
+
+`ignore_errors: true`, `failed_when`/`changed_when`, `block` + `rescue`/`always`, `any_errors_fatal`, `max_fail_percentage`. В CI — `ansible-playbook` exit code; callbacks для уведомлений.
+
 </b></details>
 
 <details>
-<summary>You would like to run a certain command if a task fails. How would you achieve that?</summary><br><b>
+<summary>Вы хотите запустить определенную команду в случае сбоя задачи. Как бы вы этого достигли?</summary><br><b>
+
+`block` + `rescue`:
+
+```yaml
+- block:
+    - name: risky task
+      command: ...
+  rescue:
+    - name: on failure
+      command: /usr/local/bin/rollback.sh
+```
+
 </b></details>
 
 <details>
-<summary>Write a playbook to install ‘zlib’ and ‘vim’ on all hosts if the file ‘/tmp/mario’ exists on the system.</summary><br><b>
+<summary>Напишите сценарий для установки zlib и vim на всех хостах, если в системе существует файл /tmp/mario.</summary><br><b>
 
 ```
 ---
@@ -256,10 +312,11 @@ when the environment variable 'BEST_YEAR' is empty or false.
         with_items: "{{ package_list }}"
         when: mario_f.stat.exists
 ```
+
 </b></details>
 
 <details>
-<summary>Write a single task that verifies all the files in files_list variable exist on the host</summary><br><b>
+<summary>Напишите одну задачу, которая проверяет, что все файлы в переменной files_list существуют на хосте.</summary><br><b>
 
 ```
 - name: Ensure all files exist
@@ -268,20 +325,23 @@ when the environment variable 'BEST_YEAR' is empty or false.
       - item.stat.exists
   loop: "{{ files_list }}"
 ```
+
 </b></details>
 
 <details>
-<summary>Write a playbook to deploy the file ‘/tmp/system_info’ on all hosts except for controllers group, with the following content</summary><br><b>
+<summary>Напишите сценарий для развертывания файла «/tmp/system_info» на всех хостах, кроме группы контроллеров, со следующим содержимым.</summary><br><b>
 
-  ```
-  I'm <HOSTNAME> and my operating system is <OS>
-  ```
-
-  Replace <HOSTNAME> and  <OS> with the actual data for the specific host you are running on
-
-The playbook to deploy the system_info file
+Шаблон `system_info.j2`:
 
 ```
+I'm {{ ansible_hostname }} and my operating system is {{ ansible_distribution }}
+```
+
+Замените переменные Jinja2 фактическими facts (`ansible_hostname`, `ansible_distribution`).
+
+Playbook:
+
+```yaml
 ---
 - name: Deploy /tmp/system_info file
   hosts: all:!controllers
@@ -292,75 +352,80 @@ The playbook to deploy the system_info file
             dest: /tmp/system_info
 ```
 
-The content of the system_info.j2 template
-
-```
-# {{ ansible_managed }}
-I'm {{ ansible_hostname }} and my operating system is {{ ansible_distribution }
-```
 </b></details>
 
 <details>
-<summary>The variable 'whoami' defined in the following places:
+<summary>Переменная whoami определена в следующих местах:
 
-  * role defaults -> whoami: mario
-  * extra vars (variables you pass to Ansible CLI with -e) -> whoami: toad
-  * host facts -> whoami: luigi
-  * inventory variables (doesn’t matter which type) -> whoami: browser
+  * роли по умолчанию -> whoami: mario
+  * дополнительные переменные (переменные, которые вы передаете в Ansible CLI с помощью -e) -> whoami: toad
+  * факты о хосте -> whoami: Луиджи
+  * переменные инвентаря (неважно какого типа) -> whoami: браузер
 
-According to variable precedence, which one will be used?</summary><br><b>
+Какой из них будет использоваться в зависимости от приоритета переменных?</summary><br><b>
 
-The right answer is ‘toad’.
+Правильный ответ — «жаба».
 
-Variable precedence is about how variables override each other when they set in different locations. If you didn’t experience it so far I’m sure at some point you will, which makes it a useful topic to be aware of.
+Приоритет переменных связан с тем, как переменные переопределяют друг друга, когда они установлены в разных местах. Если вы еще не испытали этого, я уверен, что в какой-то момент вы это сделаете, поэтому это полезная тема, о которой стоит знать.
 
-In the context of our question, the order will be extra vars (always override any other variable) -> host facts -> inventory variables -> role defaults (the weakest).
+В контексте нашего вопроса порядок будет следующим: дополнительные переменные (всегда переопределяют любую другую переменную) -> факты хоста -> переменные инвентаря -> роли по умолчанию (самые слабые).
 
-Here is the order of precedence from least to greatest (the last listed variables winning prioritization):
+Вот порядок приоритета от наименьшего к наибольшему (последние перечисленные переменные получают приоритет):
 
-1. command line values (eg “-u user”)
-2. role defaults [[1\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id15)
-3. inventory file or script group vars [[2\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id16)
-4. inventory group_vars/all [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
+1. значения командной строки (например, «-u пользователь»)
+2. роли по умолчанию [[1\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id15)
+3. переменные файла инвентаризации или группы сценариев [[2\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id16)
+4. инвентаризация group_vars/all [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
 5. playbook group_vars/all [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
-6. inventory group_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
+6. инвентаризация group_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
 7. playbook group_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
-8. inventory file or script host vars [[2\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id16)
-9. inventory host_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
+8. переменные хоста файла инвентаризации или сценария [[2\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id16)
+9. инвентаризация host_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
 10. playbook host_vars/* [[3\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id17)
-11. host facts / cached set_facts [[4\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id18)
-12. play vars
-13. play vars_prompt
-14. play vars_files
-15. role vars (defined in role/vars/main.yml)
-16. block vars (only for tasks in block)
-17. task vars (only for the task)
+11. факты о хосте/кешированные set_facts [[4\]](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#id18)
+12. играть в варсы
+13. играть в vars_prompt
+14. играть в vars_files
+15. переменные роли (определены в role/vars/main.yml)
+16. переменные блока (только для задач в блоке)
+17. переменные задачи (только для задачи)
 18. include_vars
-19. set_facts / registered vars
-20. role (and include_role) params
-21. include params
-22. extra vars (always win precedence)
+19. set_facts/зарегистрированные переменные
+20. Параметры роли (и include_role)
+21. включить параметры
+22. дополнительные переменные (всегда выигрывает приоритет)
 
-A full list can be found at  [PlayBook Variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence) . Also, note there is a significant difference between Ansible 1.x and 2.x.
+Полный список можно найти по адресу [PlayBook Variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence). Также обратите внимание, что между Ansible 1.x и 2.x существует значительная разница.
+
 </b></details>
 
 <details>
-<summary>For each of the following statements determine if it's true or false:
+<summary>Для каждого из следующих утверждений определите, истинно оно или ложно:
 
-  * A module is a collection of tasks
-  * It’s better to use shell or command instead of a specific module
-  * Host facts override play variables
-  * A role might include the following: vars, meta, and handlers
-  * Dynamic inventory is generated by extracting information from external sources
-  * It’s a best practice to use indentation of 2 spaces instead of 4
-  * ‘notify’ used to trigger handlers
-  * This “hosts: all:!controllers” means ‘run only on controllers group hosts</summary><br><b>
+  * Модуль — это набор задач.
+  * Лучше использовать оболочку или команду вместо конкретного модуля
+  * Факты о хосте переопределяют игровые переменные.
+  * Роль может включать в себя следующее: переменные, мета и обработчики.
+  * Динамическая инвентаризация создается путем извлечения информации из внешних источников.
+  * Лучше всего использовать отступ в 2 пробела вместо 4.
+  * «notify» используется для запуска обработчиков
+  * Это «hosts: all:!controllers» означает «запускать только на хостах группы контроллеров».</summary><br><b>
+
+* **Неверно** — модуль ≠ набор задач (модуль — атомарное действие).<br>
+* **Неверно** — предпочитайте специализированные модули, не `shell`.<br>
+* **Неверно** — play vars обычно **переопределяют** facts (выше приоритет).<br>
+* **Верно** — role: vars, meta, handlers, tasks, templates…<br>
+* **Верно** — dynamic inventory из cloud/API.<br>
+* **Верно** — в Ansible принят отступ 2 пробела.<br>
+* **Верно** — `notify` → handlers.<br>
+* **Неверно** — `all:!controllers` = все **кроме** controllers.
+
 </b></details>
 
 <details>
-<summary>Explain the Difference between Forks and Serial & Throttle.</summary><br><b>
+<summary>Объясните разницу между вилками и последовательным портом и дросселем.</summary><br><b>
 
-`Serial` is like running the playbook for each host in turn, waiting for completion of the complete playbook before moving on to the next host. `forks`=1 means run the first task in a play on one host before running the same task on the next host, so the first task will be run for each host before the next task is touched. Default fork is 5 in ansible.
+«Последовательный» — это похоже на поочередный запуск плейбука для каждого хоста в ожидании завершения всей плейбука перед переходом к следующему хосту. `forks`=1 означает запуск первой задачи в игре на одном хосте перед запуском той же задачи на следующем хосте, поэтому первая задача будет запущена для каждого хоста до того, как будет затронута следующая задача. Вилка по умолчанию — 5 в ansible.
 
 ```
 [defaults]
@@ -372,9 +437,7 @@ forks = 30
   serial: 1
   tasks:
     - name: ...
-```
-
-Ansible also supports `throttle` This keyword limits the number of workers up to the maximum set via the forks setting or serial. This can be useful in restricting tasks that may be CPU-intensive or interact with a rate-limiting API
+```Ansible также поддерживает `throttle`. Это ключевое слово ограничивает количество рабочих процессов до максимального значения, установленного с помощью настроек вилки или последовательного порта. Это может быть полезно для ограничения задач, которые могут быть ресурсоемкими или взаимодействовать с API-интерфейсом, ограничивающим скорость.
 
 ```
 tasks:
@@ -385,64 +448,101 @@ tasks:
 </b></details>
 
 <details>
-<summary>What is ansible-pull? How is it different from how ansible-playbook works?</summary><br><b>
+<summary>Что такое ansible-pull? Чем это отличается от того, как работает ansible-playbook?</summary><br><b>
+
+**ansible-pull** — playbook на **целевом** хосте по cron/systemd (узел тянет конфиг с git). **push** (обычный) — control node SSH на множество хостов. Pull удобен для edge/без постоянного Ansible controller.
+
 </b></details>
 
 <details>
-<summary>What is Ansible Vault?</summary><br><b>
+<summary>Что такое Ansible Vault?</summary><br><b>
+
+Шифрование секретов в vars/files: `ansible-vault encrypt secrets.yml`, запуск с `--ask-vault-pass` или vault password file. В play: зашифрованные переменные; в CI — vault ID из secret store.
+
 </b></details>
 
 <details>
-<summary>Demonstrate each of the following with Ansible:
+<summary>Продемонстрируйте каждое из следующих действий с помощью Ansible:
 
-  * Conditionals
-  * Loops
-</summary><br><b>
+  * Условные обозначения
+  * Циклы</summary><br><b>
+
+```yaml
+- name: Install if Debian
+  apt:
+    name: nginx
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Loop users
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+  loop:
+    - { name: alice, groups: wheel }
+    - { name: bob, groups: users }
+```
+
 </b></details>
 
 <details>
-<summary>What are filters? Do you have experience with writing filters?</summary><br><b>
+<summary>Что такое фильтры? Есть ли у вас опыт написания фильтров?</summary><br><b>
+
+**Jinja2 filters** в шаблонах/vars: `{{ name | upper }}`, `{{ list | join(',') }}`. Кастомные — Python plugin в `filter_plugins/`. Примеры: `default`, `map`, `combine`, `to_yaml`.
+
 </b></details>
 
 <details>
-<summary>Write a filter to capitalize a string</summary><br><b>
+<summary>Напишите фильтр для капитализации строки</summary><br><b>
 
 ```
 def cap(self, string):
     return string.capitalize()
 ```
+
 </b></details>
 
 <details>
-<summary>You would like to run a task only if previous task changed anything. How would you achieve that?</summary><br><b>
+<summary>Вы хотели бы запускать задачу только в том случае, если предыдущая задача что-либо изменила. Как бы вы этого достигли?</summary><br><b>
+
+Зарегистрируйте результат: `register: result`, затем `when: result is changed` (или `result.changed` в старых версиях). Для handlers — `notify` при `changed`.
+
 </b></details>
 
 <details>
-<summary>What are callback plugins? What can you achieve by using callback plugins?</summary><br><b>
+<summary>Что такое callback plugins? Чего вы можете достичь, используя callback plugins?</summary><br><b>
+
+Плагины, реагирующие на события playbook (task ok/fail, stats): логирование в Slack/Splunk, профилирование, junit output для CI, агрегированные отчёты. Включаются в `ansible.cfg` (`callback_whitelist`).
+
 </b></details>
 
 <details>
-<summary>What is the difference between `include_task` and `import_task`?</summary><br><b>
+<summary>В чем разница между include_task и import_task?</summary><br><b>
+
+**import_tasks** — статический include на этапе парсинга (как copy-paste), теги применяются статически.<br>
+**include_tasks** — динамический, может быть под `when`, loop; теги наследуются иначе. В Ansible 2.15+ предпочитают `import_playbook` / `include_tasks` по сценарию.
+
 </b></details>
 
 <details>
-<summary>File '/tmp/exercise' includes the following content
+<summary>Файл «/tmp/exercision» содержит следующее содержимое.
 
 ```
-Goku = 9001
-Vegeta = 5200
-Trunks = 6000
-Gotenks = 32
+Гоку = 9001
+Вегета = 5200
+Стволы = 6000
+Готенкс = 32
 ```
 
-With one task, switch the content to:
+С помощью одной задачи переключите контент на:
 
 ```
-Goku = 9001
-Vegeta = 250
-Trunks = 40
-Gotenks = 32
+Гоку = 9001
+Вегета = 250
+Стволы = 40
+Готенкс = 32
 ```
+
 </summary><br><b>
 
 ```
@@ -455,87 +555,100 @@ Gotenks = 32
     - { regexp: '^Vegeta', line: 'Vegeta = 250' }
     - { regexp: '^Trunks', line: 'Trunks = 40' }
     ...
+
 ```
 </b></details>
 
-
-#### Ansible - Execution and Strategy
+#### Ansible — выполнение и стратегия
 
 <details>
-<summary>True or False? By default, Ansible will execute all the tasks in play on a single host before proceeding to the next host</summary><br><b>
+<summary>Правда или ложь? По умолчанию Ansible выполнит все текущие задачи на одном хосте, прежде чем перейти к следующему хосту.</summary><br><b>
 
-False. Ansible will execute a single task on all hosts before moving to the next task in a play. As for today, it uses 5 forks by default.<br>
-This behavior is described as "strategy" in Ansible and it's configurable.
+Неверно. Ansible выполнит одну задачу на всех хостах, прежде чем перейти к следующей задаче в игре. На сегодняшний день по умолчанию используется 5 форков.<br>
+Такое поведение описывается в Ansible как «стратегия», и его можно настроить.
+
 </b></details>
 
 <details>
-<summary>What is a "strategy" in Ansible? What is the default strategy?</summary><br><b>
+<summary>Что такое «стратегия» в Ansible? Какова стратегия по умолчанию?</summary><br><b>
 
-A strategy in Ansible describes how Ansible will execute the different tasks on the hosts. By default Ansible is using the "Linear strategy" which defines that each task will run on all hosts before proceeding to the next task.
+Стратегия в Ansible описывает, как Ansible будет выполнять различные задачи на хостах. По умолчанию Ansible использует «Линейную стратегию», которая определяет, что каждая задача будет выполняться на всех хостах, прежде чем перейти к следующей задаче.
+
 </b></details>
 
 <details>
-<summary>What strategies are you familiar with in Ansible?</summary><br><b>
+<summary>Какие стратегии в Ansible вам известны?</summary><br><b>
 
-  - Linear: the default strategy in Ansible. Run each task on all hosts before proceeding.
-  - Free: For each host, run all the tasks until the end of the play as soon as possible
-  - Debug: Run tasks in an interactive way
+- Линейный: стратегия по умолчанию в Ansible. Прежде чем продолжить, запустите каждую задачу на всех хостах.
+  - **Free** (`free`): на каждом хосте выполняются все задачи play до конца как можно быстрее (параллельно по хостам).
+  - Отладка: запуск задач в интерактивном режиме.
+
 </b></details>
 
 <details>
-<summary>What the <code>serial</code> keyword is used for?</summary><br><b>
+<summary>Для чего используется ключевое слово <code>serial</code>?</summary><br><b>
 
-It's used to specify the number (or percentage) of hosts to run the full play on, before moving to next number of hosts in the group.
+Он используется для указания количества (или процента) хостов, на которых будет запущена полная игра, прежде чем переходить к следующему количеству хостов в группе.
 
-For example:
-```
+Например:
+
+```yaml
 - name: Some play
   hosts: databases
   serial: 4
 ```
 
-If your group has 8 hosts. It will run the whole play on 4 hosts and then the same play on another 4 hosts.
+Если в вашей группе 8 хостов, play сначала полностью отработает на 4 хостах, затем на оставшихся 4.
+
 </b></details>
 
-#### Ansible Testing
+#### Ansible-тестирование
 
 <details>
-<summary>How do you test your Ansible based projects?</summary><br><b>
-</b></details>
+<summary>Как вы тестируете свои проекты на основе Ansible?</summary><br><b>
 
-<details>
-<summary>What is Molecule? How does it works?</summary><br><b>
-
-It's used to rapidy develop and test Ansbile roles.  Molecule can be used to test Ansible roles against a varaitey of Linux Distros at the same time.  This testing ability helps instill confidence of the automation today and as time go on while a role is maintined.  
+**Molecule** (Docker/Podman instances), `ansible-lint`, `ansible-playbook --check` (dry-run), testinfra/Inspec после apply, CI matrix по ОС, `verify` step в Molecule, mock с `localhost` connection.
 
 </b></details>
 
 <details>
-<summary>You run Ansible tests and you get "idempotence test failed". What does it mean? Why idempotence is important?</summary><br><b>
+<summary>Что такое Молекула? Как это работает?</summary><br><b>
+
+Он используется для быстрой разработки и тестирования ролей **Ansible**. Molecule можно использовать для одновременного тестирования ролей Ansible на различных дистрибутивах Linux. Эта возможность тестирования помогает вселить уверенность в автоматизацию сегодня и со временем, пока роль сохраняется.
+
 </b></details>
 
-#### Ansible - Debugging
+<details>
+<summary>Вы запускаете тесты Ansible и получаете сообщение «тест идемпотентности не пройден». Что это значит? Почему идемпотентность важна?</summary><br><b>
+
+Повторный прогон того же play **изменил** состояние системы: ожидалось «ничего не делать» (0 изменений), а модули внесли правки. Идемпотентность важна, чтобы повторные деплои были **предсказуемыми** и не ломали среду «шумными» диффами.
+
+</b></details>
+
+#### Ansible — отладка
 
 <details>
-<summary>How to find out the data type of a certain variable in one of the playbooks?</summary><br><b>
+<summary>Как узнать тип данных определенной переменной в одном из плейбуков?</summary><br><b>
 
 "{{ some_var | type_debug }}"
+
 </b></details>
 
-#### Ansible - Collections
+#### Ansible — Коллекции
 
 <details>
-<summary>What are collections in Ansible?</summary><br><b>
-Ansible Collections are a way to package and distribute modules, roles, plugins, and documentation in a structured format. They help organize and distribute automation code efficiently, especially for complex environments.
+<summary>Что такое коллекции в Ansible?</summary><br><b>
+
+Коллекции Ansible — это способ упаковки и распространения модулей, ролей, плагинов и документации в структурированном формате. Они помогают эффективно организовывать и распространять код автоматизации, особенно в сложных средах.
+
 </b></details>
 
 <details>
-<summary>Why Use Ansible Collections?</summary><br><b>
+<summary>Зачем использовать коллекции Ansible?</summary><br><b>
 
-  - Modular and reusable components
-  - Simplifies management of custom and third-party modules
-  - Provides a standardized way to distribute automation content
-  - Helps in version control and dependency management
-</b></details>
+- Модульные и многоразовые компоненты.
+  - Упрощает управление пользовательскими и сторонними модулями.
+  - Обеспечивает стандартизированный способ распространения контента автоматизации.
+  - Помогает в контроле версий и управлении зависимостями.
 
-<!-- {% endraw %} -->
+</b></details><!-- {% endraw %} -->

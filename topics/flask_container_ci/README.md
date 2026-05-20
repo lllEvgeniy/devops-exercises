@@ -1,60 +1,62 @@
-Your mission, should you choose to accept it, involves fixing the app in this directory, containerize it and set up a CI for it.
-Please read carefully all the instructions.
+# Задание: Flask + контейнер + CI
 
-If any of the following steps is not working, it is expected from you to fix them
+Нужно привести приложение в этом каталоге в порядок, **упаковать в контейнер** и настроить **CI**, чтобы регрессии не накапливались. Прочитайте инструкции целиком.
 
-## Installation
+Если какой‑то шаг из коробки не работает — **исправьте** (это часть задания).
 
-1. Create a virtual environment with `python3 -m venv challenge_venv`
-2. Activate it with `source challenge_venv/bin/activate`
-3. Install the requirements in this directory `pip install -r requirements.txt`
+## Установка
 
-## Run the app
+1. Создайте виртуальное окружение: `python3 -m venv Challenge_venv`
+2. Активируйте: `source Challenge_venv/bin/activate` (на Windows — `Challenge_venv\Scripts\activate`)
+3. Установите зависимости: `pip install -r requirements.txt`
 
-1. Move to `challenges/flask_container_ci` directory, if you are not already there
-1. Run `export FLASK_APP=app/main.py`
-1. To run the app execute `flask run`. If it doesn't work, fix it
-3. Access `http://127.0.0.1:5000`. You should see the following:
+## Запуск приложения
 
-```
+1. Перейдите в каталог задания (`topics/flask_container_ci`), если ещё не там.
+2. Задайте приложение Flask: `export FLASK_APP=app/main.py`
+3. Запустите: `flask run`. При ошибках — разберитесь и почините.
+4. Откройте http://127.0.0.1:5000 — ожидается JSON вида:
+
+```json
 {
-    "resources_uris": {
-        "user": "/users/\<username\>",
-        "users": "/users"
-    },
-    "current_uri": "/"
+  "resources_uris": {
+    "user": "/users/<username>",
+    "users": "/users"
+  },
+  "current_uri": "/"
 }
 ```
 
-4. You should be able to access any of the resources and get the following data:
+5. Должны работать ресурсы:
 
-* /users - all users data 
-* /users/<username> - data on the specific chosen user
+- `GET /users` — все пользователи;
+- `GET /users/<username>` — один пользователь.
 
-5. When accessing /users, the data returned should not include the id of the user, only its name and description. Also, the data should be ordered by usernames.
+6. Для `GET /users` в ответе **не должно быть** внутреннего id пользователя — только поля, которые задуманы в API; список **отсортирован по имени**.
 
-## Containers
+## Контейнер
 
-Using Docker or Podman, containerize the flask app so users can run the following two commands:
+Соберите образ (Docker или Podman), чтобы достаточно было команд в духе:
 
+```bash
+docker build -t app:latest -f /path/to/Dockerfile .
+docker run -d -p 5000:5000 app:latest
 ```
-docker build -t app:latest /path/to/Dockerfile
-docker run -d -p 5000:5000 app
-```
 
-1. You can use any image base you would like
-2. Containerize only what you need for running the application, nothing else.
+1. Базовый образ — на ваш выбор.
+2. В образе — только то, что нужно для **запуска** приложения.
 
 ## CI
 
-Great, now that we have a working app and also can run it in a container, let's set up a CI for it so it won't break again in the future
-In current directory you have a file called tests.py which includes the tests for the app. What is required from you, is:
+Есть работающее приложение и контейнер — добавьте **CI**, чтобы не ломать это в будущем.
 
-1. The CI should run the app tests. You are free to choose whatever CI system or service you prefer. Use `python tests.py` for running the tests.
-2. There should be some kind of test for the Dockerfile you wrote
-3. Add additional unit test (or another level of tests) for testing the app
+В каталоге есть **`tests.py`** с тестами. Требования:
 
-### Guidelines 
+1. В CI выполняются тесты (любая платформа CI на ваш выбор). Запуск из корня: `python tests.py` (или эквивалент, если переименуете точку входа — задокументируйте).
+2. Должен быть тест, который проверяет **Dockerfile** (сборка, линтер образа, smoke после `docker run` — на ваше усмотрение).
+3. Добавьте ещё хотя бы один **модульный** (или другой уровень) тест на логику приложения.
 
-* Except the app functionality, you can change whatever you want - structure, tooling, libraries, ... If possible add `notes.md` file which explains reasons, logic, thoughts and anything else you would like to share
-* The CI part should include the source code for the pipeline definition
+### Рекомендации
+
+- Помимо поведения API вы можете менять структуру проекта, зависимости и инструменты. По возможности добавьте краткий **`notes.md`** с решениями и компромиссами (опционально).
+- Определение пайплайна CI должно **лежать в репозитории** (как принято для выбранной платформы).

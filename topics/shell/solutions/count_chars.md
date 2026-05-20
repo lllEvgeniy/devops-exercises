@@ -1,16 +1,16 @@
-## Count Chars
+## Подсчет символов
 
-### Objectives
+### Цели
 
-1. Read input from the user until you get empty string
-2. For each of the lines you read, count the number of characters and print it
+1. Читайте вводимые пользователем данные, пока не получите пустую строку.
+2. Для каждой прочитанной строки подсчитайте количество символов и выведите ее.
 
-### Constraints
+### Ограничения
 
-1. You must use a while loop
-2. Assume at least three lines of input
+1. Вы должны использовать цикл while
+2. Предположим, что входные данные содержат как минимум три строки.
 
-### Solution
+### Решение
 
 ```
 #!/usr/bin/env bash

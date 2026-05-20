@@ -1,29 +1,29 @@
-## AWS EC2 - EBS Volume Creation
+## AWS EC2 — создание тома EBS
 
-### Requirements
+### Требования
 
-One EC2 instance that you can get rid of :)
+Один экземпляр EC2, от которого можно избавиться :)
 
-### Objectives
+### Цели
 
-1. Create a volume in the same AZ as your instance, with the following properties:
-  1. gp2 volume type
-  2. 4 GiB size
-2. Once created, attach it to your EC2 instance
-3. Remove your EC2 instance. What happened to the EBS volumes attached to the EC2 instance?
+1. Создайте том в той же зоне доступности, что и ваш экземпляр, со следующими свойствами:
+  1. тип тома gp2
+  2. Размер 4 ГиБ
+2. После создания прикрепите его к своему экземпляру EC2.
+3. Удалите экземпляр EC2. Что случилось с томами EBS, прикрепленными к экземпляру EC2?
 
-### Solution
+### Решение
 
-1. Go to EC2 service
-2. Click on "Volumes" under "Elastic Block Store"
-3. Click on "Create Volume"
-4. Select the following properties 
-  1. gp2 volume type
-  2. 4 GiB size
-  3. The same AZ as your instance
-5. Click on "Create volume"
-6. Right click on the volume you've just created -> attach volume -> choose your EC2 instance and click on "Attach"
-7. Terminate your instance
-8. The default EBS volume (created when you launched the instance for the first time) will be deleted (unless you didn't check "Delete on termination"), but the volume you've created as part of this exercise, will remain
+1. Зайдите в сервис EC2.
+2. Нажмите «Тома» в разделе «Хранилище упругих блоков».
+3. Нажмите «Создать том».
+4. Выберите следующие свойства 
+  1. тип тома gp2
+  2. Размер 4 ГиБ
+  3. Тот же АЗ, что и ваш экземпляр
+5. Нажмите «Создать том».
+6. Щелкните правой кнопкой мыши только что созданный том -> присоедините том -> выберите экземпляр EC2 и нажмите «Присоединить».
+7. Завершите свой экземпляр
+8. Том EBS по умолчанию (созданный при первом запуске экземпляра) будет удален (если вы не установили флажок «Удалить при завершении»), но том, созданный вами в рамках этого упражнения, останется
 
-Note: don't forget to remove the EBS volume you've created in this exercise
+Примечание. Не забудьте удалить том EBS, созданный в этом упражнении.

@@ -1,109 +1,182 @@
-## HR & Soft Skills
+## HR и мягкие навыки
 
-These are not DevOps related questions as you probably noticed, but since they are part of the DevOps interview process I've decided it might be good to keep them<br>
-There are no answers for these questions for obvious reasons :)
+Это **не** технические вопросы по DevOps, но они часто встречаются на собеседованиях — поэтому блок оставлен. Готовых «правильных» ответов нет: важны честность и конкретика из вашего опыта.
 
 <details>
-<summary>Tell us little bit about yourself</summary><br><b>
+<summary>Расскажите нам немного о себе</summary><br><b>
+
+Кратко: роль, опыт (годы, домены), 1–2 достижения с цифрами, почему DevOps/SRE. 1–2 минуты, без биографии с детства.
+
 </b></details>
 
 <details>
-<summary>Tell me about the best type of environment you've worked in (team, solo, pairs, ...)</summary><br><b>
+<summary>Расскажите мне о лучшем типе среды, в которой вам приходилось работать (команда, соло, пары и т. д.)</summary><br><b>
+
+Честно опишите предпочтения (команда/соло/пары) и **почему**; покажите гибкость: «в кризисе комфортно владеть инцидентом solo, в обычной работе — парное ревью и общий бэклог».
+
 </b></details>
 
 <details>
-<summary>Tell me about your last big project/task you worked on</summary><br><b>
+<summary>Расскажите мне о своем последнем большом проекте/задаче, над которой вы работали.</summary><br><b>
+
+STAR: Situation → Task → Action → Result. Контекст, ваша роль, стек, метрики (uptime, lead time, cost).
+
 </b></details>
 
 <details>
-<summary>What was most challenging part in the project you worked on?</summary><br><b>
+<summary>Что было самым сложным в проекте, над которым вы работали?</summary><br><b>
+
+Технический или организационный вызов + что сделали + урок. Не обвиняйте команду.
+
 </b></details>
 
 <details>
-<summary>How did you hear about us?</summary><br><b>
+<summary>Как вы узнали о нас?</summary><br><b>
+
+Честный канал: рекомендация, конференция, статья, GitHub. Покажите, что изучили компанию/продукт.
+
 </b></details>
 
 <details>
-<summary>How would you describe a good leadership?</summary><br><b>
+<summary>Как бы вы описали хорошее руководство?</summary><br><b>
+
+Прозрачность, делегирование, защита команды, обратная связь, развитие людей, решения по данным.
+
 </b></details>
 
 <details>
-<summary>Describe yourself in one word</summary><br><b>
+<summary>Опишите себя одним словом</summary><br><b>
+
+Одно слово + 1 предложение-пример из опыта (например «системный» — автоматизировал X).
+
 </b></details>
 
 <details>
-<summary>Tell me about a time where you didn't agree on an implementation</summary><br><b>
+<summary>Расскажите мне о случае, когда вы не пришли к согласию по поводу реализации.</summary><br><b>
+
+Уважение к мнению другого, данные/POC, эскалация по необходимости, компромисс или решение tech lead — итог для бизнеса.
+
 </b></details>
 
 <details>
-<summary>How do you deal with a situation where key stakeholders are not around and a big decision needs to be made? </summary><br><b>
+<summary>Как вы справляетесь с ситуацией, когда ключевых заинтересованных сторон нет рядом и необходимо принять важное решение?</summary><br><b>
+
+Зафиксировать assumptions, согласовать async (документ/чат), минимальный reversible шаг, эскалация по SLA.
+
 </b></details>
 
 <details>
-<summary>Where do you see yourself 5 years down the line?</summary><br><b>
+<summary>Кем вы видите себя через 5 лет?</summary><br><b>
+
+Реалистичный рост (senior/staff, архитектура, менеджмент) **в контексте роли**, без «CEO через год».
+
 </b></details>
 
 <details>
-<summary>Give an example of a time when you were able to change the view of a team about a particular tool/project/technology</summary><br><b>
+<summary>Приведите пример случая, когда вам удалось изменить мнение команды о конкретном инструменте/проекте/технологии.</summary><br><b>
+
+Данные, демо, пилот на ограниченном scope, метрики до/после — без «я был прав».
+
 </b></details>
 
 <details>
-<summary>Have you ever caused a service outage? (or broke a working project, tool, ...?)</summary><br><b>
+<summary>Вы когда-нибудь вызывали перебои в обслуживании? (или сломал рабочий проект, инструмент,...?)</summary><br><b>
+
+Если да — честно + RCA, что изменили (runbooks, alerts, тесты). Если нет — близкий инцидент и ваш вклад.
+
 </b></details>
 
 <details>
-<summary>Rank the following in order 1 to 5, where 1 is most important: salaray, benefits, career, team/people, work life balance</summary><br><b>
+<summary>Оцените следующее в порядке от 1 до 5, где 1 является наиболее важным: зарплата, льготы, карьера, команда/люди, баланс между работой и личной жизнью.</summary><br><b>
+
+Нет единственно верного порядка; объясните **почему** так (этап карьеры, семья). Будьте последовательны с резюме.
+
 </b></details>
 
 <details>
-<summary>You have three important tasks scheduled for today. One is for your boss, second for a colleague who is also a friend, third is for a customer. All tasks are equally important. What do you do first?</summary><br><b>
+<summary>На сегодня запланированы три важные задачи: для руководителя, для коллеги (который ещё и друг), и для клиента. Все три одинаково важны. С чего вы начнёте?</summary><br><b>
+
+Приоритет по **impact + deadline + stakeholder**; часто: клиент (SLA) → руководитель (блокер) → коллега — или согласовать сроки, если равны.
+
 </b></details>
 
 <details>
-<summary>You have a colleague you don‘t get along with. Tell us some strategies how you create a good work relationship with them anyway.</summary><br><b>
+<summary>У вас есть коллега, с которым вы не ладите. Расскажите нам несколько стратегий, как в любом случае создать с ними хорошие рабочие отношения.</summary><br><b>
+
+Профессионализм, фокус на задаче, 1:1, общие цели, эскалация только если мешает работе.
+
 </b></details>
 
 <details>
-<summary>What do you love about your work?</summary><br><b>
+<summary>Что вам нравится в вашей работе?</summary><br><b>
+
+Конкретика: автоматизация, видимый impact, обучение, инциденты как puzzle — привязка к роли.
+
 </b></details>
 
 <details>
-<summary>What are your responsibilities in your current position?</summary><br><b>
+<summary>Каковы ваши обязанности на нынешней должности?</summary><br><b>
+
+3–5 зон ответственности: CI/CD, K8s, observability, IaC, on-call — как в вакансии.
+
 </b></details>
 
 <details>
-<summary>Why should we hire you for the role?</summary><br><b>
+<summary>Почему нам стоит нанять именно вас на эту роль?</summary><br><b>
+
+Совпадение навыков с JD + 2 примера результатов + мотивация к **этой** компании.
+
 </b></details>
 
-#### Pointless Questions
+#### Бессмысленные вопросы
 
 <details>
-<summary>Why do you want to work here?</summary><br><b>
-</b></details>
+<summary>Почему вы хотите работать здесь?</summary><br><b>
 
-<details>
-<summary>Why are you looking to leave your current place?</summary><br><b>
-</b></details>
+Исследование компании: продукт, культура, стек — не общие фразы.
 
-<details>
-<summary>What are your strengths and weaknesses?</summary><br><b>
-</b></details>
-
-<details>
-<summary>Where do you see yourself in five years?</summary><br><b>
 </b></details>
 
 <details>
-<summary>When you faced with problem, what do you do?</summary><br><b>
+<summary>Почему вы хотите покинуть свое нынешнее место?</summary><br><b>
+
+Рост, новые вызовы, релокация — **без** негатива о текущем работодателе.
+
 </b></details>
 
 <details>
-<summary>When was the last time you had to learn a new technology and what was your approach in doing so?</summary><br><b>
+<summary>Каковы ваши сильные и слабые стороны?</summary><br><b>
+
+2 сильных с примерами; 1 слабая + как компенсируете (ментор, чеклисты).
+
 </b></details>
 
+<details>
+<summary>Кем вы видите себя через пять лет?</summary><br><b>
 
-#### Team Lead
+См. «через 5 лет» — кратко, по роли.
+
+</b></details>
 
 <details>
-<summary>How would you improve productivity in your team?</summary><br><b>
+<summary>Когда вы столкнулись с проблемой, что вы делаете?</summary><br><b>
+
+Структура: понять → собрать данные → гипотеза → проверка → фикс → постмортем.
+
+</b></details>
+
+<details>
+<summary>Когда в последний раз вам приходилось изучать новую технологию и каков был ваш подход к этому?</summary><br><b>
+
+Документация, lab/PoC, малый production slice, обучение команды.
+
+</b></details>
+
+#### Руководитель группы
+
+<details>
+<summary>Как бы вы повысили продуктивность своей команды?</summary><br><b>
+
+Автоматизация, WIP-лимиты, меньше ручных релизов, ясные DoD, меньше meetings — с метриками.
+
 </b></details>

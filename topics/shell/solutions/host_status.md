@@ -1,10 +1,10 @@
-## It's Alive!
+## Он живой!
 
-### Objectives
+### Цели
 
-1. Write a script to determine whether a given host is down or up
+1. Напишите сценарий, определяющий, отключен ли данный хост или нет.
 
-### Solution
+### Решение
 
 ```
 #!/usr/bin/env bash

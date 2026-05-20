@@ -1,37 +1,37 @@
-## AWS Databases - Aurora DB
+## Базы данных AWS — БД Aurora
 
-### Objectives
+### Цели
 
-1. Create an Aurora database with the following properties
-  * Edition: MySQL
-  * Instance type: db.t3.small
-  * A reader node in a different AZ
-  * Public access should be enabled
-  * Port should be set to 3306
-  * DB name: 'db'
-  * Backup retention: 10 days
+1. Создайте базу данных Aurora со следующими свойствами.
+  * Издание: MySQL
+  * Тип экземпляра: db.t3.small.
+  * Узел считывателя в другой зоне доступности.
+  * Публичный доступ должен быть включен.
+  * Порт должен быть установлен на 3306.
+  * Имя БД: 'db'
+  * Срок хранения резервной копии: 10 дней.
 
-2. How many instances does your DB cluster has?
+2. Сколько экземпляров имеет ваш кластер БД?
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to RDS service
-2. Click on "Databases" in the left side menu and click on the "Create database" button
-3. Choose "standard create"
-4. Choose "Aurora DB"
-5. Choose "MySQL" edition and "Provisioned" as capacity type
-6. Choose "single-master"
-7. Specify Credentials (master username and password)
-8. Choose DB instance type: Burstable classes, db.t3.small
-9. Choose "Create an Aurora Replica or Reader node in a different AZ"
-10. Choose a default VPC and subnet
-11. Check "Yes" for public access
-12. Database port should be 3306
-13. For authentication, choose "Password and IAM database authentication"
-14. Set initial database name as "db"
-15. Increase backup retention period to 10 days
-16. Click on "Create database" button
+1. Заходим в сервис RDS.
+2. Нажмите «Базы данных» в левом боковом меню и нажмите кнопку «Создать базу данных».
+3. Выберите «Стандартное создание».
+4. Выберите «Аврора БД».
+5. Выберите редакцию MySQL и тип емкости «Предоставлено».
+6. Выберите «один мастер»
+7. Укажите учетные данные (главное имя пользователя и пароль).
+8. Выберите тип экземпляра БД: Burstable классы, db.t3.small.
+9. Выберите «Создать реплику Aurora или узел чтения в другой зоне доступности».
+10. Выберите VPC и подсеть по умолчанию.
+11. Отметьте «Да» для публичного доступа.
+12. Порт базы данных должен быть 3306.
+13. Для аутентификации выберите «Аутентификация по паролю и базе данных IAM».
+14. Установите исходное имя базы данных как «db».
+15. Увеличьте срок хранения резервных копий до 10 дней.
+16. Нажмите кнопку «Создать базу данных».
 
-1. Two instances - one reader and one writer
+1. Два экземпляра — один читатель и один писатель

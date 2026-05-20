@@ -1,9 +1,9 @@
-# Create a Project
+# Создать проект
 
-## Objectives
+## Цели
 
-1. Create a project with a unique name
+1. Создайте проект с уникальным именем.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

@@ -1,6 +1,6 @@
-## Fork 102
+## Вилка 102
 
-Answer the questions given the following program (without running it):
+Ответьте на вопросы, заданные следующей программой (не запуская ее):
 
 ```
 #include<stdio.h>
@@ -15,5 +15,5 @@ int main()
 }
 ```
 
-1. How many times the word "yay" will be printed?
-2. How many processes will be created?
+1. Сколько раз будет напечатано слово «ура»?
+2. Сколько процессов будет создано?

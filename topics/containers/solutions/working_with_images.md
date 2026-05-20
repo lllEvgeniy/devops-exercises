@@ -1,17 +1,17 @@
-## Working with Images - Solution
+## Работа с изображениями — решение
 
-### Objective
+### Цель
 
-Learn how to work with containers images
+Узнайте, как работать с образами контейнеров.
 
-### Requirements
+### Требования
 
-Make sure Podman, Docker (or any other containers engine) is installed on your system
+Убедитесь, что в вашей системе установлен Podman, Docker (или любой другой контейнерный движок).
 
-### Instructions
+### Инструкции
 
-1. List the containers images in your environment - `podman image ls`
-2. Pull the latest ubuntu image - `podman image pull ubuntu:latest`
-3. Run a container with the image you just pulled  - `podman container run -it ubuntu:latest /bin/bash`
-4. Remove the image. Did it work? - No. There is a running container which is using the image we try to remove
-5. Do whatever is needed in order to remove the image - `podman rm <container_id>; podman image rm ubuntu`
+1. Перечислите образы контейнеров в вашей среде — `podman image ls`
+2. Загрузите последний образ Ubuntu — `podman image pull ubuntu:latest`
+3. Запустите контейнер с только что полученным образом — `podman run -it ubuntu:latest /bin/bash`
+4. Удалите изображение. Это сработало? - Нет. Существует работающий контейнер, использующий образ, который мы пытаемся удалить.
+5. Удалите контейнер и образ: `podman rm <container_id>`; `podman rmi ubuntu`

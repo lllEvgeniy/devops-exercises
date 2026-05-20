@@ -1,12 +1,12 @@
-## Data Types
+## Типы данных
 
-For each of the following, identify what is the data type of the result variable
+Для каждого из следующих пунктов определите тип данных результирующей переменной.
 
-1. a = [1, 2, 3, 4, 5]
-2. b = "Hello, is it me you looking for?"
-3. e = 100
+1. а = [1, 2, 3, 4, 5]
+2. b = "Привет, ты меня ищешь?"
+3. е = 100
 4. f = '100'
-5. i = 0.100
-6. i = True
+5. я = 0,100
+6. я = правда
 
-Bonus question: how to find out in Python what is the data type of certain variable?
+Бонусный вопрос: как в Python узнать тип данных определенной переменной?

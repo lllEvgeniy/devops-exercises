@@ -1,18 +1,18 @@
-# Create Images on The Fly
+# Создание изображений на лету
 
-## Requirements
+## Требования
 
-Have at least one image locally (run `podman image ls` to confirm).<br>
-If you don't have images locally, run simply `podman pull nginx:alpine`.
+Имейте хотя бы одно изображение локально (для подтверждения запустите `podman image ls`).<br>
+Если у вас нет локальных изображений, просто запустите `podman pull nginx:alpine`.
 
-## Objectives
+## Цели
 
-1. Run a container using a web server image (e.g. httpd, nginx, ...)
-  - Bind container's port 80 to local port 80
-  - Run it in detached mode
-  - Name should nginx_container
-2. Verify the web server runs and accessible
-3. Create an HTML file with the following content and copy it to the container to the container to path where it will be accessed as an index file
+1. Запустите контейнер, используя образ веб-сервера (например, httpd, nginx,...).
+  - Привязать порт контейнера 80 к локальному порту 80.
+  - Запустите его в автономном режиме
+  — Имя должно быть nginx_container.
+2. Убедитесь, что веб-сервер работает и доступен.
+3. Создайте HTML-файл со следующим содержимым и скопируйте его в контейнер в контейнер по пути, по которому он будет доступен в качестве индексного файла.
 
 ```
 <html>
@@ -22,29 +22,30 @@ If you don't have images locally, run simply `podman pull nginx:alpine`.
 <body>
 <h1>Mario</h1>
 </body>
+</html>
 ```
 
-4. Create an image out of the running container and call it "nginx_mario"
-5. Tag the container with "mario" tag
-6. Remove the original container (container_nginx) and verify it was removed
-7. Create a new container out of the image you've created (the same way as the original container)
-8. Run `curl 127.0.0.1:80`. What do you see?
-9. Run `podman diff` on the new image. Explain the output
+4. Создайте образ из работающего контейнера и назовите его «nginx_mario».
+5. Пометьте контейнер тегом «Марио».
+6. Удалите исходный контейнер (container_nginx) и убедитесь, что он удален.
+7. Создайте новый контейнер из созданного вами образа (так же, как исходный контейнер).
+8. Запустите «curl 127.0.0.1:80». Что ты видишь?
+9. Запустите podman diff на новом образе. Объясните вывод
 
-## Solution
+## Решение
 
 ```
-# Run the container
+# Запуск контейнера
 podman run --name nginx_container -d -p 80:80 nginx:alpine
 
-# Verify web server is running
+# Проверка, что веб-сервер отвечает
 curl 127.0.0.1:80
     #  <!DOCTYPE html>
     #  <html>
     #  <head>
     #  <title>Welcome to nginx!</title>
 
-# Create index.html file
+# Создание index.html
 cat <<EOT >>index.html
 <html>
 <head>
@@ -55,26 +56,26 @@ cat <<EOT >>index.html
 </body>
 EOT
 
-# Copy index.html to the container
+# Копирование index.html в контейнер
 podman cp index.html nginx_container:/usr/share/nginx/html/index.html
 
-# Create a new image out of the running container
+# Создание образа из работающего контейнера
 podman commit nginx_container nginx_mario
 
-# Tag the image
+# Тегирование образа
 podman image ls
 # localhost/nginx_mario     latest   dc7ed2343521   52 seconds ago   25 MB
 podman tag dc7ed2343521 mario
 
-# Remove the container
+# Удаление контейнера
 podman stop nginx_container
 podman rm nginx_container
 podman ps -a # no container 'nginx_container'
 
-# Create a container out of the image 
+# Новый контейнер из образа
 podman run -d -p 80:80 nginx_mario
 
-# Check the container created from the new image
+# Проверка контейнера из нового образа
 curl 127.0.0.1:80
 #<html>
 #<head>
@@ -84,7 +85,7 @@ curl 127.0.0.1:80
 #<h1>Mario</h1>
 #</body>
 
-# Run diff
+# Сравнение слоёв
 podman diff nginx_mario
 
 C /etc
@@ -102,6 +103,6 @@ A /var/cache/nginx/proxy_temp
 A /var/cache/nginx/scgi_temp
 A /var/cache/nginx/uwsgi_temp
 
-# We've set new index.html which explains why it's changed (C)
-# We also created the image while the web server is running, which explains all the files created under /var
+# Новый index.html — поэтому изменён (C) /usr/share/nginx/html/index.html
+# Образ создан при работающем nginx — поэтому появились файлы под /var (кэш, pid и т.д.)
 ```

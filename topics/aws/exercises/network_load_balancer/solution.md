@@ -1,35 +1,35 @@
-## AWS ELB - Network Load Balancer
+## AWS ELB — балансировщик сетевой нагрузки
 
-### Requirements                   
+### Требования                   
 
-Two running EC2 instances
+Два работающих экземпляра EC2
 
-### Objectives
+### Цели
 
-1. Create a network load balancer 
-  1. healthy threshold: 3
-  2. unhealthy threshold: 3
-  3. interval: 10 seconds
-  4. Listener should be using TCP protocol on port 80
+1. Создайте балансировщик сетевой нагрузки. 
+  1. порог здоровья: 3
+  2. порог нездоровья: 3
+  3. интервал: 10 секунд
+  4. Прослушиватель должен использовать протокол TCP на порту 80.
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to EC2 service
-2. Click in the left side menu on "Load balancers" under "Load balancing"
-3. Click on "Create load balancer"
-4. Choose "Network Load Balancer"
-5. Insert a name for the LB
-6. Choose AZs where you want the LB to operate
-7. Choose a security group
-8. Under "Listeners and routing" click on "Create target group" and choose "Instances"
-  1. Provide a name for the target group
-  2. Set healthy threshold to 3
-  3. Set unhealthy threshold to 3
-  4. Set interval to 10 seconds
-  5. Set protocol to TCP and port to 80
-  6. Click on "Next" and choose two instances you have
-  7. Click on "Create target group"
-9. Refresh target groups and choose the one you've just created
-10. Click on "Create load balancer" and wait for it to be provisioned
+1. Зайдите в сервис EC2.
+2. В меню слева нажмите «Балансировщики нагрузки» в разделе «Балансировка нагрузки».
+3. Нажмите «Создать балансировщик нагрузки».
+4. Выберите «Балансировщик сетевой нагрузки».
+5. Введите имя для LB.
+6. Выберите зоны доступности, в которых вы хотите, чтобы LB работал.
+7. Выберите группу безопасности
+8. В разделе «Прослушиватели и маршрутизация» нажмите «Создать целевую группу» и выберите «Экземпляры».
+  1. Укажите название целевой группы.
+  2. Установите порог работоспособности на 3.
+  3. Установите неработоспособный порог на 3.
+  4. Установите интервал 10 секунд.
+  5. Установите протокол TCP и порт 80.
+  6. Нажмите «Далее» и выберите два имеющихся у вас экземпляра.
+  7. Нажмите «Создать целевую группу».
+9. Обновите целевые группы и выберите только что созданную.
+10. Нажмите «Создать балансировщик нагрузки» и дождитесь его подготовки.

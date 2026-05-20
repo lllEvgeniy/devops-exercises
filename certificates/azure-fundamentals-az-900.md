@@ -1,29 +1,31 @@
-## AZ-900
+## Microsoft Azure Fundamentals (AZ-900)
 
 <details>
-<summary>What is cloud computing?</summary><br><b>
+<summary>Что такое облачные вычисления?</summary><br><b>
 
-[Wikipedia](https://en.wikipedia.org/wiki/Cloud_computing): "Cloud computing is the on-demand availability of computer system resources, especially data storage (cloud storage) and computing power, without direct active management by the user"
+[Википедия](https://en.wikipedia.org/wiki/Cloud_computing): «Облачные вычисления — это предоставление по требованию ресурсов компьютерной системы, прежде всего хранения данных (облачное хранилище) и вычислительной мощности, без прямого активного управления со стороны пользователя».
+
 </b></details>
 
 <details>
-<summary>What types of clouds (or cloud deployments) are there?</summary><br><b>
+<summary>Какие бывают типы облаков (или модели развёртывания облака)?</summary><br><b>
 
-  * Public - Cloud services sharing computing resources among multiple customers
-  * Private - Cloud services having computing resources limited to specific customer or organization, managed by third party or organizations itself
-  * Hybrid - Combination of public and private clouds
+* **Публичное** — сервисы облака совместно используют вычислительные ресурсы между несколькими клиентами.
+* **Частное** — сервисы облака выделяют вычислительные ресурсы конкретному клиенту или организации; ими управляет третья сторона или сама организация.
+* **Гибридное** — сочетание публичного и частного облака.
+
 </b></details>
 
-
 <details>
-<summary>What is Azure Firewall?</summary><br><b>
+<summary>Что такое Azure Firewall?</summary><br><b>
 
-Azure Firewall is a cloud-native and intelligent network firewall security service that provides the best of breed threat protection for your cloud workloads running in Azure.
+Azure Firewall — облачный интеллектуальный сетевой межсетевой экран, который обеспечивает защиту от угроз для облачных рабочих нагрузок в Azure.
+
 </b></details>
 
-
 <details>
-<summary>What is Network Security Group?</summary><br><b>
+<summary>Что такое группа сетевой безопасности (Network Security Group)?</summary><br><b>
 
-A network security group contains security rules that allow or deny inbound network traffic to, or outbound network traffic from, several types of Azure resources. For each rule, you can specify source and destination, port, and protocol.
+Группа сетевой безопасности содержит правила, которые разрешают или запрещают входящий и исходящий сетевой трафик для ряда типов ресурсов Azure. В каждом правиле задаются источник и назначение, порт и протокол.
+
 </b></details>

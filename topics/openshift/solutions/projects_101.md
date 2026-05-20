@@ -1,15 +1,15 @@
-## OpenShift - Projects 101
+## OpenShift — Проекты 101
 
-### Objectives
+### Цели
 
-In a newly deployed cluster (preferably) perform the following:
+Во вновь развернутом кластере (предпочтительно) выполните следующее:
 
-1. Login to the OpenShift cluster
-2. List all the projects
-3. Create a new project called 'neverland'
-4. Check the overview status of the current project
+1. Войдите в кластер OpenShift.
+2. Перечислите все проекты
+3. Создайте новый проект под названием «Неверленд».
+4. Проверьте обзорный статус текущего проекта.
 
-### Solution
+### Решение
 
 ```
 oc login -u YOUR_USER -p YOUR_PASSWORD_OR_TOKEN

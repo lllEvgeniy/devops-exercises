@@ -1,27 +1,27 @@
-## AWS Route 53 - Register Domain
+## AWS Route 53 — Регистрация домена
 
-### Objectives
+### Цели
 
-Note: registering domain costs money. Don't do this exercise, unless you understand that you are going to register a domain and it's going to cost you money.
+Примечание: регистрация домена стоит денег. Не выполняйте это упражнение, если вы не понимаете, что собираетесь зарегистрировать домен и это будет стоить вам денег.
 
-1. Register your own custom domain using AWS Route 53
-2. What is the type of your domain?
-3. How many records your domain has?
+1. Зарегистрируйте свой собственный домен, используя AWS Route 53.
+2. Какой тип вашего домена?
+3. Сколько записей в вашем домене?
 
-### Solution
+### Решение
 
-1. Go to Route 53 service page
-2. Click in the menu on "Registered Domains" under "Domains"
-3. Click on "Register Domain"
-4. Insert your domain
-5. Check if it's available. If it is, add it to the cart 
+1. Перейдите на страницу сервиса Route 53.
+2. Нажмите в меню «Зарегистрированные домены» в разделе «Домены».
+3. Нажмите «Зарегистрировать домен».
+4. Вставьте свой домен
+5. Проверьте, доступен ли он. Если да, добавьте его в корзину 
 
-Note: registering domain costs money. Don't click on "continue", unless you understand that you are going to register a domain and it's going to cost you money.
+Примечание: регистрация домена стоит денег. Не нажимайте «продолжить», если вы не понимаете, что собираетесь зарегистрировать домен и это будет стоить вам денег.
 
-6. Click on "Continue" and fill in your contact information
-7. Choose if you want to renew it in the future automatically. Accept the terms and click on "Complete Order"
-8. Go to hosted zones and you should see there your newly registered domain
+6. Нажмите «Продолжить» и введите свои контактные данные.
+7. Выберите, хотите ли вы автоматически продлевать его в будущем. Примите условия и нажмите «Завершить заказ».
+8. Перейдите в зоны хостинга, и вы увидите там свой недавно зарегистрированный домен.
 
-1. The domain type is "Public"
+1. Тип домена «Общественный».
 
-1. The domain has 2 DNS records: NS and SOA
+1. В домене есть 2 DNS-записи: NS и SOA.

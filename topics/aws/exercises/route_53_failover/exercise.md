@@ -1,11 +1,11 @@
-## AWS Route 53 - Failover
+## AWS Route 53 — аварийное переключение
 
-### Requirements
+### Требования
 
-A running EC2 web instance with an health check defined for it in Route 53
+Работающий веб-экземпляр EC2 с проверкой работоспособности, определенной для него в маршруте 53.
 
-### Objectives
+### Цели
 
-1. Create a failover record that will failover to another record if an health check isn't passing
-  1. Make sure TTL is 30
-  2. Associate the failover record with the health check you have
+1. Создайте запись переключения при сбое, которая будет переключаться на другую запись, если проверка работоспособности не пройдет.
+  1. Убедитесь, что TTL равен 30.
+  2. Свяжите запись аварийного переключения с имеющейся у вас проверкой работоспособности.

@@ -1,34 +1,36 @@
-## AWS Cloud SysOps Administration Associate
+## AWS Certified SysOps Administrator — Associate
 
-A summary of what you need to know for the exam can be found [here](https://aws.amazon.com/certification/certified-sysops-admin-associate)
+Краткий обзор того, что нужно знать к экзамену, доступен [на странице сертификации AWS](https://aws.amazon.com/certification/certified-sysops-admin-associate).
 
-### <b>  Who should take this exam? </b>
-<br>
-AWS Certified SysOps Administrator - Associate is intended for system administrators in cloud operations roles to validate technical skills. 
+### Кому подходит этот экзамен
 
-<summary>Before you take this exam, we recommend you have :</summary><br><b>
+Сертификация **AWS Certified SysOps Administrator — Associate** предназначена для системных администраторов в ролях облачных операций и подтверждает практические навыки работы с AWS.
 
-  * A minimum of one year of hands-on experience with AWS technology
-  * Experience deploying, managing, and operating workloads on AWS as well as implementing security controls and compliance requirements
-  * Familiarity with using both the AWS Management Console and the AWS Command Line Interface (CLI)
-  * Understanding of the AWS Well-Architected Framework as well as AWS networking and security services
-</b>
+<details>
+<summary>Перед экзаменом рекомендуется иметь</summary><br><b>
 
-### <b>  Prepare for your exam </b>
-<br>
-Get started with free resources or explore additional resources, including Official Practice Exams, with a subscription to AWS Skill Builder.
+* не менее года практического опыта с технологиями AWS;
+* опыт развёртывания, управления и эксплуатации рабочих нагрузок в AWS, а также внедрения средств безопасности и требований соответствия;
+* умение пользоваться консолью управления AWS и AWS CLI;
+* понимание AWS Well-Architected Framework, а также сетевых и security-сервисов AWS.
 
- * AWS Cloud SysOps Guide (SOA-C02) [here](https://d1.awsstatic.com/training-and-certification/docs-sysops-associate/AWS-Certified-SysOps-Administrator-Associate_Exam-Guide.pdf)
- * AWS Certified SysOps Administrator - Associate Official Practice Question Set (FREE) [here](https://explore.skillbuilder.aws/learn/course/external/view/elearning/12485/aws-certified-sysops-administrator-associate-practice-question-set-soa-c02-english?syops=sec&sec=prep)
- * Exam Prep: AWS Certified SysOps Administrator - Associate (FREE) [here](https://explore.skillbuilder.aws/learn/course/external/view/elearning/9313/exam-prep-aws-certified-sysops-administrator-associate)
+</b></details>
 
- ### <b> Certification resource </b>
- <br>
- This is a resource for studying and preparing for the AWS Cloud SysOps Associate exam.
+### Подготовка к экзамену
 
- * Architecting for the cloud [here](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)
- * AWS Well-Architected Framework [here](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
- * Development and Test on Amazon Web Services [here](https://media.amazonwebservices.com/AWS_Development_Test_Environments.pdf)
- * Backup, Archive, and Restore Approaches Using AWS [here](https://d0.awsstatic.com/whitepapers/Backup_Archive_and_Restore_Approaches_Using_AWS.pdf)
- * How AWS Pricing Works - AWS Pricing Overview [here](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)
- * Sample Question AWS SOA-C02 [here](https://d1.awsstatic.com/training-and-certification/docs-sysops-associate/AWS-Certified-SysOps-Administrator-Associate_Sample-Questions.pdf)
+Можно начать с бесплатных материалов или подключить дополнительные ресурсы (включая официальные практические тесты) через подписку **AWS Skill Builder**:
+
+* Руководство по экзамену AWS Cloud SysOps (SOA-C02) — [PDF](https://d1.awsstatic.com/training-and-certification/docs-sysops-associate/AWS-Certified-SysOps-Administrator-Associate_Exam-Guide.pdf)
+* Официальный бесплатный набор вопросов *AWS Certified SysOps Administrator — Associate* — [Skill Builder](https://explore.skillbuilder.aws/learn/course/external/view/elearning/12485/aws-certified-sysops-administrator-associate-practice-question-set-soa-c02-english?syops=sec&sec=prep)
+* Бесплатный курс *Exam Prep: AWS Certified SysOps Administrator — Associate* — [Skill Builder](https://explore.skillbuilder.aws/learn/course/external/view/elearning/9313/exam-prep-aws-certified-sysops-administrator-associate)
+
+### Материалы для изучения
+
+Дополнительные материалы по подготовке к **AWS Cloud SysOps Associate**:
+
+* [Architecting for the Cloud: AWS Best Practices](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)
+* [AWS Well-Architected Framework](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf)
+* [Development and Test on Amazon Web Services](https://media.amazonwebservices.com/AWS_Development_Test_Environments.pdf)
+* [Backup, Archive, and Restore Approaches Using AWS](https://d0.awsstatic.com/whitepapers/Backup_Archive_and_Restore_Approaches_Using_AWS.pdf)
+* [How AWS Pricing Works — AWS Pricing Overview](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)
+* [Пример вопросов AWS SOA-C02 (PDF)](https://d1.awsstatic.com/training-and-certification/docs-sysops-associate/AWS-Certified-SysOps-Administrator-Associate_Sample-Questions.pdf)

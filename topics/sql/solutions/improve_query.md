@@ -1,9 +1,13 @@
-## Comparisons vs. Functions - Solution
+## Сравнения и функции — решение
 
-```
+Исправленный запрос (верхняя граница даты в формате **год-месяц-день**):
+
+```sql
 SELECT count(*)
 FROM shawarma_purchases
 WHERE
   purchased_at >= '2017-01-01' AND
-  purchased_at <= '2017-31-12'
+  purchased_at <= '2017-12-31';
 ```
+
+Раньше в условии была опечатка: `'2017-31-12'` — такой даты не существует.

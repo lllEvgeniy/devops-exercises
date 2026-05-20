@@ -1,29 +1,38 @@
-## My first playbook - Solution
+## Мой первый playbook — решение
 
-1. `vi first_playbook.yml`
+### 1. Playbook
 
-```
+Создайте файл `first_playbook.yml`:
+
+```yaml
 - name: Install zlib and create a file
   hosts: some_remote_host
+  become: true
   tasks:
     - name: Install zlib
-      package:
-        name: zlib
+      ansible.builtin.package:
+        name: zlib1g
         state: present
-      become: yes
+
     - name: Create the file /tmp/some_file
-      file:
-        path: '/tmp/some_file'
+      ansible.builtin.file:
+        path: /tmp/some_file
         state: touch
 ```
 
-2. First, edit the inventory file: `vi /etc/ansible/hosts`
+Имя пакета `zlib1g` актуально для Debian/Ubuntu; для других семейств ОС замените на пакет, который даёт библиотеку zlib (или используйте `state: present` с переменной под дистрибутив).
 
-```
+### 2. Инвентарь и запуск
+
+Укажите хост в инвентаре, например в `inventory.ini`:
+
+```ini
 [some_remote_host]
-some.remoted.host.com
+some.remote.host.example.com
 ```
 
-Run the playbook
+Запуск:
 
-`ansible-playbook first_playbook.yml`
+```bash
+ansible-playbook -i inventory.ini first_playbook.yml
+```

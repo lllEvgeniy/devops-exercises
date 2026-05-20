@@ -1,191 +1,175 @@
-# Databases
+# Базы данных
 
-- [Databases](#databases)
-  - [Exercises](#exercises)
-  - [Questions](#questions)
-    - [SQL](#sql)
-    - [Time Series](#time-series)
+## Упражнения
 
-## Exercises
+| Название | Тема | Цель и инструкции | Решение | Комментарии |
+|----------|------|-------------------|---------|---------------|
+| Таблицы для доски объявлений | Реляционные таблицы | [Упражнение](table_for_message_board_system.md) | [Решение](solutions/table_for_message_board_system.md) | |
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
-|--------|--------|------|----|----|
-| Message Board Tables  | Relational DB Tables | [Exercise](topics/databases/table_for_message_board_system.md) | [Solution](topics/databases/solutions/table_for_message_board_system.md)
-
-## Questions
-
+## Вопросы
 
 <details>
-<summary>What type of databases are you familiar with?</summary><br><b>
+<summary>Какие типы баз данных вы знаете?</summary><br><b>
 
-Relational (SQL)
-NoSQL
-Time series
+* Реляционные (SQL).
+* NoSQL (документные, ключ–значение, колоночные, графовые и др.).
+* Специализированные, например для **временных рядов** (time series).
+
 </b></details>
 
 ### SQL
 
 <details>
-<summary>What is a relational database?</summary><br><b>
+<summary>Что такое реляционная база данных?</summary><br><b>
 
-  * Data Storage: system to store data in tables
-  * SQL: programming language to manage relational databases
-  * Data Definition Language: a standard syntax to create, alter and delete tables
+* **Табличное хранение** данных со схемой, строками и столбцами.
+* **SQL** — декларативный язык для запросов и управления данными.
+* **DDL** (Data Definition Language) — подмножество SQL для создания и изменения объектов (таблицы, индексы, ограничения).
 
 </b></details>
 
 <details>
-<summary>What does it mean when a database is ACID compliant?</summary><br>
+<summary>Что значит, что СУБД соответствует ACID?</summary><br><b>
 
-ACID stands for Atomicity, Consistency, Isolation, Durability. In order to be ACID compliant, the database must meet each of the four criteria
+ACID — **атомарность**, **согласованность**, **изоляция**, **долговечность**. Транзакция либо целиком фиксируется в согласованном состоянии, либо целиком откатывается.
 
-**Atomicity** - When a change occurs to the database, it should either succeed or fail as a whole.
+**Атомарность** — набор операций внутри транзакции неделим: при сбое на середине откатывается всё, что уже сделано в рамках этой транзакции.
 
-For example, if you were to update a table, the update should completely execute. If it only partially executes, the
-update is considered failed as a whole, and will not go through - the DB will revert back to it's original
-state before the update occurred. It should also be mentioned that Atomicity ensures that each
-transaction is completed as it's own stand alone "unit" - if any part fails, the whole statement fails.
+**Согласованность** — после коммита база остаётся в состоянии, удовлетворяющем правилам (ограничения, типы, внешние ключи). Недопустимые изменения отклоняются.
 
-**Consistency** - any change made to the database should bring it from one valid state into the next.
+**Изоляция** — параллельные транзакции не должны «видеть» промежуточные грязные данные друг друга сильнее, чем позволяет выбранный уровень изоляции; эффект близок к последовательному выполнению.
 
-For example, if you make a change to the DB, it shouldn't corrupt it. Consistency is upheld by checks and constraints that
-are pre-defined in the DB. For example, if you tried to change a value from a string to an int when the column
-should be of datatype string, a consistent DB would not allow this transaction to go through, and the action would
-not be executed
+**Долговечность** — зафиксированные данные сохраняются после коммита даже при сбоях процесса (при корректной настройке WAL/journaling и дисков).
 
-**Isolation** - this ensures that a database will never be seen "mid-update" - as multiple transactions are running at
-the same time, it should still leave the DB in the same state as if the transactions were being run sequentially.
+Классические реляционные СУБД ориентированы на ACID. У NoSQL модели разные; часть систем добавляет транзакции или «на уровне документа» с более слабыми гарантиями.
 
-For example, let's say that 20 other people were making changes to the database at the same time. At the
-time you executed your query, 15 of the 20 changes had gone through, but 5 were still in progress. You should
-only see the 15 changes that had completed - you wouldn't see the database mid-update as the change goes through.
-
-**Durability** - Once a change is committed, it will remain committed regardless of what happens
-(power failure, system crash, etc.). This means that all completed transactions
-must be recorded in non-volatile memory.
-
-Note that SQL is by nature ACID compliant. Certain NoSQL DB's can be ACID compliant depending on
-how they operate, but as a general rule of thumb, NoSQL DB's are not considered ACID compliant
-</details>
-
-<details>
-<summary>What is sharding?</summary><br><b>
-
-Sharding is a horizontal partitioning.
-
-Are you able to explain what is it good for?
 </b></details>
 
 <details>
-<summary>You find out your database became a bottleneck and users experience issues accessing data. How can you deal with such situation?</summary><br><b>
+<summary>Что такое шардирование?</summary><br><b>
 
-Not much information provided as to why it became a bottleneck and what is current architecture, so one general approach could be<br>
-to reduce the load on your database by moving frequently-accessed data to in-memory structure.
+**Шардирование** — горизонтальное партиционирование данных: разные диапазоны ключей или логические сегменты хранятся на разных узлах. Это снимает ограничение одного сервера по CPU/IO/ёмкости и позволяет масштабировать запись и чтение, но усложняет запросы между шардами, миграции, согласованность и операции без явного ключа шардирования.
+
 </b></details>
 
 <details>
-<summary>What is a connection pool?</summary><br><b>
+<summary>База стала узким местом, пользователи жалуются на доступ к данным. Ваши шаги?</summary><br><b>
 
-Connection Pool is a cache of database connections and the reason it's used is to avoid an overhead of establishing a connection for every query done to a database.
+Сначала измерения: медленные запросы, блокировки, исчерпание пула соединений, диск/CPU, репликация отстаёт. Дальше по ситуации: индексы и переписывание запросов, кэш (Redis и т.д.) для горячих чтений, чтение с реплик, вертикальное/горизонтальное масштабирование, шардирование, очереди для фоновой записи, архивирование старых данных.
+
 </b></details>
 
 <details>
-<summary>What is a connection leak?</summary><br><b>
+<summary>Что такое пул соединений?</summary><br><b>
 
-A connection leak is a situation where database connection isn't closed after being created and is no longer needed.
+Пул — заранее созданный набор подключений к СУБД, который переиспользуется приложением. Это снижает накладные расходы на установку TCP и аутентификацию при каждом запросе и ограничивает число одновременных сессий.
+
 </b></details>
 
 <details>
-<summary>What is Table Lock?</summary><br><b>
+<summary>Что такое утечка соединений?</summary><br><b>
+
+Утечка — когда соединение с БД открывается и не возвращается в пул и не закрывается после использования. Пул исчерпывается, новые запросы ждут или падают.
+
 </b></details>
 
 <details>
-<summary>Your database performs slowly than usual. More specifically, your queries are taking a lot of time. What would you do?</summary><br><b>
+<summary>Что такое блокировка таблицы?</summary><br><b>
 
-* Query for running queries and cancel the irrelevant queries
-* Check for connection leaks (query for running connections and include their IP)
-* Check for table locks and kill irrelevant locking sessions
+Блокировка на уровне таблицы не даёт другим транзакциям выполнять конфликтующие операции (часто массовые DDL или `LOCK TABLE`) до снятия блокировки. В отличие от блокировок строк, это грубый механизм: может сильно снизить параллелизм, но иногда нужен для целостности при миграциях.
+
 </b></details>
 
 <details>
-<summary>What is a Data Warehouse?</summary><br><b>
+<summary>Запросы стали выполняться очень долго. Что проверить?</summary><br><b>
 
-"A data warehouse is a subject-oriented, integrated, time-variant and non-volatile collection of data in support of organisation's decision-making process"
+* Медленный журнал запросов, `EXPLAIN`, планы, недостающие индексы.
+* Утечки и исчерпание пула соединений; «зависшие» сессии.
+* Блокировки (row/table), ожидания на метаданных; при необходимости завершить проблемные сессии по политике.
+* Ресурсы узла: IOPS, CPU, репликация, сеть.
+
 </b></details>
 
 <details>
-<summary>Explain what is a time-series database</summary><br><b>
+<summary>Что такое хранилище данных (data warehouse)?</summary><br><b>
+
+Классическое определение Инмона: предметно ориентированное, интегрированное, неизменяемое по сути (append/history), привязанное ко времени набор данных для поддержки решений. На практике — колоночное или массивно-параллельное хранилище под аналитику и отчётность (часто OLAP).
+
 </b></details>
 
 <details>
-<summary>What is OLTP (Online transaction processing)?</summary><br><b>
+<summary>Что такое OLTP (online transaction processing)?</summary><br><b>
+
+OLTP — сценарии с большим числом коротких транзакций: заказы, платежи, учётные операции. Важны низкая задержка на одну операцию, целостность и изоляция; схема нормализована, много мелких чтений/записей.
+
 </b></details>
 
 <details>
-<summary>What is OLAP (Online Analytical Processing)?</summary><br><b>
+<summary>Что такое OLAP (online analytical processing)?</summary><br><b>
+
+OLAP — аналитические запросы: агрегации, срезы по измерениям, отчёты по большим объёмам исторических данных. Транзакции длиннее и тяжелее по сканированию; часто используют звёздную/снежинку схему, колоночное хранение, предрасчитанные кубы.
+
 </b></details>
 
 <details>
-<summary>What is an index in a database?</summary><br><b>
+<summary>Что такое индекс в базе данных?</summary><br><b>
 
-A database index is a data structure that improves the speed of operations in a table. Indexes can be created using one or more columns, providing the basis for both rapid random lookups and efficient ordering of access to records.
+Индекс — вспомогательная структура (B-tree, hash, GiN и т.д.), ускоряющая поиск и иногда сортировку за счёт дополнительного места и стоимости записи. Создаётся по одному или нескольким столбцам.
+
 </b></details>
 
 <details>
-<summary>What data types are there in relational databases?</summary><br><b>
+<summary>Какие типы данных бывают в реляционных СУБД?</summary><br><b>
+
+Примеры: целые (`INTEGER`, `BIGINT`), строки фиксированной/переменной длины (`CHAR`, `VARCHAR`), денежные/точные (`NUMERIC`, `DECIMAL`), дата/время (`DATE`, `TIMESTAMP`, `TIMESTAMPTZ`), логический (`BOOLEAN`), двоичные (`BYTEA`, `BLOB`), `JSON`/`JSONB`, `UUID`, перечисления (`ENUM` в PostgreSQL) и геотипы в расширениях.
+
 </b></details>
 
 <details>
-<summary>Explain Normalization</summary><br><b>
+<summary>Объясните нормализацию</summary><br><b>
 
-Data that is used multiple times in a database should be stored once and referenced with a foreign key.<br>
-This has the clear benefit of ease of maintenance where you need to change a value only in a single place to change it everywhere.
+Нормализация — устранение избыточного дублирования данных путём выноса повторяющихся сущностей в отдельные таблицы и связей через внешние ключи. Плюсы: меньше аномалий обновления, проще согласованность; минусы для аналитики — больше соединений, иногда денормализуют для скорости чтения.
+
 </b></details>
 
 <details>
-<summary>Explain Primary Key and Foreign Key</summary><br><b>
+<summary>Объясните первичный и внешний ключ</summary><br><b>
 
-Primary Key: each row in every table should a unique identifier that represents the row.<br>
-Foreign Key: a reference to another table's primary key. This allows you to join table together to retrieve all the information you need without duplicating data.
+**Первичный ключ** — уникальный идентификатор строки в таблице (часто суррогатный `id`). **Внешний ключ** — ссылка на первичный (или уникальный) ключ другой таблицы; СУБД может проверять ссылочную целостность при вставках и удалениях.
+
 </b></details>
 
 <details>
-<summary>What types of data tables have you used?</summary><br><b>
+<summary>Какие типы таблиц вы использовали?</summary><br><b>
 
-  * Primary data table: main data you care about
-  * Details table: includes a foreign key and has one to many relationship
-  * Lookup values table: can be one table per lookup or a table containing all the lookups and has one to many relationship
-  * Multi reference table
+* **Основная (фактов)** — сущности и события, которые вы моделируете.
+* **Детализация / дочерняя** — строки «один ко многим» с внешним ключом на родителя.
+* **Справочник (lookup)** — нормализованные коды и названия, на которые ссылаются по FK.
+* **Связующая (many-to-many)** — две FK на две сущности, если связь многие-ко-многим.
+
 </b></details>
 
 <details>
-<summary>What is ORM? What benefits it provides in regards to relational databases usage?</summary><br><b>
+<summary>Что такое ORM? Какие плюсы при работе с реляционными БД?</summary><br><b>
 
-[Wikipedia](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping): "is a programming technique for converting data between incompatible type systems using object-oriented programming languages"
+[Википедия](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping): ORM — подход к отображению данных между объектами в коде и реляционными таблицами.
 
-In regards to the relational databases:
+Плюсы: меньше ручного SQL для типовых CRUD, миграции схемы как код, единый стиль доступа из приложения, валидация на уровне моделей. Минусы: риск N+1, сложные запросы иногда проще и яснее на чистом SQL.
 
-  * Database as code
-  * Database abstraction
-  * Encapsulates SQL complexity
-  * Enables code review process
-  * Enables usage as a native OOP structure
 </b></details>
 
 <details>
-<summary>What is DDL?</summary><br><b>
+<summary>Что такое DDL?</summary><br><b>
 
-[Wikipedia](https://en.wikipedia.org/wiki/Data_definition_language): "In the context of SQL, data definition or data description language (DDL) is a syntax for creating and modifying database objects such as tables, indices, and users."
+[Википедия](https://en.wikipedia.org/wiki/Data_definition_language): в контексте SQL DDL — команды определения объектов: `CREATE`, `ALTER`, `DROP` для таблиц, индексов, представлений, пользователей и т.д.
+
 </b></details>
 
-### Time Series
+### Временные ряды
 
 <details>
-<summary>What is Time Series database?</summary><br><b>
+<summary>Что такое база данных временных рядов (time series)?</summary><br><b>
 
-A database designed specifically for time series based data.
+СУБД или движок, оптимизированный под метрики и события с **временной меткой**, обычно с высокой скоростью **добавления** и запросами по диапазону времени и тегам. Типичные возможности: сжатие по времени, политики **retention** (удаление/даунсэмплинг старых данных), агрегации по окнам, быстрые запросы «последнее значение по серии». Примеры экосистем: InfluxDB, TimescaleDB, Prometheus (как TSDB метрик), VictoriaMetrics.
 
-It comes with multiple optimizations:
-
-<TODO>: complete this :)
 </b></details>

@@ -1,79 +1,85 @@
-# DataDog
+# Datadog
 
-- [DataDog](#datadog)
-  - [Questions](#questions)
-    - [Basics](#basics)
-  - [Datadog Agent](#datadog-agent)
-  - [Datadog Integrations](#datadog-integrations)
+- [Datadog](#datadog)
+  - [Вопросы](#вопросы)
+    - [Основы](#основы)
+  - [Агент Datadog](#datadog-agent)
+  - [Интеграции Datadog](#datadog-integrations)
 
-## Questions
+<a id="datadog"></a>
 
-### Basics
+## Вопросы
 
+<a id="основы"></a>
+
+### Основы
 
 <details>
-<summary>Describe at least three use cases for using something like Datadog. Can be as specific as you would like</summary><br><b>
+<summary>Назовите хотя бы три сценария использования Datadog (чем конкретнее, тем лучше).</summary><br><b>
 
-* Monitor instances/servers downtime
-* Detect anomalies and send an alert when it happens
-* Service request or response latency
+- мониторинг доступности хостов и сервисов;
+- обнаружение аномалий и алерты по метрикам/логам;
+- контроль задержек и качества ответа API (SLI/SLO на практике).
 
 </b></details>
 
 <details>
-<summary>What ways are there to collect or send data to Datadog?</summary><br><b>
+<summary>Какие есть способы доставить данные в Datadog?</summary><br><b>
 
-* Datadog agent installed on the device or location which you would like to monitor
-* Using Datadog API
-* Built-in integrations
+- **Агент Datadog** на хосте или в контейнере;
+- **HTTP API** и события без агента;
+- **Интеграции** (облака, БД, оркестраторы и т.д.).
 
 </b></details>
 
 <details>
-<summary>What is a host in regards to Datadog?</summary><br><b>
+<summary>Что такое «хост» в терминах Datadog?</summary><br><b>
 
-Any physical or virtual instance that is monitored with Datadog. Few examples:
+Любой **отслеживаемый** экземпляр: ВМ в облаке, **bare metal**, worker Kubernetes, если на нём установлен и работает агент (или данные приходят иначе по модели учёта).
 
-- Cloud Instance, Virtual Machine
-- Bare metal node
-- Platform or service specific nodes like Kubernetes node
-
-Basically any device or location that has Datadog agent installed and running on.
 </b></details>
 
 <details>
-<summary>What is a Datadog agent?</summary><br><b>
+<summary>Что такое агент Datadog?</summary><br><b>
 
-A software runs on a Datadog host. Its purpose is to collect data from the host and sent it to Datadog (data like metrics, logs, etc.)
+ПО на хосте, которое **собирает** метрики, логи, трассы (по конфигурации) и **отправляет** их в SaaS Datadog.
+
 </b></details>
 
 <details>
-<summary>What are Datadog tags?</summary><br><b>
+<summary>Зачем нужны теги в Datadog?</summary><br><b>
 
-Datadog tags are used to mark different information with unique properties. For example, you might want to tag some data with "environment: production" while tagging information from staging or dev environment with "environment: staging".
+Теги — это **измерения** (dimensions): `env:production`, `team:platform`, `service:checkout` и т.д. Они нужны для фильтрации, дашбордов и алертов без дублирования метрик.
+
 </b></details>
 
-## Datadog Agent
+<a id="datadog-agent"></a>
+
+## Агент Datadog
 
 <details>
-<summary>What are the component of a Datadog agent?</summary><br><b>
+<summary>Из каких основных частей состоит агент?</summary><br><b>
 
-* Collector: its role is to collect data from the host on which it's installed. The default period of time as of today is every 15 seconds.
-* Forwarder: responsible for sending the data to Datadog over HTTPS
+- **Collector** — опрашивает источники на хосте (по умолчанию каждые **15** секунд для многих метрик).
+- **Forwarder** — отправляет собранное в Datadog по **HTTPS**.
+
 </b></details>
 
-## Datadog Integrations
+<a id="datadog-integrations"></a>
 
+## Интеграции Datadog
 
 <details>
-<summary>What can you tell about Datadog integrations?</summary><br><b>
+<summary>Что такое интеграции Datadog?</summary><br><b>
 
-- Datadog has many supported integrations with different services, platforms, etc.
-- Each integration includes information on how to apply it, how to use it and what configuration options it supports
+- готовые конфигурации и дашборды для сотен сервисов и платформ;
+- для каждой интеграции есть документация: какие метрики, какие параметры `conf.d`, примеры мониторов.
+
 </b></details>
 
 <details>
-<summary>What opening some of the integrations windows/pages, there is a ection called "Monitors". What can be found there?</summary><br><b>
+<summary>В карточке интеграции есть раздел «Monitors». Что там обычно?</summary><br><b>
 
-Usually you can find there some anomaly types that Datadog suggests to monitor and track.
+Готовые **шаблоны мониторов** под типичные сбои и деградации, которые Datadog предлагает включить или адаптировать под вашу среду.
+
 </b></details>

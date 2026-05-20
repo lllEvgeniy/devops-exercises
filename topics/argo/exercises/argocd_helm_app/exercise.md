@@ -1,15 +1,15 @@
-# ArgoCD Helm App
+# Приложение ArgoCD Helm
 
-## Requirements
+## Требования
 
-1. Running Kubernetes cluster
-2. ArgoCD installed on the k8s cluster
-3. Repository of an Helm chart
+1. Запуск кластера Kubernetes
+2. ArgoCD установлен на кластере k8s
+3. Репозиторий диаграммы Хелма
 
-## Objectives
+## Цели
 
-1. Create a new app in ArgoCD that points to the repo of your Helm chart
+1. Создайте новое приложение в ArgoCD, которое указывает на репозиторий вашей диаграммы Helm.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

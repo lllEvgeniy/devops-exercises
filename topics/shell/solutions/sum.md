@@ -1,16 +1,16 @@
-## Sum
+## Сумма
 
-### Objectives
+### Цели
 
-1. Write a script that gets two numbers and prints their sum
-3. Make sure the input is valid (= you got two numbers from the user)
-2. Test the script by running and passing it two numbers as arguments 
+1. Напишите скрипт, который получает два числа и печатает их сумму.
+3. Убедитесь, что введенные данные верны (= вы получили от пользователя два числа)
+2. Протестируйте скрипт, запустив и передав ему два числа в качестве аргументов. 
 
-### Constraints
+### Ограничения
 
-1. Use functions
+1. Используйте функции
 
-### Solution
+### Решение
 
 ```
 #!/usr/bin/env bash

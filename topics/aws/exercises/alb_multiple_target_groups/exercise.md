@@ -1,15 +1,15 @@
-## AWS ELB - ALB Multiple Target Groups
+## AWS ELB – несколько целевых групп ALB
 
-### Requirements                   
+### Требования                   
 
-Two EC2 instances with a simple web application that shows the web page with the string "Hey, it's a me, `<HOSTNAME>`!"
-One EC2 instance with a simple web application that shows the web page with the string "Hey, it's only a test..." under the endpoint /test
+Два экземпляра EC2 с простым веб-приложением, которое показывает веб-страницу со строкой «Эй, это я, `<HOSTNAME>`!»
+Один экземпляр EC2 с простым веб-приложением, которое показывает веб-страницу со строкой «Эй, это всего лишь тест...» под конечной точкой /test.
 
-### Objectives
+### Цели
 
-1. Create an application load balancer for the two instances you have, with the following properties
-  1. healthy threshold: 3
-  2. unhealthy threshold: 3
-  3. interval: 10 seconds
-2. Create another target group for the third instance
-  1. Traffic should be forwarded to this group based on the "/test" path
+1. Создайте балансировщик нагрузки приложения для двух имеющихся у вас экземпляров со следующими свойствами.
+  1. порог здоровья: 3
+  2. порог нездоровья: 3
+  3. интервал: 10 секунд
+2. Создайте еще одну целевую группу для третьего экземпляра.
+  1. Трафик должен перенаправляться в эту группу по пути «/test».

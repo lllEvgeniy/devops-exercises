@@ -1,12 +1,12 @@
-## Multi-Stage Builds
+## Многоэтапные сборки
 
-### Objective
+### Цель
 
-Learn about multi-stage builds
+Узнайте о многоэтапных сборках
 
-### Instructions
+### Инструкции
 
-1. Without actually building an image or running any container, use the following Dockerfile and convert it to use multi-stage:
+1. Не создавая образ и не запуская какой-либо контейнер, используйте следующий файл Dockerfile и преобразуйте его для многоэтапного использования:
 
 ```
 FROM nginx
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y git \
  && bower install \
 RUN ember build — environment=prod
 CMD [ “/root/nginx-app.sh”, “nginx”, “-g”, “daemon off;” ]
+
 ```
 
-2. What are the benefits of using multi-stage builds?
+2. Каковы преимущества использования многоэтапных сборок?

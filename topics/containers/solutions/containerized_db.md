@@ -1,26 +1,26 @@
-# Containerized DB
+# Контейнерная БД
 
-1. Run a container with a database of any type of you prefer (MySql, PostgreSQL, Mongo, etc.)
-2. Verify the container is running
-3. Access the container and create a new table (or collection, depends on which DB type you chose) for students
-4. Insert a row (or document) of a student
-5. Verify the row/document was added
+1. Запустите контейнер с базой данных любого типа (MySql, PostgreSQL, Mongo и т. д.).
+2. Убедитесь, что контейнер запущен.
+3. Получите доступ к контейнеру и создайте новую таблицу (или коллекцию, в зависимости от того, какой тип БД вы выбрали) для учащихся.
+4. Вставьте строку (или документ) студента.
+5. Убедитесь, что строка/документ добавлена.
 
 
-## Solution
+## Решение
 
 ```
-# Run the container
+# Запуск контейнера
 podman run --name mysql -e MYSQL_USER=mario -e MYSQL_PASSWORD=tooManyMushrooms -e MYSQL_DATABASE=university -e MYSQL_ROOT_PASSWORD=MushroomsPizza -d mysql
 
-# Verify it's running
+# Проверка, что контейнер работает
 podman ps
 
-# Add student row to the database
+# Добавление записи студента
 podman exec -it mysql /bin/bash
 mysql -u root
 use university;
 CREATE TABLE Students (id int NOT NULL, name varchar(255) DEFAULT NULL, PRIMARY KEY (id));
-insert into Projects (id, name) values (1,'Luigi');
+insert into Students (id, name) values (1,'Luigi');
 select * from Students;
 ```

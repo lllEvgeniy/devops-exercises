@@ -1,16 +1,16 @@
-## Database Table for Message Board System
+## Таблица базы данных для системы досок объявлений
 
-### Instructions
+### Инструкции
 
-Design a database table for a message board system. It should include the following information:
+Спроектируйте таблицу базы данных для системы доски объявлений. Он должен включать следующую информацию:
 
-  * Personal details
-  * Who saw the message and when
-  * Replies
-  * Tagged people in the message
-  * Message categories
+  * Личные данные
+  * Кто видел сообщение и когда
+  * Ответы
+  * Отмечены люди в сообщении
+  * Категории сообщений
 
-Notes:
+Примечания:
 
-  * No SQL is needed
-  * You should include: table names, field names, data types and mention the foreign keys used.
+  * SQL не требуется
+  * Вы должны указать: имена таблиц, имена полей, типы данных и упомянуть используемые внешние ключи.

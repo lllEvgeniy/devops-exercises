@@ -1,11 +1,11 @@
-# Containerized Web Server
+# Контейнерный веб-сервер
 
-1. Run a containerized web server in the background and bind its port (8080) to a local port
-2. Verify the port (8080) is bound
-3. Reach the webserver from your local host
-4. Now run the same web application but bound it to the local port 8080
+1. Запустите контейнерный веб-сервер в фоновом режиме и привяжите его порт (8080) к локальному порту.
+2. Убедитесь, что порт (8080) привязан.
+3. Подключитесь к веб-серверу с вашего локального хоста.
+4. Теперь запустите то же веб-приложение, но привяжите его к локальному порту 8080.
 
-## Solution
+## Решение
 
 ```
 $ podman run -d -p 8080 httpd # run the container and bind the port 8080 to a local port

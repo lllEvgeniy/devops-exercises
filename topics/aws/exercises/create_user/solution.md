@@ -1,33 +1,32 @@
-## IAM AWS - Create a User
+## IAM AWS — создание пользователя
 
-### Objectives
+### Цели
 
-As you probably know at this point, it's not recommended to work with the root account in AWS. For this reason you are going to create a new account which you'll use regularly as the admin account.
+Как вы, наверное, уже знаете, не рекомендуется работать с учетной записью root в AWS. По этой причине вы собираетесь создать новую учетную запись, которую будете регулярно использовать в качестве учетной записи администратора.
 
-1. Create a user with password credentials
-2. Add the newly created user to a group called "admin" and attach to it the policy called "Administrator Access"
-3. Make sure the user has a tag called with the key `Role` and the value `DevOps`
+1. Создайте пользователя с учетными данными пароля.
+2. Добавьте вновь созданного пользователя в группу «Администратор» и прикрепите к нему политику «Доступ администратора».
+3. Убедитесь, что у пользователя есть тег с ключом «Роль» и значением «DevOps».
 
 
-### Solution
+### Решение
 
-1. Go to the AWS IAM service
-2. Click on "Users" in the right side menu (right under "Access Management")
-3. Click on the button "Add users"
-4. Insert the user name (e.g. mario)
-5. Select the credential type: "Password"
-6. Set console password to custom and click on "Next"
-7. Click on "Add user to group"
-8. Insert "admin" as group name
-9. Check the "AdministratorAccess" policy and click on "Create group"
-10. Click on "Next: Tags"
-11. Add a tag with the key `Role` and the value `DevOps`
-12. Click on "Review" and then create on "Create user"
+1. Перейдите в сервис AWS IAM.
+2. Нажмите «Пользователи» в правом боковом меню (прямо под «Управление доступом»).
+3. Нажмите на кнопку «Добавить пользователей»
+4. Введите имя пользователя (например, Марио)
+5. Выберите тип учетных данных: «Пароль».
+6. Установите пользовательский пароль консоли и нажмите «Далее».
+7. Нажмите «Добавить пользователя в группу».
+8. Вставьте «admin» в качестве имени группы.
+9. Проверьте политику «AdministratorAccess» и нажмите «Создать группу».
+10. Нажмите «Далее: Теги».
+11. Добавьте тег с ключом «Роль» и значением «DevOps».
+12. Нажмите «Просмотр», а затем создайте «Создать пользователя».
 
-13. ### Solution using Terraform
-    
-```
- 
+### Решение с использованием Terraform
+
+```terraform
 resource "aws_iam_group_membership" "team" {
   name = "tf-testing-group-membership"
 

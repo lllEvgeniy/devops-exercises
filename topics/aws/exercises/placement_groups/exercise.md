@@ -1,6 +1,6 @@
-## AWS EC2 - Placement Groups          
+## AWS EC2 — Группы размещения          
 
-### Objectives                      
+### Цели                      
 
-A. Create a placement group. It should be one with a low latency network. Make sure to launch an instance as part of this placement group.
-B. Create another placement group. This time high availability is a priority
+А. Создайте группу размещения. Это должна быть сеть с низкой задержкой. Обязательно запустите экземпляр как часть этой группы размещения.
+Б. Создайте еще одну группу размещения. На этот раз высокая доступность является приоритетом

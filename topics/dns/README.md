@@ -1,190 +1,196 @@
 ## DNS
 
 <details>
-<summary>What is DNS? What is it used for?</summary><br><b>
+<summary>Что такое DNS? Для чего он используется?</summary><br><b>
 
-DNS (Domain Name Systems) is a protocol used for converting domain names into IP addresses.<br>
-computer networking (at layer 3 of the OSP model) is done with IP addresses but for as humans it's hard to remember IP addresses, it's much easier to remember names. This why we need something such as DNS to convert any domain name we type into an IP address. You can think on DNS as a huge phonebook or database where each corresponding name has an IP.
+DNS (Domain Name System, система доменных имён) — распределённая система, которая сопоставляет человекочитаемые имена хостов с IP-адресами и другими данными.
+
+На сетевом уровне узлы обмениваются пакетами по IP; людям удобнее помнить имена вроде `example.com`. DNS выступает как «телефонная книга»: по имени можно получить адрес (и наоборот — в отдельных случаях, см. PTR).
+
 </b></details>
 
 <details>
-<summary>What is DNS resolution?</summary><br><b>
+<summary>Что такое разрешение DNS?</summary><br><b>
 
-The process of translating IP addresses to domain names.
+Разрешение DNS (DNS resolution) — процесс получения ответа на DNS-запрос, чаще всего **преобразование имени хоста в IP-адрес** (прямой поиск). Обратное преобразование IP → имя — отдельный сценарий (обратный DNS, обычно через PTR).
+
 </b></details>
 
 <details>
-<summary>What is a name server?</summary><br><b>
+<summary>Что такое сервер имён (name server)?</summary><br><b>
 
-A server which is responsible for resolving DNS queries.
+Сервер, который хранит зону или пересылает запросы и отвечает на DNS-запросы по протоколу DNS (часто с поддержкой рекурсии или только авторитетных ответов — в зависимости от роли).
+
 </b></details>
 
 <details>
-<summary>What is the resolution sequence of: www.site.com</summary><br><b>
+<summary>Какова иерархия имён для <code>www.site.com</code>?</summary><br><b>
 
-It's resolved in this order:
+Имя читается справа налево по меткам; корень обозначается точкой в конце (часто опускают в вводе):
 
-1) .
-2) .com
-3) site.com
-4) www.site.com
+1. `.` — корень
+2. `com.` — домен верхнего уровня (TLD)
+3. `site.com.` — домен второго уровня (регистрируемое имя)
+4. `www.site.com.` — полное имя хоста (часто называют FQDN)
+
 </b></details>
 
 <details>
-<summary>What is a domain name registrar?</summary><br><b>
+<summary>Что такое регистратор доменных имён?</summary><br><b>
 
-[Cloudflare](https://www.cloudflare.com/en-gb/learning/dns/glossary/what-is-a-domain-name-registrar): "A domain name registrar provides domain name registrations to the general public. A common misconception is that registrars sell domain names; these domain names are actually owned by registries and can only be leased by users."
+[Cloudflare](https://www.cloudflare.com/en-gb/learning/dns/glossary/what-is-a-domain-name-registrar): регистратор — организация, через которую публично регистрируют доменные имена. Регистратор не «владеет» всеми продаваемыми именами навсегда: имя принадлежит реестру TLD, пользователь получает право пользования (аренду) при соблюдении правил.
+
 </b></details>
 
 <details>
-<summary>Given the following fqdn, <code>www.blipblop.com</code>, what is the root?</summary><br><b>
+<summary>Для FQDN <code>www.blipblop.com</code> что является корнем?</summary><br><b>
 
-`.` is the root
+Корень — это `.` в конце полного имени (в записи зоны часто пишут явно: `www.blipblop.com.`).
+
 </b></details>
 
 <details>
-<summary>Given the following fqdn, <code>www.blipblop.com</code>, what is the top level domain?</summary><br><b>
+<summary>Для FQDN <code>www.blipblop.com</code> каков домен верхнего уровня?</summary><br><b>
 
-`.com.` is the top level domain
+`com` (в канонической записи с корнем: `com.`).
+
 </b></details>
 
 <details>
-<summary>Given the following fqdn, <code>www.blipblop.com</code>, what is the second level domain?</summary><br><b>
+<summary>Для FQDN <code>www.blipblop.com</code> что такое домен второго уровня?</summary><br><b>
 
-`blipblop.com.` is the second level domain
+`blipblop.com` (в зоне: `blipblop.com.`).
+
 </b></details>
 
 <details>
-<summary>Given the following fqdn, <code>www.blipblop.com</code>, what is the domain?</summary><br><b>
+<summary>Что считается «доменом» для FQDN <code>www.blipblop.com</code>?</summary><br><b>
 
-`www.blipblop.com.` is the domain
+В разговорной речи под «доменом» часто имеют в виду зону второго уровня `blipblop.com`. Строго FQDN хоста — это `www.blipblop.com.` (включая метку `www`).
+
 </b></details>
 
 <details>
-<summary>Describe DNS resolution workflow in high-level</summary><br><b>
+<summary>Опишите процесс разрешения DNS на высоком уровне</summary><br><b>
 
-In general the process is as follows:
+В общих чертах:
 
-  * The user types an address in the web browser (some_site.com)
-  * The operating system gets a request from the browser to translate the address the user entered
-  * A query created to check if a local entry of the address exists in the system. In case it doesn't, the request is forwarded to the DNS resolver
-  * The Resolver is a server, usually configured by your ISP when you connect to the internet, that responsible for resolving your query by contacting other DNS servers
-  * The Resolver contacts the root nameserver (aka as .)
-  * The root nameserver either responds with the address you are looking for or it responds with the address of the relevant Top Level Domain DNS server (if your address ends with org then the org TLD)
-  * The Resolver then contacts the TLD DNS. TLD DNS might respond with the address you are looking for. If it doesn't has the information, it will provide the address of SLD DNS server
-  * SLD DNS server will reply with the address to the resolver
-  * The Resolver passes this information to the browser while your OS also stores this information in the cache
-  * The user cab browse the website with happiness and joy :D
+* Пользователь вводит в браузере имя (например, `some-site.com`).
+* ОС спрашивает локальный кэш и, при необходимости, **рекурсивный резолвер** (часто задаётся DHCP провайдера или публичный 1.1.1.1 / 8.8.8.8).
+* Резолвер при отсутствии ответа в кэше идёт по иерархии: корневые серверы → TLD-серверы для `com` → авторитетные серверы зоны `some-site.com`, пока не получит нужную запись (A/AAAA и т.д.).
+* Ответ кэшируется с учётом TTL; браузер устанавливает соединение с полученным IP.
+
 </b></details>
 
-##### DNS - Records
+### DNS — записи
 
 <details>
-<summary>What is a DNS record?</summary><br><b>
+<summary>Что такое DNS-запись (resource record)?</summary><br><b>
 
-A mapping between domain name and an IP address.
+Запись в зоне DNS: тип, имя (owner), TTL и RDATA (например, IPv4 для A, имя цели для CNAME). Набор записей описывает, как клиенты и почта находят ваши сервисы.
+
 </b></details>
 
 <details>
-<summary>What types of DNS records are there?</summary><br><b>
+<summary>Какие типы DNS-записей существуют?</summary><br><b>
 
-  * A
-  * CNAME
-  * PTR
-  * MX
-  * AAAA
-  ...
+Например: **A**, **AAAA**, **CNAME**, **MX**, **NS**, **TXT**, **SRV**, **PTR**, **CAA** и др.
 
-A more detailed list, can be found [here](https://www.nslookup.io/learning/dns-record-types)
+Расширенный список: [nslookup.io — типы записей](https://www.nslookup.io/learning/dns-record-types).
+
 </b></details>
 
 <details>
-<summary>What is a A record?</summary><br><b>
+<summary>Что такое запись A?</summary><br><b>
 
-A (Address): Maps a host name to an IPv4 address.
+**A (Address)** — сопоставляет имя хоста с IPv4-адресом. У одного имени может быть несколько записей A (балансировка на уровне DNS).
 
-When a computer has multiple adapter cards and IP addresses, it should have multiple address records.
 </b></details>
 
 <details>
-<summary>What is a AAAA record?</summary><br><b>
+<summary>Что такое запись AAAA?</summary><br><b>
 
-An AAAA Record performs the same function as an A Record, but for an IPv6 Address.
+**AAAA** — то же, что A, но для IPv6.
+
 </b></details>
 
 <details>
-<summary>What is a CNAME record?</summary><br><b>
+<summary>Что такое запись CNAME?</summary><br><b>
 
-CNAME: maps a hostname to another hostname.
+**CNAME (canonical name)** — псевдоним: имя указывает на другое имя хоста, у которого уже есть целевая A/AAAA (или другая цепочка CNAME до конечного имени по правилам зоны).
 
-The target should be a domain name which must have an A or AAAA record. Think of it as an alias record.
 </b></details>
 
 <details>
-<summary>What is a PTR record?</summary><br><b>
+<summary>Что такое запись PTR?</summary><br><b>
 
-While an A record points a domain name to an IP address, a PTR record does the opposite and resolves the IP address to a domain name.
+**PTR** используется в обратной зоне для отображения **IP-адреса в имя хоста** (обратный DNS). Прямая запись **A/AAAA** сопоставляет имя с IP; PTR — обратное направление и часто применяется для проверки почтовых серверов.
+
 </b></details>
 
 <details>
-<summary>What is a MX record?</summary><br><b>
+<summary>Что такое запись MX?</summary><br><b>
 
-MX (Mail Exchange) Specifies a mail exchange server for the domain, which allows mail to be delivered to the correct mail servers in the domain.
+**MX (Mail Exchange)** — указывает, какие хосты принимают почту для домена, с приоритетами. Почтовые системы используют MX, чтобы доставить сообщение на правильный сервер.
+
 </b></details>
 
 <details>
-<summary>What is a NS record?</summary><br><b>
+<summary>Что такое запись NS?</summary><br><b>
 
-NS: name servers that can respond to DNS queries
+**NS (Name Server)** — указывает авторитетные DNS-серверы для зоны (делегирование).
+
 </b></details>
 
-##### DNS - TTL
+### DNS — TTL
 
 <details>
-<summary>Explain DNS Records TTL</summary><br><b>
+<summary>Объясните TTL DNS-записей</summary><br><b>
 
-[varonis.com](https://www.varonis.com/blog/dns-ttl): "DNS TTL (time to live) is a setting that tells the DNS resolver how long to cache a query before requesting a new one. The information gathered is then stored in the cache of the recursive or local resolver for the TTL before it reaches back out to collect new, updated details."
+[varonis.com](https://www.varonis.com/blog/dns-ttl): TTL (time to live) — время, на которое резолвер может **кэшировать** ответ, прежде чем снова запросить данные у авторитетных серверов. Короткий TTL ускоряет смену адресов при миграции, но увеличивает нагрузку на DNS; длинный — снижает нагрузку, но замедляет распространение изменений.
+
 </b></details>
 
-##### DNS - Misc
+### DNS — прочее
 
 <details>
-<summary>Is DNS using TCP or UDP?</summary><br><b>
+<summary>DNS использует TCP или UDP?</summary><br><b>
 
-DNS uses UDP port 53 for resolving queries either regular or reverse. DNS uses TCP for zone transfer.
-</b></details>
+Обычно запросы/ответы идут по **UDP 53**. **TCP 53** используют для больших ответов (TC=truncated), переноса зон (AXFR/IXFR) и в современных deployments — для DNS over TLS.
 
-<details>
-<summary>True or False? DNS can be used for load balancing</summary><br><b>
-
-True.
 </b></details>
 
 <details>
-<summary>Which techniques a DNS can use for load balancing?</summary><br><b>
-There are several techniques that a DNS can use for load balancing, including:
+<summary>Верно или нет? DNS можно использовать для балансировки нагрузки</summary><br><b>
 
-* Round-robin DNS
+Верно. DNS может возвращать несколько A/AAAA, ротацию или взвешенные ответы; это грубая балансировка без учёта здоровья конечных узлов, если не сочетать с health-check на балансировщике.
 
-* Weighted round-robin DNS
-
-* Least connections
-
-* GeoDNS
 </b></details>
 
 <details>
-<summary>What is a DNS zone?</summary><br><b>
-A DNS zone is a logical container that holds all the DNS resource records for a specific domain name.
+<summary>Какие методы балансировки связаны с DNS?</summary><br><b>
+
+* Round-robin DNS (несколько адресов в ответе).
+* Взвешенный round-robin.
+* GeoDNS (ответ в зависимости от местоположения клиента/резолвера).
+* Сочетание с GSLB и Anycast.
+
 </b></details>
 
 <details>
-<summary>What types of zones are there?</summary><br><b>
-There are several types, including:
+<summary>Что такое DNS-зона?</summary><br><b>
 
-* Primary zone: A primary zone is a read/write zone that is stored in a master DNS server.
+Зона — непрерывный фрагмент дерева имён DNS, за который отвечает один набор авторитетных серверов; в файле или сервисе хранятся SOA, NS и записи ресурсов для имён в этой зоне.
 
-* Secondary zone: A secondary zone is a read-only copy of a primary zone that is stored in a slave DNS server. 
+</b></details>
 
-* Stub zone: A stub zone is a type of zone that contains only the essential information about a domain name. It is used to reduce the amount of DNS traffic and improve the efficiency of the DNS resolution process.
+<details>
+<summary>Какие типы зон бывают?</summary><br><b>
+
+* **Первичная (master)** — зона, в которую вносят изменения; источник правды для репликации.
+* **Вторичная (slave)** — копия, обновляемая с первичной (AXFR/IXFR или NOTIFY).
+* **Заглушка (stub)** — вторичная зона с минимумом записей (обычно только NS и SOA делегированной зоны), чтобы уменьшить объём репликации.
+
+Точные названия зависят от ПО (BIND, Windows DNS и т.д.), смысл — разделение ролей master/replica и облегчённые копии.
+
 </b></details>

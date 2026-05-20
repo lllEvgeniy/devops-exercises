@@ -1,17 +1,17 @@
-# ArgoCD Secrets 101
+#Секреты АргоКД 101
 
-## Requirements
+## Требования
 
-1. Running Kubernetes cluster
-2. Application k8s manifests with secrets
-3. Kubeseal binary installed
+1. Запуск кластера Kubernetes
+2. Приложение k8s манифестирует с секретами
+3. Установлен бинарный файл Kubeseal.
 
-## Objectives
+## Цели
 
-1. Install bitnami sealed controller as ArgoCD app
-2. Encrypt secrets and commit them to the repo with the k8s manifests
-3. Create an app using the secrets you encrypted
+1. Установите запечатанный контроллер Bitnami как приложение ArgoCD.
+2. Зашифруйте секреты и поместите их в репозиторий с помощью манифестов k8s.
+3. Создайте приложение, используя зашифрованные вами секреты.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

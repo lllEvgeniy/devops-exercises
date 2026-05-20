@@ -1,18 +1,18 @@
-## AWS Elastic Beanstalk - Node.js
+## AWS Elastic Beanstalk — Node.js
 
-### Requirements
+### Требования
  
-1. Having a running node.js application on AWS Elastic Beanstalk platform
+1. Наличие работающего приложения node.js на платформе AWS Elastic Beanstalk.
  
-### Objectives
+### Цели
 
-1. Create an AWS Elastic Beanstalk application with the basic properties
-a. No ALB, No Database, Just use the default platform settings
+1. Создайте приложение AWS Elastic Beanstalk с основными свойствами.
+а. Нет ALB, нет базы данных, просто используйте настройки платформы по умолчанию.
 
-### Out of scope
+### Вне области видимости
 
-1. Having ALB attached in place
-2. Having custom domain name in place
-3. Having automated pipelines in place
-4. Having blue-green deployment in place
-5. Writing the Node.js application
+1. Установка ALB на место
+2. Наличие собственного доменного имени.
+3. Наличие автоматизированных конвейеров
+4. Наличие сине-зеленого развертывания
+5. Написание приложения Node.js

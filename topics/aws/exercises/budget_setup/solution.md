@@ -1,18 +1,18 @@
-## AWS - Budget Setup
+## AWS — Настройка бюджета
 
-### Objectives
+### Цели
 
-Setup a cost budget in your AWS account based on your needs.
+Настройте бюджет затрат в своем аккаунте AWS в соответствии с вашими потребностями.
 
-### Solution
+### Решение
 
-1. Go to "Billing"
-2. Click on "Budgets" in the menu
-3. Click on "Create a budget"
-4. Choose "Cost Budget" and click on "Next"
-5. Choose the values that work for you. For example, recurring monthly budget with a specific amount
-6. Insert a budget name and Click on "Next" 
-7. Set up an alert but clicking on "Add an alert threshold"
-  1. Set a threshold (e.g. 75% of budgeted amount)
-  2. Set an email where a notification will be sent
-8. Click on "Next" until you can click on "Create a budget"
+1. Зайдите в «Оплата»
+2. Нажмите «Бюджеты» в меню.
+3. Нажмите «Создать бюджет».
+4. Выберите «Бюджет затрат» и нажмите «Далее».
+5. Выберите ценности, которые вам подходят. Например, повторяющийся ежемесячный бюджет с определенной суммой.
+6. Введите название бюджета и нажмите «Далее». 
+7. Настройте оповещение, но нажав «Добавить порог оповещения».
+  1. Установите пороговое значение (например, 75 % от запланированной суммы).
+  2. Установите адрес электронной почты, на который будет отправлено уведомление.
+8. Нажимайте «Далее», пока не сможете нажать «Создать бюджет».

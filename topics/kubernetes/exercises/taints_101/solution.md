@@ -1,30 +1,38 @@
-# Taints 101
+# Taints и tolerations — основы
 
-## Objectives
+## Цели
 
-1. Check if one of the nodes in the cluster has taints (doesn't matter which node)
-2. Create a taint on one of the nodes in your cluster with key of "app" and value of "web" and effect of "NoSchedule"
-   1. Explain what it does exactly
-   2. Verify it was applied
+1. Проверьте, есть ли на одном из узлов кластера **taints**.
+2. Добавьте **taint** с ключом `app`, значением `web` и эффектом `NoSchedule`.
+3. Запустите под с **toleration**, чтобы он мог работать на этом узле.
 
-## Solution
+## Решение
 
-1. `kubectl describe no minikube | grep -i taints`
-2. `kubectl taint node minikube app=web:NoSchedule`
-   1. Any resource with "app=web" key value will not be scheduled on node `minikube`
-   2. `kubectl describe no minikube | grep -i taints`
-3. 
+1. Проверка taints на узле (пример — minikube):
 
-```
+   `kubectl describe node minikube | grep -i taints`
+
+2. Добавление taint:
+
+   `kubectl taint nodes minikube app=web:NoSchedule`
+
+   - Поды без соответствующего **toleration** не будут планироваться на этот узел.
+   - Проверка: `kubectl describe node minikube | grep -i taints`
+
+3. Под с toleration:
+
+```bash
 kubectl run some-pod --image=redis
-kubectl edit po some-pod
+kubectl edit pod some-pod
 ```
 
-```
- - effect: NoSchedule
+Добавьте в `spec.tolerations`:
+
+```yaml
+  - effect: NoSchedule
     key: app
     operator: Equal
     value: web
 ```
 
-Save and exit. The Pod should be running.
+Сохраните изменения. Под должен перейти в состояние `Running`.

@@ -1,37 +1,39 @@
-## AWS Auto Scaling Groups - Dynamic Scaling Policy
+## Группы автоматического масштабирования AWS — политика динамического масштабирования
 
-### Requirements
+### Требования
 
-1. Existing Auto Scaling Group with maximum capacity set to at least 3
-2. One running EC2 instance with max of 4 CPUs
+1. Существующая группа автоматического масштабирования с максимальной емкостью не менее 3 человек.
+2. Один работающий экземпляр EC2 с максимум 4 процессорами.
 
-### Objectives
+### Цели
 
-1. Create a dynamic scaling policy with the following properties
-  1. Track average CPU utilization
-  2. Target value should be 70%
-2. Increase the CPU utilization to at least 70%
-  1. Do you see change in number of instances?
-1. Decrease CPU utilization to less than 70%
-  1. Do you see change in number of instances?
+1. Создайте политику динамического масштабирования со следующими свойствами.
+  1. Отслеживайте среднюю загрузку процессора
+  2. Целевое значение должно составлять 70 %.
+2. Увеличьте загрузку ЦП как минимум до 70 %.
+  1. Видите ли вы изменения в количестве экземпляров?
+1. Уменьшите загрузку ЦП до менее 70 %.
+  1. Видите ли вы изменения в количестве экземпляров?
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to EC2 service -> Auto Scaling Groups and click on the tab "Automating scaling"
-2. Choose "Target tracking scaling" under "Policy Type"
-3. Set metric type to Average CPU utilization
-4. Set target value to 70% and click on "Create"
+1. Перейдите в сервис EC2 -> Группы автоматического масштабирования и нажмите вкладку «Автоматическое масштабирование».
+2. Выберите «Масштабирование целевого отслеживания» в разделе «Тип политики».
+3. Установите тип метрики «Средняя загрузка ЦП».
+4. Установите целевое значение 70% и нажмите «Создать».
 
-1. If you are using Amazon Linux 2, you can stress the instance with the following:
+1. Если вы используете Amazon Linux 2, вы можете усилить экземпляр следующим образом:
 
 ```
 sudo amazon-linux-extras install epel -y
 sudo yum install stress -y
 stress -c 4  # assuming you have 4 CPUs
-```
-2. Yes, additional EC2 instance was added
 
-1. Simply stop the stress command
-2. Yes, one of the EC2 instances was terminated
+```
+
+2. Да, был добавлен дополнительный экземпляр EC2.
+
+1. Просто прекратите команду стресса
+2. Да, один из экземпляров EC2 был прекращен.

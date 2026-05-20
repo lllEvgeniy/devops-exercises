@@ -1,32 +1,40 @@
-# Zuul
+# Зуул
 
-## Questions
+## Вопросы
 
-### Basics
+### Основы
 
 <details>
-<summary>Describe shortly what is Zuul</summary><br><b>
+<summary>Опишите вкратце, что такое Зуул.</summary><br><b>
 
-From [Zuul's docs](https://zuul-ci.org/docs/zuul/about.html): "Zuul is a Project Gating System. That’s like a CI or CD system, but the focus is on testing the future state of code repositories...
+Из [документации Zuul](https://zuul-ci.org/docs/zuul/about.html): «Zuul — это система управления проектами. Это похоже на систему CI или CD, но основное внимание уделяется тестированию будущего состояния репозиториев кода…
 
-Zuul itself is a service which listens to events from various code review systems, executes jobs based on those events, and reports the results back to the code review system."
+Zuul сам по себе является сервисом, который прослушивает события из различных систем проверки кода, выполняет задания на основе этих событий и сообщает результаты обратно в систему проверки кода».
+
 </b></details>
 
 <details>
-<summary>What is Nodepool and how is it related to Zuul?</summary><br><b>
+<summary>Что такое Nodepool и как он связан с Zuul?</summary><br><b>
 
-"Nodepool is a system for managing test node resources. It supports launching single-use test nodes from cloud providers as well as managing access to pre-defined pre-existing nodes."
+«Nodepool — это система управления ресурсами тестовых узлов. Она поддерживает запуск одноразовых тестовых узлов от облачных провайдеров, а также управление доступом к заранее определенным, уже существующим узлам».
 
-"Zuul uses a separate component called Nodepool to provide the resources to run jobs. Nodepool works with several cloud providers as well as statically defined nodes (again, simultaneously)."
+«Zuul использует отдельный компонент Nodepool для предоставления ресурсов для выполнения заданий. Nodepool работает с несколькими облачными провайдерами, а также со статически определенными узлами (опять же, одновременно)».
+
 </b></details>
 
 <details>
-<summary>What is a Pipeline in Zuul?</summary><br><b>
+<summary>Что такое конвейер в Zuul?</summary><br><b>
 
-A pipeline in Zuul is a workflow. This workflow can be executed based on different events - when a change is submitted to a project, when it's merged, etc.<br>
-The pipeline itself can be applied on one or more different projects (= repositories in hosted or private source control)
+Конвейер в Zuul — это рабочий процесс. Этот рабочий процесс может выполняться на основе разных событий — когда в проект вносится изменение, когда оно объединяется и т. д.<br>
+Сам конвейер можно применять к одному или нескольким различным проектам (= репозиториям в размещенной или частной системе контроля версий).
+
 </b></details>
 
 <details>
-<summary>What is a project in Zuul?</summary><br><b>
+<summary>Что такое проект в Zuul?</summary><br><b>
+
+В Zuul **проект** обычно соответствует **одному репозиторию** в системе контроля версий (GitHub, GitLab, Gerrit и т.д.): Zuul подписывается на события этого репозитория и запускает для него **конвейеры (pipelines)** по правилам конфигурации.
+
+Несколько проектов могут использовать один и тот же pipeline; один репозиторий — один проект с точки зрения Zuul.
+
 </b></details>

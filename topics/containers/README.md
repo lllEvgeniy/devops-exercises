@@ -1,248 +1,276 @@
-# Containers
+# Контейнеры
 
-- [Containers](#containers)
-  - [Exercises](#exercises)
-    - [Running Containers](#running-containers)
-    - [Images](#images)
-    - [Misc](#misc)
-  - [Questions](#questions)
-    - [Containers 101](#containers-101)
-    - [Commands Commands](#commands-commands)
-    - [Images](#images-1)
-      - [Registry](#registry)
-      - [Tags](#tags)
-      - [Containerfile](#containerfile)
-    - [Storage](#storage)
-    - [Architecture](#architecture)
-    - [Docker Architecture](#docker-architecture)
+<a id="контейнеры"></a>
+
+- [Контейнеры](#контейнеры)
+  - [Упражнения](#упражнения)
+    - [Запуск контейнеров](#упражнения-запуск-контейнеры)
+    - [Образы](#упражнения-контейнеры-образы)
+    - [Разное](#упражнения-контейнеры-разное)
+  - [Вопросы](#вопросы)
+    - [Контейнеры 101](#контейнеры-101)
+    - [Команды](#команды)
+    - [Образы](#образы)
+      - [Реестр](#реестр)
+      - [Теги](#теги)
+      - [Containerfile / Dockerfile](#containerfile--dockerfile)
+    - [Хранилище](#хранилище)
+    - [Архитектура](#architecture)
+    - [Архитектура Docker](#docker-architecture)
     - [Docker Compose](#docker-compose)
-    - [Networking](#networking)
-    - [Docker Networking](#docker-networking)
-    - [Security](#security)
-    - [Docker in Production](#docker-in-production)
+    - [Сеть](#networking)
+    - [Сеть Docker](#docker-networking)
+    - [Безопасность](#security)
+    - [Докер в производстве](#docker-in-production)
     - [OCI](#oci)
-    - [Scenarios](#scenarios)
+    - [Сценарии](#сценарии)
 
 
-## Exercises
+<a id="упражнения"></a>
+## Упражнения
 
-<a name="exercises-running-containers"></a>
-### Running Containers
+<a id="упражнения-запуск-контейнеры"></a>
+### Запуск контейнеров
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
-|--------|--------|------|----|----|
-|Running Containers|Basics|[Exercise](running_containers.md)|[Solution](solutions/running_containers.md)
-|Containerized Web Server|Applications|[Exercise](containerized_web_server.md)|[Solution](solutions/containerized_web_server.md)
-|Containerized Database|Applications|[Exercise](containerized_db.md)|[Solution](solutions/containerized_db.md)
-|Containerized Database with Persistent Storage|Applications|[Exercise](containerized_db_persistent_storage.md)|[Solution](solutions/containerized_db_persistent_storage.md)
+| Название | Тема | Цель и инструкции | Решение | Комментарии |
+|----------|------|-------------------|---------|---------------|
+| Запуск контейнеров | Основы | [Упражнение](running_containers.md) | [Решение](solutions/running_containers.md) | |
+| Контейнерный веб-сервер | Приложения | [Упражнение](containerized_web_server.md) | [Решение](solutions/containerized_web_server.md) | |
+| Контейнерная база данных | Приложения | [Упражнение](containerized_db.md) | [Решение](solutions/containerized_db.md) | |
+| Контейнерная БД с постоянным хранилищем | Приложения | [Упражнение](containerized_db_persistent_storage.md) | [Решение](solutions/containerized_db_persistent_storage.md) | |
 
-<a name="exercises-containers-images"></a>
-### Images
+<a id="упражнения-контейнеры-образы"></a>
+### Образы
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
-|--------|--------|------|----|----|
-|Working with Images|Image|[Exercise](working_with_images.md)|[Solution](solutions/working_with_images.md)
-|Sharing Images (without a registry)|Images|[Exercise](sharing_images.md)|[Solution](solutions/sharing_images.md)
-|Creating images on the fly|Images|[Exercise](commit_image.md)|[Solution](solutions/commit_image.md)
-|My First Containerfile|Containerfile|[Exercise](write_containerfile_run_container.md)|
+| Название | Тема | Цель и инструкции | Решение | Комментарии |
+|----------|------|-------------------|---------|---------------|
+| Работа с образами | Образ | [Упражнение](working_with_images.md) | [Решение](solutions/working_with_images.md) | |
+| Общий доступ к образам (без реестра) | Образы | [Упражнение](sharing_images.md) | [Решение](solutions/sharing_images.md) | |
+| Создание образов на лету | Образы | [Упражнение](commit_image.md) | [Решение](solutions/commit_image.md) | |
+| Мой первый Containerfile | Containerfile | [Упражнение](write_containerfile_run_container.md) | | |
 
-<a name="exercises-containers-misc"></a>
-### Misc
+<a id="упражнения-контейнеры-разное"></a>
+### Разное
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
-|--------|--------|------|----|----|
-|Run, Forest, Run!|Restart Policies|[Exercise](run_forest_run.md)|[Solution](solutions/run_forest_run.md)
-|Layer by Layer|Image Layers|[Exercise](image_layers.md)|[Solution](solutions/image_layers.md)
-|Containerize an application | Containerization |[Exercise](containerize_app.md)|[Solution](solutions/containerize_app.md)
-|Multi-Stage Builds|Multi-Stage Builds|[Exercise](multi_stage_builds.md)|[Solution](solutions/multi_stage_builds.md)
+| Название | Тема | Цель и инструкции | Решение | Комментарии |
+|----------|------|-------------------|---------|---------------|
+| Беги, лес, беги! | Политики перезапуска | [Упражнение](run_forest_run.md) | [Решение](solutions/run_forest_run.md) | |
+| Послойно | Слои образа | [Упражнение](image_layers.md) | [Решение](solutions/image_layers.md) | |
+| Контейнеризация приложения | Контейнеризация | [Упражнение](containerize_app.md) | [Решение](solutions/containerize_app.md) | |
+| Многоэтапные сборки | Многоэтапные сборки | [Упражнение](multi_stage_builds.md) | [Решение](solutions/multi_stage_builds.md) | |
 
-## Questions
+<a id="вопросы"></a>
+## Вопросы
 
-<a name="questions-containers-101"></a>
-### Containers 101
+<a id="контейнеры-101"></a>
+### Контейнеры 101
 
 <details>
-<summary>What is a Container?</summary><br><b>
+<summary>Что такое контейнер?</summary><br><b>
 
-This can be tricky to answer since there are many ways to create a containers:
+На этот вопрос может быть сложно ответить, поскольку существует множество способов создания контейнеров:
 
-  - Docker
+  - Докер
   - systemd-nspawn
   - LXC
 
-If to focus on OCI (Open Container Initiative) based containers, it offers the following [definition](https://github.com/opencontainers/runtime-spec/blob/master/glossary.md#container): "An environment for executing processes with configurable isolation and resource limitations. For example, namespaces, resource limits, and mounts are all part of the container environment."
+Если сосредоточиться на контейнерах на основе OCI (Open Container Initiative), то он предлагает следующее [определение](https://github.com/opencontainers/runtime-spec/blob/master/glossary.md#container): «Среда для выполнения процессов с настраиваемой изоляцией и ограничениями ресурсов. Например, пространства имен, ограничения ресурсов и монтирования — все это часть среды контейнера».
+
 </b></details>
 
 <details>
-<summary>Why containers are needed? What is their goal?</summary><br><b>
+<summary>Зачем нужны контейнеры? Какова их цель?</summary><br><b>
 
-OCI provides a good [explanation](https://github.com/opencontainers/runtime-spec/blob/master/principles.md#the-5-principles-of-standard-containers): "Define a unit of software delivery called a Standard Container. The goal of a Standard Container is to encapsulate a software component and all its dependencies in a format that is self-describing and portable, so that any compliant runtime can run it without extra dependencies, regardless of the underlying machine and the contents of the container."
+OCI предоставляет хорошее [объяснение](https://github.com/opencontainers/runtime-spec/blob/master/principles.md#the-5-principles-of-standard-containers): «Определите единицу доставки программного обеспечения, называемую стандартным контейнером. Цель стандартного контейнера — инкапсулировать программный компонент и все его зависимости в самоописываемом и переносимом формате, чтобы любая совместимая среда выполнения могла **запустить** его без дополнительных зависимостей, независимо от базовой машины и содержимого контейнера».
+
 </b></details>
 
 <details>
-<summary>What is a container image?</summary><br><b>
+<summary>Что такое образ контейнера?</summary><br><b>
 
-* An image of a container contains the application, its dependencies and the operating system where the application is executed.<br>
-* It's a collection of read-only layers. These layers are loosely coupled
-  * Each layer is assembled out of one or more files
+* Образ контейнера содержит приложение, его зависимости и операционную систему, в которой приложение выполняется.<br>
+* Это коллекция слоев, доступных только для чтения. Эти слои слабо связаны
+  * Каждый слой собирается из одного или нескольких файлов.
+
 </b></details>
 
 <details>
-<summary>How are containers different from virtual machines (VMs)?</summary><br><b>
+<summary>Чем контейнеры отличаются от виртуальных машин (ВМ)?</summary><br><b>
 
-The primary difference between containers and VMs is that containers allow you to virtualize
-multiple workloads on a single operating system while in the case of VMs, the hardware is being virtualized to run multiple machines each with its own guest OS.
-You can also think about it as containers are for OS-level virtualization while VMs are for hardware virtualization.
+Основное различие между контейнерами и виртуальными машинами заключается в том, что контейнеры позволяют виртуализировать
+несколько рабочих нагрузок в одной операционной системе, в то время как в случае виртуальных машин оборудование виртуализируется для запуска нескольких машин, каждая из которых имеет собственную гостевую ОС.
+Вы также можете подумать об этом, поскольку контейнеры предназначены для виртуализации на уровне ОС, а виртуальные машины — для виртуализации оборудования.
 
-* Containers don't require an entire guest operating system as VMs. Containers share the system's kernel as opposed to VMs. They isolate themselves via the use of kernel's features such as namespaces and cgroups
-* It usually takes a few seconds to set up a container as opposed to VMs which can take minutes or at least more time than containers as there is an entire OS to boot and initialize as opposed to containers which has share of the underlying OS
-* Virtual machines considered to be more secured than containers
-* VMs portability considered to be limited when compared to containers
+* Контейнерам не требуется целая гостевая операционная система в качестве виртуальных машин. Контейнеры совместно используют ядро ​​системы, в отличие от виртуальных машин. Они изолируют себя с помощью функций ядра, таких как пространства имен и контрольные группы.
+* Обычно настройка контейнера занимает несколько секунд, в отличие от виртуальных машин, что может занять несколько минут или, по крайней мере, больше времени, чем у контейнеров, поскольку для загрузки и инициализации требуется вся операционная система, в отличие от контейнеров, в которых используется доля базовой ОС.
+* Виртуальные машины считаются более защищенными, чем контейнеры.
+* Переносимость виртуальных машин считается ограниченной по сравнению с контейнерами.
+
 </b></details>
 
 <details>
-<summary>In which scenarios would you use containers and in which you would prefer to use VMs?</summary><br><b>
+<summary>В каких сценариях вы бы использовали контейнеры, а в каких — виртуальные машины?</summary><br><b>
 
-You should choose VMs when:
-  * You need run an application which requires all the resources and functionalities of an OS
-  * You need full isolation and security
+Вам следует выбирать виртуальные машины, когда:
+  * Вам необходимо запустить приложение, которому требуются все ресурсы и функции ОС.
+  * Вам нужна полная изоляция и безопасность
 
-You should choose containers when:
-  * You need a lightweight solution
-  * Running multiple versions or instances of a single application
+Вам следует выбирать контейнеры, когда:
+  * Вам нужно легкое решение
+  * Запуск нескольких версий или экземпляров одного приложения.
+
 </b></details>
 
 <details>
-<summary>Describe the process of containerizing an application</summary><br><b>
+<summary>Описать процесс контейнеризации приложения.</summary><br><b>
 
-1. Write a Containerfile/Dockerfile that includes your app (including the commands to run it) and its dependencies
-2. Build the image using the Containerfile/Dockefile you wrote
-3. You might want to push the image to a registry
-4. Run the container using the image you've built
+1. Напишите файл-контейнер/Dockerfile, включающий ваше приложение (включая команды для его запуска) и его зависимости.
+2. Создайте образ, используя написанный вами файл Containerfile/Dockefile.
+3. Возможно, вы захотите отправить образ в реестр.
+4. Запустите контейнер, используя созданный вами образ.
+
 </b></details>
 
 <details>
-<summary>What are some of the advantages in using containers? you can compare to other options like VMs</summary><br><b>
+<summary>Каковы преимущества использования контейнеров? вы можете сравнить с другими вариантами, такими как виртуальные машины</summary><br><b>
 
-* Reusable: container can be used by multiple different users for different usages - production vs. staging, development, testing, etc.
-* Lightweight: containers are fairly lightweight which means deployments can be done quickly since you don't need to install a full OS (as in VMs for example)
-* Isolation: Containers are isolated environments, usually changes made to the OS won't affect the containers and vice-versa
+* Переиспользование: один и тот же образ — для dev/stage/prod.
+* Легковесность: не нужна полная гостевая ОС на каждый экземпляр, как у ВМ.
+* Изоляция: отдельные пространства имён и лимиты ресурсов; изменения внутри контейнера не должны затрагивать хост (при корректной конфигурации).
+
 </b></details>
 
-<a name="questions-common-commands"></a>
-### Commands Commands
+<a id="команды"></a>
+### Команды
 
-Note: I've used `Podman` in the answers, but other containers engines can be used as well (e.g. Docker)
+Примечание. В ответах я использовал Podman, но можно использовать и другие контейнерные движки (например, Docker).
 
 <details>
-<summary>How to run a container?</summary><br><b>
+<summary>Как запустить контейнер?</summary><br><b>
 
 `podman run ubuntu`
+
 </b></details>
 
 <details>
-<summary>Why after running <code>podman container run ubuntu</code> the output of <code>podman container ls</code> is empty?</summary><br><b>
+<summary>Почему после запуска <code>podman run ubuntu</code> вывод <code>podman ps</code> пуст?</summary><br><b>
 
-Because the container immediately exits after running the ubuntu image. This is completely normal and expected as containers designed to run a service or a app and exit when they are done running it. To see the container you can run `podman ps -a`
+Потому что контейнер сразу закрывается после запуска образа ubuntu. Это совершенно нормально и ожидаемо, поскольку контейнеры предназначены для запуска службы или приложения и завершают работу после завершения их запуска. Чтобы увидеть контейнер, вы можете запустить `podman ps -a`
 
-If you want the container to keep running, you can run a command like `sleep 100` which will run for 100 seconds or you can attach to terminal of the container with a command similar: `podman container run -it ubuntu /bin/bash`
+Если вы хотите, чтобы контейнер продолжал работать, вы можете запустить команду типа «sleep 100», которая будет выполняться в течение 100 секунд, или вы можете подключиться к терминалу контейнера с помощью аналогичной команды: «podman run -it ubuntu /bin/bash».
+
 </b></details>
 
 <details>
-<summary>How to list all the containers on the local host?</summary><br><b>
+<summary>Как перечислить все контейнеры на локальном хосте?</summary><br><b>
 
-`podman container ls`
+`podman ps -a` или `podman container ls -a`
+
 </b></details>
 
 <details>
-<summary>How to attach your shell to a terminal of a running container?</summary><br><b>
+<summary>Как прикрепить оболочку к терминалу работающего контейнера?</summary><br><b>
 
-`podman container exec -it [container id/name] bash`
+`podman exec -it [идентификатор/имя контейнера] bash`
 
-This can be done in advance while running the container: `podman container run -it [image:tag] /bin/bash`
+Это можно сделать заранее во время запуска контейнера: `podman run -it [image:tag]/bin/bash`
+
 </b></details>
 
 <details>
-<summary>True or False? You can remove a running container if it doesn't running anything</summary><br><b>
+<summary>Правда или ложь? Вы можете удалить работающий контейнер, если в нем ничего не выполняется.</summary><br><b>
 
-False. You have to stop the container before removing it.
+Неверно. Вы должны остановить контейнер, прежде чем удалить его.
+
 </b></details>
 
 <details>
-<summary>How to stop and remove a container?</summary><br><b>
+<summary>Как остановить и удалить контейнер?</summary><br><b>
 
-`podman container stop <container id/name> && podman container rm <container id/name>`
+`podman stop <id-или-имя> && podman rm <id-или-имя>`
+
 </b></details>
 
 <details>
-<summary>What happens when you run <code>docker container run ubuntu</code>?</summary><br><b>
+<summary>Что происходит, когда вы запускаете <code>docker container run ubuntu</code>?</summary><br><b>
 
-1. Docker client posts the command to the API server running as part of the Docker daemon
-2. Docker daemon checks if a local image exists
-  1. If it exists, it will use it
-  2. If doesn't exists, it will go to the remote registry (Docker Hub by default) and pull the image locally
-3. containerd and runc are instructed (by the daemon) to create and start the container
+1. Клиент Docker отправляет команду на сервер API, работающий как часть демона Docker.
+2. Демон Docker проверяет, существует ли локальный образ.
+  1. Если он существует, он будет его использовать
+  2. Если его не существует, он перейдет в удаленный реестр (по умолчанию Docker Hub) и извлечет образ локально.
+  3. **containerd** и **runc** получают указание создать и запустить контейнер.
+
 </b></details>
 
 <details>
-<summary>How to run a container in the background?</summary><br><b>
+<summary>Как запустить контейнер в фоновом режиме?</summary><br><b>
 
-With the -d flag. It will run in the background and will not attach it to the terminal.
+С флагом -d. Он будет работать в фоновом режиме и не будет подключаться к терминалу.
 
-`docker container run -d httpd` or `podman container run -d httpd`
+`docker run -d httpd` или `podman run -d httpd`
+
 </b></details>
 
 <details>
-<summary>If you'll run <code>sleep 100</code> inside a container, will you see it when listing all the processes of the host on which the container runs? Why?</summary><br><b>
+<summary>Если вы запустите <code>sleep 100</code> внутри контейнера, увидите ли вы это при выводе списка всех процессов хоста, на котором работает контейнер? Почему?</summary><br><b>
+
+Да, процесс обычно **виден на хосте** в `ps`/`top`: контейнер использует изоляцию пространств имён ядра, но это не отдельная виртуальная машина — процессы выполняются в том же ядре Linux. Идентификатор PID на хосте и внутри контейнера различаются (отдельные PID namespace).
+
 </b></details>
 
 <details>
-<summary>True or False? If image <code>httpd-service</code> has an entry point for running the httpd service then, the following will run the container and eventually the httpd service <code>podman run httpd-service ls</code></summary><br><b>
+<summary>Правда или ложь? Если у изображения <code>httpd-service</code> есть точка входа для запуска службы httpd, то следующее запустит контейнер и, в конечном итоге, служба httpd <code>podman run httpd-service ls</code></summary><br><b>
 
-False. Running that command will override the entry point so the httpd service won't run and instead podman will run the `ls` command.
+Неверно. Так вы **переопределяете** команду образа: вместо entrypoint/CMD httpd будет выполнена только `ls`, и httpd не стартует.
+
 </b></details>
 
 <details>
-<summary>True or False? Running <code>podman restart CONTAINER_NAME</code> kills the main process inside the container and runs it again from scratch</summary><br><b>
+<summary>Правда или ложь? Запуск <code>podman restart CONTAINER_NAME</code> убивает основной процесс внутри контейнера и запускает его заново с нуля.</summary><br><b>
 
-False. `podman restart` creates an entirely new container with the same ID while reusing the filesystem and state of the original container.
+Неверно. `podman restart` создает совершенно новый контейнер с тем же идентификатором, повторно используя файловую систему и состояние исходного контейнера.
+
 </b></details>
 
 <details>
-<summary>You would like to run a web server inside a container but, be able to access it from the localhost. Demonstrate how to do that</summary><br><b>
+<summary>Вы хотели бы запустить веб-сервер внутри контейнера, но иметь возможность доступа к нему с локального хоста. Покажите, как это сделать</summary><br><b>
 
 ```
 podman run -d --name apache1 -p 8080:8080 registry.redhat.io/rhel8/httpd-24
 curl 127.0.0.1:8080
 ```
+
 </b></details>
 
 <details>
-<summary>After running a container, it stopped. <code>podman ps</code> shows nothing. How can you show its details?</summary><br><b>
+<summary>После запуска контейнера он остановился. <code>podman ps</code> ничего не показывает. Как вы можете показать его детали?</summary><br><b>
 
-`podman ps -a` will shows also the details of a stopped container.
+`podman ps -a` также покажет подробную информацию об остановленном контейнере.
+
 </b></details>
 
 <details>
-<summary>How to list all the image tags for a given container image?</summary><br><b>
+<summary>Как составить список всех тегов изображения для данного образа контейнера?</summary><br><b>
 
 `podman search --list-tags IMAGE_NAME`
+
 </b></details>
 
-<a name="questions-images"></a>
-### Images
+<a id="образы"></a>
+### Образы
 
 <details>
-<summary>Why container images are relatively small?</summary><br><b>
+<summary>Почему образы контейнеров относительно малы?</summary><br><b>
 
-* Most of the images don't contain Kernel. They share and access the one used by the host on which they are running
-* Containers intended to run specific application in most cases. This means they hold only what the application needs in order to run
+* Большинство изображений не содержат ядра. Они совместно используют и получают доступ к тому, который используется хостом, на котором они работают.
+* Контейнеры, в большинстве случаев предназначенные для запуска конкретных приложений. Это означает, что они содержат только то, что необходимо приложению для запуска.
+
 </b></details>
 
 <details>
-<summary>You are interested in running a container with snake game application. How can you search for such image and check if it exists?</summary><br><b>
+<summary>Вы заинтересованы в запуске контейнера с игровым приложением «Змейка». Как найти такое изображение и проверить, существует ли оно?</summary><br><b>
 
-`podman search snake-game`. Surprisingly, there are a couple of matches :)
+`podman search snake-game`. На удивление, есть пара совпадений :)
 
 ```
 INDEX       NAME                                                                DESCRIPTION                                      STARS
@@ -253,1021 +281,1155 @@ docker.io   docker.io/harish1551/snake-game                                     
 docker.io   docker.io/spkane/snake-game                                         A console based snake game in a container        0
 docker.io   docker.io/rahulgadre/snake-game                                     This repository contains all the files to ru...  0
 ```
+
 </b></details>
 
 <details>
-<summary>How to list the container images on certain host?</summary><br><b>
+<summary>Как перечислить образы контейнеров на определенном хосте?</summary><br><b>
 
 ```
 CONTAINER_BINARY=podman
 $CONTAINER_BINARY images
-```
 
-Note: you can also use `$CONTAINER_RUNTIME image ls`
+Примечание: вы также можете использовать `$CONTAINER_RUNTIME image ls`
+
 </b></details>
 
 <details>
-<summary>How to download/pull a container image without actually running a container?</summary><br><b>
+<summary>Как загрузить/извлечь образ контейнера, не запуская контейнер?</summary><br><b>
 
 ```
 CONTAINER_BINARY=podman
 $CONTAINER_BINARY pull rhel
 ```
+
 </b></details>
 
 <details>
-<summary>True or False? It's not possible to remove an image if a certain container is using it</summary><br><b>
+<summary>Правда или ложь? Невозможно удалить изображение, если его использует определенный контейнер.</summary><br><b>
 
-True. You should stop and remove the container before trying to remove the image it uses.
+Верно. Вам следует остановить и удалить контейнер, прежде чем пытаться удалить изображение, которое он использует.
+
 </b></details>
 
 <details>
-<summary>True or False? If a tag isn't specified when pulling an image, the 'latest' tag is being used</summary><br><b>
+<summary>Правда или ложь? Если тег не указан при извлечении изображения, используется тег «последний».</summary><br><b>
 
-True
+Верно.
+
 </b></details>
 
 <details>
-<summary>True or False? Using the 'latest' tag when pulling an image means, you are pulling the most recently published image</summary><br><b>
+<summary>Правда или ложь? Использование тега «последний» при извлечении изображения означает, что вы извлекаете самое последнее опубликованное изображение.</summary><br><b>
 
-False. While this might be true in some cases, it's not guaranteed that you'll pull the latest published image when using the 'latest' tag.<br>
-For example, in some images, 'edge' tag is used for the most recently published images.
+Неверно. Хотя в некоторых случаях это может быть правдой, не гарантируется, что вы получите последнее опубликованное изображение при использовании тега «последний».<br>
+Например, в некоторых изображениях тег «edge» используется для последних опубликованных изображений.
+
 </b></details>
 
 <details>
-<summary>Where pulled images are stored?</summary><br><b>
+<summary>Где хранятся извлеченные изображения?</summary><br><b>
 
-Depends on the container technology being used. For example, in case of Docker, images are stored in `/var/lib/docker/`
+Зависит от используемой контейнерной технологии. Например, в случае Docker изображения хранятся в `/var/lib/docker/`.
+
 </b></details>
 
 <details>
-<summary>Explain container image layers</summary><br><b>
+<summary>Объяснение слоев образа контейнера</summary><br><b>
 
-  - The layers of an image is where all the content is stored - code, files, etc.
-  - Each layer is independent
-  - Each layer has an ID that is an hash based on its content
-  - The layers (as the image) are immutable which means a change to one of the layers can be easily identified
+- В слоях изображения хранится весь контент — код, файлы и т. д.
+  - Каждый слой независим
+  - Каждый слой имеет идентификатор, который представляет собой хэш, основанный на его содержимом.
+  - Слои (как и изображение) неизменяемы, что означает, что изменение одного из слоев можно легко определить.
+
 </b></details>
 
 <details>
-<summary>True or False? Changing the content of any of the image layers will cause the hash content of the image to change</summary><br><b>
+<summary>Правда или ложь? Изменение содержимого любого из слоев изображения приведет к изменению хеш-содержимого изображения.</summary><br><b>
 
-True. These hashes are content based and since images (and their layers) are immutable, any change will cause the hashes to change.
+Верно. Эти хеши основаны на контенте, и поскольку изображения (и их слои) неизменяемы, любое изменение приведет к изменению хэшей.
+
 </b></details>
 
 <details>
-<summary>How to list the layers of an image?</summary><br><b>
+<summary>Как составить список слоев изображения?</summary><br><b>
 
-In case of Docker, you can use `docker image inspect <name>`
+В случае Docker вы можете использовать `docker image Inspect <name>`
+
 </b></details>
 
 <details>
-<summary>True or False? In most cases, container images contain their own kernel</summary><br><b>
+<summary>Правда или ложь? В большинстве случаев образы контейнеров содержат собственное ядро.</summary><br><b>
 
-False. They share and access the one used by the host on which they are running.
+Неверно. Они совместно используют и получают доступ к тому, который используется хостом, на котором они работают.
+
 </b></details>
 
 <details>
-<summary>True or False? A single container image can have multiple tags</summary><br><b>
+<summary>Правда или ложь? Один образ контейнера может иметь несколько тегов.</summary><br><b>
 
-True. When listing images, you might be able to see two images with the same ID but different tags.
+Верно. При перечислении изображений вы можете увидеть два изображения с одинаковым идентификатором, но с разными тегами.
+
 </b></details>
 
 <details>
-<summary>What is a dangling image?</summary><br><b>
+<summary>Что такое висячее изображение?</summary><br><b>
 
-It's an image without tags attached to it.
-One way to reach this situation is by building an image with exact same name and tag as another already existing image. It can be still referenced by using its full SHA.
+Это изображение без прикрепленных к нему тегов.
+Один из способов достичь этой ситуации — создать изображение с тем же именем и тегом, что и у другого уже существующего изображения. На него по-прежнему можно ссылаться, используя его полный SHA.
+
 </b></details>
 
 <details>
-<summary>How to see changes done to a given image over time?</summary><br><b>
+<summary>Как увидеть изменения, внесенные в данное изображение с течением времени?</summary><br><b>
 
-In the case of Docker, you could use `docker history <name>`
+В случае с Docker вы можете использовать `docker History <имя>`
+
 </b></details>
 
 <details>
-<summary>What `podman commit` does?. When will you use it?</summary><br><b>
+<summary>Что делает `podman commit`? Когда вы будете его использовать?</summary><br><b>
 
-Creates a new image from a running container. Users can apply extra changes to be saved in the new image version.
+Создает новый образ из работающего контейнера. Пользователи могут внести дополнительные изменения, которые будут сохранены в новой версии изображения.
 
-Most of the time the user case for using `podman commit` would be to apply changes allowing to better debug the container. Not so much for creating a new image since commit adds additional overhead of potential logs and processes, not required for running the application in the container. This eventually makes images created by `podman commit` bigger due to the additional data stored there.
+В большинстве случаев пользователь использует `podman commit` для внесения изменений, позволяющих лучше отлаживать контейнер. Не так уж и много для создания нового образа, поскольку фиксация добавляет дополнительные затраты на потенциальные журналы и процессы, не необходимые для запуска приложения в контейнере. В конечном итоге это увеличивает размеры изображений, созданных с помощью `podman commit`, из-за дополнительных данных, хранящихся там.
+
 </b></details>
 
 <details>
-<summary>True or False? Multiple images can share layers</summary><br><b>
+<summary>Правда или ложь? Несколько изображений могут иметь общие слои</summary><br><b>
 
-True.<br>
-One evidence for that can be found in pulling images. Sometimes when you pull an image, you'll see a line similar to the following:<br>
-`fa20momervif17: already exists`
+Верно.<br>
+Одно из доказательств этого можно найти в извлечении изображений. Иногда, когда вы извлекаете изображение, вы видите строку, подобную следующей:<br>
+`fa20momervif17: уже существует`
 
-This is because it recognizes such layer already exists on the host, so there is no need to pull the same layer twice.
+Это связано с тем, что он распознает, что такой уровень уже существует на хосте, поэтому нет необходимости дважды загружать один и тот же уровень.
+
 </b></details>
 
 <details>
-<summary>What is the digest of an image? What problem does it solves?</summary><br><b>
+<summary>Что такое дайджест изображения? Какую проблему он решает?</summary><br><b>
 
-Tags are mutable. This is mean that we can have two different images with the same name and the same tag. It can be very confusing to see two images with the same name and the same tag in your environment. How would you know if they are truly the same or are they different?<br>
+Теги изменяемы. Это означает, что у нас может быть два разных изображения с одинаковым именем и одним и тем же тегом. Видеть в своей среде два изображения с одинаковым именем и одним и тем же тегом может быть очень запутанно. Как узнать, действительно ли они одинаковые или разные?<br>
 
-This is where "digests` come handy. A digest is a content-addressable identifier. It isn't mutable as tags. Its value is predictable and this is how you can tell if two images are the same content wise and not merely by looking at the name and the tag of the images.
+Вот тут-то и пригодятся «дайджесты». Дайджест — это идентификатор, адресуемый по содержимому. Он не изменяем, как теги. Его значение предсказуемо, и именно так вы можете определить, имеют ли два изображения одинаковое содержание, а не просто глядя на имя и тег изображений.
+
 </b></details>
 
 <details>
-<summary>True or False? A single image can support multiple architectures (Linux x64, Windows x64, ...)</summary><br><b>
+<summary>Правда или ложь? Один образ может поддерживать несколько архитектур (Linux x64, Windows x64,...).</summary><br><b>
 
-True.
+Верно.
+
 </b></details>
 
 <details>
-<summary>What is a distribution hash in regards to layers?</summary><br><b>
+<summary>Что такое хеш распределения по слоям?</summary><br><b>
 
-  - Layers are compressed when pushed or pulled
-  - distribution hash is the hash of the compressed layer
-  - the distribution hash used when pulling or pushing images for verification (making sure no one tempered with image or layers)
-  - It's also used for avoiding ID collisions (a case where two images have exactly the same generated ID)
+- Слои сжимаются при нажатии или вытягивании
+  - хэш распределения - это хеш сжатого слоя
+  - хэш распределения, используемый при извлечении или отправке изображений для проверки (следя за тем, чтобы никто не изменял изображение или слои)
+  - Он также используется для предотвращения конфликтов идентификаторов (случай, когда два изображения имеют одинаковый сгенерированный идентификатор)
+
 </b></details>
 
 <details>
-<summary>How multi-architecture images work? Explain by describing what happens when an image is pulled</summary><br><b>
+<summary>Как работают мультиархитектурные изображения? Объясните, описав, что происходит, когда изображение вытягивается.</summary><br><b>
 
-1. A client makes a call to the registry to use a specific image (using an image name and optionally a tag)
-2. A manifest list is parsed (assuming it exists) to check if the architecture of the client is supported and available as a manifest
-3. If it is supported (a manifest for the architecture is available) the relevant manifest is parsed to obtain the IDs of the layers
-4. Each layer is then pulled using the obtained IDs from the previous step
+1. Клиент обращается к реестру, чтобы использовать определенный образ (используя имя образа и, возможно, тег).
+2. Анализируется список манифестов (при условии, что он существует), чтобы проверить, поддерживается ли архитектура клиента и доступна ли она в виде манифеста.
+3. Если поддерживается (имеется манифест для архитектуры) соответствующий манифест анализируется для получения идентификаторов слоев.
+4. Затем каждый слой извлекается с использованием идентификаторов, полученных на предыдущем шаге.
+
 </b></details>
 
 <details>
-<summary>How to check which architectures a certain container image supports?</summary><br><b>
+<summary>Как проверить, какие архитектуры поддерживает определенный образ контейнера?</summary><br><b>
 
-`docker manifest inspect <name>`
+`Docker Manifest Inspect <имя>`
+
 </b></details>
 
 <details>
-<summary>How to check what a certain container image will execute once we'll run a container based on that image?</summary><br><b>
+<summary>Как проверить, что будет выполнять определенный образ контейнера, когда мы запустим контейнер на основе этого образа?</summary><br><b>
 
-Look for "Cmd" or "Entrypoint" fields in the output of `docker image inspec <image name>`
+Найдите поля «Cmd» или «Entrypoint» в выводе `docker image inspec <имя изображения>`
+
 </b></details>
 
 <details>
-<summary>How to view the instructions that were used to build image?</summary><br><b>
+<summary>Как просмотреть инструкции, которые использовались для сборки образа?</summary><br><b>
 
-`docker image history <image name>:<tag>`
+`podman history <имя-образа>:<тег>`
+
 </b></details>
 
 <details>
-<summary>How <code>docker image build</code> works?</summary><br><b>
+<summary>Как работает <code>docker image build</code>?</summary><br><b>
 
-1. Docker spins up a temporary container
-2. Runs a single instruction in the temporary container
-3. Stores the result as a new image layer
-4. Remove the temporary container
-5. Repeat for every instruction
+1. Докер запускает временный контейнер.
+2. Запускает одну инструкцию во временном контейнере.
+3. Сохраняет результат как новый слой изображения.
+4. Удалите временный контейнер
+5. Повторите для каждой инструкции.
+
 </b></details>
 
 <details>
-<summary>What is the role of cache in image builds?</summary><br><b>
+<summary>Какова роль кеша в сборке изображений?</summary><br><b>
 
-When you build an image for the first time, the different layers are being cached. So, while the first build of the image might take time, any other build of the same image (given that Containerfile/Dockerfile didn't change or the content used by the instructions) will be instant thanks to the caching mechanism used.
+Когда вы создаете изображение в первый раз, различные слои кэшируются. Таким образом, хотя первая сборка образа может занять некоторое время, любая другая сборка того же образа (при условии, что Containerfile/Dockerfile не изменилась или содержимое, используемое инструкциями) будет мгновенным благодаря используемому механизму кэширования.
 
-In little bit more details, it works this way:
-1. The first instruction (FROM) will check if base image already exists on the host before pulling it 
-2. For the next instruction, it will check in the build cache if an existing layer was built from the same base image + if it used the same instruction
-  1. If it finds such layer, it skips the instruction and links the existing layer and it keeps using the cache.
-  2. If it doesn't find a matching layer, it builds the layer and the cache is invalidated.
+Немного подробнее, это работает следующим образом:
+1. Первая инструкция (FROM) проверит, существует ли уже базовый образ на хосте, прежде чем извлекать его. 
+2. Для следующей инструкции он проверит в кеше сборки, был ли существующий слой построен из того же базового образа + использовалась ли та же инструкция.
+  1. Если он находит такой слой, он пропускает инструкцию, связывает существующий слой и продолжает использовать кеш.
+  2. Если он не находит соответствующий слой, он создает слой, и кеш становится недействительным.
 
-Note: in some cases (like COPY and ADD instructions) the instruction might stay the same but if the content of what being copied is changed then the cache is invalidated. The way this check is done is by comparing the checksum of each file that is being copied.
+Примечание. В некоторых случаях (например, инструкции COPY и ADD) инструкция может остаться прежней, но если содержимое копируемого объекта изменится, кеш станет недействительным. Эта проверка осуществляется путем сравнения контрольной суммы каждого копируемого файла.
+
 </b></details>
 
 <details>
-<summary>How to remove an image from the host?</summary><br><b>
+<summary>Как удалить изображение с хоста?</summary><br><b>
 
 `podman rmi IMAGE`
 
-It will fail if some containers are using it. You can then use `--force` flag for that but generally, it's better if you inspect the containers using the image before doing so.
+Это не удастся, если некоторые контейнеры его используют. Затем вы можете использовать для этого флаг `--force`, но, как правило, лучше перед этим проверить контейнеры с помощью изображения.
 
-To delete all images: `podman rmi -a`
+Чтобы удалить все изображения: `podman rmi -a`
+
 </b></details>
 
 <details>
-<summary>What ways are there to reduce container images size?</summary><br><b>
+<summary>Какие существуют способы уменьшить размер образов контейнеров?</summary><br><b>
 
-  * Reduce number of instructions - in some case you may be able to join layers by installing multiple packages with one instructions for example or using `&&` to concatenate RUN instructions
-  * Using smaller images - in some cases you might be using images that contain more than what is needed for your application to run. It is good to get overview of some images and see whether you can use smaller images that you are usually using.
-  * Cleanup after running commands - some commands, like packages installation, create some metadata or cache that you might not need for running the application. It's important to clean up after such commands to reduce the image size
-  * For Docker images, you can use multi-stage builds
+* Уменьшите количество инструкций — в некоторых случаях вы можете объединить слои, например, установив несколько пакетов с одной инструкцией или используя `&&` для объединения инструкций RUN.
+  * Использование изображений меньшего размера. В некоторых случаях вы можете использовать изображения, которые содержат больше, чем необходимо для запуска вашего приложения. Полезно получить обзор некоторых изображений и посмотреть, можете ли вы использовать изображения меньшего размера, которые вы обычно используете.
+  * Очистка после выполнения команд — некоторые команды, например установка пакетов, создают некоторые метаданные или кеш, которые могут вам не понадобиться для запуска приложения. Важно производить очистку после таких команд, чтобы уменьшить размер изображения.
+  * Для образов Docker можно использовать многоэтапные сборки.
+
 </b></details>
 
 <details>
-<summary>What are the pros and cons of squashing images?</summary><br><b>
+<summary>Каковы плюсы и минусы сдавливания изображений?</summary><br><b>
 
-Pros:
-  * Smaller image
-  * Reducing number of layers (especially if the image has lot of layers)
-Cons:
-  * No sharing of the image layers
-  * Push and pull can take more time (because no matching layers found on target)
+Плюсы:
+  * Уменьшенное изображение
+  * Уменьшение количества слоев (особенно если изображение много слоев)
+Минусы:
+  * Нет совместного использования слоев изображения.
+  * Нажатие и вытягивание может занять больше времени (поскольку на цели не найдено подходящих слоев).
+
 </b></details>
 
 <details>
-<summary>You would like to share an image with another developer, but without using a registry. How would you do it?</summary><br><b>
+<summary>Вы хотите поделиться изображением с другим разработчиком, но без использования реестра. Как бы вы это сделали?</summary><br><b>
 
 ```
-# On the local host
+# На локальной машине
 podman save -o some_image.tar IMAGE
 rsync some_image.tar SOME_HOST
 
-# On the remote host
+# На удалённой машине
 podman load -i some_image.tar
 ```
+
 </b></details>
 
 <details>
-<summary>True or False? Once a container is stopped and removed, its image removed as well from the host</summary><br><b>
+<summary>Правда или ложь? Как только контейнер остановлен и удален, его образ также удаляется с хоста.</summary><br><b>
 
-False. The image will still be available for use by potential containers in the future.<br>
-To remove the container, run `podman rmi IMAGE`
+Неверно. Образ остаётся на хосте, пока вы явно не удалите его командой `podman rmi IMAGE`.
+
 </b></details>
 
 <details>
-<summary>How to view the instructions that were used to build image?</summary><br><b>
+<summary>Как просмотреть инструкции, которые использовались для сборки образа?</summary><br><b>
 
-`docker image history <image name>:<tag>`
+`podman history <имя-образа>:<тег>`
+
 </b></details>
 
 <details>
-<summary>How to find out which files were added to the container image filesystem?</summary><br><b>
+<summary>Как узнать, какие файлы были добавлены в файловую систему образа контейнера?</summary><br><b>
 
 `podman diff IMAGE_NAME`
+
 </b></details>
 
 <details>
-<summary>True or False? <code>podman diff</code> works only on the container filesystem and not mounted files</summary><br><b>
+<summary>Правда или ложь? <code>podman diff</code> работает только с файловой системой контейнера, а не с смонтированными файлами.</summary><br><b>
 
-True. For mounted files you can use `podman inspec CONTAINER_NAMD/ID`
+Верно. Для смонтированных томов смотрите `podman inspect CONTAINER_NAME_OR_ID`.
+
 </b></details>
 
 <details>
-<summary>How the centralized location, where images are stored, is called?</summary><br><b>
+<summary>Как называется централизованное место хранения изображений?</summary><br><b>
 
-Registry
+Реестр
+
 </b></details>
 
-#### Registry
+<a id="реестр"></a>
+#### Реестр
 
 <details>
-<summary>What is a Registry?</summary><br><b>
+<summary>Что такое реестр?</summary><br><b>
 
-- A registry is a service which stores container images and allows users to pull specified images to run containers.
-- There are public registries (everyone can access them) and private (accessed only internally in the organization or specific network)
-</b></details>
+— Реестр — это служба, которая хранит образы контейнеров и позволяет пользователям извлекать определенные образы для запуска контейнеров.
+- Существуют публичные реестры (к ним может получить доступ каждый) и частные (доступны только внутри организации или конкретной сети)
 
-<details>
-<summary>A registry contains one or more <code>____</code> which in turn contain one or more <code>____</code></summary><br><b>
-
-A registry contains one or more repositories which in turn contain one or more images.
 </b></details>
 
 <details>
-<summary>How to find out which registry do you use by default from your environment?</summary><br><b>
+<summary>Реестр содержит один или несколько <code>____</code>, которые, в свою очередь, содержат один или несколько <code>____</code></summary><br><b>
 
-Depends on the containers technology you are using. For example, in case of Docker, it can be done with `docker info`
+Реестр содержит один или несколько репозиториев, которые, в свою очередь, содержат один или несколько изображений.
+
+</b></details>
+
+<details>
+<summary>Как узнать, какой реестр вы используете по умолчанию из своей среды?</summary><br><b>
+
+Зависит от технологии контейнеров, которую вы используете. Например, в случае Docker это можно сделать с помощью `docker info`.
 
 ```
 > docker info
 Registry: https://index.docker.io/v1
 ```
+
 </b></details>
 
 <details>
-<summary>How to configure registries with the containers engine you are using?</summary><br><b>
+<summary>Как настроить реестры с помощью механизма контейнеров, который вы используете?</summary><br><b>
 
-For podman, registries can be configured in `/etc/containers/registries.conf` this way:
+Для podman реестры можно настроить в `/etc/containers/registries.conf` следующим образом:
 
 ```
 [registries.search]
 registries = ["quay.io"]
 ```
+
 </b></details>
 
 <details>
-<summary>How to retrieve the latest ubuntu image?</summary><br><b>
+<summary>Как получить последний образ Ubuntu?</summary><br><b>
 
-`podman image pull ubuntu:latest`
+`podman pull ubuntu:latest`
+
 </b></details>
 
 <details>
-<summary>How to push an image to a registry?</summary><br><b>
+<summary>Как закинуть образ в реестр?</summary><br><b>
 
 `podman push IMAGE`
 
-You can specify a specific registry: `podman push IMAGE REGISTRY_ADDRESS`
+Вы можете указать конкретный реестр: `podman push IMAGE REGISTRY_ADDRESS`
+
 </b></details>
 
 <details>
-<summary>What are some best practices in regards to Container Images?</summary><br><b>
+<summary>Каковы лучшие практики в отношении образов контейнеров?</summary><br><b>
 
-- Use tags. Using `latest` is quite common (which can mean latest build or latest release)
-  - tag like `3.1` can be used to reference the latest release/tag of the image like `3.1.6`
-- Don't use `commit` for creating new official images as they include the overhead of logs and processes and usually end up with bigger images
-- For sharing the image, use a registry (either a public or a private one, depends on your needs)
+- Используйте теги. Использование `latest` довольно распространено (это может означать последнюю сборку или последнюю версию).
+  - тег типа «3.1» может использоваться для ссылки на последнюю версию/тег изображения, например «3.1.6».
+- Не используйте `commit` для создания новых официальных образов, так как они включают в себя накладные расходы на журналы и процессы и обычно приводят к созданию изображений большего размера.
+- Чтобы поделиться изображением, используйте реестр (публичный или частный, в зависимости от ваших потребностей)
+
 </b></details>
 
 <details>
-<summary>What ways are there for creating new images?</summary><br><b>
+<summary>Какие существуют способы создания новых изображений?</summary><br><b>
 
-1. Create a Containerfile/Dockerfile and build an image out of it
-2. Using `podman commit` on a running container after making changes to it
+1. Создайте файл-контейнер/Dockerfile и создайте из него образ.
+2. Использование `podman commit` в работающем контейнере после внесения в него изменений.
+
 </b></details>
 
-#### Tags
+<a id="теги"></a>
+#### Теги
 
 <details>
-<summary>What are image tags? Why is it recommended to use tags when supporting multiple releases/versions of a project?</summary><br><b>
+<summary>Что такое теги изображений? Почему рекомендуется использовать теги при поддержке нескольких выпусков/версий проекта?</summary><br><b>
 
-Image tags are used to distinguish between multiple versions of the same software or project. Let's say you developed a project called "FluffyUnicorn" and the current release is `1.0`. You are about to release `1.1` but you still want to keep `1.0` as stable release for anyone who is interested in it. What would you do? If your answer is create another, separate new image, then you probably want to rethink the idea and just create a new image tag for the new release.
+Теги изображений используются для различения нескольких версий одного и того же программного обеспечения или проекта. Допустим, вы разработали проект под названием «FluffyUnicorn», и текущая версия — «1.0». Вы собираетесь выпустить «1.1», но по-прежнему хотите сохранить «1.0» как стабильную версию для всех, кто в ней заинтересован. Что бы вы сделали? Если ваш ответ — создать еще одно отдельное новое изображение, то вы, вероятно, захотите переосмыслить эту идею и просто создать новый тег изображения для нового выпуска.
 
-In addition, it's important to note that container registries support tags. So when pulling an image, you can specify a specific tag of that image.
+Кроме того, важно отметить, что реестры контейнеров поддерживают теги. Поэтому при извлечении изображения вы можете указать конкретный тег этого изображения.
+
 </b></details>
 
 <details>
-<summary>How to tag an image?</summary><br><b>
+<summary>Как пометить изображение?</summary><br><b>
 
 `podman tag IMAGE:TAG`
 
-for example: `podman tag FluffyUnicorn:latest`
+например: `podman tag FluffyUnicorn:latest`
+
 </b></details>
 
 <details>
-<summary>True or False? Once created, it's impossible to remove a tag for a certain image</summary><br><b>
+<summary>Правда или ложь? После создания невозможно удалить тег для определенного изображения.</summary><br><b>
 
-False. You can run `podman rmi IMAGE:TAG`.
+Неверно. Вы можете запустить `podman rmi IMAGE:TAG`.
+
 </b></details>
 
 <details>
-<summary>True or False? Multiple tags can reference the same image</summary><br><b>
+<summary>Правда или ложь? Несколько тегов могут ссылаться на одно и то же изображение.</summary><br><b>
 
-True.
+Верно.
+
 </b></details>
 
-#### Containerfile
+<a id="containerfile--dockerfile"></a>
+#### Файл-контейнер
 
 <details>
-<summary>What is a Containerfile/Dockerfile?</summary><br><b>
+<summary>Что такое файл-контейнер/Dockerfile?</summary><br><b>
 
-Different container engines (e.g. Docker, Podman) can build images automatically by reading the instructions from a Containerfile/Dockerfile. A Containerfile/Dockerfile is a text file that contains all the instructions for building an image which containers can use.
-</b></details>
+Различные контейнерные движки (например, Docker, Podman) могут создавать образы автоматически, читая инструкции из Containerfile/Dockerfile. Файл-контейнер/Dockerfile — это текстовый файл, содержащий все инструкции по созданию образа, который могут использовать контейнеры.
 
-<details>
-<summary>What instruction exists in every Containerfile/Dockefile and what does it do?</summary><br><b>
-
-In every Containerfile/Dockerfile, you can find the instruction `FROM <image name>` which is also the first instruction (at least most of the time. You can put ARG before).<br> 
-It specifies the base layer of the image to be used. Every other instruction is a layer on top of that base image.
 </b></details>
 
 <details>
-<summary>List five different instructions that are available for use in a Containerfile/Dockerfile</summary><br><b>
+<summary>Какая инструкция существует в каждом файле-контейнере/док-файле и что она делает?</summary><br><b>
 
-  * WORKDIR: sets the working directory inside the image filesystems for all the instructions following it
-  * EXPOSE: exposes the specified port (it doesn't adds a new layer, rather documented as image metadata)
-  * ENTRYPOINT: specifies the startup commands to run when a container is started from the image
-  * ENV: sets an environment variable to the given value
-  * USER: sets the user (and optionally the user group) to use while running the image
+В каждом файле-контейнере/Dockerfile вы можете найти инструкцию `FROM <image name>`, которая также является первой инструкцией (по крайней мере, в большинстве случаев. Вы можете указать ARG раньше).<br> 
+Он определяет базовый слой изображения, которое будет использоваться. Любая другая инструкция представляет собой слой поверх этого базового образа.
+
 </b></details>
 
 <details>
-<summary>What are some of the best practices regarding Containerfiles/Dockerfiles that you are following?</summary><br><b>
+<summary>Перечислите пять различных инструкций, доступных для использования в Containerfile/Dockerfile.</summary><br><b>
 
-  * Include only the packages you are going to use. Nothing else.
-  * Specify a tag in FROM instruction. Not using a tag means you'll always pull the latest, which changes over time and might result in unexpected result.
-  * Do not use environment variables to share secrets
-  * Use images from official repositories
-  * Keep images small! - you want them only to include what is required for the application to run successfully. Nothing else.
-  * If are using the apt package manager, you might want to use 'no-install-recommends' with `apt-get install` to install only main dependencies (instead of suggested, recommended packages)
+* WORKDIR: устанавливает рабочий каталог внутри файловой системы образа для всех следующих за ним инструкций.
+  * EXPOSE: предоставляет указанный порт (он не добавляет новый слой, а документируется как метаданные изображения).
+  * ENTRYPOINT: указывает команды запуска, которые будут выполняться при запуске контейнера из образа.
+  * ENV: устанавливает переменную среды в заданное значение.
+  * **USER:** задаёт пользователя (и при необходимости группу), от имени которого запускается процесс в контейнере.
+
 </b></details>
 
 <details>
-<summary>What is the "build context"?</summary><br><b>
+<summary>Каковы лучшие практики в отношении Containerfiles/Dockerfiles, которым вы следуете?</summary><br><b>
 
-[Docker docs](https://docs.docker.com/engine/reference/commandline/build): "A build’s context is the set of files located in the specified PATH or URL"
+* Включите только те пакеты, которые вы собираетесь использовать. Ничего больше.
+  * Укажите тег в инструкции FROM. Если вы не используете тег, вы всегда будете получать самые последние данные, которые со временем меняются и могут привести к неожиданным результатам.
+  * Не используйте переменные среды для обмена секретами.
+  * Используйте изображения из официальных репозиториев.
+  * Делайте изображения маленькими! - вы хотите, чтобы они включали только то, что необходимо для успешной работы приложения. Ничего больше.
+  * Если вы используете менеджер пакетов apt, вы можете использовать «no-install-recommends» с «apt-get install», чтобы установить только основные зависимости (вместо предлагаемых, рекомендуемых пакетов).
+
 </b></details>
 
 <details>
-<summary>What is the difference between ADD and COPY in Containerfile/Dockerfile?</summary><br><b>
+<summary>Что такое «контекст сборки»?</summary><br><b>
 
-COPY takes in a source and destination. It lets you copy in a file or directory from the build context into the Docker image itself.<br>
-ADD lets you do the same, but it also supports two other sources. You can use a URL instead of a file or directory from the build context. In addition, you can extract a tar file from the source directly into the destination.
+[Документация Docker](https://docs.docker.com/engine/reference/commandline/build): «Контекст сборки — это набор файлов, расположенных по указанному пути или URL-адресу».
+
 </b></details>
 
 <details>
-<summary>What is the difference between CMD and RUN in Containerfile/Dockerfile?</summary><br><b>
+<summary>В чем разница между ADD и COPY в Containerfile/Dockerfile?</summary><br><b>
 
-RUN lets you execute commands inside of your Docker image. These commands get executed once at build time and get written into your Docker image as a new layer.
-CMD is the command the container executes by default when you launch the built image. A Containerfile/Dockerfile can only have one CMD.
-You could say that CMD is a Docker run-time operation, meaning it’s not something that gets executed at build time. It happens when you run an image. A running image is called a container.
+COPY принимает источник и место назначения. Он позволяет скопировать файл или каталог из контекста сборки в сам образ Docker.<br>
+ADD позволяет вам делать то же самое, но он также поддерживает два других источника. Вы можете использовать URL-адрес вместо файла или каталога из контекста сборки. Кроме того, вы можете извлечь tar-файл из источника непосредственно в место назначения.
+
 </b></details>
 
 <details>
-<summary>How to create a new image using a Containerfile/Dockerfile?</summary><br><b>
+<summary>В чем разница между CMD и RUN в Containerfile/Dockerfile?</summary><br><b>
 
-The following command is executed from within the directory where Dockefile resides:
+RUN позволяет выполнять команды внутри вашего образа Docker. Эти команды выполняются один раз во время сборки и записываются в ваш образ Docker как новый слой.
+CMD — это команда, которую контейнер выполняет по умолчанию при запуске построенного образа. Файл-контейнер/Dockerfile может иметь только один CMD.
+Можно сказать, что CMD — это операция времени выполнения Docker, то есть она не выполняется во время сборки. Это происходит, когда вы запускаете образ. Запущенный образ называется контейнером.
+
+</b></details>
+
+<details>
+<summary>Как создать новый образ с помощью Containerfile/Dockerfile?</summary><br><b>
+
+Следующая команда выполняется из каталога, где находится Dockefile:
 
 `docker image build -t some_app:latest .`
 `podman image build -t some_app:latest .`
+
 </b></details>
 
 <details>
-<summary>Do you perform any checks or testing on your Containerfiles/Dockerfiles?</summary><br><b>
+<summary>Выполняете ли вы какие-либо проверки или тестирование своих файлов-контейнеров/Dockerfiles?</summary><br><b>
 
-One option is to use [hadolint](https://github.com/hadolint/hadolint) project which is a linter based on Containerfile/Dockerfile best practices.
+Один из вариантов — использовать проект [hadolint](https://github.com/hadolint/hadolint), который представляет собой линтер, основанный на лучших практиках Containerfile/Dockerfile.
+
 </b></details>
 
 <details>
-<summary>Which instructions in Containerfile/Dockerfile create new layers?</summary><br><b>
+<summary>Какие инструкции в Containerfile/Dockerfile создают новые слои?</summary><br><b>
 
-Instructions such as FROM, COPY and RUN, create new image layers instead of just adding metadata.
+Такие инструкции, как FROM, COPY и RUN, создают новые слои изображения, а не просто добавляют метаданные.
+
 </b></details>
 
 <details>
-<summary>Which instructions in Containerfile/Dockerfile create image metadata and don't create new layers?</summary><br><b>
+<summary>Какие инструкции в Containerfile/Dockerfile создают метаданные изображения и не создают новые слои?</summary><br><b>
 
-Instructions such as ENTRYPOINT, ENV, EXPOSE, create image metadata and they don't create new layers.
+Такие инструкции, как ENTRYPOINT, ENV, EXPOSE, создают метаданные изображения и не создают новых слоев.
+
 </b></details>
 
 <details>
-<summary>Is it possible to identify which instruction create a new layer from the output of <code>podman image history</code>?</summary><br><b>
+<summary>Можно ли определить, какая инструкция создаёт новый слой по выводу <code>podman image history</code>?</summary><br><b>
+
+Да. В `podman image history` (и `docker image history`) каждая строка — слой: видно **CREATED BY** (команда/инструкция сборки), размер и ID. Слои с `0B` часто соответствуют метаданным (ENV, EXPOSE); инструкции вроде `RUN`, `COPY`, `ADD` обычно добавляют ненулевой размер.
+
 </b></details>
 
 <details>
-<summary>True or False? Each Containerfile instruction runs in an independent container using an image built from every previous layer/entry</summary><br><b>
+<summary>Правда или ложь? Каждая инструкция Containerfile выполняется в независимом контейнере, используя образ, созданный на основе каждого предыдущего слоя/записи.</summary><br><b>
 
-True
+Верно.
+
 </b></details>
 
 <details>
-<summary>What's the difference between these two forms:
- 
+<summary>В чем разница между этими двумя формами:
+
 ```
-ENTRYPOINT ["cmd", "param0", "param1"]
-CMD ["param0"]
+ТОЧКА ВХОДА ["cmd", "param0", "param1"]
+CMD ["параметр0"]
 
-ENTRYPOINT cmd param0 param1
-CMD param0
+ENTRYPOINT cmd параметр0 параметр1
+Параметр CMD0
 ```
+
 </summary><br><b>
 
-The first form is also referred as "Exec form" and the second one is referred as "Shell form".<br>
-The second one (Shell form) wraps the commands in `/bin/sh -c` hence creates a shell process for it.
+Первая форма также называется «формой Exec», а вторая — «формой оболочки».<br>
+Второй (форма оболочки) оборачивает команды в `/bin/sh -c`, следовательно, создает для них процесс оболочки.
 
-While using either Exec form or Shell form might be fine, it's the mixing that can lead to unexpected results.<br>
-Consider:
+Хотя использование формы Exec или формы Shell может быть приемлемым, именно их смешивание может привести к неожиданным результатам.<br>
+Рассмотрим:
 
 ```
 ENTRYPOINT ["ls"]
 CMD /tmp
-```
 
-That would results in running `ls /bin/sh -c /tmp`
+Это приведет к запуску `ls /bin/sh -c /tmp`
+
 </b></details>
 
 <details>
-<summary>Containerfile/Dockerfile can contain more than one ENTRYPOINT instruction and one CMD instruction</summary><br><b>
+<summary>Файл-контейнер/Dockerfile может содержать более одной инструкции ENTRYPOINT и одной инструкции CMD.</summary><br><b>
 
-True but in case of ENTRYPOINT and CMD only the last instruction takes effect.
+Верно, но в случае ENTRYPOINT и CMD действует только последняя инструкция.
+
 </b></details>
 
 <details>
-<summary>What happens when CMD instruction is defined but not an ENTRYPOINT instruction in a Containerfile/Dockerfile?</summary><br><b>
+<summary>Что произойдет, если в файле-контейнере/Dockerfile определена инструкция CMD, а не инструкция ENTRYPOINT?</summary><br><b>
 
-The ENTRYPOINT from the base image is being used in such case.
+В таком случае используется ENTRYPOINT из базового образа.
+
 </b></details>
 
 <details>
-<summary>In the case of running <code>podman run -it IMAGE ls</code> the <code>ls</code> overrides the <code>___</code> instruction</summary><br><b>
+<summary>В случае запуска <code>podman run -it IMAGE ls</code> <code>ls</code> переопределяет инструкцию <code>___</code></summary><br><b>
 
-CMD
-</b></details>
+КМД
 
-<a name="questions-containers-storage"></a>
-### Storage
-
-<details>
-<summary>Container storage is said to be ephemeral. What does it mean?</summary><br><b>
-
-It means the contents of the container and the data generated by it, is gone when the container is removed.
-</b></details>
+</b></details><a name="questions-containers-storage"></a>
+### Хранилище
 
 <details>
-<summary>True or False? Applications running on containers, should use the container storage to store persistent data</summary><br><b>
+<summary>Говорят, что контейнерное хранилище является эфемерным. Что это значит?</summary><br><b>
 
-False. Containers are not built to store persistent data and even if it's possible with some implementations, it might not perform well in case of applications with intensive I/O operations.
+Это означает, что содержимое контейнера и данные, сгенерированные им, исчезают при удалении контейнера.
+
 </b></details>
 
 <details>
-<summary>You stopped a running container but, it still uses the storage in case you ever resume it. How to reclaim the storage of a container?</summary><br><b>
+<summary>Правда или ложь? Приложения, работающие в контейнерах, должны использовать хранилище контейнеров для хранения постоянных данных.</summary><br><b>
 
-In order to reclaim the storage of a container, you have to remove it.
+Неверно. Контейнеры не предназначены для хранения постоянных данных, и даже если это возможно в некоторых реализациях, они могут не работать должным образом в случае приложений с интенсивными операциями ввода-вывода.
+
 </b></details>
 
 <details>
-<summary>How to create a new volume?</summary><br><b>
+<summary>Вы остановили работающий контейнер, но он по-прежнему использует хранилище на случай, если вы когда-нибудь возобновите его работу. Как вернуть место хранения контейнера?</summary><br><b>
+
+Чтобы вернуть место в хранилище контейнера, вам необходимо удалить его.
+
+</b></details>
+
+<details>
+<summary>Как создать новый том?</summary><br><b>
 
 ```
 CONTAINER_BINARY=podman
 $CONTAINER_BINARY volume create some_volume
 ```
+
 </b></details>
 
 <details>
-<summary>How to mount a directory from the host to a container?</summary><br><b>
+<summary>Как смонтировать каталог с хоста в контейнер?</summary><br><b>
 
 ```
 CONTAINER_BINARY=podman
 mkdir /tmp/dir_on_the_host
 
 $CONTAINER_BINARY run -v /tmp/dir_on_the_host:/tmp/dir_on_the_container IMAGE_NAME
-```
 
-In some systems you'll have also to adjust security on the host itself:
 
-```
+В некоторых системах вам также придется настроить безопасность на самом хосте:
+
+
 podman unshare chown -R UID:GUID /tmp/dir_on_the_host
 sudo semanage fcontext -a -t container_file_t '/tmp/dir_on_the_host(/.*)?'
 sudo restorecon -Rv /tmp/dir_on_the_host
 ```
-</b></details>
 
-<a name="questions-containerfile"></a>
+</b></details><a name="questions-containerfile"></a>
 
 <a name="questions-architecture"></a>
-### Architecture
+### Архитектура
 
 <details>
-<summary>How container achieve isolation from the rest of the system?</summary><br><b>
+<summary>Как контейнер обеспечивает изоляцию от остальной системы?</summary><br><b>
 
-Through the use of namespaces and cgroups. Linux kernel has several types of namespaces:
+За счет использования пространств имен и контрольных групп. Ядро Linux имеет несколько типов пространств имен:
 
-  - Process ID namespaces: these namespaces include independent set of process IDs
-  - Mount namespaces: Isolation and control of mountpoints
-  - Network namespaces: Isolates system networking resources such as routing table, interfaces, ARP table, etc.
-  - UTS namespaces: Isolate host and domains
-  - IPC namespaces: Isolates interprocess communications
-  - User namespaces: Isolate user and group IDs
-  - Time namespaces: Isolates time machine
-</b></details>
-
-<details>
-<summary>What Linux kernel features does containers use?</summary><br><b>
-
-* cgroups (Control Groups): used for limiting the amount of resources a certain groups of processes (and their children of course) use. This way, a group of processes isn't consuming all host resources and other groups can run and use part of the resources as well
-
-* namespaces: same as cgroups, namespaces isolate some of the system resources so it's available only for processes in the namespace. Differently from cgroups the focus with namespaces is on resources like mount points, IPC, network, ... and not about memory and CPU as in cgroups
-
-* SElinux: the access control mechanism used to protect processes. Unfortunately to this date many users don't actually understand SElinux and some turn it off but nonetheless, it's a very important security feature of the Linux kernel, used by container as well
-
-* Seccomp: similarly to SElinux, it's also a security mechanism, but its focus is on limiting the processes in regards to using system calls and file descriptors
-</b></details>
-
-<details>
-<summary>Describe in detail what happens when you run `podman/docker run hello-world`?</summary><br><b>
-
-Docker/Podman CLI passes your request to Docker daemon.
-Docker/Podman daemon downloads the image from Docker Hub
-Docker/Podman daemon creates a new container by using the image it downloaded
-Docker/Podman daemon redirects output from container to Docker CLI which redirects it to the standard output
-</b></details>
-
-<details>
-<summary>Describe difference between cgroups and namespaces</summary><br><b>
-cgroup: Control Groups provide a mechanism for aggregating/partitioning sets of tasks, and all their future children, into hierarchical groups with specialized behavior.
-namespace: wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource.
-
-In short:
-
-Cgroups = limits how much you can use;
-namespaces = limits what you can see (and therefore use)
-
-Cgroups involve resource metering and limiting:
-memory
-CPU
-block I/O
-network
-
-Namespaces provide processes with their own view of the system
-
-Multiple namespaces: pid,net, mnt, uts, ipc, user
+  - Пространства имен процессов: эти пространства имен включают независимый набор идентификаторов процессов.
+  - Пространства имен монтирования: изоляция и контроль точек монтирования.
+  - Сетевые пространства имен: изолируют системные сетевые ресурсы, такие как таблица маршрутизации, интерфейсы, таблица ARP и т. д.
+  - Пространства имен UTS: изолируйте хост и домены.
+  - Пространства имен IPC: изолируют межпроцессные коммуникации.
+  - Пространства имен пользователей: изолируйте идентификаторы пользователей и групп.
+  - Пространства имен времени: изолирует машину времени.
 
 </b></details>
 
 <details>
-<summary>Which of the following are Linux features that containers use?
+<summary>Какие функции ядра Linux используют контейнеры?</summary><br><b>
+
+* cgroups (контрольные группы): используются для ограничения количества ресурсов, используемых определенными группами процессов (и их дочерними процессами, конечно). Таким образом, группа процессов не потребляет все ресурсы хоста, а другие группы также могут запускаться и использовать часть ресурсов.
+
+* Пространства имен: так же, как и cgroups, пространства имен изолируют некоторые системные ресурсы, поэтому они доступны только для процессов в пространстве имен. В отличие от контрольных групп, в пространствах имен основное внимание уделяется таким ресурсам, как точки монтирования, IPC, сеть и т. д., а не памяти и процессору, как в контрольных группах.
+
+* SElinux: механизм контроля доступа, используемый для защиты процессов. К сожалению, на сегодняшний день многие пользователи на самом деле не понимают SElinux, а некоторые отключают его, но, тем не менее, это очень важная функция безопасности ядра Linux, которая также используется контейнером.
+
+* Seccomp: аналогично SElinux, это также механизм безопасности, но его основное внимание уделяется ограничению процессов в отношении использования системных вызовов и файловых дескрипторов.
+
+</b></details>
+
+<details>
+<summary>Опишите подробно, что происходит, когда вы запускаете `podman/docker run hello-world`?</summary><br><b>
+
+Docker/Podman CLI передает ваш запрос демону Docker.
+Демон Docker/Podman загружает образ из Docker Hub
+Демон Docker/Podman создает новый контейнер, используя загруженный образ.
+Демон Docker/Podman перенаправляет выходные данные из контейнера в Docker CLI, который перенаправляет их на стандартный вывод.
+
+</b></details>
+
+<details>
+<summary>Описать разницу между cgroups и пространствами имен.</summary><br><b>
+
+cgroup: группы управления предоставляют механизм для агрегирования/разделения наборов задач и всех их будущих дочерних элементов в иерархические группы со специализированным поведением.
+пространство имен: оборачивает глобальный системный ресурс в абстракцию, благодаря которой процессам в пространстве имен кажется, что у них есть собственный изолированный экземпляр глобального ресурса.
+
+Короче говоря:
+
+Cgroups = ограничивает объем, который вы можете использовать;
+Пространства имен = ограничивают то, что вы можете видеть (и, следовательно, использовать)
+
+Cgroups включают измерение и ограничение ресурсов:
+память
+ЦП
+блокировать ввод-вывод
+сеть
+
+Пространства имен предоставляют процессам собственное представление о системе.
+
+Несколько пространств имен: pid,net, mnt, uts, ipc, user.
+
+</b></details>
+
+<details>
+<summary>Какие из следующих функций Linux используют контейнеры?
 
 * cspaces
-* namegroups
-* namespaces
-* cgroups
-* ELlinux
+* группы имен
+* пространства имен
+* группы
+* Эллинукс
 * SElinux</summary><br><b>
 
-* namespaces
-* cgroups
+* пространства имен
+* группы
 * SElinux
+
 </b></details>
 
 <details>
-<summary>True or False? Containers have ephemeral storage layer</summary><br><b>
+<summary>Правда или ложь? Контейнеры имеют эфемерный уровень хранения.</summary><br><b>
 
-True. The ephemeral storage layer is added on top of the base image layer and is exclusive to the running container. This way, containers created from the same base image, don't share the same storage.
-</b></details>
+Верно. Уровень эфемерного хранилища добавляется поверх слоя базового образа и является эксклюзивным для работающего контейнера. Таким образом, контейнеры, созданные на основе одного и того же базового образа, не используют одно и то же хранилище.
 
-<a name="questions-docker-architecture"></a>
-### Docker Architecture
-
-<details>
-<summary>Which components/layers compose the Docker technology?</summary><br><b>
-
-1. Runtime - responsible for starting and stopping containers
-2. Daemon - implements the Docker API and takes care of managing images (including builds), authentication, security, networking, etc.
-3. Orchestrator
-</b></details>
+</b></details><a name="questions-docker-architecture"></a>
+### Архитектура докера
 
 <details>
-<summary>What components are part of the Docker engine?</summary><br><b>
+<summary>Какие компоненты/уровни составляют технологию Docker?</summary><br><b>
 
-  - Docker daemon
-  - containerd
-  - runc
+1. Runtime – отвечает за запуск и остановку контейнеров.
+2. Демон — реализует Docker API и отвечает за управление образами (включая сборки), аутентификацию, безопасность, работу в сети и т. д.
+3. Оркестратор
+
 </b></details>
 
 <details>
-<summary>What is the low-level runtime?</summary><br><b>
+<summary>Какие компоненты входят в состав движка Docker?</summary><br><b>
 
-  - The low level runtime is called runc
-  - It manages every container running on Docker host
-  - Its purpose is to interact with the underlying OS to start and stop containers
-  - Its reference implementation is of the OCI (Open Containers Initiative) container-runtime-spec
-  - It's a small CLI wrapper for libcontainer
+- Докер-демон
+  - контейнер
+  - бежать
+
 </b></details>
 
 <details>
-<summary>What is the high-level runtime?</summary><br><b>
+<summary>Каково время выполнения низкого уровня?</summary><br><b>
 
-  - The high level runtime is called containerd
-  - It was developed by Docker Inc and at some point donated to CNCF
-  - It manages the whole lifecycle of a container - start, stop, remove and pause
-  - It take care of setting up network interfaces, volume, pushing and pulling images, ...
-  - It manages the lower level runtime (runc) instances
-  - It's used both by Docker and Kubernetes as a container runtime
-  - It sits between Docker daemon and runc at the OCI layer
+- Среда выполнения низкого уровня называется runc.
+  - Он управляет каждым контейнером, работающим на хосте Docker.
+  - Его цель — взаимодействовать с базовой ОС для запуска и остановки контейнеров.
+  - Его эталонная реализация соответствует спецификации контейнера времени выполнения OCI (Open Containers Initiative).
+  — Это небольшая оболочка CLI для libcontainer.
 
-Note: running `ps -ef | grep -i containerd` on a system with Docker installed and running, you should see a process of containerd
 </b></details>
 
 <details>
-<summary>True or False? The docker daemon (dockerd) performs lower-level tasks compared to containerd</summary><br><b>
+<summary>Каково время выполнения высокого уровня?</summary><br><b>
 
-False. The Docker daemon performs higher-level tasks compared to containerd.<br>
-It's responsible for managing networks, volumes, images, ...
+- Среда выполнения высокого уровня называется контейнером.
+  - Он был разработан Docker Inc и в какой-то момент передан в дар CNCF.
+  - Он управляет всем жизненным циклом контейнера - запуск, остановка, удаление и пауза.
+  - Он отвечает за настройку сетевых интерфейсов, громкости, отправку и извлечение изображений, ...
+  - Он управляет экземплярами среды выполнения нижнего уровня (runc).
+  - Он используется как Docker, так и Kubernetes в качестве среды выполнения контейнера.
+  - Он находится между демоном Docker и runc на уровне OCI.
+
+Примечание: запуск `ps -ef | grep -i containerd` в системе с установленным и запущенным Docker, вы должны увидеть процесс контейнера
+
 </b></details>
 
 <details>
-<summary>Describe in detail what happens when you run `docker pull image:tag`?</summary><br><b>
-Docker CLI passes your request to Docker daemon. Dockerd Logs shows the process
+<summary>Правда или ложь? Демон докера (dockerd) выполняет задачи более низкого уровня по сравнению с контейнером.</summary><br><b>
 
-docker.io/library/busybox:latest resolved to a manifestList object with 9 entries; looking for a unknown/amd64 match
+Неверно. Демон Docker выполняет задачи более высокого уровня по сравнению с контейнером.<br>
+Он отвечает за управление сетями, томами, изображениями...
 
-found match for linux/amd64 with media type application/vnd.docker.distribution.manifest.v2+json, digest sha256:400ee2ed939df769d4681023810d2e4fb9479b8401d97003c710d0e20f7c49c6
-
-pulling blob \"sha256:61c5ed1cbdf8e801f3b73d906c61261ad916b2532d6756e7c4fbcacb975299fb Downloaded 61c5ed1cbdf8 to tempfile /var/lib/docker/tmp/GetImageBlob909736690
-
-Applying tar in /var/lib/docker/overlay2/507df36fe373108f19df4b22a07d10de7800f33c9613acb139827ba2645444f7/diff" storage-driver=overlay2
-
-Applied tar sha256:514c3a3e64d4ebf15f482c9e8909d130bcd53bcc452f0225b0a04744de7b8c43 to 507df36fe373108f19df4b22a07d10de7800f33c9613acb139827ba2645444f7, size: 1223534
 </b></details>
 
 <details>
-<summary>Describe in detail what happens when you run a container</summary><br><b>
+<summary>Опишите подробно, что происходит, когда вы запускаете `docker pull image:tag`?</summary><br><b>
 
-1. The Docker client converts the run command into an API payload
-2. It then POST the payload to the API endpoint exposed by the Docker daemon
-3. When the daemon receives the command to create a new container, it makes a call to containerd via gRPC
-4. containerd converts the required image into an OCI bundle and tells runc to use that bundle for creating the container
-5. runc interfaces with the OS kernel to pull together the different constructs (namespace, cgroups, etc.) used for creating the container
-6. Container process is started as a child-process of runc
-7. Once it starts, runc exists
+Docker CLI передает ваш запрос демону Docker. Журналы Dockerd показывают процесс
+
+docker.io/library/busybox:latest разрешен в объект ManifestList с 9 записями; ищем неизвестное совпадение/amd64
+
+найдено совпадение для linux/amd64 с типом носителя application/vnd.docker.distribution.manifest.v2+json, дайджест sha256:400ee2ed939df769d4681023810d2e4fb9479b8401d97003c710d0e20f7c49c6
+
+вытягивание blob \"sha256:61c5ed1cbdf8e801f3b73d906c61261ad916b2532d6756e7c4fbcacb975299fb Загружено 61c5ed1cbdf8 в временный файл /var/lib/docker/tmp/GetImageBlob909736690
+
+Применение tar в /var/lib/docker/overlay2/507df36fe373108f19df4b22a07d10de7800f33c9613acb139827ba2645444f7/diff" Storage-Driver=overlay2
+
+Применен tar sha256:514c3a3e64d4ebf15f482c9e8909d130bcd53bcc452f0225b0a04744de7b8c43 для 507df36fe373108f19df4b22a07d10de7800f33c9613acb139827ba2645444f7, размер: 1223534
+
 </b></details>
 
 <details>
-<summary>True or False? Killing the Docker daemon will kill all the running containers</summary><br><b>
+<summary>Подробно опишите, что происходит при запуске контейнера.</summary><br><b>
 
-False. While this was true at some point, today the container runtime isn't part of the daemon (it's part of containerd and runc) so stopping or killing the daemon will not affect running containers.
+1. Клиент Docker преобразует команду запуска в полезную нагрузку API.
+2. Затем он отправляет полезную нагрузку в конечную точку API, предоставляемую демоном Docker.
+3. Когда демон получает команду на создание нового контейнера, он вызывает контейнерd через gRPC.
+4.Containerd преобразует требуемый образ в пакет OCI и сообщает runc использовать этот пакет для создания контейнера.
+5. runc взаимодействует с ядром ОС для объединения различных конструкций (пространства имен, контрольных групп и т. д.), используемых для создания контейнера.
+6. Процесс-контейнер запускается как дочерний процесс runc.
+7. После запуска runc существует.
+
 </b></details>
 
 <details>
-<summary>True or False? containerd forks a new instance runc for every container it creates</summary><br><b>
+<summary>Правда или ложь? Уничтожение демона Docker приведет к уничтожению всех работающих контейнеров.</summary><br><b>
 
-True
+Неверно. Хотя в какой-то момент это было правдой, сегодня среда выполнения контейнера не является частью демона (она является частью контейнера и runc), поэтому остановка или завершение работы демона не повлияет на запуск контейнеров.
+
 </b></details>
 
 <details>
-<summary>True or False? Running a dozen of containers will result in having a dozen of runc processes</summary><br><b>
+<summary>Правда или ложь? Containerd создает новый экземпляр runc для каждого создаваемого им контейнера.</summary><br><b>
 
-False. Once a container is created, the parent runc process exists.
+Верно.
+
 </b></details>
 
 <details>
-<summary>What is shim in regards to Docker?</summary><br><b>
+<summary>Правда или ложь? Запуск дюжины контейнеров приведет к появлению дюжины запущенных процессов.</summary><br><b>
 
-shim is the process that becomes the container's parent when runc process exists. It's responsible for:
+Неверно. После создания контейнера существует родительский процесс runc.
 
-  - Reporting exit code back to the Docker daemon
-  - Making sure the container doesn't terminate if the daemon is being restarted. It does so by keeping the stdout and stdin open
 </b></details>
 
 <details>
-<summary>How would you transfer data from one container into another?</summary><br><b>
+<summary>Что такое shim в отношении Docker?</summary><br><b>
+
+shim — это процесс, который становится родительским для контейнера, когда существует процесс runc. Он отвечает за:
+
+  - Передача кода выхода обратно демону Docker.
+  — Убедитесь, что контейнер не завершается при перезапуске демона. Это достигается за счет того, что стандартный вывод и стандартный ввод остаются открытыми.
+
 </b></details>
 
 <details>
-<summary>What happens to data of the container when a container exists?</summary><br><b>
+<summary>Как бы вы перенесли данные из одного контейнера в другой?</summary><br><b>
+
+* `docker cp` / `podman cp` между контейнерами (через хост).
+* Общий **volume** или bind mount, смонтированный в оба контейнера.
+* Архив: `docker export` / `docker import` или копирование через временный tar на хосте.
+
 </b></details>
 
 <details>
-<summary>How do you remove old, non running, containers?</summary><br><b>
+<summary>Что происходит с данными контейнера, когда контейнер существует?</summary><br><b>
 
-1. To remove one or more Docker images use the docker container rm command followed by the ID of the containers you want to remove.
-2. The docker system prune command will remove all stopped containers, all dangling images, and all unused networks
-3. docker rm $(docker ps -a -q) - This command will delete all stopped containers. The command docker ps -a -q will return all existing container IDs and pass them to the rm command which will delete them. Any running containers will not be deleted.
+Изменения пишутся в **writable container layer** поверх read-only слоёв образа. Данные в **named volume** или bind mount сохраняются отдельно от слоя контейнера. При `docker rm` удаляется writable layer; volumes остаются, если их не удалить явно (`-v`).
+
 </b></details>
 
 <details>
-<summary>How the Docker client communicates with the daemon?</summary><br><b>
+<summary>Как удалить старые, неработающие контейнеры?</summary><br><b>
 
-Via the local socket at `/var/run/docker.sock`
+1. Удалить контейнеры: `docker rm <container_id>` (или `docker container rm`).
+2. Команда docker system prune удалит все остановленные контейнеры, все висячие изображения и все неиспользуемые сети.
+3. docker rm $(docker ps -a -q) — эта команда удалит все остановленные контейнеры. Команда docker ps -a -q вернет все существующие идентификаторы контейнеров и передаст их команде rm, которая удалит их. Любые работающие контейнеры не будут удалены.
+
 </b></details>
 
 <details>
-<summary>Explain Docker interlock</summary><br><b>
+<summary>Как клиент Docker взаимодействует с демоном?</summary><br><b>
+
+Через локальный сокет `/var/run/docker.sock`
+
 </b></details>
 
 <details>
-<summary>What is Docker Repository?</summary><br><b>
+<summary>Объясните блокировку Docker</summary><br><b>
+
+Демон Docker/Podman сериализует операции (mutex/locks) над объектами (контейнер, образ, сеть), чтобы избежать гонок при одновременных `run`, `build`, `pull`. Конфликты при параллельной записи в один и тот же слой образа предотвращаются на уровне storage driver.
+
 </b></details>
 
 <details>
-<summary>Explain image layers</summary><br><b>
+<summary>Что такое репозиторий Docker?</summary><br><b>
 
-A Docker image is built up from a series of layers. Each layer represents an instruction in the image’s Containerfile/Dockerfile. Each layer except the very last one is read-only.
-Each layer is only a set of differences from the layer before it. The layers are stacked on top of each other. When you create a new container, you add a new writable layer on top of the underlying layers. This layer is often called the “container layer”. All changes made to the running container, such as writing new files, modifying existing files, and deleting files, are written to this thin writable container layer.
-The major difference between a container and an image is the top writable layer. All writes to the container that add new or modify existing data are stored in this writable layer. When the container is deleted, the writable layer is also deleted. The underlying image remains unchanged.
-Because each container has its own writable container layer, and all changes are stored in this container layer, multiple containers can share access to the same underlying image and yet have their own data state.
+**Registry** (Docker Hub, Quay, GHCR, приватный Harbor) — хранилище и распространение **образов**. **Repository** в registry — логическое имя образа (`nginx`, `myorg/app`) с тегами (`latest`, `1.2.3`). `docker push` / `docker pull` работают с registry, а не с git-репозиторием.
+
 </b></details>
 
 <details>
-<summary>What best practices are you familiar related to working with containers?</summary><br><b>
+<summary>Объяснение слоев изображения</summary><br><b>
+
+Образ Docker состоит из ряда слоев. Каждый уровень представляет собой инструкцию в файле Containerfile/Dockerfile образа. Каждый уровень, кроме самого последнего, доступен только для чтения.
+Каждый слой представляет собой лишь набор отличий от предыдущего слоя. Слои накладываются друг на друга. Когда вы создаете новый контейнер, вы добавляете новый записываемый слой поверх нижележащих слоев. Этот слой часто называют «контейнерным слоем». Все изменения, вносимые в работающий контейнер, такие как запись новых файлов, изменение существующих файлов и удаление файлов, записываются на этот тонкий записываемый уровень контейнера.
+Основное различие между контейнером и изображением — это верхний слой, доступный для записи. Все записи в контейнер, которые добавляют новые или изменяют существующие данные, хранятся в этом записываемом слое. Когда контейнер удаляется, записываемый слой также удаляется. Базовое изображение остается неизменным.
+Поскольку каждый контейнер имеет свой собственный уровень контейнера, доступный для записи, и все изменения хранятся в этом слое контейнера, несколько контейнеров могут совместно использовать доступ к одному и тому же базовому образу, но при этом иметь собственное состояние данных.
+
 </b></details>
 
 <details>
-<summary>How do you manage persistent storage in Docker?</summary><br><b>
+<summary>Какие лучшие практики работы с контейнерами вы знаете?</summary><br><b>
+
+* Один процесс на контейнер; образы минимальные (distroless/slim).
+* Не запускать от root; read-only root filesystem где возможно.
+* Явные теги образов, не полагаться на `latest` в prod.
+* Secrets — не в ENV/образе; limits на CPU/memory.
+* Healthcheck; сканирование образов (Trivy); не монтировать docker.sock внутрь контейнера.
+
 </b></details>
 
 <details>
-<summary>How can you connect from the inside of your container to the localhost of your host, where the container runs?</summary><br><b>
+<summary>Как вы управляете постоянным хранилищем в Docker?</summary><br><b>
+
+* **Named volumes** — управляются Docker, удобны для БД (`docker volume create`, `-v name:/path`).
+* **Bind mounts** — каталог хоста (`-v /host/path:/container/path`).
+* **tmpfs** — данные в RAM, не переживают перезапуск.
+* В Compose/K8s — volume drivers, PVC для оркестрации.
+
 </b></details>
 
 <details>
-<summary>How do you copy files from Docker container to the host and vice versa?</summary><br><b>
-</b></details>
+<summary>Как вы можете подключиться изнутри вашего контейнера к локальному хосту вашего хоста, на котором работает контейнер?</summary><br><b>
 
-<a name="questions-docker-compose"></a>
-### Docker Compose
+* Docker Desktop: `host.docker.internal`.
+* Linux: IP шлюза bridge-сети (`172.17.0.1`) или `--add-host=host.docker.internal:host-gateway`.
+* `--network host` — контейнер в сетевом namespace хоста (осторожно с портами).
 
-<details>
-<summary>Explain what is Docker compose and what is it used for</summary><br><b>
-
-Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
-
-For example, you can use it to set up ELK stack where the services are: elasticsearch, logstash and kibana. Each running in its own container.<br>
-In general, it's useful for running applications which composed out of several different services. It let's you manage it as one deployed app, instead of different multiple separate services.
 </b></details>
 
 <details>
-<summary>Describe the process of using Docker Compose</summary><br><br>
+<summary>Как копировать файлы из контейнера Docker на хост и наоборот?</summary><br><b>
 
-* Define the services you would like to run together in a docker-compose.yml file
-* Run `docker-compose up` to run the services
+`docker cp <container>:/path/in/container /path/on/host`
+
+`docker cp /path/on/host <container>:/path/in/container`
+
+Аналогично: `podman cp`. Контейнер может быть остановлен (зависит от версии); для работающего — предпочтительно.
+
+</b></details><a name="questions-docker-compose"></a>
+### Создание Docker
+
+<details>
+<summary>Объясните, что такое Docker Compose и для чего он используется.</summary><br><b>
+
+Compose — это инструмент для определения и запуска многоконтейнерных приложений Docker. В Compose вы используете файл YAML для настройки служб вашего приложения. Затем с помощью одной команды вы создаете и запускаете все службы из вашей конфигурации.
+
+Например, вы можете использовать его для настройки стека ELK, в котором используются сервисы: elasticsearch, logstash и kibana. Каждый работает в своем контейнере.<br>
+В общем, это полезно для запуска приложений, состоящих из нескольких разных сервисов. Это позволяет вам управлять им как одним развернутым приложением, а не несколькими отдельными сервисами.
+
 </b></details>
 
 <details>
-<summary>Explain Multi-stage builds</summary><br><b>
+<summary>Описать процесс использования Docker Compose</summary><br><b>
 
-Multi-stages builds allow you to produce smaller container images by splitting the build process into multiple stages.
+* Определите службы, которые вы хотите запускать вместе, в файле docker-compose.yml.
+* Запустите docker-compose up, чтобы запустить службы.
 
-As an example, imagine you have one Containerfile/Dockerfile where you first build the application and then run it. The whole build process of the application might be using packages and libraries you don't really need for running the application later. Moreover, the build process might produce different artifacts which not all are needed for running the application.
-
-How do you deal with that? Sure, one option is to add more instructions to remove all the unnecessary stuff but, there are a couple of issues with this approach:
-1. You need to know what to remove exactly and that might be not as straightforward as you think
-2. You add new layers which are not really needed
-
-A better solution might be to use multi-stage builds where one stage (the build process) is passing the relevant artifacts/outputs to the stage that runs the application.
 </b></details>
 
 <details>
-<summary>True or False? In multi-stage builds, artifacts can be copied between stages</summary><br><b>
+<summary>Объяснение многоэтапных сборок</summary><br><b>
 
-True. This allows us to eventually produce smaller images.
+Многоэтапные сборки позволяют создавать образы контейнеров меньшего размера, разделив процесс сборки на несколько этапов.
+
+В качестве примера представьте, что у вас есть один файл-контейнер/Dockerfile, в котором вы сначала создаете приложение, а затем запускаете его. Весь процесс сборки приложения может использовать пакеты и библиотеки, которые вам действительно не понадобятся для последующего запуска приложения. Более того, процесс сборки может создавать различные артефакты, не все из которых необходимы для запуска приложения.
+
+Как вы с этим справляетесь? Конечно, один из вариантов — добавить дополнительные инструкции для удаления всего ненужного, но при таком подходе есть несколько проблем:
+1. Вам нужно знать, что именно удалять, и это может быть не так просто, как вы думаете.
+2. Вы добавляете новые слои, которые на самом деле не нужны
+
+Лучшим решением может быть использование многоэтапных сборок, где один этап (процесс сборки) передает соответствующие артефакты/выходные данные на этап, на котором выполняется приложение.
+
 </b></details>
 
 <details>
-<summary>What <code>.dockerignore</code> is used for?</summary><br><b>
+<summary>Правда или ложь? В многоэтапных сборках артефакты можно копировать между этапами.</summary><br><b>
 
-By default, Docker uses everything (all the files and directories) in the directory you use as build context.<br>
-`.dockerignore` used for excluding files and directories from the build context
-</b></details>
+Верно. Это позволяет нам в конечном итоге создавать изображения меньшего размера.
 
-<a name="questions-networking"></a>
-### Networking
-
-<details>
-<summary>What container network standards or architectures are you familiar with?</summary><br><b>
-
-CNM (Container Network Model):
-  * Requires distrubited key value store (like etcd for example) for storing the network configuration
-  * Used by Docker
-CNI (Container Network Interface):
-  * Network configuration should be in JSON format
-</b></details>
-
-<a name="questions-docker-networking"></a>
-### Docker Networking
-
-<details>
-<summary>What network specification Docker is using and how its implementation is called?</summary><br><b>
-
-Docker is using the CNM (Container Network Model) design specification.<br>
-The implementation of CNM specification by Docker is called "libnetwork". It's written in Go.
 </b></details>
 
 <details>
-<summary>Explain the following blocks in regards to CNM:
+<summary>Для чего используется <code>.dockerignore</code>?</summary><br><b>
 
-  * Networks 
-  * Endpoints
-  * Sandboxes</summary><br><b>
+По умолчанию Docker использует все (все файлы и каталоги) в каталоге, который вы используете в качестве контекста сборки.<br>
+`.dockerignore` используется для исключения файлов и каталогов из контекста сборки.
 
-  * Networks: software implementation of an switch. They used for grouping and isolating a collection of endpoints.
-  * Endpoints: Virtual network interfaces. Used for making connections.
-  * Sandboxes: Isolated network stack (interfaces, routing tables, ports, ...)
+</b></details><a name="questions-networking"></a>
+### Сеть
+
+<details>
+<summary>Какие стандарты или архитектуры контейнерных сетей вам известны?</summary><br><b>
+
+CNM (модель контейнерной сети):
+  * Требуется распределенное хранилище значений ключей (например, etcd) для хранения конфигурации сети.
+  * Используется Докером.
+CNI (сетевой интерфейс контейнера):
+  * Конфигурация сети должна быть в формате JSON.
+
+</b></details><a name="questions-docker-networking"></a>
+### Сеть Docker
+
+<details>
+<summary>Какую сетевую спецификацию использует Docker и как называется ее реализация?</summary><br><b>
+
+Docker использует спецификацию проекта CNM (модель сети контейнеров).<br>
+Реализация спецификации CNM в Docker называется «libnetwork». Это написано на Go.
+
 </b></details>
 
 <details>
-<summary>True or False? If you would like to connect a container to multiple networks, you need multiple endpoints</summary><br><b>
+<summary>Объясните следующие блоки в отношении CNM:
 
-True. An endpoint can connect only to a single network.
+  * Сети 
+  * Конечные точки
+  * Песочницы</summary><br><b>
+
+* Сети: программная реализация коммутатора. Они использовались для группировки и изоляции набора конечных точек.
+  * Конечные точки: виртуальные сетевые интерфейсы. Используется для создания соединений.
+  * Песочницы: изолированный сетевой стек (интерфейсы, таблицы маршрутизации, порты,...)
+
 </b></details>
 
 <details>
-<summary>What are some features of libnetwork?</summary><br><b>
+<summary>Правда или ложь? Если вы хотите подключить контейнер к нескольким сетям, вам нужно несколько конечных точек.</summary><br><b>
 
-* Native service discovery
-* ingress-based load balancer
-* network control plane and management plane
-</b></details>
+Верно. Конечная точка может подключаться только к одной сети.
 
-<a name="questions-security"></a>
-### Security
-
-<details>
-<summary>What security best practices are there regarding containers?</summary><br><b>
-
-  * Install only the necessary packages in the container
-  * Don't run containers as root when possible
-  * Don't mount the Docker daemon unix socket into any of the containers
-  * Set volumes and container's filesystem to read only
-  * DO NOT run containers with `--privilged` flag
 </b></details>
 
 <details>
-<summary>A container can cause a kernel panic and bring down the whole host. What preventive actions can you apply to avoid this specific situation?</summary><br><b>
+<summary>Каковы некоторые особенности libnetwork?</summary><br><b>
 
-  * Install only the necessary packages in the container
-  * Set volumes and container's filesystem to read only
-  * DO NOT run containers with `--privilged` flag
-</b></details>
+* Обнаружение собственных служб.
+* балансировщик нагрузки на основе входящего трафика
+* Плоскость управления сетью и плоскость управления
 
-<a name="questions-docker-in-production"></a>
-### Docker in Production
+</b></details><a name="questions-security"></a>
+### Безопасность
 
 <details>
-<summary>What are some best practices you following in regards to using containers in production?</summary><br><b>
+<summary>Какие существуют передовые методы обеспечения безопасности в отношении контейнеров?</summary><br><b>
 
-Images:
-  * Use images from official repositories
-  * Include only the packages you are going to use. Nothing else.
-  * Specify a tag in FROM instruction. Not using a tag means you'll always pull the latest, which changes over time and might result in unexpected result.
-  * Do not use environment variables to share secrets
-  * Keep images small! - you want them only to include what is required for the application to run successfully. Nothing else.
-Components:
-  * Secured connection between components (e.g. client and server)
+* Устанавливайте в контейнер только необходимые пакеты
+  * По возможности не запускайте контейнеры от имени пользователя root.
+  * Не монтируйте unix-сокет демона Docker ни в один из контейнеров.
+  * Установите тома и файловую систему контейнера только для чтения.
+  * НЕ запускайте контейнеры с флагом --privilged.
+
 </b></details>
 
 <details>
-<summary>True or False? It's recommended for production environments that Docker client and server will communicate over network using HTTP socket</summary><br><b>
+<summary>Контейнер может вызвать панику ядра и вывести из строя весь хост. Какие превентивные действия вы можете применить, чтобы избежать этой конкретной ситуации?</summary><br><b>
 
-False. Communication between client and server shouldn't be done over HTTP since it's insecure. It's better to enforce the daemon to only accept network connection that are secured with TLS.<br>
-Basically, the Docker daemon will only accept secured connections with certificates from trusted CA.
+* Устанавливайте в контейнер только необходимые пакеты
+  * Установите тома и файловую систему контейнера только для чтения.
+  * НЕ запускайте контейнеры с флагом --privilged.
+
+</b></details><a name="questions-docker-in-production"></a>
+### Docker в производстве
+
+<details>
+<summary>Каким передовым практикам вы следуете при использовании контейнеров в производстве?</summary><br><b>
+
+Изображения:
+  * Используйте изображения из официальных репозиториев.
+  * Включите только те пакеты, которые вы собираетесь использовать. Ничего больше.
+  * Укажите тег в инструкции FROM. Если вы не используете тег, вы всегда будете получать самые последние данные, которые со временем меняются и могут привести к неожиданным результатам.
+  * Не используйте переменные среды для обмена секретами.
+  * Делайте изображения маленькими! - вы хотите, чтобы они включали только то, что необходимо для успешной работы приложения. Ничего больше.
+Компоненты:
+  * Защищенное соединение между компонентами (например, клиентом и сервером)
+
 </b></details>
 
 <details>
-<summary>What forms of self-healing options available for Docker containers?</summary><br><b>
+<summary>Правда или ложь? В производственных средах рекомендуется, чтобы клиент и сервер Docker обменивались данными по сети с использованием HTTP-сокета.</summary><br><b>
 
-Restart Policies. It allows you to automatically restart containers after certain events.
+Неверно. Связь между клиентом и сервером не должна осуществляться через HTTP, поскольку это небезопасно. Лучше заставить демон принимать только сетевые соединения, защищенные с помощью TLS.<br>
+По сути, демон Docker принимает только защищенные соединения с сертификатами от доверенного центра сертификации.
+
 </b></details>
 
 <details>
-<summary>What restart policies are you familiar with?</summary><br><b>
+<summary>Какие варианты самовосстановления доступны для контейнеров Docker?</summary><br><b>
 
-  * always: restart the container when it's stopped (not with `docker container stop`)
-  * unless-stopped: restart the container unless it was in stopped status
-  * no: don't restart the container at any point (default policy)
-  * on-failure: restart the container when it exists due to an error (= exit code different than zero)
-</b></details>
+Перезапустить политики. Он позволяет автоматически перезапускать контейнеры после определенных событий.
 
-<a name="questions-rootless-containers"></a>
-
-<details>
-<summary>Explain Rootless Containers</summary><br><b>
-
-Historically, user needed root privileges to run containers. One of the most basic security recommendations is to provide users with minimum privileges for what they need.
-
-For containers it's been the situation for a long time and still for running some containers today from docker.io, you'll need to have root privileges.
 </b></details>
 
 <details>
-<summary>Are there disadvantages in running rootless containers?</summary><br><b>
+<summary>Какие правила перезапуска вам известны?</summary><br><b>
 
-Yes, the full list can be found [here](https://github.com/containers/podman/blob/main/rootless.md).
+* всегда: перезапускать контейнер, когда он остановлен (не с помощью `dockerContainer stop`)
+  * if-stopped: перезапустить контейнер, если только он не был в остановленном состоянии.
+  * нет: ни в коем случае не перезапускать контейнер (политика по умолчанию)
+  * при сбое: перезапустить контейнер, если он существует из-за ошибки (= код выхода отличается от нуля)
 
-Some worth to mention:
+</b></details><a name="questions-rootless-containers"></a>
 
-  - No binding to ports smaller than 1024
-  - No images sharing CRI-O or other rootful users
-  - No support running on NFS or parallel filesystem homerdirs
-  - Some commands don't work (mount, podman stats, checkpoint, restore, ...)
+<details>
+<summary>Объясните безрутовые контейнеры</summary><br><b>
+
+Исторически для запуска контейнеров пользователю требовались права root. Одна из самых основных рекомендаций по безопасности — предоставить пользователям минимальные привилегии для того, что им нужно.
+
+Для контейнеров такая ситуация существует уже давно, и до сих пор для запуска некоторых контейнеров из docker.io вам потребуются права root.
+
 </b></details>
 
 <details>
-<summary>Give one example of rootless containers are more safe from security perspective</summary><br><b>
+<summary>Есть ли недостатки при запуске контейнеров без root?</summary><br><b>
 
-In rootless containers, user namespace appears to be running as root but it doesn't, it's executed with regular user privileges. If an attacker manages to get out of the user space to the host with the same privileges, there's not much he can do because it's not root privileges as opposed to containers that run with root privileges.
+Да, полный список можно найти [здесь](https://github.com/containers/podman/blob/main/rootless.md).
+
+Некоторые стоит упомянуть:
+
+  - Нет привязки к портам меньше 1024.
+  - Никаких изображений, совместно используемых CRI-O или другими пользователями с root-правами.
+  - Нет поддержки работы в домашних каталогах NFS или параллельной файловой системы.
+  - Некоторые команды не работают (монтирование, статистика podman, контрольная точка, восстановление,...)
+
 </b></details>
 
 <details>
-<summary>When running a container, usually a virtual ethernet device is created. To do so, root privileges are required. How is it then managed in rootless containers?</summary><br><b>
+<summary>Приведите один пример контейнеров без root-прав, более безопасных с точки зрения безопасности.</summary><br><b>
 
-Networking is usually managed by Slirp in rootless containers. Slirp creates a tap device which is also the default route and it creates it in the network namespace of the container. This device's file descriptor passed to the parent who runs it in the default namespace and the default namespace connected to the internet. This enables communication externally and internally.
+В контейнерах без root-прав пространство имен пользователя выглядит как root, но это не так, оно выполняется с привилегиями обычного пользователя. Если злоумышленнику удастся выйти из пользовательского пространства на хост с теми же привилегиями, он мало что сможет сделать, поскольку это не root-привилегии, в отличие от контейнеров, которые запускаются с root-правами.
+
 </b></details>
 
 <details>
-<summary>When running a container, usually a layered file system is created, but it requires root privileges. How is it then managed in rootless containers?</summary><br><b>
+<summary>При запуске контейнера обычно создается виртуальное сетевое устройство. Для этого необходимы root-права. Как тогда осуществляется управление в контейнерах без root?</summary><br><b>
 
-New drivers were created to allow creating filesystems in a user namespaces. Drivers like the FUSE-OverlayFS.
+Сеть обычно управляется Slirp в контейнерах без root-прав. Slirp создает Tap-устройство, которое также является маршрутом по умолчанию, и создает его в сетевом пространстве имен контейнера. Дескриптор файла этого устройства передается родителю, который запускает его в пространстве имен по умолчанию и пространстве имен по умолчанию, подключенном к Интернету. Это обеспечивает коммуникацию как внешнюю, так и внутреннюю.
+
 </b></details>
 
-<a name="questions-oci"></a>
-### OCI
+<details>
+<summary>При запуске контейнера обычно создается многоуровневая файловая система, но для этого требуются права root. Как тогда осуществляется управление в контейнерах без root?</summary><br><b>
+
+Были созданы новые драйверы, позволяющие создавать файловые системы в пространствах имен пользователей. Драйверы, такие как FUSE-OverlayFS.
+
+</b></details><a name="questions-oci"></a>
+### ОКИ
 
 <details>
-<summary>What is the OCI?</summary><br><b>
+<summary>Что такое ОКИ?</summary><br><b>
 
-OCI (Open Container Initiative) is an open governance established in 2015 to standardize container creation - mostly image format and runtime. At that time there were a number of parties involved and the most prominent one was Docker.
+OCI (Open Container Initiative) — это открытое управление, созданное в 2015 году для стандартизации создания контейнеров — в основном формата изображений и времени выполнения. В то время в проекте участвовало несколько сторон, самой известной из которых была Docker.
 
-Specifications published by OCI:
+Технические характеристики опубликованы OCI:
 
-  - [image-spec](https://github.com/opencontainers/image-spec)
+  - [спецификация изображения](https://github.com/opencontainers/image-spec)
   - [runtime-spec](https://github.com/opencontainers/runtime-spec)
+
 </b></details>
 
 <details>
-<summary>Which operations OCI based containers must support?</summary><br><b>
+<summary>Какие операции должны поддерживать контейнеры на основе OCI?</summary><br><b>
 
-Create, Kill, Delete, Start and Query State.
-</b></details>
+Создание, уничтожение, удаление, запуск и состояние запроса.
 
-<a name="questions-containers-scenarios"></a>
-### Scenarios
-
-<details>
-<summary>There is a running container that has a certain issue. You would like to share an image of that container with your team members, with certain environment variables set for debugging purposes. How would you do it?</summary><br><b>
-
-`podman commit` can be a good choice for that. You can create a new image of the running container (with the issue) and share that new image with your team members.<br>
-
-What you probably want to avoid using:
-  - Using something as `podman save/load` as it applies on an image, not a running container (so you'll share the image but the issue might not be reproduced when your team members run a container using it)
-  - Modifying Containerfile/Dockerfile as you don't really want to add environment variables meant for debugging to the source from which you usually build images
-</b></details>
+</b></details><a name="questions-containers-scenarios"></a>
+### Сценарии
 
 <details>
-<summary>You and your team work on the same project, but different versions of it. For each version, the team creates a new, separate image. What would you suggest the team to change in such case?</summary><br><b>
+<summary>Существует работающий контейнер, в котором возникла определенная проблема. Вы хотели бы поделиться образом этого контейнера с членами вашей команды с определенными переменными среды, установленными для целей отладки. Как бы вы это сделали?</summary><br><b>
 
-Use tags. You can distinguish between different releases of a project using image tags. There is no need to create an entire separate image for version/release of a project.
+`podman commit` может быть хорошим выбором для этого. Вы можете создать новый образ работающего контейнера (с проблемой) и поделиться этим новым образом с членами своей команды.<br>
+
+Чего вы, вероятно, хотите избежать:
+  - Использование чего-то в качестве `podman save/load`, поскольку оно применяется к изображению, а не к работающему контейнеру (поэтому вы поделитесь изображением, но проблема может не воспроизводиться, когда члены вашей команды запускают контейнер, используя его).
+  — Изменение Containerfile/Dockerfile, так как на самом деле вы не хотите добавлять переменные среды, предназначенные для отладки, в источник, из которого вы обычно создаете образы.
+
+</b></details>
+
+<details>
+<summary>Вы и ваша команда работаете над одним и тем же проектом, но разными его версиями. Для каждой версии команда создает новый отдельный образ. Что бы вы предложили команде изменить в таком случае?</summary><br><b>
+
+Используйте теги. Вы можете различать разные версии проекта с помощью тегов изображений. Нет необходимости создавать отдельный образ для версии/выпуска проекта.
+
 </b></details>

@@ -1,58 +1,56 @@
-## Git - Squashing Commits - Solution
+## Git — Сжатие коммитов — Решение
 
-1. In a git repository, create a new file with the content "Mario" and commit the change:
+1. В репозитории git создайте новый файл с содержимым «Марио» и зафиксируйте изменения:
 
 ```
 echo "Mario" > new_file
 git add new_file
 git commit -m "New file"
+
 ```
 
-2. Make a change to the content of the file you just created so it becomes "Mario & Luigi," then create another commit:
+2. Внесите изменения в содержимое только что созданного файла, чтобы он стал «Марио и Луиджи», затем создайте еще один коммит:
 
 ```
 echo "Mario & Luigi" > new_file
 git commit -a -m "Added Luigi"
 ```
 
-3. Verify you have two separate commits by running:
+3. Убедитесь, что у вас есть два отдельных коммита, выполнив:
 
 ```
 git log
 ```
 
-4. Squash the two commits you've created into one commit:
+4. Объедините два созданных вами коммита в один:
 
 ```
 git rebase -i HEAD~2
-```
 
-You should see something similar to:
 
-```
+Вы должны увидеть что-то похожее на:
+
+
 pick 5412076 New file
 pick 4016808 Added Luigi
-```
 
-Change `pick` to `squash`:
+Измените `pick` на `squash`:
 
 ```
 pick 5412076 New file
 squash 4016808 Added Luigi
-```
+Сохраните его и предоставьте сообщение о коммите для сжатого коммита.
 
-Save it and provide a commit message for the squashed commit.
+> **Примечание**: если выполнение `git rebase -i HEAD~2` возвращает фатальную ошибку (например, «неверный исходный «HEAD~2»)», это обычно означает, что ваш второй коммит на самом деле является корневым коммитом и перед ним нет допустимого родительского коммита. В этом случае вы можете:
+> * Используйте `git rebase -i --root`, чтобы разрешить перезапись корневого коммита, **или**
+> * Создайте первоначальный коммит перед этими двумя коммитами, чтобы HEAD~2 указывал на действительные коммиты.
 
-> **Note**: If running `git rebase -i HEAD~2` returns a fatal error (e.g., "invalid upstream 'HEAD~2'"), that usually means your second commit is actually the root commit and there's no valid parent before it. In that case, you can either:
-> * Use `git rebase -i --root` to allow rewriting the root commit, **or**
-> * Create an initial commit before these two commits so that `HEAD~2` points to valid commits.
+### После выполнения упражнения
 
-### After you complete the exercise
+**Ответьте на следующее:**
 
-**Answer the following:**
+* **В чем причина сдавливания коммитов?**  
+  История становится чище, и изменения легче отслеживать без множества мелких коммитов, таких как, например, «удаление персонажа».
 
-* **What is the reason for squashing commits?**  
-  History becomes cleaner and it's easier to track changes without many small commits like "removed a character," for example.
-
-* **Is it possible to squash more than 2 commits?**  
-  Yes.
+* **Можно ли сжать более двух коммитов?**  
+  Да.

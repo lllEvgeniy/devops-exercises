@@ -1,13 +1,15 @@
-# Labels and Selectors 101
+# Метки и селекторы 101
 
-## Objectives
+## Решение
 
-1. How to list all the Pods with the label "app=web"?
-2. How to list all objects labeled as "env=staging"?
-3. How to list all deployments from "env=prod" and "type=web"?
+1. Поды с меткой `app=web`:
 
-## Solution
+   `kubectl get pods -l app=web`
 
-`k get po -l app=web`
-`k get all -l env=staging`
-`k get deploy -l env=prod,type=web`
+2. Все объекты с меткой `env=staging`:
+
+   `kubectl get all -l env=staging`
+
+3. Deployment с метками `env=prod` и `type=web`:
+
+   `kubectl get deploy -l env=prod,type=web`

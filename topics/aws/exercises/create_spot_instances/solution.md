@@ -1,35 +1,35 @@
-## AWS EC2 - Spot Instances                                                                                                                                                  
-### Objectives             
+## AWS EC2 — спотовые инстансы                                                                                                                                                  
+### Цели             
 
-A. Create two Spot instances using a Spot Request with the following properties:
+А. Создайте два спотовых инстанса, используя спотовый запрос со следующими свойствами:
 
 * Amazon Linux 2 AMI
-* 2 instances as target capacity (at any given point of time) while each one has 2 vCPUs and 3 GiB RAM
+* 2 инстанса в качестве целевой емкости (в любой момент времени), каждый из которых имеет 2 виртуальных ЦП и 3 ГиБ ОЗУ.
 
-B. Create a single Spot instance using Amazon Linux 2 and t2.micro
+Б. Создайте один спотовый инстанс с помощью Amazon Linux 2 и t2.micro.
 
-### Solution               
+### Решение               
 
-A. Create Spot Fleets:
+А. Создайте спотовые группы:
 
-1. Go to EC2 service
-2. Click on "Spot Requests"
-3. Click on "Request Spot Instances" button
-4. Set the following values for parameters:
+1. Зайдите в сервис EC2.
+2. Нажмите «Выборочные запросы».
+3. Нажмите кнопку «Запросить спотовые инстансы».
+4. Установите следующие значения параметров:
   * Amazon Linux 2 AMI
-  * Total target capacity -> 2
-  * Check "Maintain target capacity"
-  * vCPUs: 2
-  * Memory: 3 GiB RAM
-5. Click on Launch
+  * Общая целевая емкость -> 2
+  * Установите флажок «Поддерживать целевую емкость».
+  * виртуальные процессоры: 2
+  * Память: 3 ГБ ОЗУ
+5. Нажмите «Запустить».
 
-B. Create a single Spot instance:
+Б. Создайте один спотовый инстанс:
 
-1. Go to EC2 service
-2. Click on "Instances"
-3. Click on "Launch Instances"
-4. Choose "Amazon Linux 2 AMI" and click on "Next"
-5. Choose t2.micro and click on "Next: Configure Instance Details"
-6. Select "Request Spot instances" 
-7. Set Maximum price above current price
-8. Click on "Review and Launch"
+1. Зайдите в сервис EC2.
+2. Нажмите «Экземпляры».
+3. Нажмите «Запустить экземпляры».
+4. Выберите «Amazon Linux 2 AMI» и нажмите «Далее».
+5. Выберите t2.micro и нажмите «Далее: Настройка сведений об экземпляре».
+6. Выберите «Запросить спотовые инстансы». 
+7. Установите максимальную цену выше текущей цены.
+8. Нажмите «Просмотр и запуск».

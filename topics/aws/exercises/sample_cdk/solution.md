@@ -1,23 +1,23 @@
-### Set up a CDK Project - Solution
+### Настройка проекта CDK — решение
 
-### Exercise
+### Упражнение
 
-Initialize a CDK project and set up files required to build a CDK project.
+Инициализируйте проект CDK и настройте файлы, необходимые для сборки проекта CDK.
 
-### Solution
+### Решение
 
-#### Initialize a CDK project
+#### Инициализация проекта CDK
 
-1. Install CDK on your machine by running `npm install -g aws-cdk`.
-2. Create a new directory named `sample` for your project and run `cdk init app --language typescript` to initialize a CDK project. You can choose language as csharp, fsharp, go, java, javascript, python or typescript.
-3. You would see the following files created in your directory:
-   1. `cdk.json`, `tsconfig.json`, `package.json`  - These are configuration files that are used to define some global settings for your CDK project.
-   2. `bin/sample.ts` - This is the entry point for your CDK project. This file is used to define the stack that you want to create.
-   3. `lib/sample-stack.ts` - This is the main file that will contain the code for your CDK project.
+1. Установите CDK на свой компьютер, запустив `npm install -g aws-cdk`.
+2. Создайте новый каталог с именем «sample» для вашего проекта и запустите «cdk init app --language typescript», чтобы инициализировать проект CDK. Вы можете выбрать язык: csharp, fsharp, go, java, javascript, python или typescript.
+3. Вы увидите следующие файлы, созданные в вашем каталоге:
+   1. `cdk.json`, `tsconfig.json`, `package.json` — это файлы конфигурации, которые используются для определения некоторых глобальных настроек вашего проекта CDK.
+   2. `bin/sample.ts` — это точка входа для вашего проекта CDK. Этот файл используется для определения стека, который вы хотите создать.
+   3. `lib/sample-stack.ts` — это основной файл, который будет содержать код вашего проекта CDK.
 
-#### Create a Sample lambda function
+#### Создайте образец лямбда-функции
 
-1. In `lib/sample-stack.ts` file, add the following code to create a lambda function:
+1. В файл lib/sample-stack.ts добавьте следующий код для создания лямбда-функции:
 
 ```typescript
 import * as cdk from 'aws-cdk-lib';
@@ -36,21 +36,18 @@ export class SampleStack extends cdk.Stack {
   }
 }
 
-```
+Это создаст образец лямбда-функции, которая при вызове возвращает «hello world».
 
-This will create a sample lambda function that returns "hello world" when invoked.
+#### Запускаем проект CDK
 
-#### Bootstrap the CDK project
+Прежде чем развернуть проект. Вам необходимо запустить свой проект. Это создаст стек CloudFormation, который будет использоваться для развертывания вашего проекта. Вы можете загрузить свой проект, запустив `cdk bootstrap`.
 
-Before you deploy your project. You need to bootstrap your project. This will create a CloudFormation stack that will be used to deploy your project. You can bootstrap your project by running `cdk bootstrap`.
+Узнайте больше о начальной загрузке [здесь](https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html).
 
-Learn more about bootstrapping [here](https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html).
+##### Развертывание проекта
 
-##### Deploy the Project
-
-1. Run `npm install` to install all the dependencies for your project whenever you make changes.
-2. Run `cdk synth` to synthesize the CloudFormation template for your project. You will see a new file called `cdk.out/CDKToolkit.template.json` that contains the CloudFormation template for your project.
-3. Run `cdk diff` to see the changes that will be made to your AWS account. You will see a new stack called `SampleStack` that will create a lambda function and all the changes associated with it.
-4. Run `cdk deploy` to deploy your project. You should see a new stack called created in your AWS account under CloudFormation.
-5. Go to Lambda console and you will see a new lambda function called `SampleLambda` created in your account.
-
+1. Запускайте npm install, чтобы устанавливать все зависимости вашего проекта всякий раз, когда вы вносите изменения.
+2. Запустите `cdk Synth`, чтобы синтезировать шаблон CloudFormation для вашего проекта. Вы увидите новый файл cdk.out/CDKToolkit.template.json, который содержит шаблон CloudFormation для вашего проекта.
+3. Запустите «cdk diff», чтобы увидеть изменения, которые будут внесены в вашу учетную запись AWS. Вы увидите новый стек под названием SampleStack, который создаст лямбда-функцию и все связанные с ней изменения.
+4. Запустите `cdk Deploy`, чтобы развернуть проект. Вы должны увидеть новый стек под названием «Созданный» в вашей учетной записи AWS в разделе CloudFormation.
+5. Перейдите в консоль Lambda, и вы увидите новую лямбда-функцию под названием SampleLambda, созданную в вашей учетной записи.

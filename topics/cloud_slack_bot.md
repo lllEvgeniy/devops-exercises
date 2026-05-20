@@ -1,19 +1,19 @@
-## Cloud Slack Bot
+## Slack-бот для управления облачными инстансами
 
-Create a slack bot to manage cloud instances. You can choose whatever cloud provider you want (e.g. Openstack, AWS, GCP, Azure)
-You should provide:
+Сделайте бота для Slack, который управляет **виртуальными машинами** (или аналогами) у выбранного провайдера (AWS, GCP, Azure, OpenStack и т.д.).
 
-  * Instructions on how to use it
-  * Source code of the slack bot
-  * A running slack bot account or a deployment script so we can test it
+Сдайте:
 
-The bot should be able to support:
+* краткую **инструкцию** по запуску и проверке;
+* **исходный код** бота;
+* рабочий **Slack-приложение** / токен для теста **или** сценарий развёртывания (Docker Compose, Terraform + секреты в виде плейсхолдеров), чтобы проверяющий мог воспроизвести окружение.
 
-  * Creating new instances
-  * Removing existing instances
-  * Starting an instance
-  * Stopping an instance
-  * Displaying the status of an instance
-  * List all available instances
+Функции бота:
 
-The bot should also be able to show help message.
+* создать инстанс;
+* удалить инстанс;
+* **запустить** (start) инстанс;
+* **остановить** (stop) инстанс;
+* показать **статус** инстанса;
+* вывести **список** инстансов;
+* команда **help** со справкой по командам.

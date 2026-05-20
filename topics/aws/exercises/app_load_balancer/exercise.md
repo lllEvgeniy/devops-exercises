@@ -1,13 +1,13 @@
-## AWS ELB - Application Load Balancer 
+## AWS ELB — балансировщик нагрузки приложений 
 
-### Requirements                   
+### Требования                   
 
-Two EC2 instances with a simple web application that shows the web page with the string "Hey, it's a me, `<HOSTNAME>`!"
+Два экземпляра EC2 с простым веб-приложением, которое показывает веб-страницу со строкой «Эй, это я, `<HOSTNAME>`!»
 
-### Objectives                     
+### Цели                     
 
-1. Create an application load balancer for the two instances you have, with the following properties
-  1. healthy threshold: 3
-  2. unhealthy threshold: 3
-  3. interval: 10 seconds
-2. Verify load balancer is working  (= you get reply from both instances at different times)
+1. Создайте балансировщик нагрузки приложения для двух имеющихся у вас экземпляров со следующими свойствами.
+  1. порог здоровья: 3
+  2. порог нездоровья: 3
+  3. интервал: 10 секунд
+2. Убедитесь, что балансировщик нагрузки работает (= вы получаете ответ от обоих экземпляров в разное время)

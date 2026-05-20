@@ -1,1202 +1,1207 @@
-## AWS - Solutions Architect Associate 
+## AWS — Solutions Architect Associate
 
-Last update: 2021
+Последнее обновление материала: 2021
 
-#### AWS Global Infrastructure
+#### Глобальная инфраструктура AWS
 
 <details>
-<summary>Explain the following
+<summary>Объясните следующие понятия
 
-  * Availability zone
-  * Region
-  * Edge location</summary><br><b>
+  * Зона доступности (Availability Zone)
+  * Регион (Region)
+  * Пограничная точка (Edge location)</summary><br><b>
 
-AWS regions are data centers hosted across different geographical locations worldwide, each region is completely independent of one another.<br>
+**Регионы AWS** — географически разделённые области с несколькими изолированными зонами доступности; регионы независимы друг от друга по умолчанию.<br>
 
-Within each region, there are multiple isolated locations known as Availability Zones. Multiple availability zones ensure high availability in case one of them goes down.<br>
+Внутри региона — несколько **зон доступности (AZ)**: изолированные площадки с собственной электросетью и сетью; несколько AZ дают отказоустойчивость при сбое одной зоны.<br>
 
-Edge locations are basically content delivery network which caches data and insures lower latency and faster delivery to the users in any location. They are located in major cities in the world.
+**Edge locations** — точки сети доставки контента (CDN), кэшируют контент ближе к пользователям для меньшей задержки; обычно в крупных городах по всему миру.
 </b></details>
 
-#### AWS - IAM
+#### IAM в AWS
 
 <details>
-<summary>What is IAM? What are some of its features?</summary><br><b>
+<summary>Что такое IAM? Какие у него возможности?</summary><br><b>
 
-Full explanation is [here](https://aws.amazon.com/iam)
-In short: it's used for managing users, groups, access policies & roles
-</b></details>
-
-<details>
-<summary>True or False? IAM configuration is defined globally and not per region</summary><br><b>
-
-True
+Полное описание: [AWS IAM](https://aws.amazon.com/iam)  
+Кратко: управление **пользователями**, **группами**, **политиками** доступа и **ролями** (в т.ч. для сервисов и федерации).
 </b></details>
 
 <details>
-<summary>True or False? When creating an AWS account, root account is created by default. This is the recommended account to use and share in your organization</summary><br><b>
+<summary>Верно или нет? Конфигурация IAM глобальная, а не привязанная к региону</summary><br><b>
 
-False. Instead of using the root account, you should be creating users and use them.
+Верно. IAM — глобальный сервис в пределах аккаунта.
 </b></details>
 
 <details>
-<summary>True or False? Groups in AWS IAM, can contain only users and not other groups</summary><br><b>
+<summary>Верно или нет? При создании аккаунта AWS по умолчанию создаётся root; это рекомендуемая учётная запись для повседневной работы и «шаринга» в организации</summary><br><b>
 
-True
+Неверно. Root использовать только для редких админ-операций; для работы создают IAM-пользователей/роли и принцип наименьших привилегий.
 </b></details>
 
 <details>
-<summary>True or False? Users in AWS IAM, can belong only to a single group</summary><br><b>
+<summary>Верно или нет? Группы в IAM могут содержать только пользователей, но не другие группы</summary><br><b>
 
-False. Users can belong to multiple groups.
+Верно. Вложенных групп в IAM нет.
 </b></details>
 
 <details>
-<summary>What are Roles?</summary><br><b>
+<summary>Верно или нет? Пользователь IAM может состоять только в одной группе</summary><br><b>
 
-A way for allowing a service of AWS to use another service of AWS. You assign roles to AWS resources.
-For example, you can make use of a role which allows EC2 service to accesses s3 buckets (read and write).
+Неверно. Пользователь может входить в **несколько** групп; эффективные права складываются из политик всех групп и прикреплённых к пользователю политик.
 </b></details>
 
 <details>
-<summary>What are Policies?</summary><br><b>
+<summary>Что такое роли (Roles)?</summary><br><b>
 
-Policies documents used to give permissions as to what a user, group or role are able to do. Their format is JSON.
+Способ **делегировать** права сервису или субъекту без долгоживущих ключей на ресурсе: роль **прикрепляют** к EC2, Lambda, ECS и т.д., а в политике роли разрешают, например, чтение/запись в **S3**.
 </b></details>
 
 <details>
-<summary>A user is unable to access an s3 bucket. What might be the problem?</summary><br><b>
+<summary>Что такое политики (Policies)?</summary><br><b>
 
-There can be several reasons for that. One of them is lack of policy. To solve that, the admin has to attach the user with a policy what allows him to access the s3 bucket.
+Документы (обычно **JSON**), описывающие, **какие действия** с какими ресурсами разрешены или запрещены для пользователя, группы или роли.
 </b></details>
 
 <details>
-<summary>What should you use to:
+<summary>Пользователь не может обратиться к бакету S3. В чём может быть причина?</summary><br><b>
 
-  * Grant access between two services/resources?
-  * Grant user access to resources/services?</summary><br><b>
-
-  * Role
-  * Policy
+Типичные причины: нет нужной **IAM-политики** (или есть **Deny**), конфликт с **bucket policy**, **ACL** (если используются), блокировки публичного доступа, неверный **ключ объекта**, запрет **VPC endpoint**/сети, **KMS** отказывает в расшифровке. Админ проверяет эффективные разрешения (IAM + bucket policy) и исправляет политику.
 </b></details>
 
 <details>
-<summary>What permissions does a new user have?</summary><br><b>
+<summary>Чем воспользоваться, чтобы:
 
-Only a login access.
-</b></details>
+  * выдать доступ **между сервисами/ресурсами**?
+  * выдать **пользователю** доступ к ресурсам/сервисам?</summary><br><b>
 
-
-#### AWS Networking
-
-<details>
-<summary>What is VPC?</summary><br><b>
-
-"A logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network that you define"
-Read more about it [here](https://aws.amazon.com/vpc).
+  * **Роль** (часто для сервис-к-сервису и EC2/Lambda)
+  * **Политика** (прямо к пользователю/группе или к роли)
 </b></details>
 
 <details>
-<summary>True or False? VPC spans multiple regions</summary><br><b>
+<summary>Какие права у только что созданного пользователя IAM?</summary><br><b>
 
-False
+По умолчанию — **нет** прав на API ресурсов; может быть только возможность **войти в консоль** (если задан пароль) до прикрепления политик.
+</b></details>
+
+
+#### Сеть в AWS
+
+<details>
+<summary>Что такое VPC?</summary><br><b>
+
+«Логически изолированный участок облака AWS, в котором вы запускаете ресурсы в **определяемой вами** виртуальной сети».  
+Подробнее: [Amazon VPC](https://aws.amazon.com/vpc).
 </b></details>
 
 <details>
-<summary>True or False? Subnets belong to the same VPC, can be in different availability zones</summary><br><b>
+<summary>Верно или нет? Одна VPC охватывает несколько регионов</summary><br><b>
 
-True. Just to clarify, a subnet must reside entirely in one AZ.
+Неверно. VPC привязана к **одному** региону.
 </b></details>
 
 <details>
-<summary>What is an Internet Gateway?</summary><br><b>
+<summary>Верно или нет? Подсети одной VPC могут находиться в разных зонах доступности</summary><br><b>
 
-"component that allows communication between instances in your VPC and the internet" (AWS docs).
-Read more about it [here](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
+Верно. При этом **одна** подсеть целиком лежит в **одной** AZ.
 </b></details>
 
 <details>
-<summary>True or False? NACL allow or deny traffic on the subnet level</summary><br><b>
+<summary>Что такое Internet Gateway?</summary><br><b>
 
-True
+Компонент, обеспечивающий **двустороннюю** связь инстансов в VPC с **интернетом** (маршрутизация 0.0.0.0/0 → IGW).  
+Документация: [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 </b></details>
 
 <details>
-<summary>True or False? Multiple Internet Gateways can be attached to one VPC</summary><br><b>
+<summary>Верно или нет? NACL разрешают или запрещают трафик на уровне подсети</summary><br><b>
 
-False. Only one internet gateway can be attached to a single VPC.
+Верно. Списки ACL — **stateless**, порядок правил и явные разрешения/запреты по подсети.
 </b></details>
 
 <details>
-<summary>True or False? Route Tables used to allow or deny traffic from the internet to AWS instances</summary><br><b>
+<summary>Верно или нет? К одной VPC можно подключить несколько Internet Gateway</summary><br><b>
 
-False.
+Неверно. К VPC обычно подключают **один** Internet Gateway (на VPC).
 </b></details>
 
 <details>
-<summary>Explain Security Groups and Network ACLs</summary><br><b>
+<summary>Верно или нет? Таблицы маршрутизации служат для разрешения или запрета трафика из интернета к инстансам AWS</summary><br><b>
 
-* NACL - security layer on the subnet level.
-* Security Group - security layer on the instance level.
-
-Read more about it [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html) and [here](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+Неверно. Route tables задают **куда** направлять пакеты (IGW, NAT, VPC peering, TGW и т.д.). Разрешение/запрет трафика к инстансу — это **security groups** и **NACL**.
 </b></details>
 
 <details>
-<summary>What is AWS Direct Connect?</summary><br><b>
+<summary>Объясните Security Groups и Network ACL</summary><br><b>
 
-Allows you to connect your corporate network to AWS network.
-</b></details>
+* **NACL** — контроль на уровне **подсети**, stateless, нумерованные правила.  
+* **Security Group** — виртуальный **файрвол на уровне ENI/ресурса**, stateful, только разрешающие правила (явный deny через NACL или политики).
 
-#### AWS Compute
-
-<details>
-<summary>What is EC2?</summary><br><b>
-
-"a web service that provides secure, resizable compute capacity in the cloud".
-Read more [here](https://aws.amazon.com/ec2)
+Подробнее: [Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html), [NACL](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 </b></details>
 
 <details>
-<summary>True or False? EC2 is a regional service</summary><br><b>
+<summary>Что такое AWS Direct Connect?</summary><br><b>
 
-True. As opposed to IAM for example, which is a global service, EC2 is a regional service.
+Выделенное или партнёрское **приватное** соединение между вашей корпоративной сетью и AWS (ниже джиттер/стабильнее, чем чистый интернет-VPN для больших объёмов).
+</b></details>
+
+#### Вычисления в AWS
+
+<details>
+<summary>Что такое EC2?</summary><br><b>
+
+«Веб-сервис, предоставляющий **безопасные, изменяемые по размеру** вычислительные мощности в облаке».  
+Подробнее: [Amazon EC2](https://aws.amazon.com/ec2)
 </b></details>
 
 <details>
-<summary>What is AMI?</summary><br><b>
+<summary>Верно или нет? EC2 — региональный сервис</summary><br><b>
 
-Amazon Machine Images is "An Amazon Machine Image (AMI) provides the information required to launch an instance".
-Read more [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
+Верно. Ресурсы EC2 и AMI привязаны к региону (в отличие от IAM, который глобален в аккаунте).
 </b></details>
 
 <details>
-<summary>What are the different source for AMIs?</summary><br><b>
+<summary>Что такое AMI?</summary><br><b>
 
-* Personal AMIs - AMIs you create
-* AWS Marketplace for AMIs - Paid AMIs usually with bundled with licensed software
-* Community AMIs - Free
+**Amazon Machine Image** — образ с ОС, ПО и настройками, по которому **запускают** инстанс EC2.  
+Документация: [AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
 </b></details>
 
 <details>
-<summary>What is instance type?</summary><br><b>
+<summary>Какие бывают источники AMI?</summary><br><b>
 
-"the instance type that you specify determines the hardware of the host computer used for your instance"
-Read more about instance types [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+* **Свои AMI** — созданные вами  
+* **AWS Marketplace** — платные/лицензированные образы с ПО  
+* **Community AMI** — общедоступные образы сообщества
 </b></details>
 
 <details>
-<summary>True or False? The following are instance types available for a user in AWS:
+<summary>Что такое тип инстанса (instance type)?</summary><br><b>
 
-  * Compute optimized
-  * Network optimized
-  * Web optimized</summary><br><b>
-
-False. From the above list only compute optimized is available.
+«Тип инстанса определяет **аппаратную конфигурацию** хоста (vCPU, память, сеть, локальные SSD и т.д.)».  
+Справочник: [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
 </b></details>
 
 <details>
-<summary>What is EBS?</summary><br><b>
+<summary>Верно или нет? Из перечисленных типы инстансов в AWS доступны пользователю:
 
-"provides block level storage volumes for use with EC2 instances. EBS volumes behave like raw, unformatted block devices."
-More on EBS [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)
+  * вычислительно оптимизированные (compute optimized)
+  * сетево оптимизированные (network optimized)
+  * веб-оптимизированные (web optimized)</summary><br><b>
+
+Неверно. Из списка как отдельное семейство в духе вопроса корректно **compute optimized**; «web optimized» как официального семейства нет; сетевые характеристики — у многих семейств (например network-intensive варианты).
 </b></details>
 
 <details>
-<summary>What EC2 pricing models are there?</summary><br><b>
+<summary>Что такое EBS?</summary><br><b>
 
-On Demand - pay a fixed rate by the hour/second with no commitment. You can provision and terminate it at any given time.
-Reserved - you get capacity reservation, basically purchase an instance for a fixed time of period. The longer, the cheaper.
-Spot - Enables you to bid whatever price you want for instances or pay the spot price.
-Dedicated Hosts - physical EC2 server dedicated for your use.
+«**Блочные** тома хранения для EC2; ведут себя как сырые блочные устройства».  
+Подробнее: [Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)
 </b></details>
 
 <details>
-<summary>What are Security Groups?</summary><br><b>
+<summary>Какие модели оплаты за EC2 существуют?</summary><br><b>
 
-"A security group acts as a virtual firewall that controls the traffic for one or more instances"
-More on this subject [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
+**On-Demand** — почасовая/посекундная оплата без обязательств, гибко старт/стоп.  
+**Reserved Instances / Savings Plans** — скидка за **обязательство** по использованию/типу.  
+**Spot** — скидка за использование **избыточной** мощности; инстанс могут забрать при нехватке.  
+**Dedicated Hosts** — выделенный **физический** сервер под ваши лицензии BYOL и изоляцию.
 </b></details>
 
 <details>
-<summary>What can you attach to an EC2 instance in order to store data?</summary><br><b>
+<summary>Что такое security groups?</summary><br><b>
 
-EBS
+«Виртуальный **файрвол** на уровне инстанса/ENI: разрешающие правила для входящего/исходящего трафика».  
+Подробнее: [Security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
 </b></details>
 
 <details>
-<summary>What EC2 RI types are there?</summary><br><b>
+<summary>Что можно подключить к EC2 для хранения данных?</summary><br><b>
 
-Standard RI - most significant discount + suited for steady-state usage
-Convertible RI - discount + change attribute of RI + suited for steady-state usage
-Scheduled RI - launch within time windows you reserve
-
-Learn more about EC2 RI [here](https://aws.amazon.com/ec2/pricing/reserved-instances)
-</b></details>
-
-#### AWS Containers
-
-<details>
-<summary>What is Amazon ECS?</summary><br><b>
-
-Amazon definition: "Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service. Customers such as Duolingo, Samsung, GE, and Cook Pad use ECS to run their most sensitive and mission critical applications because of its security, reliability, and scalability."
-
-Learn more [here](https://aws.amazon.com/ecs)
+**Amazon EBS** (тома), при необходимости **instance store** (локальный эфемерный диск на хосте), **EFS** по NFS.
 </b></details>
 
 <details>
-<summary>What is Amazon ECR?</summary><br><b>
+<summary>Какие типы Reserved Instances для EC2 бывают?</summary><br><b>
 
-Amazon definition: "Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images."
+**Standard RI** — максимальная скидка при фиксированных атрибутах (семейство, регион, tenancy).  
+**Convertible RI** — меньшая скидка, но можно **менять** атрибуты в рамках правил.  
+**Scheduled RI** — резерв мощности в **заданных окнах** времени.
 
-Learn more [here](https://aws.amazon.com/ecr)
+Подробнее: [Reserved Instances](https://aws.amazon.com/ec2/pricing/reserved-instances)
+</b></details>
+
+#### Контейнеры в AWS
+
+<details>
+<summary>Что такое Amazon ECS?</summary><br><b>
+
+«Полностью управляемая **оркестрация контейнеров** для запуска Docker на EC2 или Fargate с интеграцией в VPC, балансировщики и секреты».
+
+Подробнее: [Amazon ECS](https://aws.amazon.com/ecs)
 </b></details>
 
 <details>
-<summary>What is AWS Fargate?</summary><br><b>
+<summary>Что такое Amazon ECR?</summary><br><b>
 
-Amazon definition: "AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS)."
+«Управляемый **реестр образов** контейнеров с интеграцией в ECS/EKS и сканированием образов».
 
-Learn more [here](https://aws.amazon.com/fargate)
-</b></details>
-
-#### AWS Storage
- 
-<details>
-<summary>Explain what is AWS S3?</summary><br><b>
-
-S3 stands for 3 S, Simple Storage Service.
-S3 is a object storage service which is fast, scalable and durable. S3 enables customers to upload, download or store any file or object that is up to 5 TB in size.
-
-More on S3 [here](https://aws.amazon.com/s3) 
+Подробнее: [Amazon ECR](https://aws.amazon.com/ecr)
 </b></details>
 
 <details>
-<summary>What is a bucket?</summary><br><b>
+<summary>Что такое AWS Fargate?</summary><br><b>
 
-An S3 bucket is a resource which is similar to folders in a file system and allows storing objects, which consist of data.
+«**Бессерверный** движок запуска контейнеров для **ECS** и **EKS** без управления хостами EC2».
+
+Подробнее: [AWS Fargate](https://aws.amazon.com/fargate)
+</b></details>
+
+#### Хранение в AWS
+
+<details>
+<summary>Что такое Amazon S3?</summary><br><b>
+
+**S3** — Simple Storage Service: **объектное** хранилище с высокой масштабируемостью и долговечностью; объекты до **5 TiB** на ключ (в пределах лимитов сервиса).
+
+Подробнее: [Amazon S3](https://aws.amazon.com/s3)
 </b></details>
 
 <details>
-<summary>True or False? A bucket name must be globally unique</summary><br><b>
+<summary>Что такое бакет (bucket)?</summary><br><b>
 
-True
+**Бакет** — контейнер верхнего уровня в регионе/конфигурации; внутри — **объекты** (данные + метаданные). Префиксы «как папки» — часть **ключа** объекта, отдельной иерархии папок S3 не создаёт.
 </b></details>
 
 <details>
-<summary>Explain folders and objects in regards to buckets</summary><br><b>
+<summary>Верно или нет? Имя бакета должно быть глобально уникальным</summary><br><b>
 
-* Folder - any sub folder in an s3 bucket
-* Object - The files which are stored in a bucket
+Верно (в пределах партиции DNS-имён S3; стандартный стиль — глобально уникальное DNS-совместимое имя).
 </b></details>
 
 <details>
-<summary>Explain the following:
+<summary>«Папки» и объекты в контексте бакета</summary><br><b>
 
-  * Object Lifecycles
-  * Object Sharing
-  * Object Versioning</summary><br><b>
-
-  * Object Lifecycles - Transfer objects between storage classes based on defined rules of time periods
-  * Object Sharing - Share objects via a URL link
-  * Object Versioning - Manage multiple versions of an object
+* **Префикс («папка»)** — логическое группирование по общему началу **ключа** объекта.  
+* **Объект** — единица хранения: тело, метаданные, ключ, версия (если включено версионирование).
 </b></details>
 
 <details>
-<summary>Explain Object Durability and Object Availability</summary><br><b>
+<summary>Объясните следующее:
 
-Object Durability: The percent over a one-year time period that a file will not be lost
-Object Availability: The percent over a one-year time period that a file will be accessible
+  * жизненный цикл объектов (Lifecycle)
+  * совместный доступ к объектам (Sharing)
+  * версионирование объектов (Versioning)</summary><br><b>
+
+  * **Lifecycle** — автоматические переходы между классами хранения, удаление по правилам времени/префикса.  
+  * **Sharing** — выдача доступа через **подписанный URL** (presigned), политики бакета, CloudFront **OAC/OAI**.  
+  * **Versioning** — хранение нескольких версий одного ключа; защита от перезаписи/удаления (в связке с MFA Delete и политиками).
 </b></details>
 
 <details>
-<summary>What is a storage class? What storage classes are there?</summary><br><b>
+<summary>Долговечность (Durability) и доступность (Availability) объекта в S3</summary><br><b>
 
-Each object has a storage class assigned to, affecting its availability and durability. This also has effect on costs.
-Storage classes offered today:
-  * Standard:
-    * Used for general, all-purpose storage (mostly storage that needs to be accessed frequently)
-    * The most expensive storage class 
-    * 11x9% durability
-    * 2x9% availability
-    * Default storage class
+**Долговечность** — насколько маловероятна **потеря** объекта за год (для Regional классов — крайне высокая, порядка **одиннадцати девяток** для Standard).  
+**Доступность** — доля времени, когда сервис **отвечает** на запросы по SLA класса (для Standard-IA и др. — свои целевые проценты; см. актуальную документацию S3).
+</b></details>
 
-  * Standard-IA (Infrequent Access)
-    * Long lived, infrequently accessed data but must be available the moment it's being accessed
-    * 11x9% durability
-    * 99.90% availability
+<details>
+<summary>Что такое класс хранения? Какие классы бывают?</summary><br><b>
 
-  * One Zone-IA (Infrequent Access):
-    * Long-lived, infrequently accessed, non-critical data
-    * Less expensive than Standard and Standard-IA storage classes
-    * 2x9% durability
-    * 99.50% availability
-    
-  * Intelligent-Tiering:
-    * Long-lived data with changing or unknown access patterns. Basically, In this class the data automatically moves to the class most suitable for you based on usage patterns
-    * Price depends on the used class
-    * 11x9% durability
-    * 99.90% availability
+У каждого объекта есть **класс хранения** — влияет на **стоимость**, **SLA доступности** и **время/стоимость выборки** (для архивных).
 
-  * Glacier: Archive data with retrieval time ranging from minutes to hours
-  * Glacier Deep Archive: Archive data that rarely, if ever, needs to be accessed with retrieval times in hours
-  * Both Glacier and Glacier Deep Archive are:
-    * The most cheap storage classes
-    * have 9x9% durability 
+Основные идеи (актуализируйте по документации AWS):
+  * **S3 Standard** — частый доступ, максимальная доступность среди «горячих», высокая долговечность, класс по умолчанию.  
+  * **Standard-IA** — редкий доступ, но при обращении нужна **мгновенная** выборка; ниже цена хранения, выше плата за retrieval.  
+  * **One Zone-IA** — дешевле, данные в **одной** AZ (ниже устойчивость к катастрофе AZ).  
+  * **Intelligent-Tiering** — автоматический перенос между тирами по паттерну доступа (плата за мониторинг тира).  
+  * **Glacier Instant Retrieval / Flexible / Deep Archive** — архивные уровни с разными **окнами и ценой** восстановления.
 
-More on storage classes [here](https://aws.amazon.com/s3/storage-classes)
+Обзор классов: [S3 storage classes](https://aws.amazon.com/s3/storage-classes)
 
 </b></details>
 
 <details>
-<summary>A customer would like to move data which is rarely accessed from standard storage class to the most cheapest class there is. Which storage class should be used?
+<summary>Клиент хочет перевести редко читаемые данные из Standard в **самый дешёвый** класс. Что выбрать из списка?
 
   * One Zone-IA
   * Glacier Deep Archive
   * Intelligent-Tiering</summary><br><b>
 
-Glacier Deep Archive
+**S3 Glacier Deep Archive** — минимальная цена хранения при самых длинных/дорогих сценариях выборки среди перечисленных.
 </b></details>
 
 <details>
-<summary>What Glacier retrieval options are available for the user?</summary><br><b>
+<summary>Какие режимы выборки (retrieval) бывают у Glacier?</summary><br><b>
 
-Expedited, Standard and Bulk
+**Expedited**, **Standard**, **Bulk** (для классических Glacier; у **Flexible/Deep Archive** — свои профили времени и цены — сверяйте с документацией).
 </b></details>
 
 <details>
-<summary>True or False? Each AWS account can store up to 500 PetaByte of data. Any additional storage will cost double</summary><br><b>
+<summary>Верно или нет? В аккаунте AWS жёсткий лимит 500 ПБ; сверх — плата удваивается</summary><br><b>
 
-False. Unlimited capacity.
+Неверно. Практически **без жёсткого потолка** по объёму; стоимость считается по тарифам, а не «удвоением после 500 ПБ».
 </b></details>
 
 <details>
-<summary>Explain what is Storage Gateway</summary><br><b>
+<summary>Что такое AWS Storage Gateway?</summary><br><b>
 
-"AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage".
-More on Storage Gateway [here](https://aws.amazon.com/storagegateway)
+«Гибридный сервис: **on-prem шлюз** к практически неограниченному облачному хранилищу (файлы, тома, лента)».  
+Подробнее: [Storage Gateway](https://aws.amazon.com/storagegateway)
 </b></details>
 
 <details>
-<summary>Explain the following Storage Gateway deployments types
+<summary>Типы развёртывания Storage Gateway
 
   * File Gateway
   * Volume Gateway
   * Tape Gateway</summary><br><b>
 
-Explained in detail [here](https://aws.amazon.com/storagegateway/faqs)
+Кратко: **File** — NFS/SMB в S3; **Volume** — блочные тома iSCSI с бэкапом в облако (stored/cached); **Tape** — виртуальная лента в Glacier/Deep Archive.  
+Подробнее: [Storage Gateway FAQ](https://aws.amazon.com/storagegateway/faqs)
 </b></details>
 
 <details>
-<summary>What is the difference between stored volumes and cached volumes?</summary><br><b>
+<summary>Чем stored volumes отличаются от cached volumes?</summary><br><b>
 
-Stored Volumes - Data is located at customer's data center and periodically backed up to AWS
-Cached Volumes - Data is stored in AWS cloud and cached at customer's data center for quick access
+**Stored** — основной набор данных **on-prem**, в облако асинхронно снимаются снапшоты.  
+**Cached** — полный набор в **облаке**, на площадке кэшируется «горячий» поднабор для быстрого локального доступа.
 </b></details>
 
 <details>
-<summary>What is "Amazon S3 Transfer Acceleration"?</summary><br><b>
+<summary>Что такое Amazon S3 Transfer Acceleration?</summary><br><b>
 
-AWS definition: "Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket"
+«Ускорение загрузки/скачивания в S3 за счёт входа в сеть CloudFront **ближе к клиенту** и дальнейшей доставки по магистрали AWS».
 
-Learn more [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html)
+Документация: [Transfer Acceleration](https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html)
 </b></details>
 
 <details>
-<summary>What is Amazon EFS?</summary><br><b>
+<summary>Что такое Amazon EFS?</summary><br><b>
 
-Amazon definition: "Amazon Elastic File System (Amazon EFS) provides a simple, scalable, fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources."
+«Управляемая **NFS** файловая система, растущая по мере записи; для Linux-инстансов, контейнеров и гибридных сценариев».
 
-Learn more [here](https://aws.amazon.com/efs)
+Подробнее: [Amazon EFS](https://aws.amazon.com/efs)
 </b></details>
 
 <details>
-<summary>What is AWS Snowmobile?</summary><br><b>
+<summary>Что такое AWS Snowmobile?</summary><br><b>
 
-"AWS Snowmobile is an Exabyte-scale data transfer service used to move extremely large amounts of data to AWS."
+«Перенос **эксабайтных** объёмов физическим **транспортом** (контейнер с хранилищем) в дата-центр AWS».
 
-Learn more [here](https://aws.amazon.com/snowmobile)
+Подробнее: [AWS Snowmobile](https://aws.amazon.com/snowmobile)
 </b></details>
 
-##### AWS ELB
+##### Elastic Load Balancing (ELB)
 
 <details>
-<summary>What is ELB (Elastic Load Balancing)?</summary><br><b>
+<summary>Что такое ELB (Elastic Load Balancing)?</summary><br><b>
 
-AWS definition: "Elastic Load Balancing automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, and Lambda functions."
+«Распределяет входящий трафик по целям: EC2, IP, Lambda, контейнеры в целевых группах».
 
-More on ELB [here](https://aws.amazon.com/elasticloadbalancing)
-</b></details>
-
-<details>
-<summary>What is auto scaling?</summary><br><b>
-
-AWS definition: "AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost"
-
-Read more about auto scaling [here](https://aws.amazon.com/autoscaling)
+Подробнее: [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing)
 </b></details>
 
 <details>
-<summary>True or False? Auto Scaling is about adding resources (such as instances) and not about removing resource</summary><br><b>
+<summary>Что такое Auto Scaling?</summary><br><b>
 
-False. Auto scaling adjusts capacity and this can mean removing some resources based on usage and performances.
+«Сервисы масштабирования (в т.ч. **EC2 Auto Scaling** и **Application Auto Scaling**) подстраивают ёмкость по метрикам/расписанию, чтобы держать производительность и экономить».
+
+Подробнее: [AWS Auto Scaling](https://aws.amazon.com/autoscaling)
 </b></details>
 
 <details>
-<summary>What types of load balancers are supported in EC2 and what are they used for?</summary><br><b>
+<summary>Верно или нет? Auto Scaling только добавляет ресурсы, но никогда их не убирает</summary><br><b>
 
-  * Application LB - layer 7 traffic
-  * Network LB - ultra-high performances or static IP address
-  * Classic LB - low costs, good for test or dev environments
-</b></details>
-
-#### AWS DNS
-
-<details>
-<summary>What is Route 53?</summary><br><b>
-
-"Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service"
-Some of Route 53 features:
-  * Register domain
-  * DNS service - domain name translations
-  * Health checks - verify your app is available
-
-More on Route 53 [here](https://aws.amazon.com/route53)
-</b></details>
-
-#### AWS CloudFront
-
-<details>
-<summary>Explain what is CloudFront</summary><br><b>
-
-AWS definition: "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment."
-
-More on CloudFront [here](https://aws.amazon.com/cloudfront)
+Неверно. Политики **scale-in** уменьшают число инстансов/единиц ёмкости при снижении нагрузки (если не запрещено защитой от сбоев/хуками).
 </b></details>
 
 <details>
-<summary>Explain the following
+<summary>Какие типы балансировщиков нагрузки поддерживаются и для чего они?</summary><br><b>
+
+  * **Application Load Balancer** — HTTP/HTTPS, маршрутизация L7, WebSocket.  
+  * **Network Load Balancer** — TCP/UDP, низкая задержка, высокая пропускная способность, **статические IP** на AZ.  
+  * **Classic Load Balancer** — устаревший вариант L4/L7; для новых архитектур предпочтительны ALB/NLB.
+</b></details>
+
+#### DNS в AWS
+
+<details>
+<summary>Что такое Route 53?</summary><br><b>
+
+«Высокодоступный масштабируемый **DNS** и регистрация доменов в AWS».  
+Возможности: регистрация домена, публичные/приватные зоны, **маршрутизация** (latency, geo, weighted, failover), **проверки здоровья**.
+
+Подробнее: [Route 53](https://aws.amazon.com/route53)
+</b></details>
+
+#### Amazon CloudFront
+
+<details>
+<summary>Что такое CloudFront?</summary><br><b>
+
+«**CDN**: доставка статики, видео, API и приложений с **edge locations** с низкой задержкой».
+
+Подробнее: [Amazon CloudFront](https://aws.amazon.com/cloudfront)
+</b></details>
+
+<details>
+<summary>Объясните термины
 
   * Origin
   * Edge location
   * Distribution</summary><br><b>
+
+* **Origin** — источник контента (S3, ALB/API Gateway, произвольный HTTP-сервер), откуда edge забирает объекты при промахе кэша.  
+* **Edge location** — пограничная точка кэширования и TLS-ближе к пользователю.  
+* **Distribution** — конфигурация CDN: источники, поведения (cache policy), сертификаты, WAF, цены/регионы edge.
 </b></details>
 
-#### AWS Monitoring & Logging
+#### Мониторинг и журналы
 
 <details>
-<summary>What is AWS CloudWatch?</summary><br><b>
+<summary>Что такое Amazon CloudWatch?</summary><br><b>
 
-AWS definition: "Amazon CloudWatch is a monitoring and observability service..."
+«**Метрики**, **алерты**, **логи** (CloudWatch Logs), дашборды и интеграции с сервисами для наблюдаемости».
 
-More on CloudWatch [here](https://aws.amazon.com/cloudwatch)
-</b></details>
-
-<details>
-<summary>What is AWS CloudTrail?</summary><br><b>
-
-AWS definition: "AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account."
-
-Read more on CloudTrail [here](https://aws.amazon.com/cloudtrail)
+Подробнее: [CloudWatch](https://aws.amazon.com/cloudwatch)
 </b></details>
 
 <details>
-<summary>What is Simply Notification Service?</summary><br><b>
+<summary>Что такое AWS CloudTrail?</summary><br><b>
 
-AWS definition: "a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications."
+«Журнал **API-вызовов** в аккаунте для аудита, расследований и соответствия требованиям».
 
-Read more about it [here](https://aws.amazon.com/sns)
+Подробнее: [CloudTrail](https://aws.amazon.com/cloudtrail)
 </b></details>
 
 <details>
-<summary>Explain the following in regards to SNS:
+<summary>Что такое Amazon SNS (Simple Notification Service)?</summary><br><b>
+
+«Надёжный управляемый **pub/sub**: темы, подписки на HTTP/S, email, SMS, SQS, Lambda и др. для развязки микросервисов».
+
+Подробнее: [Amazon SNS](https://aws.amazon.com/sns)
+</b></details>
+
+<details>
+<summary>Объясните в контексте SNS:
 
   * Topics
   * Subscribers
   * Publishers</summary><br><b>
 
-  * Topics - used for grouping multiple endpoints
-  * Subscribers - the endpoints where topics send messages to 
-  * Publishers - the provider of the message (event, person, ...)
+  * **Topic** — именованный канал; в него публикуют сообщения, от него рассылают подписчикам.  
+  * **Subscriber** — конечная точка подписки (очередь, Lambda, email и т.д.).  
+  * **Publisher** — сервис или приложение, которое **публикует** событие в тему.
 </b></details>
 
-#### AWS Security 
+#### Безопасность в AWS
 
 <details>
-<summary>What is the shared responsibility model? What AWS is responsible for and what the user is responsible for based on the shared responsibility model?</summary><br><b>
+<summary>Что такое модель общей ответственности (shared responsibility)? За что отвечает AWS, а за что — клиент?</summary><br><b>
 
-The shared responsibility model defines what the customer is responsible for and what AWS is responsible for.
+Модель разделяет зоны ответственности: **AWS** отвечает за **безопасность облака** (физика, виртуализация, сеть ЦОД, патчи гипервизора и т.д.), **клиент** — за **безопасность в облаке** (данные, IAM, шифрование, конфигурация VPC/SG, патчи гостевой ОС на EC2 и т.д.).
 
-More on the shared responsibility model [here](https://aws.amazon.com/compliance/shared-responsibility-model)
-</b></details>
-
-<details>
-<summary>True or False? Based on the shared responsibility model, Amazon is responsible for physical CPUs and security groups on instances</summary><br><b>
-
-False. It is responsible for Hardware in its sites but not for security groups which created and managed by the users.
+Подробнее: [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model)
 </b></details>
 
 <details>
-<summary>Explain "Shared Controls" in regards to the shared responsibility model</summary><br><b>
+<summary>Верно или нет? По модели общей ответственности Amazon отвечает за физические CPU и за security groups на инстансах</summary><br><b>
 
-AWS definition: "apply to both the infrastructure layer and customer layers, but in completely separate contexts or perspectives. In a shared control, AWS provides the requirements for the infrastructure and the customer must provide their own control implementation within their use of AWS services"
-
-Learn more about it [here](https://aws.amazon.com/compliance/shared-responsibility-model)
+Неверно. За **железо** в ЦОД и базовую инфраструктуру отвечает AWS; **security groups** создаёт и настраивает **клиент**.
 </b></details>
 
 <details>
-<summary>What is the AWS compliance program?</summary><br><b>
+<summary>Что такое «Shared Controls» в модели общей ответственности?</summary><br><b>
+
+«Контроли применимы и к инфраструктуре AWS, и к слою клиента, но в **разных контекстах**: AWS задаёт требования к платформе, клиент реализует управление в своей конфигурации и использовании сервисов».
+
+Подробнее: [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model)
 </b></details>
 
 <details>
-<summary>What is AWS Artifact?</summary><br><b>
+<summary>Что такое программа соответствия AWS (compliance program)?</summary><br><b>
 
-AWS definition: "AWS Artifact is your go-to, central resource for compliance-related information that matters to you. It provides on-demand access to AWS’ security and compliance reports and select online agreements."
-
-Read more about it [here](https://aws.amazon.com/artifact)
+Совокупность **аттестаций, отчётов и аудитов** (ISO, PCI-DSS, HIPAA BAA, FedRAMP и др.), подтверждающих контроли на стороне AWS; клиент по-прежнему отвечает за соответствие **своей** архитектуры и данных при использовании сервисов.
 </b></details>
 
 <details>
-<summary>What is AWS Inspector?</summary><br><b>
+<summary>Что такое AWS Artifact?</summary><br><b>
 
-AWS definition: "Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS. Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.""
+«Портал для **скачивания** отчётов о безопасности и соответствии (SOC, PCI и др.) и работы с соглашениями AWS».
 
-Learn more [here](https://aws.amazon.com/inspector)
+Подробнее: [AWS Artifact](https://aws.amazon.com/artifact)
 </b></details>
 
 <details>
-<summary>What is AWS Guarduty?</summary><br><b>
+<summary>Что такое Amazon Inspector?</summary><br><b>
+
+«Автоматическая **оценка уязвимостей** и отклонений от практик для **EC2, ECR-образов, Lambda** (в зависимости от поколения продукта)».
+
+Подробнее: [Amazon Inspector](https://aws.amazon.com/inspector)
 </b></details>
 
 <details>
-<summary>What is AWS Shield?</summary><br><b>
+<summary>Что такое Amazon GuardDuty?</summary><br><b>
 
-AWS definition: "AWS Shield is a managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS."
+«Сервис **угроз-детекции** по логам CloudTrail, VPC Flow Logs, DNS и др.: аномалии, сканирование, скомпрометированные ключи и т.п.».
+
+Подробнее: [Amazon GuardDuty](https://aws.amazon.com/guardduty)
 </b></details>
 
 <details>
-<summary>What is AWS WAF? Give an example of how it can used and describe what resources or services you can use it with</summary><br><b>
+<summary>Что такое AWS Shield?</summary><br><b>
+
+«Управляемая защита от **DDoS**: **Standard** включена для всех, **Advanced** — расширенный сервис с поддержкой и интеграцией с WAF/Route 53».
 </b></details>
 
 <details>
-<summary>What AWS VPN is used for?</summary><br><b>
+<summary>Что такое AWS WAF? Пример использования и с чем интегрируется</summary><br><b>
+
+**Web Application Firewall** на уровне L7: правила по IP, геолокации, rate-based, сигнатурам AWS Managed Rules. Подключается к **CloudFront**, **Application Load Balancer**, **API Gateway**. Пример: блокировать SQLi/XSS и ограничивать частоту запросов с одного IP на публичный ALB.
 </b></details>
 
 <details>
-<summary>What is the difference between Site-to-Site VPN and Client VPN?</summary><br><b>
+<summary>Для чего используется AWS VPN?</summary><br><b>
+
+Шифрованный доступ **между** вашей сетью/VPC и on-prem или удалёнными клиентами без публикации сервисов в интернет «в открытую».
 </b></details>
 
 <details>
-<summary>What is AWS CloudHSM?</summary><br><b>
+<summary>Чем отличается Site-to-Site VPN от Client VPN?</summary><br><b>
 
-Amazon definition: "AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your own encryption keys on the AWS Cloud."
-
-Learn more [here](https://aws.amazon.com/cloudhsm)
+**Site-to-Site VPN** — постоянный **IPsec**-туннель между **маршрутизатором** on-prem и **Virtual Private Gateway / Transit Gateway** в AWS (сеть-сеть).  
+**AWS Client VPN** — сервис **удалённого доступа** пользователей (OpenVPN) в VPC с выдачей маршрутов и MFA через IdP.
 </b></details>
 
 <details>
-<summary>True or False? AWS Inspector can perform both network and host assessments</summary><br><b>
+<summary>Что такое AWS CloudHSM?</summary><br><b>
 
-True
+«Выделенный **аппаратный** HSM в облаке для генерации и хранения ключей под вашим единоличным контролем (FIPS 140-2 Level 3)».
+
+Подробнее: [AWS CloudHSM](https://aws.amazon.com/cloudhsm)
 </b></details>
 
 <details>
-<summary>What is AWS Acceptable Use Policy?</summary><br><b>
+<summary>Верно или нет? Amazon Inspector может выполнять и сетевые, и хостовые оценки</summary><br><b>
 
-It describes prohibited uses of the web services offered by AWS.
-More on AWS Acceptable Use Policy [here](https://aws.amazon.com/aup)
+Верно в духе продукта: **сетевой доступ** (reachability) и **хост/контейнер** (CVE, конфигурации) — по поддерживаемым типам целей и версии Inspector.
 </b></details>
 
 <details>
-<summary>What is AWS Key Management Service (KMS)?</summary><br><b>
+<summary>Что такое AWS Acceptable Use Policy (AUP)?</summary><br><b>
 
-AWS definition: "KMS makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications."
-More on KMS [here](https://aws.amazon.com/kms)
+Документ о **запрещённых** способах использования сервисов AWS (спам, взлом, незаконный контент и т.д.).
+
+Подробнее: [AWS AUP](https://aws.amazon.com/aup)
 </b></details>
 
 <details>
-<summary>True or False? A user is not allowed to perform penetration testing on any of the AWS services</summary><br><b>
+<summary>Что такое AWS Key Management Service (KMS)?</summary><br><b>
 
-False. On some services, like EC2, CloudFront and RDS, penetration testing is allowed.
+«Создание и управление **CMK**, политики использования ключей, интеграция с S3, EBS, RDS, Secrets Manager и приложениями».
+
+Подробнее: [AWS KMS](https://aws.amazon.com/kms)
 </b></details>
 
 <details>
-<summary>True or False? DDoS attack is an example of allowed penetration testing activity</summary><br><b>
+<summary>Верно или нет? Пользователю запрещено проводить penetration testing любых сервисов AWS</summary><br><b>
 
-False.
+Неверно. Для ряда сервисов (например **EC2**, **RDS**, **CloudFront**) допустимы тесты **после** соблюдения [политики AWS по пен-тестам](https://aws.amazon.com/security/penetration-testing/) и без вреда третьим сторонам.
 </b></details>
 
 <details>
-<summary>True or False? AWS Access Key is a type of MFA device used for AWS resources protection</summary><br><b>
+<summary>Верно или нет? DDoS-атака — пример разрешённого penetration testing</summary><br><b>
 
-False. Security key is an example of an MFA device.
+Неверно. Несанкционированный DDoS **запрещён** и не является легитимным пен-тестом.
 </b></details>
 
 <details>
-<summary>What is Amazon Cognito?</summary><br><b>
+<summary>Верно или нет? AWS Access Key — это тип MFA-устройства</summary><br><b>
 
-Amazon definition: "Amazon Cognito handles user authentication and authorization for your web and mobile apps."
-
-Learn more [here](https://docs.aws.amazon.com/cognito/index.html)
+Неверно. Access key — **долгоживущие** программные учётные данные; MFA — отдельный второй фактор (TOTP, **U2F/WebAuthn** и т.д.).
 </b></details>
 
 <details>
-<summary>What is AWS ACM?</summary><br><b>
+<summary>Что такое Amazon Cognito?</summary><br><b>
 
-Amazon definition: "AWS Certificate Manager is a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services and your internal connected resources."
+«Аутентификация и авторизация пользователей для веб- и мобильных приложений (пулы пользователей, федерация, hosted UI)».
 
-Learn more [here](https://aws.amazon.com/certificate-manager)
-</b></details>
-
-#### AWS Databases
-
-<details>
-<summary>What is AWS RDS?</summary><br><b>
+Документация: [Amazon Cognito](https://docs.aws.amazon.com/cognito/index.html)
 </b></details>
 
 <details>
-<summary>What is AWS DynamoDB?</summary><br><b>
+<summary>Что такое AWS Certificate Manager (ACM)?</summary><br><b>
+
+«Выдача и **автообновление** публичных и приватных **TLS**-сертификатов для интеграции с ALB, CloudFront, API Gateway и др.».
+
+Подробнее: [AWS Certificate Manager](https://aws.amazon.com/certificate-manager)
+</b></details>
+
+#### Базы данных в AWS
+
+<details>
+<summary>Что такое Amazon RDS?</summary><br><b>
+
+Управляемые реляционные СУБД (выбор движка), Multi-AZ, бэкапы, патчи, реплики чтения, параметр-группы. Данные на **EBS**.
+
+Документация: [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)
 </b></details>
 
 <details>
-<summary>Explain "Point-in-Time Recovery" feature in DynamoDB</summary><br><b>
+<summary>Что такое Amazon DynamoDB?</summary><br><b>
 
-Amazon definition: "You can create on-demand backups of your Amazon DynamoDB tables, or you can enable continuous backups using point-in-time recovery. For more information about on-demand backups, see On-Demand Backup and Restore for DynamoDB."
-
-Learn more [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html)
+Полностью управляемая **NoSQL** БД ключ–значение и документов с предсказуемой масштабируемостью и низкой задержкой; глобальные таблицы, потоки, DAX.
 </b></details>
 
 <details>
-<summary>Explain "Global Tables" in DynamoDB</summary><br><b>
+<summary>Что даёт Point-in-Time Recovery (PITR) в DynamoDB?</summary><br><b>
 
-Amazon definition: "A global table is a collection of one or more replica tables, all owned by a single AWS account."
+«Непрерывные бэкапы с восстановлением таблицы на произвольную секунду в окне хранения»; также доступны **on-demand** снимки.
 
-Learn more [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html)
+Подробнее: [PITR](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html)
 </b></details>
 
 <details>
-<summary>What is DynamoDB Accelerator?</summary><br><b>
+<summary>Что такое Global Tables в DynamoDB?</summary><br><b>
 
-Amazon definition: "Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds..."
+«Набор **реплик** одной логической таблицы в нескольких регионах под одним аккаунтом с многонаправленной репликацией».
 
-Learn more [here](https://aws.amazon.com/dynamodb/dax)
+Подробнее: [Global Tables](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html)
 </b></details>
 
 <details>
-<summary>What is AWS Redshift and how is it different than RDS?</summary><br><b>
+<summary>Что такое DynamoDB Accelerator (DAX)?</summary><br><b>
 
-cloud data warehouse
+«In-memory кэш перед DynamoDB для снижения задержки чтения горячих ключей (микросекунды вместо миллисекунд)».
+
+Подробнее: [Amazon DAX](https://aws.amazon.com/dynamodb/dax)
 </b></details>
 
 <details>
-<summary>What is AWS ElastiCache? For what cases is it used?</summary><br><b>
+<summary>Чем Amazon Redshift отличается от RDS?</summary><br><b>
 
-Amazon Elasticache is a fully managed Redis or Memcached in-memory data store.                                                                       
-It's great for use cases like two-tier web applications where the most frequently accesses data is stored in ElastiCache so response time is optimal.
+**Redshift** — **хранилище данных** (OLAP, колонночное) для аналитики на больших объёмах. **RDS** — транзакционные OLTP-сценарии приложений.
 </b></details>
 
 <details>
-<summary>What is Amazon Aurora</summary><br><b>
+<summary>Что такое Amazon ElastiCache? Типичные сценарии</summary><br><b>
 
-A MySQL & Postgresql based relational database. Also, the default database proposed for the user when using RDS for creating a database.
-Great for use cases like two-tier web applications that has a MySQL or Postgresql database layer and you need automated backups for your application.
+Управляемые **Redis** или **Memcached** в памяти: кэш второго уровня, сессии, rate limiting, снижение нагрузки на основную БД.
 </b></details>
 
 <details>
-<summary>What is Amazon DocumentDB?</summary><br><b>
+<summary>Что такое Amazon Aurora?</summary><br><b>
 
-Amazon definition: "Amazon DocumentDB (with MongoDB compatibility) is a fast, scalable, highly available, and fully managed document database service that supports MongoDB workloads. As a document database, Amazon DocumentDB makes it easy to store, query, and index JSON data."
-
-Learn more [here](https://aws.amazon.com/documentdb)
+Совместимые с **MySQL** и **PostgreSQL** облачные движки с распределённым хранилищем, быстрыми failover и автоматическими бэкапами; часто предлагается при создании БД в RDS.
 </b></details>
 
 <details>
-<summary>What "AWS Database Migration Service" is used for?</summary><br><b>
+<summary>Что такое Amazon DocumentDB?</summary><br><b>
+
+«Управляемая документная БД с **совместимостью с MongoDB** для JSON, индексов и запросов».
+
+Подробнее: [Amazon DocumentDB](https://aws.amazon.com/documentdb)
 </b></details>
 
 <details>
-<summary>What type of storage is used by Amazon RDS?</summary><br><b>
+<summary>Для чего нужен AWS Database Migration Service (DMS)?</summary><br><b>
 
-EBS
+Миграция и **репликация изменений** между гетерогенными источниками и целями (on-prem → AWS, смена движка) с минимизацией простоя при корректной архитектуре CDC.
 </b></details>
 
 <details>
-<summary>Explain Amazon RDS Read Replicas</summary><br><b>
+<summary>Какое хранилище использует Amazon RDS под капотом?</summary><br><b>
 
-AWS definition: "Amazon RDS Read Replicas provide enhanced performance and durability for RDS database (DB) instances. They make it easy to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads."
-Read more about [here](https://aws.amazon.com/rds/features/read-replicas)
-</b></details>
-
-#### AWS Serverless Compute
-
-<details>
-<summary>Explain what is AWS Lambda</summary><br><b>
-
-AWS definition: "AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume."
-
-Read more on it [here](https://aws.amazon.com/lambda)
+**Amazon EBS** (тома в AZ инстанса).
 </b></details>
 
 <details>
-<summary>True or False? In AWS Lambda, you are charged as long as a function exists, regardless of whether it's running or not</summary><br><b>
+<summary>Что такое Read Replicas в Amazon RDS?</summary><br><b>
 
-False. Charges are being made when the code is executed.
+«Реплики **чтения** снимают нагрузку чтения и масштабируют read-heavy нагрузку; могут использоваться в DR при промоуте по правилам движка».
+
+Подробнее: [Read Replicas](https://aws.amazon.com/rds/features/read-replicas)
+</b></details>
+
+#### Бессерверные вычисления
+
+<details>
+<summary>Что такое AWS Lambda?</summary><br><b>
+
+«Запуск кода без управления серверами; оплата за вызовы и время выполнения».
+
+Подробнее: [AWS Lambda](https://aws.amazon.com/lambda)
 </b></details>
 
 <details>
-<summary>Which of the following set of languages Lambda supports?
+<summary>Верно или нет? За Lambda платят, пока «существует» функция, даже если она не вызывается</summary><br><b>
+
+Неверно. Оплата за **вызовы** и потреблённые **GB-секунды** (и связанные метрики); само существование функции не эквивалентно оплате «как за сервер 24/7».
+</b></details>
+
+<details>
+<summary>Какой из наборов языков поддерживает Lambda?
 
   * R, Swift, Rust, Kotlin
-  * Python, Ruby, Go 
+  * Python, Ruby, Go
   * Python, Ruby, PHP</summary><br><b>
 
-  * Python, Ruby, Go 
+**Python, Ruby, Go** — из перечисленных это типичный «правильный» ответ в материалах курса; актуальный список рантаймов — в документации AWS.
 </b></details>
 
-#### Identify the service or tool
+#### Подберите сервис или инструмент
 
 <details>
-<summary>What would you use for automating code/software deployments?</summary><br><b>
+<summary>Чем автоматизировать выкладку кода на EC2/Fargate/Lambda/on-prem?</summary><br><b>
 
-AWS CodeDeploy
-</b></details>
-
-<details>
-<summary>What would you use for easily creating similar AWS environments/resources for different customers?</summary><br><b>
-
-CloudFormation
+**AWS CodeDeploy**
 </b></details>
 
 <details>
-<summary>Which service would you use for building a website or web application?</summary><br><b>
+<summary>Чем удобно создавать повторяемые однотипные стеки для разных заказчиков?</summary><br><b>
 
-Lightsail
+**AWS CloudFormation**
 </b></details>
 
 <details>
-<summary>Which tool would you use for choosing between Reserved instances or On-Demand instances?</summary><br><b>
+<summary>Какой сервис выбрать для простого сайта или небольшого веб-приложения?</summary><br><b>
 
-Cost Explorer
+**Amazon Lightsail** (в курсе; альтернатива — **Elastic Beanstalk**).
 </b></details>
 
 <details>
-<summary>What would you use to check how many unassociated Elastic IP address you have?</summary><br><b>
+<summary>Какой инструмент помогает сравнивать стоимость Reserved и On-Demand?</summary><br><b>
 
-Trusted Advisor
+**AWS Cost Explorer**
 </b></details>
 
 <details>
-<summary>What service allows you to transfer large amounts (Petabytes) of data in and out of the AWS cloud?</summary><br><b>
+<summary>Как проверить число неассоциированных Elastic IP?</summary><br><b>
 
-AWS Snowball
+**AWS Trusted Advisor**
 </b></details>
 
 <details>
-<summary>What provides a virtual network dedicated to your AWS account?</summary><br><b>
+<summary>Какой сервис для переноса петабайт данных в/из AWS физическими устройствами?</summary><br><b>
 
-VPC
+**AWS Snowball** (семейство **Snow**)
 </b></details>
 
 <details>
-<summary>What you would use for having automated backups for an application that has MySQL database layer?</summary><br><b>
+<summary>Что даёт изолированную виртуальную сеть в аккаунте?</summary><br><b>
 
-Amazon Aurora
+**Amazon VPC**
 </b></details>
 
 <details>
-<summary>What would you use to migrate on-premise database to AWS?</summary><br><b>
+<summary>Что выбрать для приложения с MySQL и автоматическими бэкапами?</summary><br><b>
 
-AWS Database Migration Service (DMS)
+**Amazon Aurora** (через **Amazon RDS**)
 </b></details>
 
 <details>
-<summary>What would you use to check why certain EC2 instances were terminated?</summary><br><b>
+<summary>Чем мигрировать on-prem БД в AWS?</summary><br><b>
 
-AWS CloudTrail
+**AWS Database Migration Service (DMS)**
 </b></details>
 
 <details>
-<summary>What would you use for SQL database?</summary><br><b>
+<summary>Где смотреть, кто завершил инстансы EC2?</summary><br><b>
 
-AWS RDS
+**AWS CloudTrail**
 </b></details>
 
 <details>
-<summary>What would you use for NoSQL database?</summary><br><b>
+<summary>Какая управляемая SQL-база в ответе курса?</summary><br><b>
 
-AWS DynamoDB
+**Amazon RDS**
 </b></details>
 
 <details>
-<summary>What would you use for running SQL queries interactively on S3?</summary><br><b>
+<summary>Какая управляемая NoSQL БД?</summary><br><b>
 
-AWS Athena
+**Amazon DynamoDB**
 </b></details>
 
 <details>
-<summary>What would you use for adding image and video analysis to your application?</summary><br><b>
+<summary>Чем выполнять ad-hoc SQL по данным в S3?</summary><br><b>
 
-AWS Rekognition
+**Amazon Athena**
 </b></details>
 
 <details>
-<summary>Which service would you use for debugging and improving performances issues with your applications?</summary><br><b>
+<summary>Чем добавить анализ изображений и видео?</summary><br><b>
 
-AWS X-Ray
+**Amazon Rekognition**
 </b></details>
 
 <details>
-<summary>Which service is used for sending notifications?</summary><br><b>
+<summary>Чем трассировать и отлаживать распределённые приложения?</summary><br><b>
 
-SNS
+**AWS X-Ray**
 </b></details>
 
 <details>
-<summary>Which service would you use for monitoring malicious activity and unauthorized behavior in regards to AWS accounts and workloads?</summary><br><b>
+<summary>Какой сервис для уведомлений (pub/sub)?</summary><br><b>
 
-Amazon GuardDuty
+**Amazon SNS**
 </b></details>
 
 <details>
-<summary>Which service would you use for centrally manage billing, control access, compliance, and security across multiple AWS accounts?</summary><br><b>
+<summary>Кто ищет вредоносную активность по логам аккаунта?</summary><br><b>
 
-AWS Organizations
+**Amazon GuardDuty**
 </b></details>
 
 <details>
-<summary>Which service would you use for web application protection?</summary><br><b>
+<summary>Как централизовать биллинг и политики для нескольких аккаунтов?</summary><br><b>
 
-AWS WAF
+**AWS Organizations**
 </b></details>
 
 <details>
-<summary>You would like to monitor some of your resources in the different services. Which service would you use for that?</summary><br><b>
+<summary>Чем защитить веб-приложение на уровне L7?</summary><br><b>
 
-CloudWatch
+**AWS WAF**
 </b></details>
 
 <details>
-<summary>Which service would you use for performing security assessment?</summary><br><b>
+<summary>Как мониторить метрики и алертиться по сервисам?</summary><br><b>
 
-AWS Inspector
+**Amazon CloudWatch**
 </b></details>
 
 <details>
-<summary>Which service would you use for creating DNS record?</summary><br><b>
+<summary>Какой сервис для автоматической оценки уязвимостей?</summary><br><b>
 
-Route 53
+**Amazon Inspector**
 </b></details>
 
 <details>
-<summary>What would you use if you need a fully managed document database?</summary><br><b>
+<summary>Какой сервис для DNS-записей?</summary><br><b>
 
-Amazon DocumentDB
+**Amazon Route 53**
 </b></details>
 
 <details>
-<summary>Which service would you use to add access control (or sign-up, sign-in forms) to your web/mobile apps?</summary><br><b>
+<summary>Какая управляемая документная БД с совместимостью с MongoDB API?</summary><br><b>
 
-AWS Cognito
+**Amazon DocumentDB**
 </b></details>
 
 <details>
-<summary>Which service would you use if you need messaging queue?</summary><br><b>
+<summary>Как добавить регистрацию и вход пользователей?</summary><br><b>
 
-Simple Queue Service (SQS)
+**Amazon Cognito**
 </b></details>
 
 <details>
-<summary>Which service would you use if you need managed DDOS protection?</summary><br><b>
+<summary>Какая управляемая очередь сообщений?</summary><br><b>
 
-AWS Shield
+**Amazon SQS**
 </b></details>
 
 <details>
-<summary>Which service would you use if you need store frequently used data for low latency access?</summary><br><b>
+<summary>Какая управляемая защита от DDoS?</summary><br><b>
 
-ElastiCache
+**AWS Shield**
 </b></details>
 
 <details>
-<summary>What would you use to transfer files over long distances between a client and an S3 bucket?</summary><br><b>
+<summary>Как кэшировать горячие данные в памяти?</summary><br><b>
 
-Amazon S3 Transfer Acceleration
-</b></details>
-
-#### AWS Billing & Support
-
-<details>
-<summary>What is AWS Organizations?</summary><br><b>
-
-AWS definition: "AWS Organizations helps you centrally govern your environment as you grow and scale your workloads on AWS."
-More on Organizations [here](https://aws.amazon.com/organizations)
+**Amazon ElastiCache**
 </b></details>
 
 <details>
-<summary>Explain AWS pricing model</summary><br><b>
+<summary>Чем ускорить передачу файлов на большие расстояния в S3?</summary><br><b>
 
-It mainly works on "pay-as-you-go" meaning you pay only for what are using and when you are using it.
-In s3 you pay for 1. How much data you are storing 2. Making requests (PUT, POST, ...)
-In EC2 it's based on the purchasing option (on-demand, spot, ...), instance type, AMI type and the region used.
+**Amazon S3 Transfer Acceleration**
+</b></details>
 
-More on AWS pricing model [here](https://aws.amazon.com/pricing)
+#### Биллинг и поддержка в AWS
+
+<details>
+<summary>Что такое AWS Organizations?</summary><br><b>
+
+«**AWS Organizations** помогает централизованно управлять политиками, счетами и ростом среды по мере масштабирования нагрузок в AWS».
+
+Подробнее: [AWS Organizations](https://aws.amazon.com/organizations)
 </b></details>
 
 <details>
-<summary>How one should estimate AWS costs when for example comparing to on-premise solutions?</summary><br><b>
+<summary>Объясните модель ценообразования AWS</summary><br><b>
 
-* TCO calculator
-* AWS simple calculator
-* Cost Explorer
+В основе — **оплата по факту использования**: платите за реально потребляемые ресурсы. В **S3** — объём и класс хранения, запросы, исходящий трафик; в **EC2** — модель закупки, тип инстанса, ОС, регион, EBS и т.д.
+
+Обзор: [AWS Pricing](https://aws.amazon.com/pricing)
 </b></details>
 
 <details>
-<summary>What basic support in AWS includes?</summary><br><b>
+<summary>Как оценить стоимость AWS при сравнении с on-prem?</summary><br><b>
 
-* 24x7 customer service
-* Trusted Advisor
-* AWS personal Health Dashoard
+* **AWS Pricing Calculator** / **Migration Evaluator**  
+* **TCO**-оценки для сопоставления с капексом/опексом  
+* **Cost Explorer** и отчёты **Cost & Usage** после миграции
 </b></details>
 
 <details>
-<summary>How are EC2 instances billed?</summary><br><b>
+<summary>Что входит в Basic Support?</summary><br><b>
+
+* Круглосуточный **Customer Service**  
+* **AWS Personal Health Dashboard**  
+* **Trusted Advisor** — ограниченный набор проверок (полный — на платных планах поддержки)
 </b></details>
 
 <details>
-<summary>What AWS Pricing Calculator is used for?</summary><br><b>
+<summary>Как тарифицируются инстансы EC2?</summary><br><b>
+
+Обычно **посекундно** (минимум 60 с за запуск в типичных On-Demand/Spot сценариях) за вычисление + отдельно **EBS**, лицензии, исходящий в публичный интернет трафик. **RI** и **Savings Plans** дают скидку за обязательство.
 </b></details>
 
 <details>
-<summary>What is Amazon Connect?</summary><br><b>
+<summary>Для чего нужен AWS Pricing Calculator?</summary><br><b>
 
-Amazon definition: "Amazon Connect is an easy to use omnichannel cloud contact center that helps companies provide superior customer service at a lower cost."
-
-Learn more [here](https://aws.amazon.com/connect)
+Оценка **месячной стоимости** набора сервисов до развёртывания: регионы, конфигурации, объёмы данных, экспорт сметы.
 </b></details>
 
 <details>
-<summary>What are "APN Consulting Partners"?</summary><br><b>
+<summary>Что такое Amazon Connect?</summary><br><b>
 
-Amazon definition: "APN Consulting Partners are professional services firms that help customers of all types and sizes design, architect, build, migrate, and manage their workloads and applications on AWS, accelerating their journey to the cloud."
+«Облачный **омниканальный контакт-центр** (голос, чат) с интеграциями CRM».
 
-Learn more [here](https://aws.amazon.com/partners/consulting)
+Подробнее: [Amazon Connect](https://aws.amazon.com/connect)
 </b></details>
 
 <details>
-<summary>Which of the following are AWS accounts types (and are sorted by order)?
+<summary>Кто такие APN Consulting Partners?</summary><br><b>
+
+«Партнёры-консультанты **AWS Partner Network**: проектирование, миграция и сопровождение нагрузок в AWS».
+
+Подробнее: [APN Consulting](https://aws.amazon.com/partners/consulting)
+</b></details>
+
+<details>
+<summary>Какие из перечисленных — **планы поддержки** AWS (в порядке возрастания возможностей)?
 
   * Basic, Developer, Business, Enterprise
   * Newbie, Intermediate, Pro, Enterprise
   * Developer, Basic, Business, Enterprise
   * Beginner, Pro, Intermediate Enterprise</summary><br><b>
 
-  * Basic, Developer, Business, Enterprise
+**Basic, Developer, Business, Enterprise**
 </b></details>
 
 <details>
-<summary>True or False? Region is a factor when it comes to EC2 costs/pricing</summary><br><b>
+<summary>Верно или нет? Регион влияет на цену EC2</summary><br><b>
 
-True. You pay differently based on the chosen region.
+Верно. Тарифы зависят от **региона**.
 </b></details>
 
 <details>
-<summary>What is "AWS Infrastructure Event Management"?</summary><br><b>
+<summary>Что такое AWS Infrastructure Event Management?</summary><br><b>
 
-AWS Definition: "AWS Infrastructure Event Management is a structured program available to Enterprise Support customers (and Business Support customers for an additional fee) that helps you plan for large-scale events such as product or application launches, infrastructure migrations, and marketing events."
+«Структурированная программа для **Enterprise Support** (и **Business** за доп. плату) по подготовке к крупным событиям: запуск продукта, миграция, маркетинговые пики».
 </b></details>
 
-#### AWS Automation
+#### Автоматизация в AWS
 
 <details>
-<summary>What is AWS CodeDeploy?</summary><br><b>
+<summary>Что такое AWS CodeDeploy?</summary><br><b>
 
-Amazon definition: "AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers."
+«Управляемое **развёртывание** на EC2, Lambda, ECS и on-prem агентах с канареечными/поэтапными стратегиями».
 
-Learn more [here](https://aws.amazon.com/codedeploy)
-</b></details>
-
-<details>
-<summary>Explain what is CloudFormation</summary><br><b>
-</b></details>
-
-#### AWS Misc
-
-<details>
-<summary>What is AWS Lightsail?</summary><br><b>
-
-AWS definition: "Lightsail is an easy-to-use cloud platform that offers you everything needed to build an application or website, plus a cost-effective, monthly plan."
+Подробнее: [AWS CodeDeploy](https://aws.amazon.com/codedeploy)
 </b></details>
 
 <details>
-<summary>What is AWS Rekognition?</summary><br><b>
+<summary>Что такое AWS CloudFormation?</summary><br><b>
 
-AWS definition: "Amazon Rekognition makes it easy to add image and video analysis to your applications using proven, highly scalable, deep learning technology that requires no machine learning expertise to use."
+**IaC**: шаблоны JSON/YAML описывают стек ресурсов; **Drift detection**, откаты, параметры; альтернатива — **AWS CDK**.
+</b></details>
 
-Learn more [here](https://aws.amazon.com/rekognition)
+#### Прочие сервисы и инструменты AWS
+
+<details>
+<summary>Что такое Amazon Lightsail?</summary><br><b>
+
+«Простая платформа с **фиксированной ценой в месяц** для сайтов и небольших приложений».
 </b></details>
 
 <details>
-<summary>What AWS Resource Groups used for?</summary><br><b>
+<summary>Что такое Amazon Rekognition?</summary><br><b>
 
-Amazon definition: "You can use resource groups to organize your AWS resources. Resource groups make it easier to manage and automate tasks on large numbers of resources at one time. "
+«**Анализ изображений и видео** на управляемых ML-моделях без собственного обучения».
 
-Learn more [here](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)
+Подробнее: [Amazon Rekognition](https://aws.amazon.com/rekognition)
 </b></details>
 
 <details>
-<summary>What is AWS Global Accelerator?</summary><br><b>
+<summary>Для чего нужны AWS Resource Groups?</summary><br><b>
 
-Amazon definition: "AWS Global Accelerator is a service that improves the availability and performance of your applications with local or global users..."
+«**Группировка** ресурсов по тегам/запросам для операций, отчётов и автоматизации на больших парках».
 
-Learn more [here](https://aws.amazon.com/global-accelerator)
+Документация: [Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)
 </b></details>
 
 <details>
-<summary>What is AWS Config?</summary><br><b>
+<summary>Что такое AWS Global Accelerator?</summary><br><b>
 
-Amazon definition: "AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources."
+«**Статические anycast IP** и маршрутизация трафика по глобальной сети AWS к ближайшим здоровым эндпоинтам».
 
-Learn more [here](https://aws.amazon.com/config)
+Подробнее: [Global Accelerator](https://aws.amazon.com/global-accelerator)
 </b></details>
 
 <details>
-<summary>What is AWS X-Ray?</summary><br><b>
+<summary>Что такое AWS Config?</summary><br><b>
 
-AWS definition: "AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture."
-Learn more [here](https://aws.amazon.com/xray)
+«**Инвентаризация и аудит** конфигураций ресурсов, правила соответствия, история изменений».
+
+Подробнее: [AWS Config](https://aws.amazon.com/config)
 </b></details>
 
 <details>
-<summary>What is AWS OpsWorks?</summary><br><b>
+<summary>Что такое AWS X-Ray?</summary><br><b>
 
-Amazon definition: "AWS OpsWorks is a configuration management service that provides managed instances of Chef and Puppet."
+«**Распределённая трассировка** для анализа задержек и ошибок в микросервисах».
 
-Learn more about it [here](https://aws.amazon.com/opsworks)
+Подробнее: [AWS X-Ray](https://aws.amazon.com/xray)
 </b></details>
 
 <details>
-<summary>What is AWS Service Catalog?</summary><br><b>
+<summary>Что такое AWS OpsWorks?</summary><br><b>
 
-Amazon definition: "AWS Service Catalog allows organizations to create and manage catalogs of IT services that are approved for use on AWS."
+«Управляемый **Chef/Puppet** для конфигурации стеков (legacy; для новых систем чаще SSM/контейнеры)».
 
-Learn more [here](https://aws.amazon.com/servicecatalog)
+Подробнее: [AWS OpsWorks](https://aws.amazon.com/opsworks)
 </b></details>
 
 <details>
-<summary>What is AWS CAF?</summary><br><b>
+<summary>Что такое AWS Service Catalog?</summary><br><b>
 
-Amazon definition: "AWS Professional Services created the AWS Cloud Adoption Framework (AWS CAF) to help organizations design and travel an accelerated path to successful cloud adoption. "
+«Каталог **утверждённых** продуктов CloudFormation для self-service в рамках политик организации».
 
-Learn more [here](https://aws.amazon.com/professional-services/CAF)
+Подробнее: [Service Catalog](https://aws.amazon.com/servicecatalog)
 </b></details>
 
 <details>
-<summary>What is AWS Cloud9?</summary><br><b>
+<summary>Что такое AWS CAF?</summary><br><b>
 
-AWS definition: "AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser"
+«**Cloud Adoption Framework** — методология перспектив (бизнес, люди, говернанс, платформа, безопасность, операции) для миграции в облако».
+
+Подробнее: [AWS CAF](https://aws.amazon.com/professional-services/CAF)
 </b></details>
 
 <details>
-<summary>What is AWS Application Discovery Service?</summary><br><b>
+<summary>Что такое AWS Cloud9?</summary><br><b>
 
-Amazon definition: "AWS Application Discovery Service helps enterprise customers plan migration projects by gathering information about their on-premises data centers."
-
-Learn more [here](https://aws.amazon.com/application-discovery)
+«Облачная **IDE** в браузере для разработки и отладки с совместной работой».
 </b></details>
 
 <details>
-<summary>What is the Trusted Advisor?</summary><br><b>
+<summary>Что такое AWS Application Discovery Service?</summary><br><b>
+
+«Сбор данных об **on-prem** серверах и зависимостях для планирования миграции в **Migration Hub**».
+
+Подробнее: [Application Discovery](https://aws.amazon.com/application-discovery)
 </b></details>
 
 <details>
-<summary>What is the AWS well-architected framework and what pillars it's based on?</summary><br><b>
+<summary>Что такое AWS Trusted Advisor?</summary><br><b>
 
-AWS definition: "The Well-Architected Framework has been developed to help cloud architects build secure, high-performing, resilient, and efficient infrastructure for their applications. Based on five pillars — operational excellence, security, reliability, performance efficiency, and cost optimization"
-
-Learn more [here](https://aws.amazon.com/architecture/well-architected)
+Рекомендации по **безопасности**, **отказоустойчивости**, **лимитам**, **производительности** и **экономии**; полный набор — на **Business/Enterprise** поддержке.
 </b></details>
 
 <details>
-<summary>What AWS services are serverless (or have the option to be serverless)?</summary><br><b>
+<summary>Что такое AWS Well-Architected Framework и на каких столпах он основан?</summary><br><b>
 
-AWS Lambda
-AWS Athena
+«Пять столпов: **операционное совершенство, безопасность, надёжность, эффективность производительности, оптимизация затрат**» (в актуальных материалах добавлен столп **устойчивого развития** — Sustainability).
+
+Подробнее: [Well-Architected](https://aws.amazon.com/architecture/well-architected)
 </b></details>
 
 <details>
-<summary>What is AWS EMR?</summary><br><b>
+<summary>Какие сервисы AWS считаются бессерверными (или имеют бессерверный режим)?</summary><br><b>
 
-AWS definition: "big data platform for processing vast amounts of data using open source tools such as Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto."
-
-Learn more [here](https://aws.amazon.com/emr)
+Примеры: **AWS Lambda**, **Amazon Athena**, **API Gateway**, **DynamoDB**, **S3**, **Step Functions**, **EventBridge**, **Fargate**.
 </b></details>
 
 <details>
-<summary>What is AWS Athena?</summary><br><b>
+<summary>Что такое Amazon EMR?</summary><br><b>
 
-"Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL."
+«Управляемый **big data** кластер: Spark, Hive, HBase, Flink, Presto и др.».
 
-Learn more about AWS Athena [here](https://aws.amazon.com/athena)
+Подробнее: [Amazon EMR](https://aws.amazon.com/emr)
 </b></details>
 
 <details>
-<summary>What is Amazon Cloud Directory?</summary><br><b>
+<summary>Что такое Amazon Athena?</summary><br><b>
 
-Amazon definition: "Amazon Cloud Directory is a highly available multi-tenant directory-based store in AWS. These directories scale automatically to hundreds of millions of objects as needed for applications."
+«**SQL** поверх данных в **S3** через каталог **Glue Data Catalog**; оплата за объём просканированных данных».
 
-Learn more [here](https://docs.aws.amazon.com/clouddirectory/latest/developerguide/what_is_cloud_directory.html)
+Подробнее: [Amazon Athena](https://aws.amazon.com/athena)
 </b></details>
 
 <details>
-<summary>What is AWS Elastic Beanstalk?</summary><br><b>
+<summary>Что такое Amazon Cloud Directory?</summary><br><b>
 
-AWS definition: "AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web applications and services...You can simply upload your code and Elastic Beanstalk automatically handles the deployment"
+«Иерархическое **хранилище связей** и атрибутов для приложений (не замена корпоративному AD LDAP)».
 
-Learn more about it [here](https://aws.amazon.com/elasticbeanstalk)
+Документация: [Cloud Directory](https://docs.aws.amazon.com/clouddirectory/latest/developerguide/what_is_cloud_directory.html)
 </b></details>
 
 <details>
-<summary>What is AWS SWF?</summary><br><b>
+<summary>Что такое AWS Elastic Beanstalk?</summary><br><b>
 
-Amazon definition: "Amazon SWF helps developers build, run, and scale background jobs that have parallel or sequential steps. You can think of Amazon SWF as a fully-managed state tracker and task coordinator in the Cloud."
+«**PaaS**: загрузка артефакта — платформа поднимает EC2, балансировщик, автоскейлинг; доступ к «ножкам» EC2 сохраняется при необходимости».
 
-Learn more on Amazon Simple Workflow Service [here](https://aws.amazon.com/swf)
+Подробнее: [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk)
 </b></details>
 
 <details>
-<summary>What is Simple Queue Service (SQS)?</summary><br><b>
+<summary>Что такое Amazon SWF?</summary><br><b>
 
-AWS definition: "Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications".
+«**Simple Workflow** — координация фоновых задач с состоянием (legacy; для новых систем чаще **Step Functions**)».
 
-Learn more about it [here](https://aws.amazon.com/sqs)
-</b></details>
-
-#### AWS Disaster Recovery
-
-<details>
-<summary>In regards to disaster recovery, what is RTO and RPO?</summary><br><b>
-
-RTO - The maximum acceptable length of time that your application can be offline.
-
-RPO - The maximum acceptable length of time during which data might be lost from your application due to an incident.
+Подробнее: [Amazon SWF](https://aws.amazon.com/swf)
 </b></details>
 
 <details>
-<summary>What types of disaster recovery techniques AWS supports?</summary><br><b>
+<summary>Что такое Amazon SQS?</summary><br><b>
 
-* The Cold Method - Periodically backups and sending the backups off-site<br>
-* Pilot Light - Data is mirrored to an environment which is always running
-* Warm Standby - Running scaled down version of production environment
-* Multi-site - Duplicated environment that is always running
+«Управляемая **очередь сообщений** для развязки микросервисов и бессерверных сценариев».
+
+Подробнее: [Amazon SQS](https://aws.amazon.com/sqs)
+</b></details>
+
+#### Аварийное восстановление (DR) в AWS
+
+<details>
+<summary>Что такое RTO и RPO в контексте DR?</summary><br><b>
+
+**RTO** — допустимое время **простоя** сервиса после аварии.  
+**RPO** — допустимый **интервал потери данных** между последней восстановимой точкой и инцидентом.
 </b></details>
 
 <details>
-<summary>Which disaster recovery option has the highest downtime and which has the lowest?</summary><br><b>
+<summary>Какие типовые стратегии DR на AWS?</summary><br><b>
 
-Lowest - Multi-site
-Highest - The cold method
+* **Backup & Restore** — периодические бэкапы, восстановление по требованию  
+* **Pilot Light** — минимальный живой контур + быстрое масштабирование  
+* **Warm Standby** — уменьшенная копия прод-среды  
+* **Active-Active / Multi-Site** — параллельные площадки с трафиком
 </b></details>
 
-### Final Note
+<details>
+<summary>У какой стратегии DR обычно самый большой простой, а у какой — наименьший?</summary><br><b>
 
-Good luck! You can do it :)
+**Наименьший простой** — **Active-Active / Multi-Site**.  
+**Наибольший** — **холодный** сценарий **backup & restore** без непрерывной репликации.
+</b></details>
+
+### Итог
+
+Удачи на экзамене — у вас получится.

@@ -1,14 +1,12 @@
 """
-Testing suite for https://github.com/bregman-arie/devops-interview-questions
-written by surister
+Проверка Markdown с вопросами в формате `<details>` / `<summary>`.
 
-Even though both check_details_tag and check_summary_tags are practically the
-same, due to readability and functionality it was decided to be split like
-that.
+Изначально: https://github.com/bregman-arie/devops-interview-questions (surister).
 
-Usage:
-$ python tests/syntax_lint.py
+`check_details_tag` и `check_summary_tag` похожи по идее, но разнесены для читаемости.
 
+Запуск:
+    python tests/syntax_lint.py <путь_к_файлу.md>
 """
 
 import sys
@@ -21,9 +19,9 @@ errors = []
 
 def count_details(file_list):
     """
-    Counts the total amount of <details> and </details>
+    Считает вхождения `<details>` и `</details>` (должны совпадать).
 
-    Used for debugging purpose, not meant to be used in actual tests
+    В основном для отладки.
     """
     details_final_count = 0
     details_count = 0
@@ -39,9 +37,9 @@ def count_details(file_list):
 
 def count_summary(file_list):
     """
-    Counts the total amount of <details> and </details>
+    Считает вхождения `<summary>` и `</summary>` (должны совпадать).
 
-    Used for debugging purpose, not meant to be used in actual tests
+    В основном для отладки.
     """
     details_final_count = 0
     details_count = 0
@@ -57,13 +55,8 @@ def count_summary(file_list):
 
 def check_details_tag(file_list):
     """
-    Check whether the structure:
-    <details>
-    ...
-    </details>
-
-    Is correctly followed, if not generates an error.
-
+    Проверяет последовательность тегов `<details>` … `</details>`.
+    При нарушении дописывает сообщение в глобальный список `errors`.
     """
 
     after_detail = False
@@ -74,10 +67,10 @@ def check_details_tag(file_list):
             pass
         else:
             if b"<details>" in line and after_detail:
-                err_message = f"Missing closing detail tag round line {line_number - 1}"
+                err_message = f"Не хватает закрывающего </details> около строки {line_number - 1}"
                 error = True
             if b"</details>" in line and not after_detail:
-                err_message = f"Missing opening detail tag round line {line_number - 1}"
+                err_message = f"Не хватает открывающего <details> около строки {line_number - 1}"
                 error = True
 
             if b"<details>" in line:
@@ -94,13 +87,8 @@ def check_details_tag(file_list):
 
 def check_summary_tag(file_list):
     """
-    Check whether the structure:
-    <summary>
-    ...
-    </summary>
-
-    Is correctly followed, if not generates an error.
-
+    Проверяет последовательность тегов `<summary>` … `</summary>`.
+    При нарушении дописывает сообщение в `errors`.
     """
 
     after_summary = False
@@ -110,15 +98,15 @@ def check_summary_tag(file_list):
         line_number = idx + 1
         if b"<summary>" in line and b"</summary>" in line:
             if after_summary:
-                err_message = f"Missing closing summary tag around line {line_number}"
+                err_message = f"Не хватает закрывающего </summary> около строки {line_number}"
                 error = True
 
         else:
             if b"<summary>" in line and after_summary:
-                err_message = f"Missing closing summary tag around line {line_number}"
+                err_message = f"Не хватает закрывающего </summary> около строки {line_number}"
                 error = True
             if b"</summary>" in line and not after_summary:
-                err_message = f"Missing opening summary tag around line {line_number}"
+                err_message = f"Не хватает открывающего <summary> около строки {line_number}"
                 error = True
 
             if b"<summary>" in line:
@@ -141,12 +129,12 @@ def check_md_file(file_name):
 
 
 if __name__ == "__main__":
-    print(f"..........Checking {p}..........")
+    print(f"..........Проверка {p}..........")
     check_md_file(p)
     if errors:
-        print(f"{p} failed", file=sys.stderr)
+        print(f"{p}: ошибки", file=sys.stderr)
         for error in errors:
             print(error, file=sys.stderr)
         exit(1)
 
-    print("Tests passed successfully.")
+    print("Проверки пройдены.")

@@ -1,23 +1,23 @@
-# Assign Roles
+# Назначаем роли
 
-## Objectives
+## Цели
 
-1. Assign the following roles to a member in your organization
-   1. Compute Storage Admin
-   2. Compute Network Admin
-   3. Compute Security Admin
-2. Verify roles were assigned
+1. Назначьте следующие роли члену вашей организации.
+   1. Администратор вычислительного хранилища
+   2. Администратор вычислительной сети
+   3. Администратор вычислительной безопасности
+2. Убедитесь, что роли назначены
 
-## Solution
+## Решение
 
-### Console
+### Консоль
 
-1. Go to IAM & Admin
-2. Click on IAM and then on the "Add" button
-   1. Choose the member account to whom the roles will be added
-   2. Under select role, search for the specified roles under "Objectives" and click on "Save"
-2. The member should now be able to go to the compute engine API and see the resources there.
+1. Перейдите в IAM и администратор.
+2. Нажмите IAM, а затем кнопку «Добавить».
+   1. Выберите учетную запись участника, в которую будут добавлены роли.
+   2. В разделе «Выбор роли» найдите указанные роли в разделе «Цели» и нажмите «Сохранить».
+2. Теперь участник сможет перейти к API вычислительного механизма и просмотреть там ресурсы.
 
-### Terraform
+### Терраформировать
 
-Click [here](main.tf) to view the Terraform main.tf file
+Нажмите [здесь](main.tf), чтобы просмотреть файл Terraform main.tf.

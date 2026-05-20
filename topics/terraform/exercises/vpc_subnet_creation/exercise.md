@@ -1,19 +1,19 @@
-# Creating Custom VPC and Subnets with Terraform
+# Создание пользовательских VPC и подсетей с помощью Terraform
 
-## Requirements
-* An existing AWS account with permissions to create VPCs and subnets.
-* Terraform installed on your local machine.
-* AWS CLI configured with your credentials.
+## Требования
+* Существующая учетная запись AWS с разрешениями на создание VPC и подсетей.
+* Terraform установлен на вашем локальном компьютере.
+* Интерфейс командной строки AWS настроен с использованием ваших учетных данных.
 
 
-## Objectives
-1. Create a custom VPC with a specified CIDR block.
-    For example, you can use `10.0.0.0/16`.
-2. Create two subnets within the VPC, each with a different CIDR block.
-    For example, you can use `10.0.0.0/20` for the first subnet and `10.0.16.0/20` for the second subnet.
+## Цели
+1. Создайте собственный VPC с указанным блоком CIDR.
+    Например, вы можете использовать `10.0.0.0/16`.
+2. Создайте две подсети в VPC, каждая со своим блоком CIDR.
+    Например, вы можете использовать «10.0.0.0/20» для первой подсети и «10.0.16.0/20» для второй подсети.
 
-    Both subnets should be in different availability zones to ensure high availability.
-3. Ensure that the VPC and subnets are tracked by Terraform.
+    Обе подсети должны находиться в разных зонах доступности, чтобы обеспечить высокую доступность.
+3. Убедитесь, что Terraform отслеживает VPC и подсети.
 
-## Solution
-Click [here to view the solution](solution.md)
+## Решение
+Нажмите [здесь, чтобы просмотреть решение](solution.md)

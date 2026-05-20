@@ -1,67 +1,92 @@
 <details>
-<summary>What is Docker? What are you using it for?</summary><br><b>
+<summary>Что такое Docker? Для чего вы его используете?</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>How containers are different from VMs?</summary><br><b>
+<summary>Чем контейнеры отличаются от виртуальных машин?</summary><br><b>
 
-The primary difference between containers and VMs is that containers allow you to virtualize
-multiple workloads on the operating system while in the case of VMs the hardware is being virtualized to
-run multiple machines each with its own OS.
+Главное отличие: **контейнеры** изолируют процессы и зависимости в рамках **одной** хостовой ОС (общее ядро). **Виртуальные машины** виртуализируют **оборудование** и поднимают полноценные гостевые ОС со своими ядрами. Контейнеры обычно легче и быстрее стартуют; ВМ дают более жёсткую изоляцию на уровне ОС.
+
 </b></details>
 
 <details>
-<summary>In which scenarios would you use containers and in which you would prefer to use VMs?</summary><br><b>
+<summary>В каких сценариях вы бы выбрали контейнеры, а в каких — виртуальные машины?</summary><br><b>
 
-You should choose VMs when:
-  * you need run an application which requires all the resources and functionalities of an OS
-  * you need full isolation and security
+**Виртуальные машины**, когда:
+  * нужны возможности **полной** гостевой ОС или сильно разные ОС на одном железе;
+  * требуется **максимальная** изоляция «железо — своя ОС» (например, жёсткие регуляторные требования).
 
-You should choose containers when:
-  * you need a lightweight solution
-  * Running multiple versions or instances of a single application
+**Контейнеры**, когда:
+  * важны **плотность** упаковки, скорость CI/CD и одинаковое окружение dev/stage/prod;
+  * нужно запускать **много экземпляров** одного приложения или несколько версий рядом.
+
 </b></details>
 
 <details>
-<summary>Explain Docker architecture</summary><br><b>
+<summary>Объясните архитектуру Docker</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>Describe in detail what happens when you run `docker run hello-world`?</summary><br><b>
+<summary>Опишите по шагам, что происходит при выполнении `docker run hello-world`</summary><br><b>
 
-Docker CLI passes your request to Docker daemon.
-Docker daemon downloads the image from Docker Hub
-Docker daemon creates a new container by using the image it downloaded
-Docker daemon redirects output from container to Docker CLI which redirects it to the standard output
+1. Клиент **docker** отправляет запрос демону **dockerd**.  
+2. Демон проверяет наличие образа **hello-world** локально; при отсутствии — **pull** с реестра (по умолчанию Docker Hub).  
+3. Создаётся контейнер из слоёв образа, запускается его команда по умолчанию.  
+4. STDOUT/STDERR контейнера передаются клиенту и показываются в терминале.
+
 </b></details>
 
 <details>
-<summary>How do you run a container?</summary><br><b>
+<summary>Как запустить контейнер?</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>What `docker commit` does?. When will you use it?</summary><br><b>
+<summary>Что делает `docker commit`? Когда его использовать?</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>How would you transfer data from one container into another?</summary><br><b>
+<summary>Как перенести данные из одного контейнера в другой?</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>What happens to data of the container when a container exists?</summary><br><b>
+<summary>Что происходит с данными контейнера, когда контейнер удаляют?</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>Explain what each of the following commands do:
+<summary>Объясните, что делают команды:
 
-  * docker run
-  * docker rm
-  * docker ps
-  * docker pull
-  * docker build
-  * docker commit</summary><br><b>
+  * `docker run`
+  * `docker rm`
+  * `docker ps`
+  * `docker pull`
+  * `docker build`
+  * `docker commit`</summary><br><b>
+
+
+
 </b></details>
 
 <details>
-<summary>How do you remove old, non running, containers?</summary><br><b>
+<summary>Как удалить неиспользуемые (в т.ч. остановленные) контейнеры?</summary><br><b>
+
+
+
 </b></details>

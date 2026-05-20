@@ -1,20 +1,20 @@
-# Kustomize - Common Labels
+# Настройка — общие метки
 
-## Requirements
+## Требования
 
-1. Running Kubernetes cluster
-2. Kubctl version 1.14 or above
+1. Запуск кластера Kubernetes
+2. Kubctl версии 1.14 или выше.
 
-## Objectives
+## Цели
 
-In the current directory there is an app composed of a Deployment and Service.
+В текущем каталоге находится приложение, состоящее из развертывания и службы.
 
-1. Write a kustomization.yml file that will add to both the Service and Deployment the label "team-name: aces"
-2. Execute a kustomize command that will generate the customized k8s files with the label appended
+1. Напишите файл kustomization.yml, который добавит к Сервису и Развертыванию метку «имя команды: ace».
+2. Выполните команду настройки, которая создаст настроенные файлы k8s с добавленной меткой.
 
-## Solution
+## Решение
 
-1. Add the following to kustomization.yml in someApp directory:
+1. Добавьте следующее в kustomization.yml в каталоге someApp:
 
 ```
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -26,6 +26,7 @@ commonLabels:
 resources:
   - service.yml
   - deployment.yml
+
 ```
 
-2. Run `kubectl apply -k someApp`
+2. Запустите `kubectl apply -k someApp`

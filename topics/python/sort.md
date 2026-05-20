@@ -1,6 +1,6 @@
-## Sort Descending 
+## Сортировать по убыванию 
 
-1. write a function that sorts the following list of list without using the `sorted()` and `.sort()`
-   function in descending order
+1. напишите функцию, которая сортирует следующий список без использования `sorted()` и `.sort()`
+   функция в порядке убывания
 
-   - list = [[1, 2, 3], [2, 4, 4], [5, 5, 5]] -> [[5, 5, 5], [2, 4, 4], [1, 2, 3]]
+   - список = [[1, 2, 3], [2, 4, 4], [5, 5, 5]] -> [[5, 5, 5], [2, 4, 4], [1, 2, 3]]

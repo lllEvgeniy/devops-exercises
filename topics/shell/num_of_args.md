@@ -1,7 +1,7 @@
-## Number of Arguments
+## Количество аргументов
 
-### Objectives
+### Цели
 
-* Write a script that will print "Got it: <argument value>" in case of one argument
-* In case no arguments were provided, it will print "Usage: ./<program name> <argument>"
-* In case of more than one argument, print "hey hey...too many!"
+* Напишите скрипт, который будет печатать «Понятно: <значение аргумента>» в случае одного аргумента.
+* Если аргументы не были предоставлены, будет напечатано «Использование: ./<имя программы> <аргумент>»
+* Если аргументов несколько, выведите «эй-эй...слишком много!»

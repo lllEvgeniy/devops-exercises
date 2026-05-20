@@ -1,9 +1,9 @@
-## ReplicaSet 02 - Solution
+## ReplicaSet 02 — решение
 
-1. Create a ReplicaSet with 2 replicas. The app can be anything.
+1. Создайте ReplicaSet с двумя репликами:
 
-```
-cat >> rs.yaml <<EOL
+```bash
+cat >> rs.yaml <<'EOL'
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -29,34 +29,36 @@ EOL
 kubectl apply -f rs.yaml
 ```
 
-2. Verify a ReplicaSet was created and there are 2 replicas
+2. Проверьте ReplicaSet и две реплики:
 
-```
+```bash
 kubectl get rs
-# OR a more specific way: kubectl get -f rs.yaml
 ```
 
-3. Remove the ReplicaSet but NOT the pods it created
+3. Удалите ReplicaSet, **не** удаляя поды:
 
-```
+```bash
 kubectl delete -f rs.yaml --cascade=orphan
 ```
 
-4. Verify you've deleted the ReplicaSet but the Pods are still running
+4. ReplicaSet удалён, поды продолжают работать:
 
-```
-kubectl get rs # no replicas
-kubectl get po # Pods still running
+```bash
+kubectl get rs   # пусто
+kubectl get po   # поды на месте
 ```
 
-5. Create again the same ReplicaSet, without changing anything
+5. Снова примените тот же манифест:
 
-```
+```bash
 kubectl apply -f rs.yaml
 ```
 
-6. Verify that the ReplicaSet used the existing Pods and didn't create new Pods
+6. ReplicaSet должен подхватить существующие поды, а не создавать новые:
 
+```bash
+kubectl describe rs web
+kubectl get po -l type=web
 ```
-kubectl describe rs web  # You should see there are no new events and if you list the pods with 'kubectl get po -f rs.yaml` you'll see they have the same names
-```
+
+Имена подов не должны измениться; в событиях ReplicaSet не должно быть массового создания новых подов.

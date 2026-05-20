@@ -1,14 +1,14 @@
-# Create & Destroy
+# Создать и уничтожить
 
-## Objectives
+## Цели
 
-1. Create a file called `x`
-2. Create a directory called `content`
-3. Move `x` file to the `content` directory
-4. Create a file inside the `content` directory called `y`
-5. Create the following directory structure in `content` directory: `dir1/dir2/dir3`
-6. Remove the content directory
+1. Создайте файл с именем `x`
+2. Создайте каталог с именем `content`.
+3. Переместите файл `x` в каталог `content`.
+4. Создайте файл в каталоге `content` с именем `y`.
+5. Создайте следующую структуру каталогов в каталоге «content»: «dir1/dir2/dir3».
+6. Удалите каталог содержимого.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution.
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

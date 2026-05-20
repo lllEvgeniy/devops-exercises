@@ -1,11 +1,11 @@
-# Local Provider
+# Локальный провайдер
 
-## Objectives
+## Цели
 
-Learn how to use and run Terraform basic commands
+Узнайте, как использовать и запускать основные команды Terraform.
 
-1. Create a directory called "my_first_run"
-2. Inside the directory create a file called "main.tf" with the following content
+1. Создайте каталог под названием «my_first_run».
+2. Внутри каталога создайте файл «main.tf» со следующим содержимым.
 
 ```terraform
 resource "local_file" "mario_local_file" {
@@ -13,10 +13,11 @@ resource "local_file" "mario_local_file" {
     filename = "/tmp/who_is_it.txt"
 }
 ```
-3. Run `terraform init`. What did it do?
-4. Run `terraform plan`. What Terraform is going to perform?
-5. Finally, run `terraform apply` and verify the file was created
 
-## Solution
+3. Запустите `terraform init`. Что он сделал?
+4. Запустите `terraform plan`. Что будет делать Terraform?
+5. Наконец, запустите `terraform apply` и убедитесь, что файл создан.
 
-Click [here to view the solution](solution.md)
+## Решение
+
+Нажмите [здесь, чтобы просмотреть решение](solution.md)

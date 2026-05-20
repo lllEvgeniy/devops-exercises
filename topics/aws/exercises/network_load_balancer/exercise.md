@@ -1,13 +1,13 @@
-## AWS ELB - Network Load Balancer
+## AWS ELB — балансировщик сетевой нагрузки
 
-### Requirements                   
+### Требования                   
 
-Two running EC2 instances
+Два работающих экземпляра EC2
 
-### Objectives
+### Цели
 
-1. Create a network load balancer 
-  1. healthy threshold: 3
-  2. unhealthy threshold: 3
-  3. interval: 10 seconds
-  4. Listener should be using TCP protocol on port 80
+1. Создайте балансировщик сетевой нагрузки. 
+  1. порог здоровья: 3
+  2. порог нездоровья: 3
+  3. интервал: 10 секунд
+  4. Прослушиватель должен использовать протокол TCP на порту 80.

@@ -1,11 +1,11 @@
-# Write a Containerfile and run a container
+# Напишите файл-контейнер и запустите контейнер
 
-## Objectives
+## Цели
 
-1. Create an image:
-  * Use centos or ubuntu as the base image
-  * Install apache web server
-  * Deploy any web application you want
-  * Add https support (using HAProxy as reverse-proxy)
-2. Once you wrote the Containerfile and created an image, run the container and test the application. Describe how did you test it and provide output
-3. Describe one or more weakness of your Containerfile. Is it ready to be used in production?
+1. Создайте изображение:
+  * Используйте Centos или Ubuntu в качестве базового образа.
+  * Установите веб-сервер Apache.
+  * Разверните любое веб-приложение, которое захотите.
+  * Добавлена поддержка https (с использованием HAProxy в качестве обратного прокси-сервера).
+2. После того как вы написали файл-контейнер и создали образ, запустите контейнер и протестируйте приложение. Опишите, как вы это тестировали, и предоставьте результаты.
+3. Опишите один или несколько недостатков вашего файла-контейнера. Готов ли он к использованию в производстве?

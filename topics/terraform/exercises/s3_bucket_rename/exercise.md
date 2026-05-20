@@ -1,9 +1,9 @@
-# Rename S3 Bucket
+# Переименование сегмента S3
 
-## Requirements
+## Требования
 
-* An existing S3 bucket tracked by Terraform.
-If you don't have it, you can use the following block and run `terraform apply`:
+* Существующая корзина S3, отслеживаемая Terraform.
+Если у вас его нет, вы можете использовать следующий блок и запустить terraform apply:
 
 ```terraform
 resource "aws_s3_bucket" "some_bucket" {
@@ -11,12 +11,12 @@ resource "aws_s3_bucket" "some_bucket" {
 }
 ```
 
-Attention: Since S3 buckets are globally unique, you will likely have to rename the bucket as someone else might have named it that way already.
+**Внимание:** имена S3 bucket глобально уникальны — выберите своё имя, если `some-old-bucket` уже занят.
 
-## Objectives
+## Цели
 
-1. Rename an existing S3 bucket and make sure it's still tracked by Terraform
+1. Переименуйте существующую корзину S3 и убедитесь, что Terraform по-прежнему отслеживает ее.
 
-## Solution
+## Решение
 
-Click [here to view the solution](solution.md)
+Нажмите [здесь, чтобы просмотреть решение](solution.md)

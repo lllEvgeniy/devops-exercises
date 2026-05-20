@@ -1,42 +1,42 @@
-## AWS Databases - MySQL DB
+## Базы данных AWS — БД MySQL
 
-### Objectives
+### Цели
 
-1. Create a MySQL database with the following properties
-  * Instance type: db.t2.micro
-  * gp2 storage
-  * Storage Auto scaling should be enabled and threshold should be set to 500 GiB
-  * Public access should be enabled
-  * Port should be set to 3306
-  * DB name: 'db'
-  * Backup retention: 10 days
+1. Создайте базу данных MySQL со следующими свойствами.
+  * Тип экземпляра: db.t2.micro.
+  * хранилище gp2
+  * Автоматическое масштабирование хранилища должно быть включено, а пороговое значение должно быть установлено на 500 ГиБ.
+  * Публичный доступ должен быть включен.
+  * Порт должен быть установлен на 3306.
+  * Имя БД: 'db'
+  * Срок хранения резервной копии: 10 дней.
 
-2. Create read replica for the database you've created
+2. Создайте реплику чтения для созданной базы данных.
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to RDS service
-2. Click on "Databases" in the left side menu and click on the "Create database" button
-3. Choose "standard create"
-4. Choose "MySQL" and the recommended version
-5. Choose "Production" template
-6. Specify DB instance identifier
-7. Specify Credentials (master username and password)
-8. Choose DB instance type: Burstable classes, db.t2.micro
-9. Choose "gp2" as storage
-10. Enable storage autoscalling: maximum storage threshold of 500 GiB
-11. Choose "Do not create a standby instance"
-12. Choose a default VPC and subnet
-12. Check "Yes" for public access
-13. Choose "No preference" for AZ
-14. Database port should be 3306
-15. For authentication, choose "Password and IAM database authentication"
-16. Set initial database name as "db"
-17. Increase backup retention period to 10 days
-18. Click on "Create database" button
+1. Заходим в сервис RDS.
+2. Нажмите «Базы данных» в левом боковом меню и нажмите кнопку «Создать базу данных».
+3. Выберите «Стандартное создание».
+4. Выберите «MySQL» и рекомендуемую версию.
+5. Выберите шаблон «Производство».
+6. Укажите идентификатор экземпляра БД.
+7. Укажите учетные данные (главное имя пользователя и пароль).
+8. Выберите тип экземпляра БД: Burstableclasses, db.t2.micro.
+9. Выберите «gp2» в качестве хранилища.
+10. Включите автовыбор хранилища: максимальный порог хранилища 500 ГиБ.
+11. Выберите «Не создавать резервный экземпляр».
+12. Выберите VPC и подсеть по умолчанию.
+12. Отметьте «Да» для публичного доступа.
+13. Выберите «Нет предпочтений» для AZ.
+14. Порт базы данных должен быть 3306.
+15. Для аутентификации выберите «Аутентификация по паролю и базе данных IAM».
+16. Установите исходное имя базы данных как «db».
+17. Увеличьте срок хранения резервных копий до 10 дней.
+18. Нажмите кнопку «Создать базу данных».
 
-1. Go to the database under "Databases" in the left side menu
-2. Click on "Actions" -> Create read replica
-3. Click on "Create read replica"
+1. Перейдите к базе данных в разделе «Базы данных» в левом боковом меню.
+2. Нажмите «Действия» -> Создать реплику чтения.
+3. Нажмите «Создать реплику чтения».

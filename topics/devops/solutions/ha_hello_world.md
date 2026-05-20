@@ -1,11 +1,11 @@
-## Highly Available "Hello World"
+## Высокодоступный «Hello World»
 
-Set up an highly available "Hello World" application with the following instructions:
+Настройте высокодоступное приложение «Hello World», выполнив следующие инструкции:
 
-* Use a containerized Load Balancer
-* Provision two virtual machines (this is where the app will run)
-* The page, when visited, should show "Hello World! I'm host X" - X should be the name of the virtual machine
+* Используйте контейнерный балансировщик нагрузки.
+* Предоставьте две виртуальные машины (здесь будет работать приложение)
+* При посещении страницы должно отображаться сообщение «Hello World! Я хост X» — X должно быть именем виртуальной машины.
 
-### Solution
+### Решение
 
-1. Provision two VMs
+1. Предоставьте две виртуальные машины

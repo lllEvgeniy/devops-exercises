@@ -1,14 +1,14 @@
-## Shell Scripting - Factors
+## Скрипты оболочки — факторы
 
-### Objectives
+### Цели
 
-Write a script that when given a number, will:
+Напишите сценарий, который при задании числа будет:
 
-* Check if the number has 2 as factor, if yes it will print "one factor"
-* Check if the number has 3 as factor, if yes it will print "one factor...actually two!"
-* If none of them (2 and 3) is a factor, print the number itself
+* Проверьте, имеет ли число множитель 2, если да, будет напечатано «один множитель».
+* Проверьте, есть ли в числе множитель 3, если да, то будет напечатано «один множитель… на самом деле два!»
+* Если ни один из них (2 и 3) не является фактором, выведите само число.
 
-### Solution
+### Решение
 
 ```
 #!/usr/bin/env bash

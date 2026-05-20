@@ -1,17 +1,17 @@
-# Create an Instance
+# Создание экземпляра VM
 
-## Objectives
+## Цели
 
-1. Create a VM instance with the following properties
-   1. name: instance-1
-   2. type: e2-micro
-   3. labels:
-      1. app: web
-      2. env: dev
-2. Using the CLI (gcloud) perform the following operations:
-   1. Update "app" label to "db"
-   2. Remove "env" label
+1. Создайте виртуальную машину со следующими свойствами:
+   1. имя: `instance-1`
+   2. тип машины: `e2-micro`
+   3. **labels**:
+      1. `app=web`
+      2. `env=dev`
+2. С помощью **gcloud** выполните:
+   1. Измените метку `app` на `db`.
+   2. Удалите метку `env`.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы посмотреть решение.

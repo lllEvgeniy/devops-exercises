@@ -1,14 +1,14 @@
 ## ReplicaSet 103
 
-#### Objective
+#### Цель
 
-Learn how labels used by ReplicaSets
+Понять, как метки используются в ReplicaSet.
 
-#### Instructions
+#### Инструкции
 
-1. Create a ReplicaSet with 2 replicas. Make sure the label used for the selector and in the Pods is "type=web"
-2. Verify a ReplicaSet was created and there are 2 replicas
-3. List the Pods running
-4. Remove the label (type=web) from one of the Pods created by the ReplicaSet
-5. List the Pods running. Are there more Pods running after removing the label? Why?
-6. Verify the ReplicaSet indeed created a new Pod
+1. Создайте ReplicaSet с двумя репликами. Метка в селекторе и в шаблоне пода — `type=web`.
+2. Убедитесь, что ReplicaSet создан и работают 2 пода.
+3. Перечислите запущенные поды.
+4. Удалите метку `type=web` с одного из подов, созданных ReplicaSet.
+5. Снова перечислите поды. Появятся ли новые поды после удаления метки? Почему?
+6. Убедитесь, что ReplicaSet создал новый под.

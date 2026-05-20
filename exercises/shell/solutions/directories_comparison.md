@@ -1,69 +1,78 @@
-## Directories Comparison
+## Сравнение каталогов
 
-### Objectives
+### Цели
 
-1. You are given two directories as arguments and the output should be any difference between the two directories
+1. На вход передаются **два каталога**; на выходе должна отображаться **любая разница** между ними (содержимое и структура).
 
-### Solution
+### Решение
 
-```
+```bash
 #!/usr/bin/env bash
 
-
-help () {
-  echo "Usage: compare <filename1> <filename2>"
+help() {
+  echo "Использование: compare <каталог1> <каталог2>"
   echo
 }
 
 validate_args() {
-  # Ensure that 2 arguments are passed
-  if [ $# != 2 ]
-  then
+  # Нужно ровно два аргумента
+  if [ "$#" -ne 2 ]; then
     help
     exit 1
   fi
 
   i=1
-  for dir in "$@"
-  do
-      # Validate existence of directories
-      if [ ! -d "$dir" ]
-      then
-        echo "Directory $dir does not exist"
-        exit 1
-      fi
-      echo "Directory $i: $dir"
-      i=$((i + 1))
+  for dir in "$@"; do
+    if [ ! -d "$dir" ]; then
+      echo "Каталог $dir не существует"
+      exit 1
+    fi
+    echo "Каталог $i: $dir"
+    i=$((i + 1))
   done
   echo
 }
 
 compare() {
-  echo "Comparing directories..."
+  echo "Сравнение каталогов..."
   echo
   diff -r "$1" "$2"
-  
-  if [ $? -eq 0 ]
-  then
-  	echo "No difference"
+
+  if [ $? -eq 0 ]; then
+    echo "Различий нет"
   fi
-  
+
   exit 0
 }
 
 while getopts ":h" option; do
-   case $option in
-      h) # display Help
-         help
-         exit 0;;
-      \?) # invalid option
-         echo "Error: Invalid option"
-         exit 1;;
-   esac
+  case $option in
+    h)
+      help
+      exit 0
+      ;;
+    \?)
+      echo "Ошибка: недопустимая опция"
+      exit 1
+      ;;
+  esac
 done
 
 validate_args "$@"
 compare "$1" "$2"
-
-
 ```
+
+### Кратко без скрипта
+
+Рекурсивное сравнение двух каталогов:
+
+```bash
+diff -r каталог1 каталог2
+```
+
+При одинаковом содержимом `diff` ничего не печатает и возвращает код **0**; при отличиях выводит разницу и код **1**.
+
+### Дополнительно
+
+- Сначала удобно смотреть `diff -rq` (краткий режим: только «что отличается»).
+- Для очень больших деревьев иногда используют `rsync -avnc` или специализированные утилиты; для учебной задачи достаточно `diff -r`.

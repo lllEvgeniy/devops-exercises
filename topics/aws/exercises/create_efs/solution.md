@@ -1,27 +1,27 @@
-## AWS - Create EFS
+## AWS — создание EFS
  
-### Requirements
+### Требования
 
-Two EC2 instances in different availability zones
+Два экземпляра EC2 в разных зонах доступности
 
-### Objectives
+### Цели
 
-1. Create an EFS with the following properties
-  1. Set lifecycle management to 60 days
-  2. The mode should match a use case of scaling to high levels of throughput and I/O operations per second
-2. Mount the EFS in both of your EC2 instances
+1. Создайте EFS со следующими свойствами.
+  1. Установите управление жизненным циклом на 60 дней.
+  2. Режим должен соответствовать варианту использования масштабирования до высоких уровней пропускной способности и количества операций ввода-вывода в секунду.
+2. Подключите EFS в обоих экземплярах EC2.
  
-### Solution
+### Решение
  
-1. Go to EFS console
-2. Click on "Create file system"
-3. Create on "customize"
-  1. Set lifecycle management to "60 days since last access"
-  2. Set Performance mode to "MAX I/O" due to the requirement of "Scaling to high levels of throughput"
-  3. Click on "Next"
-  4. Choose security group to attach (if you don't have any, create one and make sure it has a rule to allow NFS traffic) and click on "Next" until you are able to review and create it
-5. SSH into your EC2 instances
-  1. Run `sudo yum install -y amazon-efs-utils`
-  2. Run `mkdir efs`
-  3. If you go to your EFS page and click on "Attach", you can see what ways are there to mount your EFS on your instancess
-    1. The command to mount the EFS should be similar to `sudo mount -t efs -o tls <EFS name>:/ efs` - copy and paste it in your ec2 instance's OS
+1. Перейдите в консоль EFS.
+2. Нажмите «Создать файловую систему»
+3. Создайте по индивидуальному заказу.
+  1. Установите для управления жизненным циклом значение «60 дней с момента последнего доступа».
+  2. Установите для режима производительности значение «MAX I/O» из-за требования «Масштабирования до высоких уровней пропускной способности».
+  3. Нажмите «Далее».
+  4. Выберите группу безопасности для присоединения (если у вас ее нет, создайте ее и убедитесь, что в ней есть правило, разрешающее трафик NFS) и нажимайте «Далее», пока не сможете просмотреть и создать ее.
+5. Подключитесь по SSH к вашим инстансам EC2.
+  1. Запустите sudo yum install -y amazon-efs-utils.
+  2. Запустите mkdir efs.
+  3. Если вы перейдете на страницу EFS и нажмете «Прикрепить», вы увидите, какие способы существуют для монтирования EFS на ваш экземпляр.
+    1. Команда для монтирования EFS должна быть похожа на `sudo mount -t efs -o tls <имя EFS>:/efs` — скопируйте и вставьте ее в ОС вашего экземпляра ec2.

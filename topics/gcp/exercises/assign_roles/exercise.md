@@ -1,13 +1,13 @@
-# Assign Roles
+# Назначаем роли
 
-## Objectives
+## Цели
 
-1. Assign the following roles to a member in your organization
-   1. Compute Storage Admin
-   2. Compute Network Admin
-   3. Compute Security Admin
-2. Verify roles were assigned
+1. Назначьте следующие роли члену вашей организации.
+   1. Администратор вычислительного хранилища
+   2. Администратор вычислительной сети
+   3. Администратор вычислительной безопасности
+2. Убедитесь, что роли назначены
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

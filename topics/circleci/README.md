@@ -1,85 +1,81 @@
-# Circle CI
+# CircleCI
 
-## Circle CI Questions
+## Вопросы по CircleCI
 
-### Circle CI 101
+### CircleCI 101
 
 <details>
-<summary>What is Circle CI?</summary><br><b>
+<summary>Что такое CircleCI?</summary><br><b>
 
-[Circle CI](https://circleci.com): "CircleCI is a continuous integration and continuous delivery platform that can be used to implement DevOps practices."
+[CircleCI](https://circleci.com): «CircleCI — платформа **непрерывной интеграции и доставки** для практик DevOps».
+
 </b></details>
 
 <details>
-<summary>What are some benefits of Circle CI?</summary><br><b>
+<summary>Какие у CircleCI сильные стороны?</summary><br><b>
 
-[Circle CI Docs](https://circleci.com/docs/about-circleci): "SSH into any job to debug your build issues.
-Set up parallelism in your .circleci/config.yml file to run jobs faster.
-Configure caching with two simple keys to reuse data from previous jobs in your workflow.
-Configure self-hosted runners for unique platform support.
-Access Arm resources for the machine executor.
-Use orbs, reusable packages of configuration, to integrate with third parties.
-Use pre-built Docker images in a variety of languages.
-Use the API
- to retrieve information about jobs and workflows.
-Use the CLI to access advanced tools locally.
-Get flaky test detection with test insights."
+По [документации CircleCI](https://circleci.com/docs/about-circleci), среди возможностей:
+
+- SSH к job для отладки сборок;
+- параллелизм в `.circleci/config.yml`;
+- кэширование между job;
+- собственные runners;
+- образы Docker, **orbs** (переиспользуемые фрагменты конфигурации);
+- API и CLI;
+- аналитика нестабильных тестов.
+
 </b></details>
 
 <details>
-<summary>Explain the following:
+<summary>Объясните термины: pipeline, workflow, job, step.</summary><br><b>
 
-* Pipeline
-* Workflow
-* Jobs
-* Steps
-</summary><br><b>
+- **Pipeline** — один прогон CI/CD для коммита/тега (вся конфигурация из `.circleci/config.yml`).
+- **Workflow** — граф **job**: порядок, условия, параллельность.
+- **Job** — среда (Docker / machine / executor) и последовательность **steps**.
+- **Step** — конкретная команда или встроенное действие (checkout, run и т.д.).
 
-* Pipeline: the entire CI/CD configuration (.circleci/config.yaml)
-* Workflow: primarily used when there is more than one job in the configuration to orchestrate the workflows
-* Jobs: One or more steps to execute as part of the CI/CD process
-* Steps: The actual commands to execute
 </b></details>
 
 <details>
-<summary>What is an Orb?</summary><br><b>
+<summary>Что такое orb?</summary><br><b>
 
-[Circle CI Docs](https://circleci.com/developer/orbs): "Orbs are shareable packages of CircleCI configuration you can use to simplify your builds" 
+[Orbs](https://circleci.com/developer/orbs) — **переиспользуемые пакеты** YAML для CircleCI: команды, executors, примеры интеграций.
 
-They can come from the public registry or defined privately as part of an organization.
+Orbs бывают публичными в реестре или приватными в организации.
+
 </b></details>
 
-### Circle CI Hands-On 101
+### CircleCI: практика
 
 <details>
-<summary>Where (in what location in the project) Circle CI pipelines are defined?</summary><br><b>
+<summary>Где в репозитории лежит конфигурация CircleCI?</summary><br><b>
 
 `.circleci/config.yml`
+
 </b></details>
 
 <details>
-<summary>Explain the following configuration file
+<summary>Разберите пример конфигурации.</summary><br><b>
 
-
-```
+```yaml
 version: 2.1
 
 jobs:
-  say-hello:
+  hello:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
-```
-</summary><br><b>
+          name: Say hello
+          command: echo "Hello, World!"
 
-This configuration file will set up one job that will checkout the code of the project will run the command `echo Hello, World!`.
-It will run in a container using the image `cimg/base:stable`.
+workflows:
+  hello-workflow:
+    jobs:
+      - hello
+```
+
+Один **job** в образе `cimg/base:stable`: checkout репозитория и `echo Hello, World!`. **Workflow** запускает этот job.
+
 </b></details>

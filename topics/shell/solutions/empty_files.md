@@ -1,10 +1,10 @@
-## Empty Files
+## Пустые файлы
 
-### Objectives
+### Цели
 
-1. Write a script to remove all the empty files in a given directory (including nested directories)
+1. Написать скрипт для удаления всех пустых файлов в заданном каталоге (включая вложенные каталоги).
 
-### Solution
+### Решение
 
 ```
 #! /bin/bash

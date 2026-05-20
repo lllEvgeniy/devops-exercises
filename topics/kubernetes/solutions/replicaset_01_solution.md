@@ -1,9 +1,9 @@
-## ReplicaSet 01 - Solution
+## ReplicaSet 01 — решение
 
-1. Create a ReplicaSet with 2 replicas. The app can be anything.
+1. Создайте ReplicaSet с двумя репликами (приложение на ваш выбор):
 
-```
-cat >> rs.yaml <<EOL
+```bash
+cat >> rs.yaml <<'EOL'
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -29,34 +29,22 @@ EOL
 kubectl apply -f rs.yaml
 ```
 
-2. Verify a ReplicaSet was created and there are 2 replicas
+2. Убедитесь, что ReplicaSet создан и есть 2 пода:
 
-```
+```bash
 kubectl get rs
-# OR a more specific way: kubectl get -f rs.yaml
+# или: kubectl get -f rs.yaml
 ```
 
-3. Delete one of the Pods the ReplicaSet has created
+3. Удалите один из подов:
 
-```
-kubectl delete po <POD_NAME>
-```
-
-4. If you'll list all the Pods now, what will you see?
-
-```
-The same number of Pods. Since we defined 2 replicas, the ReplicaSet will make sure to create another Pod that will replace the one you've deleted.
+```bash
+kubectl delete pod <POD_NAME>
 ```
 
-5. Remove the ReplicaSet you've created
+4. Убедитесь, что ReplicaSet создал новый под вместо удалённого:
 
-```
-kubectl delete -f rs.yaml
-```
-
-6. Verify you've deleted the ReplicaSet
-
-```
+```bash
 kubectl get rs
-# OR a more specific way: kubectl get -f rs.yaml
+kubectl get po
 ```

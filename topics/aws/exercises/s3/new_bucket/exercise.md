@@ -1,15 +1,15 @@
-# Create buckets
+# Создаем сегменты
 
-## Objectives
+## Цели
 
-1. Create the following buckets:
-   1. Private bucket
-      1. eu-west-2 region
-      2. Upload a single file to the bucket. Any file.
-   2. Public bucket
-      1. eu-west-1 region
-      2. Versioning should be enabled
+1. Создайте следующие сегменты:
+   1. Частное ведро
+      1. регион ЕС-Запад-2
+      2. Загрузите в корзину один файл. Любой файл.
+   2. Общественное ведро
+      1. регион ЕС-Запад-1
+      2. Управление версиями должно быть включено.
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.

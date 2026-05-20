@@ -1,7 +1,6 @@
-"""
-WIP
+"""Проверка разметки `<details>` в фикстурах `tests/testcases/*.md`.
 
-Yes, we do write tests for our tests.
+Да, для проверок тоже пишут тесты.
 """
 from pathlib import Path
 from typing import List

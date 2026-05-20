@@ -1,36 +1,37 @@
-## Perl
+## Перл
 
-### Perl Self Assessment
+### Самооценка Perl
 
 <details>
-<summary>What is Perl?</summary><br><b>
+<summary>Что такое Перл?</summary><br><b>
 
-From the official [docs](https://perldoc.perl.org/):
+Из официальной [документации](https://perldoc.perl.org/):
 
-"Perl officially stands for Practical Extraction and Report Language, except when it doesn't."
+«Perl официально означает «Практическое извлечение и язык отчетов», за исключением случаев, когда это не так».
 
-It's a general purpose programming language developed for manipulating texts mainly. It has been used to perform system administration tasks, networking, building websites and more.
+Это язык программирования общего назначения, разработанный в основном для работы с текстом. Он использовался для выполнения задач системного администрирования, работы в сети, создания веб-сайтов и многого другого.
+
 </b></details>
 
 <details>
-<summary>What data types Perl has? And how can we define it?</summary><br><b>
+<summary>Какие типы данных есть в Perl? И как мы можем это определить?</summary><br><b>
 
-- Scalar: This is a simple variable that stores single data items. It can be a string, number or reference.
+- Скаляр: это простая переменная, в которой хранятся отдельные элементы данных. Это может быть строка, число или ссылка.
 
 ```
 my $number = 5;
 ```
 
-- Arrays: This is a list of scalars. 
+- Массивы: это список скаляров.
 
 ```
 my @numbers = (1, 2, 3, 4, 5);
-# or using the `qw` keyword (quote word):
-my @numbers = qw/1 2 3 4 5/; 
-# '/' can be another symbol, e.g qw@1 2 3 4 5@
+# или через ключевое слово `qw` (quote word):
+my @numbers = qw/1 2 3 4 5/;
+# вместо `/` можно использовать другой разделитель, например qw@1 2 3 4 5@
 ```
 
-- Hashes (or associative arrays): This is an unordered collection of key-value pairs. We can access to a hash using the keys.
+- Хэши (или ассоциативные массивы): это неупорядоченная коллекция пар ключ-значение. Мы можем получить доступ к хешу, используя ключи.
 
 ```
 my %numbers = (
@@ -43,7 +44,7 @@ my %numbers = (
 </b></details>
 
 <details>
-<summary>How can you access to a hash value, add and delete a key/value pair and modify a hash?</summary><br><b>
+<summary>Как получить доступ к хэш-значению, добавить и удалить пару ключ/значение и изменить хэш?</summary><br><b>
 
 ```
 my %numbers = (
@@ -53,25 +54,25 @@ my %numbers = (
 );
 ```
 
-- Access:
+- Доступ:
 
 ```
 print($numbers{'First'});
 ```
 
-- Add:
+- Добавить:
 
 ```
 $numbers{'Fourth'} = 4;
 ```
 
-- Delete:
+- Удалить:
 
 ```
 delete $numbers{'Third'};
 ```
 
-- Modify:
+- Изменить:
 
 ```
 $numbers{'Fifth'} = 6;
@@ -81,74 +82,73 @@ $numbers{'Fifth'} = 5;
 </b></details>
 
 <details>
-<summary>How can you iterate an array? And a hash?</summary><br><b>
+<summary>Как можно перебрать массив? А хеш?</summary><br><b>
 
-- Array:
+- Массив:
 
 ```
 my @numbers = qw/1 2 3 4 5/;
 
-# Using `$_` that represents the current iteration in a loop. It starts from index array 0 until the last index.
+# `$_` — текущий элемент итерации; цикл от первого индекса до последнего
 foreach (@numbers) {
     print($_);
 }
-# Output: 12345
+# Вывод: 12345
 
-
-# "$#" returns the max index of an array. That's the reason because we can iterate accessing to the array from the index 0 to the max index.
+# `$#array` — максимальный индекс массива; итерация от 0 до этого индекса
 for my $i (0..$#numbers) {
     print($numbers[$i]);
 }
-# Output: 12345
+# Вывод: 12345
 
-
-# Using the `map` keyword:
+# Через `map`:
 print map {$_} @numbers;
-# Output: 12345
+# Вывод: 12345
 
-# Using `while`. We should take care with this option. When we use `shift` we're deleting the first element of the array and assigning it to the `element` variable. 
-# After this `loop` the `numbers` array will not have elements.
+# Через `while`. Осторожно: `shift` удаляет первый элемент массива
+# и возвращает его; после цикла массив `@numbers` может оказаться пустым
 while (my $element = shift(@numbers)) {
     print($element);
 }
-# Output: 12345
+# Вывод: 12345
 ```
 
-- Hashes:
- 
- ```
- my %capital_cities = (
+- Хэши:
+
+```
+my %capital_cities = (
   'Madrid' => 'Spain',
   'Rome' => 'Italy',
   'Berlin' => 'Germany'
 );
 
-# Iterate and get the `keys`:
+# Перебор ключей:
 foreach my $city (keys %capital_cities) {
     print($city . "\n");
 }
-# Iterate and get the `values`:
+
+# Перебор значений:
 foreach my $country (values %capital_cities) {
     print($country . "\n");
 }
 
-# Iterate and get the values and keys (first option):
+# Ключи и значения (через keys):
 foreach my $city (keys %capital_cities) {
-    print("City: $city - Country: $capital_cities{$city}" . "\n");
+    print("Город: $city — страна: $capital_cities{$city}\n");
 }
 
-# Iterate and get the values and keys (first option):
-while(my ($city, $country) = each %capital_cities) {
-    print("City: $city - Country: $capital_cities{$city}" . "\n");
+# Ключи и значения (через each):
+while (my ($city, $country) = each %capital_cities) {
+    print("Город: $city — страна: $country\n");
 }
 ```
 
 </b></details>
 
 <details>
-<summary>What is a Perl subroutine? How to define it?</summary><br><b>
+<summary>Что такое подпрограмма Perl? Как это определить?</summary><br><b>
 
-It's the perl model for user defined functions (this is also called function like other programming languages). We can define a subroutine with the keyword `sub`. 
+Это модель Perl для пользовательских функций (она также называется функцией, как и в других языках программирования). Мы можем определить подпрограмму с помощью ключевого слова `sub`.
 
 ```
 sub hello {
@@ -159,77 +159,81 @@ sub hello {
 </b></details>
 
 <details>
-<summary>Describe the different ways to receive parameters in a subroutine</summary><br><b>
+<summary>Описать различные способы получения параметров в подпрограмме.</summary><br><b>
 
-- List assignment: Using the `@_` array. It's a list with the elements that are being passed as parameters.
+- Назначение списка: использование массива `@_`. Это список элементов, которые передаются в качестве параметров.
 
 ```
 sub power {
     my ($b, $e) = @_;
-    return $b ** $e; 
+    return $b ** $e;
 }
 
 &power(2, 3);
 ```
 
-- Individual assignment: We should access to every element of the `@_` array. It starts from zero.
+- Индивидуальное назначение: мы должны получить доступ к каждому элементу массива `@_`. Он начинается с нуля.
 
 ```
 sub power {
     my $b = $_[0];
     my $e = $_[1];
-    return $b ** $e; 
+    return $b ** $e;
 }
 
 &power(2, 3);
 ```
 
-- Using `shift` keyword: It's used to remove the first value of an array and it's returned.
+- Использование ключевого слова `shift`: оно используется для удаления первого значения массива и его возврата.
 
 ```
 sub power {
     my $b = shift;
-    my $3 = shift;
-    return $b ** $e; 
+    my $e = shift;
+    return $b ** $e;
 }
 
 &power(2, 3);
 ```
 
-
-[Source](https://stackoverflow.com/a/21465275/12771230)
-
-We can also read the best way in the same S.O answer.
+Подробнее — в [ответе на Stack Overflow](https://stackoverflow.com/a/21465275/12771230).
 
 </b></details>
 
 <details>
-<summary>What is lexical and dynamic scoping?</summary><br><b>
-</b></details>
+<summary>Что такое лексическая и динамическая область видимости?</summary><br><b>
 
-<details>
-<summary>How to apply referencing and dereferencing?</summary><br><b>
-</b></details>
-
-<details>
-<summary>Does Perl have conventions?</summary><br><b>
-
-You can check [perlstyle](https://perldoc.perl.org/perlstyle)
+**Лексическая (статическая)** — видимость по месту объявления в коде (`my $x` в блоке).<br>
+**Динамическая** — по цепочке вызовов (`local`, старый `use vars`); в Perl по умолчанию лексическая через `my`; `local` временно подменяет глобальную переменную в динамической области видимости.
 
 </b></details>
 
 <details>
-<summary>What is Perl POD? Can you code an example?</summary><br><b>
+<summary>Как применять ссылки и разыменования?</summary><br><b>
 
-From the official [docs](https://perldoc.perl.org/perlpod):
+Ссылка: `\$scalar`, `\@array`, `\%hash`. Разыменование: `${$ref}`, `@{$aref}`, `%{$href}`. Передача по ссылке в подпрограмму изменяет оригинал; для ссылки на массив: `push @$aref, $val`.
 
-"Pod is a simple-to-use markup language used for writing documentation for Perl, Perl programs, and Perl modules."
+</b></details>
+
+<details>
+<summary>Есть ли в Perl соглашения?</summary><br><b>
+
+Вы можете проверить [perlstyle](https://perldoc.perl.org/perlstyle)
+
+</b></details>
+
+<details>
+<summary>Что такое Perl POD? Можете ли вы закодировать пример?</summary><br><b>
+
+Из официальной [документации](https://perldoc.perl.org/perlpod):
+
+«Pod — это простой в использовании язык разметки, используемый для написания документации для Perl, программ Perl и модулей Perl».
 
 ```
 =item
-    This function returns the factorial of a number.
-    Input: $n (number you wanna calculate).
-    Output: number factorial.
+    Возвращает факториал числа.
+    Вход: $n (число для вычисления).
+    Выход: факториал числа.
 =cut
 sub factorial {
     my ($i, $result, $n) = (1, 1, shift);
@@ -240,76 +244,81 @@ sub factorial {
 
 </b></details>
 
-### Perl Regex
+### Регулярное выражение Perl
 
 <details>
-<summary>Check if the word `electroencefalografista` exists in a string</summary><br><b>
+<summary>Проверьте, существует ли в строке слово «электроэнцефалографист».</summary><br><b>
 
 ```
 my $string = "The longest accepted word by RAE is: electroencefalografista";
-if ($string =~ /electroencefalografista/) {                                                         
-    print "Match!";
+if ($string =~ /electroencefalografista/) {
+    print "Совпадение!\n";
 }
 ```
+
 </b></details>
 
 <details>
-<summary>Check if the word `electroencefalografista` does not exists in a string</summary><br><b>
+<summary>Проверьте, не существует ли в строке слова «электроэнцефалографист».</summary><br><b>
 
 ```
 my $string = "The longest not accepted word by RAE is: Ciclopentanoperhidrofenantreno";
 if ($string !~ /electroencefalografista/) {
-    print "Does not match!";
+    print "Нет совпадения!\n";
 }
 ```
+
 </b></details>
 
 
 <details>
-<summary>Replace the word `amazing`</summary><br><b>
+<summary>Замените слово «удивительно».</summary><br><b>
 
 ```
 my $string = "Perl is amazing!";
-$string =~ s/amazing/incredible/;
+$string =~ s/amazing/incredible/;  # замена подстроки amazing → incredible
 print $string;
-# Perl is incredible!
+# Вывод: Perl is incredible!
 ```
+
 </b></details>
 
 <details>
-<summary>Extract `hh:mm:ss` with capturing group `()` in the following datetime</summary><br><b>
+<summary>Извлеките `hh:mm:ss` с захватом группы `()` в следующую дату и время.</summary><br><b>
 
 ```
 my $date = "Fri Nov 19 20:09:37 CET 2021";
 my @matches = $date =~ /(.*)(\d{2}:\d{2}:\d{2})(.*)/;
 print $matches[1];
-# Output: 20:09:37
+# Вывод: 20:09:37
 ```
+
 </b></details>
 
 <details>
-<summary>Extract all the elements that are numbers in an array</summary><br><b>
+<summary>Извлеките все элементы, которые являются числами в массиве</summary><br><b>
 
 ```
 my @array = ('a', 1, 'b', 2, 'c', 3);
-my @numbers = grep (/\d/, @array);    # Note: \d involves more digits than 0-9
-map {print $_ . "\n" } @numbers;
+my @numbers = grep (/\d/, @array);    # Примечание: \d — не только цифры 0-9
+map { print $_ . "\n" } @numbers;
 ```
 
 </b></details>
 
 <details>
-<summary>Print all the linux system users that starts with d or D</summary><br><b>
+<summary>Выведите всех пользователей системы Linux, имена которых начинаются с d или D.</summary><br><b>
 
-- With a Perl one liner :D
+- С однострочным Perl:
+
 ```
 open(my $fh, '<', '/etc/passwd');
 my @user_info = <$fh>;
-map { print $& . "\n" if $_ =~ /^d([^:]*)/  } @user_info;
+map { print $& . "\n" if $_ =~ /^d([^:]*)/ } @user_info;
 close $fh;
 ```
 
-- Avoiding one-liners
+- Без однострочника:
 
 ```
 foreach my $user_line (@user_info) {
@@ -321,48 +330,49 @@ foreach my $user_line (@user_info) {
 
 </b></details>
 
-### Perl Files Handle
+### Дескриптор файлов Perl
 
 <details>
-<summary>Mention the different modes in File Handling</summary><br><b>
+<summary>Упомяните различные режимы работы с файлами.</summary><br><b>
 
-- Read only: `<`
-- Write mode. It creates the file if doesn't exist: `>`
-- Append mode. It creates the file if doesn't exist: `>>`
-- Read and write mode: `+<`
-- Read, clear and write mode. It creates the file if doesn't exist: `+>`
-- Read and append. It creates the file if doesn't exist: `+>>`
+- Только чтение: `<`
+- Режим записи. Он создает файл, если он не существует: `>`
+- Режим добавления. Он создает файл, если он не существует: `>>`
+- Режим чтения и записи: `+<`
+- Режим чтения, очистки и записи. Он создает файл, если он не существует: `+>`
+- Прочитай и дополни. Он создает файл, если он не существует: `+>>`
 
 </b></details>
 
 <details>
-<summary>How to write into a file?</summary><br><b>
+<summary>Как записать в файл?</summary><br><b>
 
 ```
-# We can use:
-# '>' Write (it clears a previous content if exists).
-# '>>' Append.
-open(my $fh, '>>', 'file_name.ext') or die "Error: file can't be opened";
-print $fh "writing text...\n";
+# Режимы:
+# '>'  — запись (очищает файл, если он уже существует)
+# '>>' — дозапись в конец
+open(my $fh, '>>', 'file_name.ext') or die "Ошибка: не удалось открыть файл";
+print $fh "текст для записи...\n";
 close($fh);
 ```
+
 </b></details>
 
 <details>
-<summary>How can you read a file and print every line?</summary><br><b>
+<summary>Как можно прочитать файл и распечатать каждую строку?</summary><br><b>
 
 ```
-open(my $fh, '<', 'file_to_read.ext') or die "Error: file can't be opened";
+open(my $fh, '<', 'file_to_read.ext') or die "Ошибка: не удалось открыть файл";
 my @file = <$fh>;
 foreach my $line (@file) {
     print $line;
 }
 ```
 
-We can use the file handle without assigning it to an array:
+Мы можем использовать дескриптор файла, не присваивая его массиву:
 
 ```
-open(my $fh, '<', 'file_to_read.ext') or die "Error: file can't be opened";
+open(my $fh, '<', 'file_to_read.ext') or die "Ошибка: не удалось открыть файл";
 
 foreach my $line (<$fh>) {
     print $line;
@@ -371,28 +381,28 @@ foreach my $line (<$fh>) {
 
 </b></details>
 
-### Perl OOP
+### Перл ООП
 
 <details>
-<summary>Does Perl have support for OOP?</summary><br><b>
+<summary>Есть ли в Perl поддержка ООП?</summary><br><b>
 
-From the official [docs](https://perldoc.perl.org/perlootut):
+Из официальной [документации](https://perldoc.perl.org/perlootut):
 
-"By default, Perl's built-in OO system is very minimal, leaving you to do most of the work."
+«По умолчанию встроенная объектно-ориентированная система Perl очень минималистична, поэтому большую часть работы остается выполнять вам».
 
 </b></details>
 
 <details>
-<summary>What is the purpose of the bless function?</summary><br><b>
+<summary>Какова цель функции `bless`?</summary><br><b>
 
-The function os the `bless` function is used to turning a plain data structure into an object.
+Функция `bless` используется для превращения простой структуры данных в объект.
 
 </b></details>
 
 <details>
-<summary>How to create a Perl class? How can you call a method?</summary><br><b>
+<summary>Как создать класс Perl? Как можно вызвать метод?</summary><br><b>
 
-- Let's create the package: `Example.pm`
+- Создадим пакет: `Example.pm`
 
 ```
 package Example;
@@ -405,37 +415,38 @@ sub new {
 }
 
 sub is_working {
-    print "Working!";
+    print "Работает!\n";
 }
 
 1;
 ```
 
-- Now we can instance the `Example` class and call `is_working` method:
+- Теперь мы можем создать экземпляр класса `Example` и вызвать метод `is_working`:
 
 ```
 my $e = new Example();
 $e->is_working();
-# Output: Working!
+# Вывод: Работает!
 ```
 
 </b></details>
 
 <details>
-<summary>Does Perl have inheritance? What is the `SUPER` keyword?</summary><br><b>
+<summary>Есть ли в Perl наследование? Что такое ключевое слово `SUPER`?</summary><br><b>
 
-Yes, Perl supports inheritance. We can read about it in the official [docs](https://perldoc.perl.org/perlobj#Inheritance). 
-We also can read about `SUPER` keyword that is used to call a method from the parent class. It gives an example about how we can apply inheritance.
+Да, Perl поддерживает наследование. Об этом можно прочитать в официальной [документации](https://perldoc.perl.org/perlobj#Inheritance).
+Мы также можем прочитать о ключевом слове `SUPER`, которое используется для вызова метода родительского класса. Это пример того, как мы можем применять наследование.
+
 </b></details>
 
 <details>
-<summary>Does Perl have polymorphism? What is method overriding?</summary><br><b>
+<summary>Есть ли в Perl полиморфизм? Что такое переопределение метода?</summary><br><b>
 
-Yes, it has polymorphism. In fact method overriding is a way to apply it in Perl.
+Да, у него есть полиморфизм. Фактически переопределение метода — это способ применить его в Perl.
 
-Method overriding in simple words appears when we have a class with a method that already exist in a parent class.
+Переопределение метода простыми словами появляется, когда у нас есть класс с методом, который уже существует в родительском классе.
 
-Example:
+Пример:
 
 ```
 package A;
@@ -456,7 +467,7 @@ my $b = B->new();
 A->new()->printMethod();
 B->new()->printMethod();
 
-# Output:
+# Вывод:
 # A
 # B
 ```
@@ -464,74 +475,76 @@ B->new()->printMethod();
 </b></details>
 
 <details>
-<summary>How can you call a method of an inherited class?</summary><br><b>
+<summary>Как можно вызвать метод унаследованного класса?</summary><br><b>
 
 ```
-# Class `A` with `printA` method.
+# Класс `A` с методом `printA`
 package A;
 
 sub new { return bless {}, shift; };
 sub printA { print "A"; };
 
-# Class `B` that extends or use the parent class `A`.
+# Класс `B`, наследующий `A`
 package B;
 
 use parent -norequire, 'A';
 
 sub new { return bless {}, shift; };
 
-# Instance class `B` allows call the inherited method
+# Экземпляр `B` может вызвать унаследованный метод
 my $b = B->new();
 $b->printA();
 ```
+
 </b></details>
 
-### Perl Exception Handling
+### Обработка исключений Perl
 
 <details>
-<summary>How can we evaluate and capture an exception in Perl?</summary><br><b>
+<summary>Как мы можем оценить и перехватить исключение в Perl?</summary><br><b>
 
-From the official [eval docs](https://perldoc.perl.org/functions/eval):
+Из официальной [документации по eval](https://perldoc.perl.org/functions/eval):
 
-"`eval` in all its forms is used to execute a little Perl program, trapping any errors encountered so they don't crash the calling program.".
+«`eval` во всех своих формах используется для выполнения небольшой программы Perl, перехватывая любые возникающие ошибки, чтобы они не привели к сбою вызывающей программы».
 
-e.g:
+Например:
 
 ```
 eval {
     die;
 };
 if ($@) {
-    print "Error. Details: $@";
+    print "Ошибка. Подробности: $@";
 }
 ```
 
-If we execute this we get the next output:
+Если мы выполним это, мы получим следующий вывод:
 
 ```
-Error. Details: Died at eval.pl line 2.
+Ошибка. Подробности: Died at eval.pl line 2.
 ```
 
-The `eval` (`try` in another programming languages) is trying to execute a code. This code fails (it's a die), and then the code continues into the `if` condition that evaluates `$@` error variable have something stored. This is like a `catch` in another programming languages. At this way we can handle errors.
+`eval` (аналог `try` в других языках) пытается выполнить код. Этот код завершается с ошибкой (`die`), затем условие `if` проверяет переменную `$@`, в которой сохранено сообщение об ошибке. Так в Perl обрабатывают исключения.
 
 </b></details>
 
-### Perl OS
+### Перл ОС
 
 <details>
-<summary>What is Perl Open3?</summary><br><b>
+<summary>Что такое Perl Open3?</summary><br><b>
 
-From the official [IPC::Open3 docs](https://perldoc.perl.org/IPC::Open3):
+Из официальной документации [IPC::Open3](https://perldoc.perl.org/IPC::Open3):
 
-"IPC::Open3 - open a process for reading, writing, and error handling using open3()".
+«IPC::Open3 — открыть процесс чтения, записи и обработки ошибок с помощью open3()».
 
-With `open3` we can have the full control of the STDIN, STDOUT, STDERR. It's usually used to execute commands.
+С помощью `open3` мы можем иметь полный контроль над STDIN, STDOUT, STDERR. Обычно он используется для выполнения команд.
+
 </b></details>
 
 <details>
-<summary>Using Open3: Create a file with the size of 15MB and check it's created successfully</summary><br><b>
+<summary>Использование Open3: создайте файл размером 15 МБ и проверьте его успешное создание.</summary><br><b>
 
-- Code:
+- Код:
 
 ```
 use IPC::Open3;
@@ -544,7 +557,7 @@ sub execute_command {
         open3($stdin, $stdout, $stderr, @command_to_execute);
     };
     if ($@) {
-        print "Error. Details: $@";
+        print "Ошибка. Подробности: $@";
     }
     close($stdin);
     return $stdout;
@@ -556,36 +569,37 @@ my $result = &execute_command('stat', '-c', '%s', $file_name);
 print Dumper(<$result>);
 ```
 
-- Result:
+- Результат:
 
 ```
-$ -> perl command.pl 
+$ -> perl command.pl
 $VAR1 = '15728640
 ';
 ```
 
 </b></details>
 
-### Perl Packages & Modules
+### Пакеты и модули Perl
 
 <details>
-<summary>What is a Perl package? And a module?</summary><br><b>
+<summary>Что такое пакет Perl? А модуль?</summary><br><b>
 
-With a Perl package we are defining a namespace.
-A Perl module in one simple word can be defined as a `class`. When we create a `class` in Perl we use the `package` keyword. A module can be used with the `use` keyword.
-</b></details>
-
-<details>
-<summary>What is the difference between .pl and .pm extensions?</summary><br><b>
-
-There's no a real difference between a `.pm` and `.pl` extensions. Perl use `.pm` extensions just to difference it as a perl module (a class). `.pl` extensions are usually named for perl scripts without OOP classes.
+С помощью пакета Perl мы определяем пространство имен.
+Модуль Perl одним простым словом можно определить как «класс». Когда мы создаем класс в Perl, мы используем ключевое слово package. Модуль можно использовать с ключевым словом `use`.
 
 </b></details>
 
 <details>
-<summary>Why a Perl class (or module) should return something at the end of the file? Check the example.</summary><br><b>
+<summary>В чем разница между расширениями .pl и .pm?</summary><br><b>
 
-If we want to `use` a Perl module (`import` a class), this module should end in a value different than 0. This is necessary because if we try to import the class and it has a false value, we will not be able to use it.
+Между расширениями `.pm` и `.pl` нет реальной разницы. Perl использует расширения .pm только для того, чтобы отличить его от модуля Perl (класса). Расширения `.pl` обычно называются для Perl-скриптов без классов ООП.
+
+</b></details>
+
+<details>
+<summary>Почему класс (или модуль) Perl должен возвращать что-то в конце файла? Проверьте пример.</summary><br><b>
+
+Если мы хотим «использовать» модуль Perl («импортировать» класс), этот модуль должен заканчиваться значением, отличным от 0. Это необходимо, потому что если мы попытаемся импортировать класс и у него будет ложное значение, мы не сможем его использовать.
 
 ```
 package A;
@@ -599,38 +613,38 @@ sub printMethod { print "A\n"; };
 </b></details>
 
 <details>
-<summary>What is cpan? And cpanm?</summary><br><b>
+<summary>Что такое CPAN? А cpanm?</summary><br><b>
 
-CPAN is the Comprehensive Perl Archive Network. 
+CPAN (Comprehensive Perl Archive Network) — комплексная сеть архивов Perl.
 
-CPANM From the official [App::cpanminus](https://metacpan.org/pod/App::cpanminus):
-"App::cpanminus - get, unpack, build and install modules from CPAN".
+**cpanm**. Из официального [App::cpanminus](https://metacpan.org/pod/App::cpanminus):
+«App::cpanminus — получение, распаковка, сборка и установка модулей из CPAN».
 
-[Find CPAN modules](https://metacpan.org/)
+[Найти модули CPAN](https://metacpan.org/)
 
 </b></details>
 
 <details>
-<summary>How can you install cpanm and a Perl module?</summary><br><b>
+<summary>Как установить cpanm и модуль Perl?</summary><br><b>
 
-There are some different alternatives to install Perl modules. We will use `cpanm`.
+Существует несколько различных альтернатив установке модулей Perl. Мы будем использовать cpanm.
 
-- Install `cpanm`:
+- Установите `cpanm`:
 
 ```
 $ cpan App::cpanminus
 ```
 
-- Install the `Test` module with `cpanm`:
+- Установите модуль Test с помощью cpanm:
 
 ```
 cpanm Test
 ```
 
-Now we can test the `Test` installed module:
+Теперь мы можем протестировать установленный модуль Test:
 
 ```
-$ perl -M'Test::Simple tests => 1' -e 'ok( 1 + 1 == 2 );'
+perl -M'Test::Simple tests => 1' -e 'ok( 1 + 1 == 2 );'
 1..1
 ok 1
 ```
@@ -640,7 +654,7 @@ $ perl -M'Test::Simple tests => 1' -e 'ok( 1 + 1 == 3 );'
 1..1
 not ok 1
 #   Failed test at -e line 1.
-# Looks like you failed 1 test of 1.
+# Looks like you failed 1 test of 1.   # сообщение Test::Simple (на английском)
 ```
 
 </b></details>

@@ -1,11 +1,9 @@
-## Sort Descending - Solution
+## Сортировка по убыванию — решение
 
-1. write a function that sorts the following list of list without using the `sorted()` and `.sort()`
-   function in descending order
+1. напишите функцию, которая сортирует следующий список без использования `sorted()` и `.sort()`
+   функция в порядке убывания
 
-   - mat_list = [[1, 2, 3], [2, 4, 4], [5, 5, 5]] -> [[5, 5, 5], [2, 4, 4], [1, 2, 3]]
-
-```python
+   - mat_list = [[1, 2, 3], [2, 4, 4], [5, 5, 5]] -> [[5, 5, 5], [2, 4, 4], [1, 2, 3]]```python
 def sort_desc(mat: list) -> list:
     """ Sorts a list in descending order
 

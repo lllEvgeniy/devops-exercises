@@ -1,43 +1,43 @@
-# Create buckets
+# Создаем сегменты
 
-## Objectives
+## Цели
 
-1. Create the following buckets:
-   1. Private bucket
-      1. eu-west-2 region
-      2. Upload a single file to the bucket. Any file.
-   2. Public bucket
-      1. eu-west-1 region
-      2. Versioning should be enabled
+1. Создайте следующие сегменты:
+   1. Частное ведро
+      1. регион ЕС-Запад-2
+      2. Загрузите в корзину один файл. Любой файл.
+   2. Общественное ведро
+      1. регион ЕС-Запад-1
+      2. Управление версиями должно быть включено.
 
-## Solution
+## Решение
 
-### Console
+### Консоль
 
-For the first bucket:
+Для первого ведра:
 
-1. Go to S3 service in the AWS console. If not in buckets page, click on "buckets" in the left side menu
-2. Click on "Create bucket" 
-3. Give a globally unique name for your bucket
-4. Choose the region "eu-west-2"
-5. Click on "Create bucket"
-6. Click on the bucket name
-7. Under "objects" click on "Upload" -> "Add files" -> Choose file to upload -> Click on "Upload"
+1. Перейдите к сервису S3 в консоли AWS. Если вы не на странице сегментов, нажмите «Корзины» в меню слева.
+2. Нажмите «Создать корзину». 
+3. Дайте своему сегменту глобально уникальное имя.
+4. Выбираем регион «eu-west-2»
+5. Нажмите «Создать корзину».
+6. Нажмите на название корзины.
+7. В разделе «Объекты» нажмите «Загрузить» -> «Добавить файлы» -> Выберите файл для загрузки -> Нажмите «Загрузить».
 
-For the second bucket:
+Для второго ведра:
 
-1. Go to S3 service in the AWS console. If not in buckets page, click on "buckets" in the left side menu
-2. Click on "Create bucket" 
-3. Give a globally unique name for your bucket
-4. Choose the region "eu-west-1"
-5. Make sure to uncheck the box for "Private bucket" to make it public
-6. Make sure to check the enable box for "Bucket Versioning"
-7. Click on "Create bucket"
+1. Перейдите к сервису S3 в консоли AWS. Если вы не на странице сегментов, нажмите «Корзины» в меню слева.
+2. Нажмите «Создать корзину». 
+3. Дайте своему сегменту глобально уникальное имя.
+4. Выбираем регион «eu-west-1»
+5. Обязательно снимите флажок «Частный сегмент», чтобы сделать его общедоступным.
+6. Обязательно установите флажок «Версии сегмента».
+7. Нажмите «Создать корзину».
 
-### Terraform
+### Терраформировать
 
-Click [here](terraform/main.tf) to view the solution
+Нажмите [здесь](terraform/main.tf), чтобы просмотреть решение.
 
-### Pulumi - Python
+### Пулуми — Питон
 
-Click [here](pulumi/__main__.py) to view the solution
+Нажмите [здесь](pulumi/__main__.py), чтобы просмотреть решение.

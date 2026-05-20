@@ -1,3 +1,3 @@
-## Reverse a String
+## Перевернуть строку
 
-Write a code that reverses a string
+Напишите код, который переворачивает строку

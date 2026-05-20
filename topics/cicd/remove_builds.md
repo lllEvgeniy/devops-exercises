@@ -1,14 +1,14 @@
-### Jenkins - Remove Jobs
+### Дженкинс — удаление заданий
 
-#### Objective 
+#### Цель 
 
-Learn how to write a Jenkins script that interacts with builds by removing builds older than X days.
+Узнайте, как написать сценарий Jenkins, который взаимодействует со сборками, удаляя сборки старше X дней.
 
-#### Instructions
+#### Инструкции
 
-1. Pick up (or create) a job which has builds older than X days
-2. Write a script to remove only the builds that are older than X days
+1. Подберите (или создайте) задание, сборки которого старше X дней.
+2. Напишите скрипт для удаления только сборок старше Х дней.
 
-#### Hints
+#### Подсказки
 
-X can be anything. For example, remove builds that are older than 3 days. Just make sure that you don't simply remove all the builds (since that's different from the objective).
+Х может быть чем угодно. Например, удалите сборки старше 3 дней. Просто убедитесь, что вы не удаляете просто все сборки (поскольку это отличается от цели).

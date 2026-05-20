@@ -1,18 +1,18 @@
-## AWS IAM - Access Advisor
+## AWS IAM — советник по доступу
 
-### Objectives
+### Цели
 
-Go to the Access Advisor and answer the following questions regarding one of the users:
+Перейдите в Access Advisor и ответьте на следующие вопросы, касающиеся одного из пользователей:
 
-1. Are there services this user never accessed?
-2. What was the last service the user has accessed?
-3. What the Access Advisor is used/good for?
+1. Есть ли сервисы, к которым этот пользователь никогда не обращался?
+2. К какой услуге последний раз обращался пользователь?
+3. Для чего нужен/для чего нужен Access Advisor?
 
-### Solution 
+### Решение 
 
-1. Go to AWS IAM service and click on "Users" under "Access Management"
-2. Click on one of the users
-3. Click on the "Access Advisor" tab
-4. Check which service was last accessed and which was never accessed
+1. Перейдите в сервис AWS IAM и нажмите «Пользователи» в разделе «Управление доступом».
+2. Нажмите на одного из пользователей
+3. Нажмите на вкладку «Помощник по доступу».
+4. Проверьте, к какому сервису обращались в последний раз, а к какому никогда не обращались
 
-Access Advisor can be good to evaluate whether there are services the user is not accessing (as in never or not frequently). This can be help in deciding whether some permissions should be revoked or modified.
+Access Advisor может быть полезен для оценки наличия служб, к которым пользователь не обращается (например, никогда или не часто). Это может помочь принять решение о том, следует ли отозвать или изменить некоторые разрешения.

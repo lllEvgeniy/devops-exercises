@@ -1,8 +1,8 @@
-## AWS EC2 - Hibernate an Instance
+## AWS EC2 — перевод экземпляра в спящий режим
 
-### Objectives
+### Цели
 
-1. Create an instance that supports hibernation
-2. Hibernate the instance
-3. Start the instance
-4. What way is there to prove that instance was hibernated from OS perspective?
+1. Создайте экземпляр, поддерживающий спящий режим.
+2. Переведите экземпляр в спящий режим
+3. Запустите экземпляр
+4. Как можно доказать, что экземпляр находился в спящем режиме с точки зрения ОС?

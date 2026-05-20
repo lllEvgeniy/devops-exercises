@@ -1,26 +1,26 @@
-## AWS Route 53 - Creating Records
+## AWS Route 53 — Создание записей
 
-### Requirements
+### Требования
 
-At least one registered domain
+Хотя бы один зарегистрированный домен
 
-### Objectives
+### Цели
 
-1. Create the following record for your domain:
-  1. Record name: foo
-  2. Record type: A
-  3. Set some IP in the value field
+1. Создайте следующую запись для своего домена:
+  1. Имя записи: foo
+  2. Тип записи: А
+  3. Установите IP в поле значения.
 
-2. Verify from the shell that you are able to use the record you've created to lookup for the IP address by using the domain name
+2. Убедитесь в оболочке, что вы можете использовать созданную вами запись для поиска IP-адреса по имени домена.
 
-### Solution
+### Решение
 
-1. Go to Route 53 service -> Hosted zones
-2. Click on your domain name
-3. Click on "Create record"
-4. Insert "foo" in "Record name"
-5. Set "Record type" to A
-6. In "Value" insert "201.7.20.22"
-7. Click on "Create records"
+1. Заходим в сервис Route 53 -> Хостинговые зоны.
+2. Нажмите на свое доменное имя.
+3. Нажмите «Создать запись».
+4. Вставьте «foo» в «Имя записи».
+5. Установите «Тип записи» на A.
+6. В «Значение» вставляем «201.7.20.22»
+7. Нажмите «Создать записи».
 
-1. In your shell, type `nslookup foo.<YOUR DOMAIN>` or `dig foo.<YOUR NAME`
+1. В своей оболочке введите `nslookup foo.<ВАШ ДОМЕН>` или `dig foo.<ВАШЕ ИМЯ`

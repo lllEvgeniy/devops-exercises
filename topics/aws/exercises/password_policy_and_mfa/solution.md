@@ -1,37 +1,37 @@
-## AWS IAM - Password Policy & MFA
+## AWS IAM — политика паролей и MFA
 
-Note: DON'T perform this exercise unless you understand what you are doing and what is the outcome of applying these changes to your account
+Примечание. НЕ выполняйте это упражнение, если не понимаете, что делаете и каков результат применения этих изменений к вашей учетной записи.
 
-### Objectives
+### Цели
 
-1. Create password policy with the following settings:
-  1. At least minimum 8 characters
-  2. At least one number
-  3. Prevent password reuse
+1. Создайте политику паролей со следующими настройками:
+  1. Минимум 8 символов.
+  2. Хотя бы один номер
+  3. Предотвратите повторное использование пароля
 
-2. Then enable MFA for the account.
+2. Затем включите MFA для учетной записи.
 
-### Solution
+### Решение
 
-Password Policy:
+Политика паролей:
 
-1. Go to IAM service in AWS
-2. Click on "Account settings" under "Access management"
-3. Click on "Change password policy"
-  1. Check "Enforce minimum password length" and set it to 8 characters
-  1. Check "Require at least one number"
-  1. Check "Prevent password reuse"
-4. Click on "Save changes"
+1. Перейдите в сервис IAM в AWS.
+2. Нажмите «Настройки учетной записи» в разделе «Управление доступом».
+3. Нажмите «Изменить политику паролей».
+  1. Установите флажок «Обеспечить минимальную длину пароля» и установите его на 8 символов.
+  1. Установите флажок «Требовать хотя бы один номер».
+  1. Установите флажок «Запретить повторное использование пароля».
+4. Нажмите «Сохранить изменения».
 
-MFA:
+МИД:
 
-1. Click on the account name
-2. Click on "My Security Credentials"
-3. Expand "Multi-factor authentication (MFA)" and click on "Activate MFA"
-4. Choose one of the devices
-5. Follow the instructions to set it up and click on "Assign MFA"
+1. Нажмите на имя учетной записи.
+2. Нажмите «Мои учетные данные безопасности».
+3. Разверните «Многофакторная аутентификация (MFA)» и нажмите «Активировать MFA».
+4. Выберите одно из устройств
+5. Следуйте инструкциям по настройке и нажмите «Назначить MFA».
 
-6. ### Solution using Terraform:
+6. ### Решение с использованием Terraform:
 
 ```
 resource "aws_iam_account_password_policy" "strict" {
@@ -40,7 +40,4 @@ resource "aws_iam_account_password_policy" "strict" {
   allow_users_to_change_password = true
   password_reuse_prevention      = 1
 }
-```
-
- **Note:** You cannot add MFA through terraform, you have to do it in the GUI.
-
+```**Примечание.** Вы не можете добавить MFA через terraform, это нужно делать в графическом интерфейсе.

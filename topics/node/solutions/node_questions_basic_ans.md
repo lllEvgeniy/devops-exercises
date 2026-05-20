@@ -1,16 +1,29 @@
-# ANSWERS 
+# Ответы
 
-1. Node.js is an open-source, cross-platform JavaScript runtime environment that allows developers to build server-side and networking applications.
-2. Nodejs is a single threaded langauage . It handles one operation at a time.
-3. Node.js works by executing JavaScript code in a runtime environment outside of a web browser. 
-4. Node.js works by executing JavaScript code in a runtime environment outside of a web browser. mainly used for performance and scalabilty od the project
-5. Parent process manages the child process but not depend on the clid process to run parralel
-6. Three Modules mainly 
-    1. Core Module - fs , require
-    2. Local modules - like function created by us and exported or imported from one file to another
-    3. Third Party module - like npm pacakages whcih we install to do a specific kind of work
-7. NPM (Node Pacakage Manager) used for installing, managing, and sharing JavaScript packages and dependencies.
-8. Difference between pacakage.json and pacakage-lock.json
-   1.pacakage.json - contains the metadata and the dependendies of a project
-   2.pacakage-lock.json - lock the version of the installed dependencies   
+1. **Node.js** — кроссплатформенная среда выполнения JavaScript (на движке V8) для серверных и сетевых приложений с открытым исходным кодом.
 
+2. В пользовательском коде — **один поток** event loop; для I/O и тяжёлых задач используются **libuv thread pool** и **worker threads** / **child processes**.
+
+3. JavaScript выполняется в V8; **libuv** обрабатывает асинхронный I/O; **event loop** вызывает колбэки из очередей (timers, poll, check, close).
+
+4. **Однопоточная** модель для JS-кода; параллелизм — через async I/O, `cluster`, `worker_threads`, `child_process`.
+
+5. **cluster** — встроенный модуль для запуска нескольких worker-процессов на разных ядрах с общим портом (fork).
+
+6. Родитель **не блокируется** ожиданием child для своей работы; child может жить независимо. Для параллельной работы используют `cluster` / несколько процессов.
+
+7. **Core** (`fs`, `http`, `path`), **local** (свои файлы `require('./mod')`), **third-party** (npm-пакеты).
+
+8. Высокая производительность на I/O, единый язык с фронтендом, большая экосистема npm, хорош для API и real-time.
+
+9. **npm** (Node Package Manager) — менеджер пакетов: установка, версии, скрипты, публикация модулей.
+
+10. **`package.json`** — метаданные проекта и диапазоны зависимостей. **`package-lock.json`** — точные версии дерева зависимостей для воспроизводимых установок.
+
+11. **`http`** — низкоуровневый API; фреймворк (Express, Fastify) — маршрутизация, middleware, удобство.
+
+12. Операции I/O не блокируют поток: колбэки/promises выполняются после завершения I/O в event loop.
+
+13. **Event loop** — цикл фаз (timers → pending → poll → check → close), в котором выполняются колбэки.
+
+14. **Event-driven** — логика строится на событиях и обработчиках (запрос пришёл → handler), а не на блокирующем ожидании.

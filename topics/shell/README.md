@@ -1,93 +1,99 @@
-## Shell Scripting
+## Скрипты оболочки
 
-### Shell Scripting Exercises
+### Упражнения по написанию сценариев оболочки
 
-|Name|Topic|Objective & Instructions|Solution|Comments|
+|Название|Тема|Цель и инструкции|Решение|Комментарии|
 |--------|--------|------|----|----|
-|Hello World|Variables|[Exercise](hello_world.md)|[Solution](solutions/hello_world.md) | Basic
-|Basic date|Variables|[Exercise](basic_date.md)|[Solution](solutions/basic_date.md) | Basic
-|Great Day|Variables|[Exercise](great_day.md)|[Solution](solutions/great_day.md) | Basic
-|Factors|Arithmetic|[Exercise](factors.md)|[Solution](solutions/factors.md) | Basic
-|Argument Check|Conditionals|[Exercise](argument_check.md)|[Solution](solutions/argument_check.md) | Basic
-|Files Size|For Loops|[Exercise](files_size.md)|[Solution](solutions/files_size.md) | Basic
-|Count Chars|Input + While Loops|[Exercise](count_chars.md)|[Solution](solutions/count_chars.md) | Basic
-|Sum|Functions|[Exercise](sum.md)|[Solution](solutions/sum.md) | Basic
-|Number of Arguments|Case Statement|[Exercise](num_of_args.md)|[Solution](solutions/num_of_args.md) | Basic
-|Empty Files|Misc|[Exercise](empty_files.md)|[Solution](solutions/empty_files.md) | Basic
-|Directories Comparison|Misc|[Exercise](directories_comparison.md)|[Solution](solutions/directories_comparison.md) | Basic
-|It's alive!|Misc|[Exercise](host_status.md)|[Solution](solutions/host_status.md) | Intermediate
+|Hello World|Переменные|[Упражнение](hello_world.md)|[Решение](solutions/hello_world.md) | Базовый
+|Основная дата|Переменные|[Упражнение](basic_date.md)|[Решение](solutions/basic_date.md) | Базовый
+|Great Day|Переменные|[Упражнение](great_day.md)|[Решение](solutions/great_day.md) | Базовый
+|Факторы|Арифметика|[Упражнение](factors.md)|[Решение](solutions/factors.md) | Базовый
+|Проверка аргументов|Условия|[Упражнение](argument_check.md)|[Решение](solutions/argument_check.md) | Базовый
+|Размер файлов|Для циклов|[Упражнение](files_size.md)|[Решение](solutions/files_size.md) | Базовый
+|Подсчет символов|Ввод + циклы while|[Упражнение](count_chars.md)|[Решение](solutions/count_chars.md) | Базовый
+|Сумма|Функции|[Упражнение](sum.md)|[Решение](solutions/sum.md) | Базовый
+|Количество аргументов|Кейс|[Упражнение](num_of_args.md)|[Решение](solutions/num_of_args.md) | Базовый
+|Пустые файлы|Разное|[Упражнение](empty_files.md)|[Решение](solutions/empty_files.md) | Базовый
+|Сравнение каталогов|Разное|[Упражнение](directories_comparison.md)|[Решение](solutions/directories_comparison.md) | Базовый
+|Он жив!|Разное|[Упражнение](host_status.md)|[Решение](solutions/host_status.md) | Средний
 
-## Shell Scripting - Self Assessment
+## Сценарии оболочки — самооценка
 
 <details>
-<summary>What does this line in shell scripts means?: <code>#!/bin/bash</code></summary><br><b>
+<summary>Что означает эта строка в сценариях оболочки?: <code>#!/bin/bash</code></summary><br><b>
 
+`#!/bin/bash` — это She-bang
 
-`#!/bin/bash` is She-bang
-
-/bin/bash is the most common shell used as default shell for user login of the linux system. The shell’s name is an acronym for Bourne-again shell. Bash can execute the vast majority of scripts and thus is widely used because it has more features, is well developed and better syntax.
+/bin/bash — наиболее распространенная оболочка, используемая по умолчанию для входа в систему Linux. Название оболочки является аббревиатурой от «оболочка Bourne-again». Bash может выполнять подавляющее большинство скриптов и поэтому широко используется, поскольку имеет больше возможностей, хорошо развит и имеет лучший синтаксис.
 
 </b></details>
 
 <details>
-<summary>True or False? When a certain command/line fails in a shell script, the shell script, by default, will exit and stop running</summary><br><b>
+<summary>Правда или ложь? Когда определенная команда/строка завершается с ошибкой в ​​сценарии оболочки, сценарий оболочки по умолчанию завершается и прекращает работу.</summary><br><b>
 
-Depends on the language and settings used.
-If the script is a bash script then this statement is true. When a script written in Bash fails to run a certain command it will keep running and will execute all other commands mentioned after the command which failed.
+Зависит от используемого языка и настроек.
+Если сценарий является сценарием bash, то это утверждение верно. Если сценарий, написанный на Bash, не может выполнить определенную команду, он продолжит работу и выполнит все остальные команды, упомянутые после команды, которая завершилась неудачей.
 
-Most of the time we might actually want the opposite to happen. In order to make Bash exist when a specific command fails, use 'set -e' in your script.
+Большую часть времени мы, возможно, хотим, чтобы произошло обратное. Чтобы Bash существовал в случае сбоя определенной команды, используйте в своем скрипте «set -e».
+
 </b></details>
 
 <details>
-<summary>What do you tend to include in every script you write?</summary><br><b>
+<summary>Что вы обычно включаете в каждый сценарий, который пишете?</summary><br><b>
 
-Few example:
+Несколько примеров:
 
-  * Comments on how to run it and/or what it does
-  * If a shell script, adding "set -e" since I want the script to exit if a certain command failed
+  * Комментарии о том, как его запустить и/или что он делает.
+  * Если сценарий оболочки, добавьте «set -e», так как я хочу, чтобы сценарий завершился, если определенная команда не удалась.
 
-You can have an entirely different answer. It's based only on your experience and preferences.
+У вас может быть совершенно другой ответ. Это основано только на вашем опыте и предпочтениях.
+
 </b></details>
 
 <details>
-<summary>Today we have tools and technologies like Ansible, Puppet, Chef, ... Why would someone still use shell scripting?</summary><br><b>
+<summary>Сегодня у нас есть такие инструменты и технологии, как Ansible, Puppet, Chef... Зачем кому-то до сих пор использовать сценарии оболочки?</summary><br><b>
 
-  * Speed
-  * Flexibility
-  * The module we need doesn't exist (perhaps a weak point because most CM technologies allow to use what is known as "shell" module)
-  * We are delivering the scripts to customers who don't have access to the public network and don't necessarily have Ansible installed on their systems.
+* Скорость
+  * Гибкость
+  * Нужный нам модуль не существует (возможно, это слабое место, поскольку большинство технологий CM позволяют использовать так называемый модуль «оболочки»)
+  * Мы доставляем сценарии клиентам, которые не имеют доступа к общедоступной сети и не обязательно имеют Ansible, установленный в их системах.
+
 </b></details>
 
-#### Shell Scripting - Variables
+#### Сценарии оболочки — переменные
 
 <details>
-<summary>How to define a variable with the value "Hello World"?</summary><br><b>
+<summary>Как определить переменную со значением «Hello World»?</summary><br><b>
 
-`HW="Hello World`
+`HW="Привет, мир"
+
 </b></details>
 
 <details>
-<summary>How to define a variable with the value of the current date?</summary><br><b>
+<summary>Как определить переменную со значением текущей даты?</summary><br><b>
 
 `DATE=$(date)`
+
 </b></details>
 
 <details>
-<summary>How to print the first argument passed to a script?</summary><br><b>
+<summary>Как распечатать первый аргумент, переданный в скрипт?</summary><br><b>
 
 `echo $1`
+
 </b></details>
 
 <details>
-<summary>Write a script to print "yay" unless an argument was passed and then print that argument</summary><br><b>
+<summary>Напишите сценарий для печати «ура», если не был передан аргумент, а затем распечатайте этот аргумент.</summary><br><b>
 
 ```
 echo "${1:-yay}"
 ```
+
 </b></details>
 
 <details>
-<summary>What would be the output of the following script?
+<summary>Каким будет результат выполнения следующего скрипта?
 
 ```
 #!/usr/bin/env bash
@@ -96,169 +102,217 @@ function the_best_ninja_turtle {
         local NINJA_TURTLE=Michelangelo
         echo $NINJA_TURTLE
 }
-NINJA_TURTLE=Raphael
+NINJA_TURTLE=Рафаэль
 the_best_ninja_turtle
 ```
+
 </summary><br><b>
-Michelangelo
+
+Микеланджело
+
 </b></details>
 
 <details>
-<summary>Explain what would be the result of each command:
+<summary>Объясните, какой будет результат выполнения каждой команды:
 
   * <code>echo $0</code>
   * <code>echo $?</code>
   * <code>echo $$</code>
   * <code>echo $#</code></summary><br><b>
+
+* `echo $0` — имя скрипта/оболочки.<br>
+* `echo $?` — код выхода последней команды (0 = успех).<br>
+* `echo $$` — PID текущей оболочки.<br>
+* `echo $#` — число позиционных аргументов.
+
 </b></details>
 
 <details>
-<summary>What is <code>$@</code>?</summary><br><b>
+<summary>Что такое <code>$@</code>?</summary><br><b>
+
+Массив всех аргументов скрипта. В цикле: `for arg in "$@"; do ...`. Каждый аргумент отдельно (с кавычками сохраняет пробелы).
+
 </b></details>
 
 <details>
-<summary>What is difference between <code>$@</code> and <code>$*</code>?</summary><br><b>
+<summary>В чем разница между <code>$@</code> и <code>$*</code>?</summary><br><b>
 
-`$@` is an array of all the arguments passed to the script
-`$*` is a single string of all the arguments passed to the script
+`$@` — это массив всех аргументов, переданных в скрипт.
+`$*` — это одна строка всех аргументов, передаваемых в скрипт.
+
 </b></details>
 
 <details>
-<summary>How do you get input from the user in shell scripts?</summary><br><b>
+<summary>Как получить данные от пользователя в сценариях оболочки?</summary><br><b>
 
-Using the keyword <code>read</code> so for example <code>read x</code> will wait for user input and will store it in the variable x.
+Использование ключевого слова <code>read</code>, например, <code>read x</code> будет ждать ввода пользователя и сохранять его в переменной x.
+
 </b></details>
 
 <details>
-<summary>How to compare variables length?</summary><br><b>
+<summary>Как сравнить длину переменных?</summary><br><b>
 
 ```
 if [ ${#1} -ne ${#2} ]; then
     ...
+
 ```
 </b></details>
 
-#### Shell Scripting - Conditionals
+#### Скрипты оболочки — условные выражения
 
 <details>
-<summary>Explain conditionals and demonstrate how to use them</summary><br><b>
+<summary>Объясните условные выражения и покажите, как их использовать.</summary><br><b>
+
+`if [ условие ]; then ... elif ... else ... fi` или `[[ ]]` в Bash. Примеры: `[ -f file ]`, `[ "$a" -eq "$b" ]`, `[[ -z "$var" ]]`.
+
 </b></details>
 
 <details>
-<summary>In shell scripting, how to negate a conditional?</summary><br><b>
+<summary>Как в сценариях оболочки отменить условное выражение?</summary><br><b>
+
+Оператор `!` или `-not`: `if ! [ -f file ]; then ...` или `if [ ! -f file ]; then ...`. В `[[ ]]`: `[[ ! -f file ]]`.
+
 </b></details>
 
 <details>
-<summary>In shell scripting, how to check if a given argument is a number?</summary><br><b>
+<summary>Как в сценариях оболочки проверить, является ли данный аргумент числом?</summary><br><b>
 
 ```
 regex='^[0-9]+$'
 if [[ ${var//*.} =~ $regex ]]; then
 ...
+
 ```
 </b></details>
 
-#### Shell Scripting - Arithmetic Operations
+#### Сценарии оболочки — арифметические операции
 
 <details>
-<summary>How to perform arithmetic operations on numbers?</summary><br><b>
+<summary>Как выполнять арифметические действия над числами?</summary><br><b>
 
-One way: `$(( 1 + 2 ))`
-Another way: `expr 1 + 2`
+В одну сторону: `$(( 1 + 2 ))`
+Другой способ: `expr 1 + 2` или `let x=1+2`
+
 </b></details>
 
 <details>
-<summary>How to perform arithmetic operations on numbers?</summary><br><b>
+<summary>Как выполнять арифметические действия над числами? (альтернативы)</summary><br><b>
+
+`bc`, `awk 'BEGIN{print 1+2}'`, `(( x = 1 + 2 ))` в Bash. Для сравнения в `test`: `-eq`, `-lt` с целыми.
+
 </b></details>
 
 <details>
-<summary>How to check if a given number has 4 as a factor?</summary><br><b>
+<summary>Как проверить, имеет ли данное число множитель 4?</summary><br><b>
 
-`if [ $(($1 % 4)) -eq 0 ]; then`
+`if [ $(($1 % 4)) -eq 0 ]; тогда `
+
 </b></details>
 
-#### Shell Scripting - Loops
+#### Скрипты оболочки — циклы
 
 <details>
-<summary>What is a loop? What types of loops are you familiar with?</summary><br><b>
-</b></details>
+<summary>Что такое цикл? Какие типы циклов вам известны?</summary><br><b>
 
-<details>
-<summary>Demonstrate how to use loops</summary><br><b>
-</b></details>
+**for** (`for i in list; do`), **while** (`while cond; do`), **until**. В Bash: `for ((i=0;i<10;i++))`. `break` / `continue` для управления.
 
-#### Shell Scripting - Troubleshooting
-
-<details>
-<summary>How do you debug shell scripts?</summary><br><b>
-
-Answer depends on the language you are using for writing your scripts. If Bash is used for example then:
-
-  * Adding -x to the script I'm running in Bash
-  * Old good way of adding echo statements
-
-If Python, then using pdb is very useful.
 </b></details>
 
 <details>
-<summary>Running the following bash script, we don't get 2 as a result, why?
+<summary>Демонстрация использования циклов</summary><br><b>
+
+```bash
+for f in *.log; do echo "=== $f ==="; head -1 "$f"; done
+i=0; while [ $i -lt 5 ]; do echo $i; i=$((i+1)); done
+```
+
+</b></details>
+
+#### Сценарии оболочки — устранение неполадок
+
+<details>
+<summary>Как вы отлаживаете сценарии оболочки?</summary><br><b>
+
+Ответ зависит от языка, который вы используете для написания скриптов. Например, если используется Bash, то:
+
+  * Добавление -x в скрипт, который я запускаю в Bash
+  * Старый добрый способ добавления операторов echo
+
+Если Python, то использование pdb очень полезно.
+
+</b></details>
+
+<details>
+<summary>Запустив следующий bash-скрипт, мы в результате не получим 2, почему?
 
 ```
 x = 2
 echo $x
 ```
+
 </summary><br><b>
 
-Should be `x=2`
+Должно быть `x=2` (без пробелов вокруг `=`).
+
 </b></details>
 
-#### Shell Scripting - Substring
+#### Скрипты оболочки — подстрока
 
 <details>
-<summary>How to extract everything after the last dot in a string?</summary><br><b>
+<summary>Как извлечь все, что находится после последней точки в строке?</summary><br><b>
 
 `${var//*.}`
+
 </b></details>
 
 <details>
-<summary>How to extract everything before the last dot in a string?</summary><br><b>
+<summary>Как извлечь все, что находится до последней точки в строке?</summary><br><b>
 
-${var%.*}
+${вар%.*}
+
 </b></details>
 
-#### Shell Scripting - Misc
+#### Скрипты оболочки — разное
 
 <details>
-<summary>Generate 8 digit random number</summary><br><b>
+<summary>Создать 8-значное случайное число</summary><br><b>
 
-shuf -i 9999999-99999999 -n 1
-</b></details>
+шуф -я 9999999-99999999 -н 1
 
-<details>
-<summary>Can you give an example to some Bash best practices?</summary><br><b>
-</b></details>
-
-<details>
-<summary>What is the ternary operator? How do you use it in bash?</summary><br><b>
-
-A short way of using if/else. An example:
-
-[[ $a = 1 ]] && b="yes, equal" || b="nope"
 </b></details>
 
 <details>
-<summary>What does the following code do and when would you use it?
+<summary>Можете ли вы привести пример некоторых лучших практик Bash?</summary><br><b>
+
+`#!/usr/bin/env bash`, `set -euo pipefail`, кавычки вокруг `"$var"`, `shellcheck`, функции вместо копипасты, `[[ ]]` вместо `[ ]` где уместно, избегать `eval`, явные пути, логирование в stderr.
+
+</b></details>
+
+<details>
+<summary>Что такое тернарный оператор? Как вы используете его в bash?</summary><br><b>
+
+Краткий способ использования if/else. Пример:
+
+[[ $a = 1 ]] && b="да, равно" || б="нет"
+
+</b></details>
+
+<details>
+<summary>Что делает следующий код и когда вы его будете использовать?
 
 <code>diff <(ls /tmp) <(ls /var/tmp)</code>
 
-</summary><br>
-It is called 'process substitution'. It provides a way to pass the output of a command to another command when using a pipe <code>|</code> is not possible. It can be used when a command does not support <code>STDIN</code> or you need the output of multiple commands.
+</summary><br><b>
+Это называется «замещение процесса». Он обеспечивает способ передачи вывода команды другой команде, когда использование канала <code>|</code> невозможно. Его можно использовать, когда команда не поддерживает <code>STDIN</code> или вам нужен вывод нескольких команд.
 https://superuser.com/a/1060002/167769
-</details>
+
+</b></details>
 
 <details>
-<summary>What are you using for testing shell scripts?</summary><br><b>
+<summary>Что вы используете для тестирования сценариев оболочки?</summary><br><b>
 
-bats
+BATS (Bash Automated Testing System) — фреймворк для автоматических тестов shell-скриптов
+
 </b></details>
 

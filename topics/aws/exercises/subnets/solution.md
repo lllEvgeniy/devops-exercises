@@ -1,48 +1,48 @@
-# AWS VPC - Subnets
+# AWS VPC — подсети
 
-## Requirements
+## Требования
 
-1. Single newly created VPC
-2. Region with more than two availability zones
+1. Один вновь созданный VPC.
+2. Регион с более чем двумя зонами доступности.
 
-## Objectives
+## Цели
 
-1. Create a subnet in your newly created VPC
-   1. CIDR: 10.0.0.0/24
-   1. Name: NewSubnet1
-2. Create additional subnet
+1. Создайте подсеть во вновь созданном VPC.
+   1. CIDR: 10.0.0.0/24.
+   1. Имя: НоваяСубсеть1.
+2. Создать дополнительную подсеть
    1. CIDR: 10.0.1.0/24
-   2. Name: NewSubnet2
-   3. Different AZ compared to previous subnet
-3. Create additional subnet
-   4. CIDR: 10.0.2.0/24
-   5. Name: NewSubnet3
-   6. Different AZ compared to previous subnets
+   2. Имя: НьюСубнет2.
+   3. Другая зона доступности по сравнению с предыдущей подсетью.
+3. Создайте дополнительную подсеть.
+   4. CIDR: 10.0.2.0/24.
+   5. Имя: НьюСабнет3.
+   6. Другая зона доступности по сравнению с предыдущими подсетями.
 
-## Solution
+## Решение
 
-### Console
+### Консоль
 
-1. Click on "Subnets" under "Virtual Private Cloud"
-2. Make sure you filter by your newly created VPC (to not see the subnets in all other VPCs). You can do this in the left side menu
-3. Click on "Create subnet"
-4. Choose your newly created VPC
-5. Set the subnet name to "NewSubnet1"
-6. Choose AZ
-7. Set CIDR to 10.0.0.0/24
-8. Click on "Add new subnet"
-9. Set the subnet name to "NewSubnet2"
-10. Choose a different AZ
-11. Set CIDR to 10.0.1.0/24
-12. Click on "Add new subnet"
-13. Set the subnet name to "NewSubnet3"
-14. Choose a different AZ
-15. Set CIDR to 10.0.2.0/24
+1. Нажмите «Подсети» в разделе «Виртуальное частное облако».
+2. Обязательно фильтруйте по вновь созданному VPC (чтобы не видеть подсети во всех других VPC). Вы можете сделать это в левом боковом меню
+3. Нажмите «Создать подсеть».
+4. Выберите вновь созданный VPC.
+5. Установите имя подсети «NewSubnet1».
+6. Выберите А-Я
+7. Установите CIDR на 10.0.0.0/24.
+8. Нажмите «Добавить новую подсеть».
+9. Установите имя подсети «NewSubnet2».
+10. Выберите другой AZ
+11. Установите CIDR на 10.0.1.0/24.
+12. Нажмите «Добавить новую подсеть».
+13. Установите имя подсети «NewSubnet3».
+14. Выберите другой AZ
+15. Установите CIDR на 10.0.2.0/24.
 
-### Terraform
+### Терраформировать
 
-Click [here](terraform/main.tf) to view the solution
+Нажмите [здесь](terraform/main.tf), чтобы просмотреть решение.
 
-### Pulumi - Python
+### Пулуми — Питон
 
-Click [here](pulumi/__main__.py) to view the solution
+Нажмите [здесь](pulumi/__main__.py), чтобы просмотреть решение.

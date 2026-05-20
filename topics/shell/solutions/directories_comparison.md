@@ -1,37 +1,46 @@
-## Directories Comparison
+## Сравнение каталогов
 
-### Objectives
+### Цели
 
-1. You are given two directories as arguments and the output should be any difference between the two directories
+1. На вход передаются **два каталога**; на выходе должна отображаться **любая разница** между ними.
 
-### Solution 1
+### Решение 1 (контрольная сумма списка имён)
 
-Suppose the name of the bash script is ```dirdiff.sh```
+Скрипт `dirdiff.sh`:
 
-```
-#!/bin/bash
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-if test $# -ne 2
-then
-	echo -e "USAGE: ./dirdiff.sh directory1 directory2"
-	exit 1
+if [ "$#" -ne 2 ]; then
+  echo "Использование: $0 <каталог1> <каталог2>" >&2
+  exit 1
 fi
 
-# check for the checksums. 
-# If both the checksums same, then both directories are same
-if test `ls -1 $1 | sort | md5sum | awk -F "  " '{print $1}'` == `ls -1 $2 | sort | md5sum | awk -F "  " '{print $1}'`
-then
-	echo -e "No difference between the 2 directories"
-	exit 0
+d1="$1"
+d2="$2"
+
+sum1=$(find "$d1" -mindepth 1 -maxdepth 1 -printf '%f\n' 2>/dev/null | sort | md5sum | awk '{print $1}')
+sum2=$(find "$d2" -mindepth 1 -maxdepth 1 -printf '%f\n' 2>/dev/null | sort | md5sum | awk '{print $1}')
+
+if [ "$sum1" = "$sum2" ]; then
+  echo "Состав верхнего уровня (имена) совпадает по хэшу."
+  exit 0
 fi
 
-diff -q $1 $2
+diff -qr "$d1" "$d2"
 ```
 
-### Solution 2
+> Примечание: сравнение только **имён** на верхнем уровне не гарантирует идентичность содержимого файлов; для полного сравнения используйте `diff -r`.
 
-With gnu find, you can use diff to compare directories recursively.
+### Решение 2 (`diff --recursive`)
 
-```shell
+```bash
 diff --recursive directory1 directory2
+```
+
+Краткий режим только «что отличается»:
+
+```bash
+diff -qr directory1 directory2
 ```

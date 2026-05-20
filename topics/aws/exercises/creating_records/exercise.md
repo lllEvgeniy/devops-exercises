@@ -1,14 +1,14 @@
-## AWS Route 53 - Creating Records
+## AWS Route 53 — Создание записей
 
-### Requirements
+### Требования
 
-At least one registered domain
+Хотя бы один зарегистрированный домен
 
-### Objectives
+### Цели
 
-1. Create the following record for your domain:
-  1. Record name: foo
-  2. Record type: A
-  3. Set some IP in the value field
+1. Создайте следующую запись для своего домена:
+  1. Имя записи: foo
+  2. Тип записи: А
+  3. Установите IP в поле значения.
 
-2. Verify from the shell that you are able to use the record you've created to lookup for the IP address by using the domain name
+2. Убедитесь в оболочке, что вы можете использовать созданную вами запись для поиска IP-адреса по имени домена.

@@ -1,105 +1,101 @@
-## FAQ
+## Часто задаваемые вопросы
 
-Most frequently asked questions.
+Наиболее часто задаваемые вопросы.
 
-### What is the purpose of repository?
+### Какова цель репозитория?
 
-Learning, of course.
+Учиться, конечно.
 
-### My goal is to prepare for a DevOps interviews. Should I use this repository?
+### Моя цель — подготовиться к собеседованиям по DevOps. Должен ли я использовать этот репозиторий?
 
-Overall, this repository should help you learn some concepts but, don't assume at any point that your interview will include similar questions to those that included in this repository.
-Regarding interviews, I've added a couple of suggestions [here](prepare_for_interview.md)<br>
+В целом, этот репозиторий должен помочь вам изучить некоторые концепции, но ни в коем случае не предполагайте, что ваше интервью будет включать в себя вопросы, аналогичные тем, которые включены в этот репозиторий.
+Что касается интервью, я добавил пару предложений [здесь](prepare_for_interview.md)<br>
 
-### Will you stop at some point adding questions and exercises?
+### Перестанете ли вы в какой-то момент добавлять вопросы и упражнения?
 
-All good things come to an end...
+Все хорошее когда-нибудь заканчивается...
 
-### How do I become a better DevOps Engineer?
+### Как мне стать лучшим DevOps-инженером?
 
-That's a great question.<br>
-I don't have a definitive answer for this question, I'm exploring it myself from time to time. What I believe helps is to:
+Это отличный вопрос.<br>
+У меня нет однозначного ответа на этот вопрос, я сам время от времени исследую его. Я считаю, что помогает:
 
-  * Practice - Practicing DevOps practically should be the primary way to become a DevOps engineer in my opinion
-  * Read - blogs, books, ... anything that can enrich your knowledge about DevOps or related DevOps topics
-  * Participate - there are great DevOps communities. I personally like [Reddit DevOps community](https://www.reddit.com/r/devops). Visiting there, I learn quite a lot on different topics.
-  * Share - This is one of the reasons I created this project. Primary goal was to help others but a secondary goal quickly became to learn more. By asking questions, you actually learn better a certain topic. Try it out, take a certain subject and try to come up with questions you would ask someone to test his/her skills about that topic.
+  * Практика. По моему мнению, практика DevOps должна быть основным способом стать DevOps-инженером.
+  * Читайте — блоги, книги и т. д. все, что может обогатить ваши знания о DevOps или связанных с ним темах.
+  * Участвуйте — существуют отличные сообщества DevOps. Лично мне нравится [сообщество Reddit DevOps](https://www.reddit.com/r/devops). Посещая там, я узнаю довольно много нового на разные темы.
+  * Поделиться — это одна из причин, по которой я создал этот проект. Основной целью было помочь другим, но второстепенной целью быстро стало узнать больше. Задавая вопросы, вы на самом деле лучше изучаете определенную тему. Попробуйте, выберите определенную тему и попытайтесь придумать вопросы, которые вы могли бы задать кому-нибудь, чтобы проверить его/ее навыки по этой теме.
 
-### Why most of the questions don't have answers?
+### Почему на большинство вопросов нет ответов?
 
-1. Because we need more contributors
-2. Because often asking questions is easier than answering them
+1. Потому что нам нужно больше участников
+2. Потому что зачастую задавать вопросы проще, чем на них отвечать
 
-### Where can I find answers to some of the questions in this repository?
+### Где я могу найти ответы на некоторые вопросы в этом репозитории?
 
-1. Search for them using search engines, documentation pages, ... this is part of being a DevOps engineer
-2. Use the communities: many people will be happy to help and answer your questions
-3. Ask us. If you want, you can contact me or start a discussion on this project.
+1. Ищите их с помощью поисковых систем, страниц документации... это часть работы DevOps-инженера.
+2. Используйте сообщества: многие люди будут рады помочь и ответить на ваши вопросы.
+3. Спросите нас. Если хотите, можете связаться со мной или начать обсуждение этого проекта.
 
-### Where the questions and answers are coming from?
+### Откуда берутся вопросы и ответы?
 
-Well, everywhere! - past experience, colleagues, contributors, ... but please note we do not allow copying interview questions from interview questions sites to here. There are people who worked hard on adding those to their sites and we respect that.<br>
-As an evidence, we did deny pull requests with copied content from other sites.
+Ну везде! - прошлый опыт, коллеги, участники, ... но обратите внимание, что мы не разрешаем копировать вопросы для интервью с сайтов вопросов для интервью сюда. Есть люди, которые усердно работали над добавлением их на свои сайты, и мы уважаем это.<br>
+В качестве доказательства мы отклонили запросы на включение с скопированным контентом с других сайтов.
 
-### What are the top DevOps skills required for being a DevOps Engineer?
+### Какие основные навыки DevOps необходимы для работы DevOps-инженером?
 
-It's a hard question and the reason is that if you'll ask 20 different people, you'll probably get at least 10 different answers but here is what I believe is common today:
+Это сложный вопрос, и причина в том, что если вы спросите 20 разных людей, вы, вероятно, получите как минимум 10 разных ответов, но вот что, по моему мнению, сегодня является общим:* ОС. DevOps требует от вас хорошего понимания концепций операционных систем. Требуемый уровень в основном зависит от компании, хотя, на мой взгляд, он должен быть одинаковым. Вы должны понимать, как работает операционная система, как устранять и устранять проблемы и т. д.
+* Программирование является частью DevOps. Уровень опять же зависит от компании. Некоторые потребуют от вас базового уровня написания сценариев, в то время как другие потребуют глубокого понимания общих алгоритмов, структуры данных, шаблонов проектирования и т. д.
+* Облака и контейнеры — хотя это и не обязательно во всех компаниях/должностях на 100%, этот навык растет с каждым годом, и многие (если не большинство) должностей/компаний требуют этого навыка. В частности, это означает: AWS/Azure/GCP, Docker/Podman, Kubernetes,...
+* CI/CD. Уметь отвечать на такие вопросы, как «Зачем нам нужен CI/CD?» и «Какие способы и модели существуют для выполнения CI/CD?». Со временем попрактикуйтесь в сборке таких процессов и рабочих процессов, используя любые удобные вам инструменты.
 
-* OS - DevOps require you good understanding of operating system concepts. The level required is mainly depends on the company although in my opinion it should be the same level. You should understand how the operating system works, how to troubleshoot and debug issues, etc.
-* Programming is part of DevOps. The level again depends on the company. Some will require you to know basic level of scripting while others deep understanding of common algorithms, data structure, design patterns etc.
-* Cloud and Containers - while not 100% must in all companies/positions, this skill is on the rise every year and many (if not most) of the positions/companies require this skill. This specifically means: AWS/Azure/GCP, Docker/Podman, Kubernetes, ...
-* CI/CD - Be able to to answer questions like "Why do we need CI/CD?" and "What ways and models are there to perform CI/CD?". Eventually, practice assembling such processes and workflow, using whatever tools you feel comfortable with.
+### Мне кажется, есть некоторые вопросы, которые не следует включать в этот проект.
 
-### I feel like there are some questions that shouldn't be included in this project
+Это вопрос? :)<br>
+Если вам не нравятся некоторые вопросы или вы считаете, что некоторые вопросы следует удалить, вы можете открыть проблему или отправить запрос на публикацию, и мы сможем обсудить ее там. У нас нет правил против удаления вопросов (пока :P)
 
-Is that a question? :)<br>
-If you don't like some of the questions or think that some questions should be removed you can open an issue or submit a PR and we can discuss it there. We don't have rules against deleting questions (for now :P)
+### Могу ли я скопировать вопросы отсюда на свой сайт?
 
-### Can I copy the questions from here to my site?
+Можно (хотя я понятия не имею, зачем вам это нужно), но:
 
-You can (although I have no idea why would you want to), but:
+* Не без указания авторства. Многие люди усердно работали над добавлением этих вопросов, и они заслуживают должного уважения за свою работу.
+* Нет, если вы планируете зарабатывать на этом деньги. Прямо или косвенно (например, ADS), поскольку это бесплатный контент, и мы бы хотели, чтобы так и оставалось :)
 
-* Not without attribution. Many people worked hard on adding these questions and they deserve a proper credit for their work
-* Not if you plan to make money out of it. Directly or indirectly (e.g. ADS) as this is a free content and we would like it to stay this way :)
+То же самое касается копирования вопросов из разных источников в этот репозиторий. Мы видели, что это уже произошло с парой запросов на включение, и отклонили их. Мы не будем объединять запросы на включение с скопированными вопросами и ответами из других источников.
 
-Same goes for copying questions from different sources to this repository. We saw it happened already with a couple of pull requests and we rejected them. We will not merge pull requests with copied questions and answers from other sources.
+### Могу ли я добавлять вопросы и/или ответы к этому проекту?
 
-### Can I add questions and/or answers to this project?
+Я просто представлю, что вы не спрашивали об этом в проекте с открытым исходным кодом... :)
 
-I'll simply imagine you didn't ask that on an open source project... :)
+### Почему я не могу добавить вопросы по установке?
 
-### Why can't I add installation questions?
+В целом я предпочитаю, чтобы вопросы, добавленные в этот репозиторий, имели определенную образовательную ценность для пользователя. Либо относительно определенной концепции, либо даже очень общего вопроса, но такого, который заставит пользователя изучить определенную тему и в конечном итоге познакомит его с некоторыми из ее основных концепций.<br>
+Я знаю, что на сегодняшний день это относится не ко всем вопросам в этом репозитории (например, к вопросам о конкретных командах), но к этому определенно стоит стремиться.
 
-In general, I prefer questions added to this repository will have certain educational value for the user. Either regarding a certain concept or even a very general question, but one that will make the user research on a certain topic and will make him eventually more familiar with some of its core concepts.<br>
-I know that this is not the case for every question in this repo as of today (e.g. questions about specific commands) but this is definitely something to aspire for.
+Я не вижу практически никакой ценности в так называемых «Вопросах по установке». Допустим, я вас спрашиваю «как установить Дженкинса?». Должен ли я сделать вывод из вашего ответа, что вы знакомы с тем, что такое Дженкинс и/или как он работает? Другими словами, есть ли смысл знать, как установить Jenkins? По моему мнению, нет.
 
-I see little to none value in what is known as "Installation Questions". Let's say I ask you "how to install Jenkins?". Should I conclude from your answer that you are familiar with what is Jenkins and/or how it works? In other words, is there a value in knowing how to install Jenkins? In my opinion, no.
+### Где я могу попрактиковаться в программировании?
 
-### Where can I practice coding?
-
-Personally, I really like the following sites
+Лично мне очень нравятся следующие сайты
 
 * [HackerRank](https://www.hackerrank.com)
 * [LeetCode](https://leetcode.com)
-* [Exercism](https://exercism.io)
+* [Упражнения](https://exercism.io)
 
-### How to learn more DevOps?
+### Как узнать больше о DevOps?Я перечислил некоторые дорожные карты в [devops-resources](https://github.com/bregman-arie/devops-resources).
 
-I listed some roadmaps in [devops-resources](https://github.com/bregman-arie/devops-resources)
+### Почему некоторые вопросы повторяются?
 
-### Why some questions repeat themselves?
+Если вы видите два одинаковых вопроса, это ошибка.<br>
+Если вы видите два похожих вопроса, это особенность :D (= это сделано намеренно)
 
-If you see two identical questions, that's a bug.<br>
-If you see two similar questions, that's a feature :D (= it's intentional)
+Например:
 
-For example:
+1. Что такое горизонтальное масштабирование?
+2. Добавление дополнительных экземпляров в пул для обеспечения масштабирования называется ________ масштабированием.
 
-1. What is horizontal scaling?
-2. The act of adding additional instances to the pool to handle scaling is called ________ scaling
+Вы правы, оба спрашивают о горизонтальном масштабировании, но в каждом вопросе оно делается под разным углом, и, кроме того, я верю, что повторение помогает вам выучить что-то таким образом, что вы не зацикливаетесь на том, как это задается, а скорее понимаете саму концепцию.
 
-You are right, both ask about horizontal scaling but it's done from a different angle in every question and in addition, I do believe repetition helps you to learn something in a way where you are not fixed on the way it's asked, rather you understand the concept itself.
+### Готовы ли вы внести большие изменения в репозиторий?
 
-### Are you open for making big changes in the repository?
-
-Absolutely. Don't be afraid to raise ideas and start discussions.<br>
-I'll be more than happy to discuss any change you think we should make to improve the learning experience
+Абсолютно. Не бойтесь высказывать идеи и начинать дискуссии.<br>
+Я буду более чем рад обсудить любые изменения, которые, по вашему мнению, нам следует внести, чтобы улучшить процесс обучения.

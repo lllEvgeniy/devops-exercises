@@ -1,40 +1,40 @@
-# App Creation
+# Создание приложения
 
-## Requirements
+## Требования
 
-1. Make sure you have repository with some Kubernetes manifests
-2. Make sure you have a Kubernetes cluster running with ArgoCD installed
+1. Убедитесь, что у вас есть репозиторий с некоторыми манифестами Kubernetes.
+2. Убедитесь, что у вас работает кластер Kubernetes с установленным ArgoCD.
 
-## Objectives
+## Цели
 
-1. Using the CLI or the UI, create a new application with the following properties:
-   1. app name: app-demo
-   2. project: app-project
-   3. repository URL: your repo with some k8s manifests
-   4. namespace: default
-2. Verify the app was created
-3. Sync the app
-4. Verify Kubernetes resources were created
-5. Delete the app
+1. Используя интерфейс командной строки или пользовательский интерфейс, создайте новое приложение со следующими свойствами:
+   1. имя приложения: приложение-демо
+   2. проект: приложение-проект
+   3. URL-адрес репозитория: ваш репозиторий с некоторыми манифестами k8s.
+   4. пространство имен: по умолчанию
+2. Убедитесь, что приложение создано.
+3. Синхронизируйте приложение
+4. Убедитесь, что ресурсы Kubernetes созданы.
+5. Удалить приложение
 
-## Solution
+## Решение
 
-### UI
+### Интерфейс
 
-1. Click on "New App"
-   1. Insert application name: `app-demo`
-   2. Insert project: `app-project`
-   3. Under source put the repository URL to your GitHub repo with Kubernetes manifests
-      1. Set the path for your application
-   4. Under destination put the address of your Kubernetes cluster and set namespace to `default`
-   5. Click on "Create"
-2. Click on "Sync" button on the "app-demo" form
-   1. Click on "Synchronize"
-3. Verify the Kubernetes resources were created
+1. Нажмите «Новое приложение».
+   1. Вставьте имя приложения: `app-demo`
+   2. Вставьте проект: `app-project`
+   3. В разделе «Источник» укажите URL-адрес репозитория вашего репозитория GitHub с манифестами Kubernetes.
+      1. Установите путь к вашему приложению.
+   4. В поле назначения укажите адрес вашего кластера Kubernetes и установите для пространства имен значение «по умолчанию».
+   5. Нажмите «Создать».
+2. Нажмите кнопку «Синхронизировать» на форме «приложение-демо».
+   1. Нажмите «Синхронизировать».
+3. Убедитесь, что ресурсы Kubernetes созданы.
    1. `kubectl get deployments`
-4. Delete the app
+4. Удалить приложение
 
-### CLI
+### Интерфейс командной строки
 
 ```
 argocd app create app-demo \
@@ -44,17 +44,17 @@ argocd app create app-demo \
 --dest-namespace default \
 --dest-server my.kubernetes.cluster
 
-# Check app state
+# Проверка состояния приложения
 argocd app list
 argocd app get app-demo
 
-# Sync app state
+# Синхронизация
 argocd app sync app-demo
 argocd app wait app-demo
 
-# Verify kubernetes resources were created
+# Проверка ресурсов в Kubernetes
 kubectl get deployments
 
-# Delete the app
+# Удаление приложения
 argocd app delete app-demo
 ```

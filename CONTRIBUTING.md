@@ -1,23 +1,25 @@
-## How to contribute
+## Как внести свой вклад
 
-Use pull requests to contribute to the project.
+Используйте запросы на включение, чтобы внести свой вклад в проект.
 
-Stick to the following format:
+Придерживайтесь следующего формата:
 
-\<details>
-<summary>[Question]</summary><br><b>
+\
 
-[Answer]
-\</b></details>
+<details>
+<summary>[Вопрос]</summary><br><b>
 
-* If you added several questions and you would like to know how many questions are there you can use the script "count_questions.sh" in scripts directory.
+[Отвечать]
+\
 
-## What to avoid
+</b></details>* Если вы добавили несколько вопросов и хотите узнать, сколько их, вы можете использовать скрипт «count_questions.sh» в каталоге скриптов.
 
-* Avoid adding installation questions. Those are the worst type of questions...
-* Don't copy questions and answers from other sources. They probably worked hard for adding them.
-* If you add new images, make sure they are free and can be used.
+## Чего следует избегать
 
-## Before submitting the pull request
+* Избегайте добавления вопросов по установке. Это худшие вопросы...
+* Не копируйте вопросы и ответы из других источников. Вероятно, они усердно работали над их добавлением.
+* Если вы добавляете новые изображения, убедитесь, что они бесплатны и их можно использовать.
 
-You can test your changes locally with the script `run_ci.sh` in scripts directory.
+## Перед отправкой запроса на включение
+
+Вы можете протестировать свои изменения локально с помощью сценария `run_ci.sh` в каталоге сценариев.

@@ -1,23 +1,23 @@
-## AWS EC2 - Placement Groups          
+## AWS EC2 — Группы размещения          
 
-### Objectives                      
+### Цели                      
 
-A. Create a placement group. It should be one with a low latency network. Make sure to launch an instance as part of this placement group.
-B. Create another placement group. This time high availability is a priority
+А. Создайте группу размещения. Это должна быть сеть с низкой задержкой. Обязательно запустите экземпляр как часть этой группы размещения.
+Б. Создайте еще одну группу размещения. На этот раз высокая доступность является приоритетом
 
-### Solution                        
+### Решение                        
 
-A.
-1. Go to EC2 service
-2. Click on "Placement Groups" under "Network & Security"
-3. Click on "Create placement group"
-4. Give it a name and choose the "Cluster" placement strategy because the requirement is low latency network
-5. Click on "Create group"
-6. Go to "Instances" and click on "Launch an instance". Choose any properties you would like, just make sure to check "Add instance to placement group" and choose the placement group you've created
+А.
+1. Зайдите в сервис EC2.
+2. Нажмите «Группы мест размещения» в разделе «Сеть и безопасность».
+3. Нажмите «Создать группу размещения».
+4. Дайте ему имя и выберите стратегию размещения «Кластер», поскольку требованием является сеть с низкой задержкой.
+5. Нажмите «Создать группу».
+6. Перейдите в раздел «Экземпляры» и нажмите «Запустить экземпляр». Выберите любые свойства, которые вам нужны, просто не забудьте отметить флажок «Добавить экземпляр в группу размещения» и выбрать созданную группу размещения.
 
-B.
-1. Go to EC2 service
-2. Click on "Placement Groups" under "Network & Security"
-3. Click on "Create placement group"
-4. Give it a name and choose the "Spread" placement strategy because the requirement is high availability as top priority
-5. Click on "Create group"
+Б.
+1. Зайдите в сервис EC2.
+2. Нажмите «Группы мест размещения» в разделе «Сеть и безопасность».
+3. Нажмите «Создать группу размещения».
+4. Дайте ему имя и выберите стратегию размещения «Распространение», поскольку главным приоритетом является высокая доступность.
+5. Нажмите «Создать группу».

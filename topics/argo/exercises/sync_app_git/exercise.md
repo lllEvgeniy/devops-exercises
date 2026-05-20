@@ -1,48 +1,48 @@
-# Sync App - Git
+# Приложение синхронизации — Git
 
-## Requirements
+## Требования
 
-1. Make sure you have repository with some Kubernetes manifests
-2. Make sure you have a Kubernetes cluster running with ArgoCD installed
+1. Убедитесь, что у вас есть репозиторий с некоторыми манифестами Kubernetes.
+2. Убедитесь, что у вас работает кластер Kubernetes с установленным ArgoCD.
 
 
-## Objectives
+## Цели
 
-1. Create a new application using the UI or CLI
-   1. App Name: app-demo
-   2. Project: project-demo
-   3. Kubernetes namespace: default
-2. Sync the application
-3. Verify the application is running by executing `kubectl get deploy` in the `default` namespace
-4. Now make a change in your repository to one of the Kubernetes manifests (e.g. update deployment tag)
-5. Go back to ArgoCD and check the state of the app
-6. Sync the state of the application
+1. Создайте новое приложение с помощью пользовательского интерфейса или CLI.
+   1. Имя приложения: app-demo.
+   2. Проект: проект-демо
+   3. Пространство имен Kubernetes: по умолчанию.
+2. Синхронизируйте приложение
+3. Убедитесь, что приложение работает, выполнив `kubectl get Deploy` в пространстве имен `default`.
+4. Теперь внесите изменения в свой репозиторий в один из манифестов Kubernetes (например, обновите тег развертывания).
+5. Вернитесь в ArgoCD и проверьте состояние приложения.
+6. Синхронизируйте состояние приложения
 
-## Solution
+## Решение
 
-Click [here](solution.md) to view the solution
+Нажмите [здесь](solution.md), чтобы просмотреть решение.
 
-### UI
+### Интерфейс
 
-1. Click on "New App"
-   1. Insert application name: `app-demo`
-   2. Insert project: `project-demo`
-   3. Under source put the repository URL to your GitHub repo with Kubernetes manifests
-      1. Set path of your application
-   4. Under destination put the address of your Kubernetes cluster and set namespace to `default`
-   5. Click on "Create"
-2. Click on the newly created application
-   1. Click on the "sync button" and click on "Synchronize"
-3. Make a change in your Git repo where the Kubernetes manifests are
-   1.  `git add .`
-   2.  `git commit -a`
-   3.  `git push origin <BRANCH_NAME>`
-4.  Go back to ArgoCD UI and check the status of the app
-    1.  You should see it's "out-of-sync". If you don't, you may want to click on "Refresh"
-    2.  You can also click on "App diff" to see the difference that led to "out-of-sync"
-5.  Click on "Sync" and "Synchronize" to sync the application
+1. Нажмите «Новое приложение».
+   1. Вставьте имя приложения: `app-demo`
+   2. Вставьте проект: `project-demo`
+   3. В разделе «Источник» укажите URL-адрес репозитория вашего репозитория GitHub с манифестами Kubernetes.
+      1. Установите путь к вашему приложению.
+   4. В поле назначения укажите адрес вашего кластера Kubernetes и установите для пространства имен значение «по умолчанию».
+   5. Нажмите «Создать».
+2. Нажмите на вновь созданное приложение.
+   1. Нажмите на кнопку «Синхронизировать» и нажмите «Синхронизировать».
+3. Внесите изменения в репозиторий Git, где находятся манифесты Kubernetes.
+   1. `git добавить .`
+   2. `git commit -a`
+   3. `git push origin <BRANCH_NAME>`
+4. Вернитесь в пользовательский интерфейс ArgoCD и проверьте статус приложения.
+    1. Вы должны увидеть, что он «рассинхронизирован». Если вы этого не сделаете, вы можете нажать «Обновить».
+    2. Вы также можете нажать «Различия приложений», чтобы увидеть разницу, которая привела к «рассинхронизации».
+5. Нажмите «Синхронизировать» и «Синхронизировать», чтобы синхронизировать приложение.
 
-### CLI 
+### Интерфейс командной строки
 
 ```
 argocd app create app-demo \
@@ -52,17 +52,17 @@ argocd app create app-demo \
 --dest-namespace default \
 --dest-server my.kubernetes.cluster
 
-# In the Git repo
+# В Git-репозитории
 cd <git repo>
 vi <k8s manifest>
 git add .
 git commit -a
 git push origin <BRANCH_NAME>
 
-# Check app state
+# Проверка состояния приложения
 argocd app get app-demo
 
-# Sync app state
+# Синхронизация
 argocd app sync app-demo
 argocd app wait app-demo
 ```

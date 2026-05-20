@@ -1,4 +1,4 @@
-## Branch 01 - Solution
+## Ветка 01 — Решение
 
 ```
 cd some_repository
@@ -11,10 +11,10 @@ git add file2
 git commit -a -m "added file2"
 ```
 
-Verify:
+Проверка:
 
-```
-git log (you should see two commits)
+```bash
+git log   # в ветке dev — два коммита
 git checkout master
-git log (you should see one commit)
+git log   # в master — один коммит
 ```

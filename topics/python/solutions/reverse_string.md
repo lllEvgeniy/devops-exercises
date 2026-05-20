@@ -1,13 +1,14 @@
-## Reverse a String - Solution
+## Перевернуть строку — Решение
 
-```
+Срез в Python:
+
+```python
 my_string[::-1]
 ```
 
-A more visual way is:<br>
-<i>Careful: this is very slow</i>
+Более наглядный способ (осторожно: для очень длинных строк может быть медленно):
 
-```
+```python
 def reverse_string(string):
     temp = ""
     for char in string:

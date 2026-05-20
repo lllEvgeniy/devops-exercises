@@ -1,14 +1,14 @@
 ## ReplicaSet 101
 
-#### Objective
+#### Цель
 
-Learn how to create and view ReplicaSets
+Научиться создавать и просматривать ReplicaSet.
 
-#### Instructions
+#### Инструкции
 
-1. Create a ReplicaSet with 2 replicas. The app can be anything.
-2. Verify a ReplicaSet was created and there are 2 replicas
-3. Delete one of the Pods the ReplicaSet has created
-4. If you'll list all the Pods now, what will you see?
-5. Remove the ReplicaSet you've created
-6. Verify you've deleted the ReplicaSet
+1. Создайте ReplicaSet с двумя репликами. Приложение может быть любым.
+2. Убедитесь, что ReplicaSet создан и работают 2 пода.
+3. Удалите один из подов, созданных ReplicaSet.
+4. Снова перечислите все поды — что вы увидите?
+5. Удалите созданный ReplicaSet.
+6. Убедитесь, что ReplicaSet удалён.

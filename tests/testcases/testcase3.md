@@ -1,58 +1,37 @@
+<details>
+<summary>У вас есть коллега, с которым вы не ладите. Какие стратегии помогут выстроить с ним нормальные рабочие отношения?</summary><br><b>
 
-<summary>You have a colleague you don‘t get along with. Tell us some strategies how you create a good work relationship with them anyway.</summary><br><b>
+Плохой ответ: «никак».
 
-Bad answer: I don't.
-Better answer: Every person has strengths and weaknesses. This is true also for colleagues I don't have good work relationship with and this is what helps me to create good work relationship with them. If I am able to highlight or recognize their strengths I'm able to focus mainly on that when communicating with them.
+Лучше: у каждого есть сильные стороны. Сфокусируйтесь на задаче и на том, что у коллеги получается хорошо; договоритесь о правилах коммуникации (статусы, дедлайны, каналы); при конфликте опирайтесь на факты и общие цели команды, а не на оценки личности.
+
 </b></details>
 
 <details>
-<summary>What do you love about your work?</summary><br><b>
+<summary>Что вам нравится в вашей текущей работе?</summary><br><b>
 
-You know the best, but some ideas if you find it hard to express yourself:
+Ответ индивидуален. Часто упоминают: разнообразие задач, ответственность за конечный результат, сильную команду, возможность учиться технологиям, влияние на продукт.
 
-* Diversity
-* Complexity
-* Challenging
-* Communication with several different teams
 </b></details>
 
 <details>
-<summary>What are your responsibilities in your current position?</summary><br><b>
-
-You know the best :)
-</b></details>
+<summary>Каковы ваши обязанности на текущей позиции?</summary><br><b>
 
 
-<summary>Why should we hire you for the role?</summary><br><b>
 
-You can use and elaborate on one or all of the following:
-
-* Passion
-* Motivation 
-* Autodidact
-* Creativity (be able to support it with some actual examples)
-</b></details>
-
-## Questions you CAN ask
-
-A list of questions you as a candidate can ask the interviewer during or after the interview.
-These are only a suggestion, use them carefully. Not every interviewer will be able to answer these (or happy to) which should be perhaps a red flag warning for your regarding working in such place but that's really up to you.
-
-<details>
-<summary>What do you like about working here?</summary><br><b>
 </b></details>
 
 <details>
-<summary>How does the company promote personal growth?</summary><br><b>
-</b>
+<summary>Почему мы должны нанять именно вас?</summary><br><b>
 
-<details>
-<summary>What is the current level of technical debt you are dealing with?</summary><br><b>
+Можно опереться на один или несколько пунктов (с примерами из опыта): мотивация к продукту, автономность и доведение задач до конца, умение снижать технический долг, коммуникация между командами, быстрое освоение нового стека.
 
-Be careful when asking this question - all companies, regardless of size, have some level of tech debt. 
-Phrase the question in the light that all companies have the deal with this, but you want to see the current
-pain points they are dealing with <br>
-
-This is a great way to figure how managers deal with unplanned work, and how good they are at 
-setting expectations with projects.
 </b></details>
+
+## Вопросы, которые вы можете задать интервьюеру
+
+Ниже — идеи для диалога в конце собеседования. Используйте то, что уместно по тону разговора; не каждый интервьюер готов углубляться во все темы.
+
+- Как устроен типичный рабочий день команды и взаимодействие с продуктом?
+- Как компания поддерживает обучение и рост инженеров?
+- Какие сейчас главные технические вызовы и приоритеты на квартал/год?

@@ -1,24 +1,24 @@
-## AWS VPC - Subnets
+## AWS VPC — подсети
 
-### Requirements
+### Требования
 
-1. Single newly created VPC
-2. Region with more than two availability zones
+1. Один вновь созданный VPC.
+2. Регион с более чем двумя зонами доступности.
 
-### Objectives
+### Цели
 
-1. Create a subnet in your newly created VPC
-  1. CIDR: 10.0.0.0/24
-  2. Name: NewSubnet1
-2. Create additional subnet
+1. Создайте подсеть во вновь созданном VPC.
+  1. CIDR: 10.0.0.0/24.
+  2. Имя: НоваяСубсеть1.
+2. Создать дополнительную подсеть
   1. CIDR: 10.0.1.0/24
-  2. Name: NewSubnet2
-  3. Different AZ compared to previous subnet
-3. Create additional subnet
-  1. CIDR: 10.0.2.0/24
-  2. Name: NewSubnet3
-  3. Different AZ compared to previous subnets
+  2. Имя: НьюСубнет2.
+  3. Другая зона доступности по сравнению с предыдущей подсетью.
+3. Создайте дополнительную подсеть.
+  1. CIDR: 10.0.2.0/24.
+  2. Имя: НьюСабнет3.
+  3. Другая зона доступности по сравнению с предыдущими подсетями.
 
-## Solution
+## Решение
 
-Click [here to view to solution](solution.md)
+Нажмите [здесь, чтобы просмотреть решение](solution.md)

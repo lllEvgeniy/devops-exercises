@@ -1,29 +1,29 @@
-## AWS Route 53 - Failover
+## AWS Route 53 — аварийное переключение
 
-### Requirements
+### Требования
 
-A running EC2 web instance with an health check defined for it in Route 53
+Работающий веб-экземпляр EC2 с проверкой работоспособности, определенной для него в маршруте 53.
 
-### Objectives
+### Цели
 
-1. Create a failover record that will failover to another record if an health check isn't passing
-  1. Make sure TTL is 30
-  2. Associate the failover record with the health check you have
+1. Создайте запись переключения при сбое, которая будет переключаться на другую запись, если проверка работоспособности не пройдет.
+  1. Убедитесь, что TTL равен 30.
+  2. Свяжите запись аварийного переключения с имеющейся у вас проверкой работоспособности.
 
-### Solution
+### Решение
 
-#### Console
+#### Консоль
 
-1. Go to Route 53 service
-2. Click on "Hosted Zones" in the left-side menu
-3. Click on your hosted zone
-4. Click on "Created record"
-5. Insert "failover" in record name and set record type to A
-6. Insert the IP of your instance
-7. Set the routing policy to failover
-8. Set TTL to 30
-9. Associate with an health check
-10. Add another record with the same properties as the previous one
-11. Click on "Create records"
-12. Go to your EC2 instance and edit its security group to remove the HTTP rules
-13. Use your web app and if you print the hotsname of your instance then you will notice, a failover was performed and a different EC2 instance is used
+1. Зайдите на сервис Route 53.
+2. Нажмите «Размещенные зоны» в меню слева.
+3. Нажмите на свою зону хостинга.
+4. Нажмите «Создать запись».
+5. Вставьте слово «отработка отказа» в имя записи и установите тип записи A.
+6. Введите IP вашего экземпляра.
+7. Установите политику маршрутизации на аварийное переключение.
+8. Установите TTL на 30.
+9. Пройдите медицинский осмотр
+10. Добавьте еще одну запись с теми же свойствами, что и предыдущая.
+11. Нажмите «Создать записи».
+12. Перейдите к своему экземпляру EC2 и отредактируйте его группу безопасности, чтобы удалить правила HTTP.
+13. Используйте свое веб-приложение, и если вы напечатаете горячее имя вашего экземпляра, вы заметите, что был выполнен переход на другой ресурс и используется другой экземпляр EC2.
